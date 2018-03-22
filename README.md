@@ -13,3 +13,11 @@
 ### Сервер
 - Логика игры
 - Регистрация пользователя
+
+## Стек технологий
+- Protocol Buffers
+- GRPC
+- Android SDK/NDK
+- OpenGL 3.0
+- PostgresQL
+- OAuth 2.0 (Google Api) ?
