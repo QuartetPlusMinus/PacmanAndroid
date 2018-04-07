@@ -1,16 +1,15 @@
 #include "game.h"
-
 #include <GLES2/gl2.h>
+//#include <iostream>
 
-void on_surface_created() {
-    int i = 0;
+void onSurfaceCreated() {
     glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
 }
 
-void on_surface_changed() {
+void onSurfaceChanged() {
     // No-op
 }
 
-void on_draw_frame() {
-    //glClear(GL_COLOR_BUFFER_BIT);
+void onDrawFrame() {
+    glClear(GL_COLOR_BUFFER_BIT);
 }
