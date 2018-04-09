@@ -20,17 +20,9 @@ extern "C" {
  * Method:    onSurfaceCreated
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_com_example_viewsharp_pacman_RendererWrapper_onSurfaceCreated
+JNIEXPORT void JNICALL Java_com_example_viewsharp_pacman_RendererWrapper_onSurfaceCreatedJNI
         (JNIEnv *env, jobject obj) {
     onSurfaceCreated();
-
-
-
-//    jclass RendererWrapper = env->FindClass("com/example/viewsharp/pacman/RendererWrapper");
-//    if (RendererWrapper) {
-//        jmethodID qvt = env->GetStaticMethodID(RendererWrapper, "qvt", "(I)I");
-//        jint result = env->CallIntMethod(RendererWrapper, qvt, (jint) 5);
-//    }
 }
 
 /*
@@ -38,7 +30,7 @@ JNIEXPORT void JNICALL Java_com_example_viewsharp_pacman_RendererWrapper_onSurfa
  * Method:    onSurfaceChanged
  * Signature: (II)V
  */
-JNIEXPORT void JNICALL Java_com_example_viewsharp_pacman_RendererWrapper_onSurfaceChanged
+JNIEXPORT void JNICALL Java_com_example_viewsharp_pacman_RendererWrapper_onSurfaceChangedJNI
         (JNIEnv *, jobject, jint, jint) {
     onSurfaceChanged();
 }
@@ -48,7 +40,7 @@ JNIEXPORT void JNICALL Java_com_example_viewsharp_pacman_RendererWrapper_onSurfa
  * Method:    onDrawFrame
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_com_example_viewsharp_pacman_RendererWrapper_onDrawFrame
+JNIEXPORT void JNICALL Java_com_example_viewsharp_pacman_RendererWrapper_onDrawFrameJNI
         (JNIEnv *, jobject) {
     onDrawFrame();
 }

@@ -1,13 +1,6 @@
-//
-// Created by viewsharp on 05.04.18.
-//
+#include "platform_gl.h"
+ 
+#define BUFFER_OFFSET(i) ((void*)(i))
 
-#ifndef PACMANANDROID_BUFFER_H
-#define PACMANANDROID_BUFFER_H
-
-#include <GLES2/gl2.h>
-#include <cassert>
-
-GLuint createVBO(const GLsizeiptr size, const GLvoid* data, const GLenum usage);
-
-#endif //PACMANANDROID_BUFFER_H
+// upload data intu a vertex buffer object
+GLuint create_vbo(const GLsizeiptr size, const GLvoid* data, const GLenum usage); 

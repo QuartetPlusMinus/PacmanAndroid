@@ -7,10 +7,10 @@ package com.example.viewsharp.pacman;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import android.opengl.Matrix;
 import android.content.Context;
 import android.opengl.GLSurfaceView.Renderer;
 
+import com.example.viewsharp.pacman.platform.*;
 
 public class RendererWrapper implements Renderer {
     static {
@@ -23,37 +23,25 @@ public class RendererWrapper implements Renderer {
         this.context = context;
     }
 
-    private float[] mViewMatrix = new float[16];
-
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-
-        // подключим текстуру
-//        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-//        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, R.drawable.man);
-
-//        Matrix.setLookAtM(mViewMatrix, 0,
-//                0.0f, 0.0f, 1.0f,
-//                0.0f, 0.0f, -5.0f,
-//                0.0f, 1.0f, 0.0f // up:  x, y, z
-//        );
-        onSurfaceCreated();
+        PlatformFileUtils.init_asset_manager(context.getAssets());
+        onSurfaceCreatedJNI();
     }
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-        onSurfaceChanged(width, height);
+        onSurfaceChangedJNI(width, height);
     }
 
     @Override
     public void onDrawFrame(GL10 gl) {
-        onDrawFrame();
+        onDrawFrameJNI();
     }
 
-    private native void onSurfaceCreated();
+    private static native void onSurfaceCreatedJNI();
 
-    private native void onSurfaceChanged(int width, int height);
+    private static native void onSurfaceChangedJNI(int width, int height);
 
-    private native void onDrawFrame();
-
+    private static native void onDrawFrameJNI();
 }

@@ -1,12 +1,5 @@
-//
-// Created by viewsharp on 05.04.18.
-//
-
-#ifndef PACMANANDROID_IMAGE_H
-#define PACMANANDROID_IMAGE_H
-
-#include <GLES2/gl2.h>
-
+#include "platform_gl.h"
+ 
 typedef struct {
     const int width;
     const int height;
@@ -14,9 +7,7 @@ typedef struct {
     const GLenum gl_color_format;
     const void* data;
 } RawImageData;
-
+ 
 /* Returns the decoded image data, or aborts if there's an error during decoding. */
 RawImageData get_raw_image_data_from_png(const void* png_data, const int png_data_size);
 void release_raw_image_data(const RawImageData* data);
-
-#endif //PACMANANDROID_IMAGE_H
