@@ -33,6 +33,8 @@ static mat4x4 model_view_projection_matrix;
 static void position_table_in_scene();
 static void position_object_in_scene(float x, float y, float z);
 
+static float pos = 0.0f;
+
 void onSurfaceCreated() {
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glEnable(GL_DEPTH_TEST);
@@ -70,8 +72,10 @@ void onDrawFrame() {
     position_object_in_scene(0.0f, mallet_height / 2.0f, -0.4f);
     draw_mallet(&red_mallet, &color_program, model_view_projection_matrix);
 
-    position_object_in_scene(0.0f, mallet_height / 2.0f, 0.4f);
+    position_object_in_scene(pos, mallet_height / 2.0f, 0.4f);
     draw_mallet(&blue_mallet, &color_program, model_view_projection_matrix);
+
+    pos += 0.01f;
 
     // Draw the puck.
     position_object_in_scene(0.0f, puck_height / 2.0f, 0.0f);
