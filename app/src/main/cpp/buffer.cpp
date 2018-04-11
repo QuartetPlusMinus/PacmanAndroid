@@ -16,6 +16,7 @@ GLuint create_vbo(const GLsizeiptr size, const GLvoid* data, const GLenum usage)
 	// привязка vdo и загрузка данных из data в объект vbo
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, size, data, usage);
+
     glBindBuffer(GL_ARRAY_BUFFER, 0);
  
     return vbo;

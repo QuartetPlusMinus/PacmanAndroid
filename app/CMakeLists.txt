@@ -10,6 +10,32 @@ cmake_minimum_required(VERSION 3.4.1)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
+set(PNG_LOCAL_PATH src/main/cpp/libpng)
+
+add_library(
+             libpng
+             STATIC
+
+             ${PNG_LOCAL_PATH}/png.c
+             ${PNG_LOCAL_PATH}/pngerror.c
+             ${PNG_LOCAL_PATH}/pngget.c
+             ${PNG_LOCAL_PATH}/pngmem.c
+             ${PNG_LOCAL_PATH}/pngpread.c
+             ${PNG_LOCAL_PATH}/pngread.c
+             ${PNG_LOCAL_PATH}/pngrio.c
+             ${PNG_LOCAL_PATH}/pngrtran.c
+             ${PNG_LOCAL_PATH}/pngrutil.c
+             ${PNG_LOCAL_PATH}/pngset.c
+             ${PNG_LOCAL_PATH}/pngtrans.c
+             ${PNG_LOCAL_PATH}/pngwio.c
+             ${PNG_LOCAL_PATH}/pngwrite.c
+             ${PNG_LOCAL_PATH}/pngwtran.c
+             ${PNG_LOCAL_PATH}/pngwutil.c
+             )
+
+set(GAME_LOCAL_PATH src/main/cpp)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
+
 add_library( # Sets the name of the library.
              game
 
@@ -17,8 +43,16 @@ add_library( # Sets the name of the library.
              SHARED
 
              # Provides a relative path to your source file(s).
-             src/main/cpp/game.cpp
-
+             ${GAME_LOCAL_PATH}/platform_asset_utils.cpp
+             ${GAME_LOCAL_PATH}/platform_log.cpp
+             ${GAME_LOCAL_PATH}/asset_utils.cpp
+             ${GAME_LOCAL_PATH}/buffer.cpp
+             ${GAME_LOCAL_PATH}/game.cpp
+             ${GAME_LOCAL_PATH}/image.cpp
+             ${GAME_LOCAL_PATH}/shader.cpp
+             ${GAME_LOCAL_PATH}/texture.cpp
+             ${GAME_LOCAL_PATH}/game_objects.cpp
+             ${GAME_LOCAL_PATH}/program.cpp
              )
 
 
@@ -28,22 +62,30 @@ add_library( # Sets the name of the library.
 # you want to add. CMake verifies that the library exists before
 # completing its build.
 
-find_library( # Sets the name of the path variable.
-               gles-lib
 
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
-               GLESv2 )
 
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
-target_link_libraries( # Specifies the target library.
+find_library( z-lib z )
+
+target_link_libraries(
+                       libpng
+
+                       ${z-lib}
+                       )
+
+find_library( gles-lib GLESv2 )
+find_library( log-lib log )
+find_library( android-lib android )
+
+target_link_libraries(
                        game
 
-                       # Links the target library to the log library
-                       # included in the NDK.
+                       libpng
                        ${gles-lib}
+                       ${log-lib}
+                       ${android-lib}
                        )

@@ -1,4 +1,4 @@
-#include <GLES/gl2.h>
+#include "platform_gl.h"
 
 GLuint compile_shader(const GLenum type, const GLchar* source, const GLint length);
 GLuint link_program(const GLuint vertex_shader, const GLuint fragment_shader);

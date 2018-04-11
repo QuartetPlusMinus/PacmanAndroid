@@ -8,9 +8,8 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.opengl.GLSurfaceView.Renderer;
-
-import com.example.viewsharp.pacman.platform.*;
 
 public class RendererWrapper implements Renderer {
     static {
@@ -25,7 +24,10 @@ public class RendererWrapper implements Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        PlatformFileUtils.init_asset_manager(context.getAssets());
+
+        AssetManager assetManager = context.getAssets();
+//        PlatformFileUtils.initAssetManager(assetManager);
+        initAssetManagerJNI(assetManager);
         onSurfaceCreatedJNI();
     }
 
@@ -38,6 +40,8 @@ public class RendererWrapper implements Renderer {
     public void onDrawFrame(GL10 gl) {
         onDrawFrameJNI();
     }
+
+    private static native void initAssetManagerJNI(AssetManager assetManager);
 
     private static native void onSurfaceCreatedJNI();
 

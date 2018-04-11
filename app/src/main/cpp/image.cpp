@@ -1,7 +1,9 @@
 #include "image.h"
 #include "platform_log.h"
+#include "libpng/png.h"
+#include "libpng/pngconf.h"
 #include <assert.h>
-#include <png.h>
+//#include <png.h>
 #include <string.h>
 #include <stdlib.h>
  
@@ -28,11 +30,11 @@ static DataHandle read_entire_png_image(
     const png_structp png_ptr, const png_infop info_ptr, const png_uint_32 height);
 static GLenum get_gl_color_format(const int png_color_format);
 
-RawImageData get_raw_image_data_from_png(const void* png_data, const int png_data_size) {
+RawImageData get_raw_image_data_from_png(const void* png_data, size_t png_data_size) {
     
 	// Checks that the PNG data is present and has a valid header.
 	assert(png_data != NULL && png_data_size > 8);
-    assert(png_check_sig((void*)png_data, 8));
+    assert(png_check_sig((png_const_bytep)png_data, 8));
 	
 	// This initializes the PNG structures that we’ll use to read in the rest of the data
     png_structp png_ptr = png_create_read_struct(
@@ -41,7 +43,7 @@ RawImageData get_raw_image_data_from_png(const void* png_data, const int png_dat
     png_infop info_ptr = png_create_info_struct(png_ptr);
     assert(info_ptr != NULL);
  
-    ReadDataHandle png_data_handle = (ReadDataHandle) {{png_data, png_data_size}, 0};
+    ReadDataHandle png_data_handle = (ReadDataHandle) {{(png_byte *)png_data, png_data_size}, 0};
     png_set_read_fn(png_ptr, &png_data_handle, read_png_data_callback);
  
     if (setjmp(png_jmpbuf(png_ptr))) {
@@ -69,7 +71,7 @@ RawImageData get_raw_image_data_from_png(const void* png_data, const int png_dat
 // To read from the right place in the memory buffer, we store an offset and we increase that offset every time that method is called.
 static void read_png_data_callback(
     png_structp png_ptr, png_byte* raw_data, png_size_t read_length) {
-    ReadDataHandle* handle = png_get_io_ptr(png_ptr);
+    ReadDataHandle* handle = (ReadDataHandle*)png_get_io_ptr(png_ptr);
     const png_byte* png_src = handle->data.data + handle->offset;
  
     memcpy(raw_data, png_src, read_length);
@@ -129,10 +131,10 @@ static DataHandle read_entire_png_image(
     const png_uint_32 height) 
 {
     const png_size_t row_size = png_get_rowbytes(png_ptr, info_ptr);
-    const int data_length = row_size * height;
+    const size_t data_length = row_size * height;
     assert(row_size > 0);
  
-    png_byte* raw_image = malloc(data_length);
+    png_byte* raw_image = (png_byte*)malloc(data_length);
     assert(raw_image != NULL);
  
     png_byte* row_ptrs[height];
