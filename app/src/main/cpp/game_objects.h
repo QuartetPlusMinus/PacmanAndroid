@@ -1,6 +1,6 @@
 #include "platform_gl.h"
 #include "program.h"
-#include "linmath/linmath.h"
+#include "linmath.h"
 
 typedef struct {
     GLuint texture;

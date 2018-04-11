@@ -3,7 +3,7 @@
 #include "asset_utils.h"
 #include "buffer.h"
 #include "image.h"
-#include "linmath/linmath.h"
+#include "linmath.h"
 #include "math_helper.h"
 #include "matrix.h"
 #include "platform_gl.h"

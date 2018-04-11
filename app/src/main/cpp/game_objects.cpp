@@ -2,7 +2,7 @@
 #include "buffer.h"
 #include "platform_gl.h"
 #include "program.h"
-#include "linmath/linmath.h"
+#include "linmath.h"
 #include <math.h>
 
 // Triangle fan
