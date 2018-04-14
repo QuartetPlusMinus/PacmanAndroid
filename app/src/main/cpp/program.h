@@ -1,5 +1,11 @@
-#pragma once
-#include "platform_gl.h"
+//
+// Created by viewsharp on 12.04.18.
+//
+
+#ifndef PACMANANDROID_PROGRAM_H
+#define PACMANANDROID_PROGRAM_H
+
+#include <GLES2/gl2.h>
 
 typedef struct {
     GLuint program;
@@ -18,5 +24,7 @@ typedef struct {
     GLint u_color_location;
 } ColorProgram;
 
-TextureProgram get_texture_program(GLuint program);
-ColorProgram get_color_program(GLuint program);
+TextureProgram get_texture_program();
+ColorProgram get_color_program();
+
+#endif //PACMANANDROID_PROGRAM_H
