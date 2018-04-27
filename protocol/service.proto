@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package ru.threedouble.proto;
+
+message Point {
+    uint32 x = 1;
+    uint32 y = 2;
+}
+
+enum ItemType {
+	COIN = 0;
+}
+
+message Item {
+	ItemType type = 1;
+	Point pos = 2;
+	// ItemStatus action = 3;
+}
+
+enum Direction{
+    RIGHT = 0;
+    DOWN = 1;
+    LEFT = 2;
+    UP = 3;
+}
+
+enum UnitType {
+    PACMAN = 0;
+    GHOST = 1;
+    //BOSS = 2; ?)
+}
+
+enum BeingStatus {
+    KILLED = 0;
+    ALIVE = 1;
+    DYING = 2;
+}
+
+enum GameStatus {
+    WIN = 0;
+    LOSE = 1;
+}
+
+message UnitInit {
+    UnitType type = 1;
+    string name = 2;
+    Unit data = 3;
+}
+
+message Unit {
+    Point pos = 1;
+    Direction direction = 2;
+	float entryPercent = 3;
+    BeingStatus status = 4;
+    uint32 health = 5;
+}
+
+message ConnectRequest {
+    string name = 1;
+}
+
+message QueueReply {
+	uint32 position = 1;
+}
+
+message StartReply {
+    uint32 id = 1; // index in room
+    repeated UnitInit unit = 2; // unit init data
+    repeated string map = 3; // not string, some type !!!
+	repeated Item item = 4; // game item init data
+}
+
+message EventRequest {
+    Direction direction = 1;
+}
+
+message IterationReply {
+    repeated Unit unit = 1;
+	repeated Item item = 2;
+}
+
+message EndReply {
+    GameStatus status = 1;
+    uint32 points = 2;
+}
