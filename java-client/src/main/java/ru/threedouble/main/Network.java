@@ -1,43 +1,25 @@
 package ru.threedouble.main;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
+import com.google.protobuf.GeneratedMessageV3;
+
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-class Message {
-
-}
-
-class Network {
+class Network implements Runnable{
 
     Network(InetAddress ipAddress, int port) throws SocketException {
-        socket = new DatagramSocket(); // throws SocketException
+        socket = new DatagramSocket();
         this.ipAddress = ipAddress;
         this.port = port;
     }
 
-    public byte[] Request(byte[] data) throws IOException {
-        DatagramPacket sendPacket = new DatagramPacket(data, data.length, ipAddress, port);
-        socket.send(sendPacket); // throws IOException
-
-        DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
-        socket.receive(receivePacket);
-
-        return receivePacket.getData();
-    }
-
-    public void SafeSend(byte[] data) throws IOException {
-        DatagramPacket sendPacket = new DatagramPacket(data, data.length, ipAddress, port);
-        socket.send(sendPacket); // throws IOException
+    @Override
+    public void run() {
 
     }
 
-    public void Send(byte[] data) throws IOException {
-        DatagramPacket sendPacket = new DatagramPacket(data, data.length, ipAddress, port);
-        socket.send(sendPacket); // throws IOException
-    }
+    protected void switcher(int type, GeneratedMessageV3 request) {}
 
     private final DatagramSocket socket;
     private final InetAddress ipAddress;

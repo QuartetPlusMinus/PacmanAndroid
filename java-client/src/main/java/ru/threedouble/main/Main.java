@@ -1,43 +1,31 @@
 package ru.threedouble.main;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.*;
-import ru.threedouble.main.Network;
 import ru.threedouble.proto.Service.*;
 
 public class Main {
+    private static final int receiverPort = 27182;
+    private static final int initiatorPort = 31415;
 
-    private static final int port = 31415;
-
-    public static void main(String[] args)
-    {
-
-        QueueReply queueReply = QueueReply.newBuilder().build();
-
-        byte[] buffer = queueReply.toByteArray();
-
-        BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) {
         try {
-            DatagramSocket clientSocket = new DatagramSocket();
-            InetAddress IPAddress = InetAddress.getByName("localhost");
-            byte[] sendData = new byte[1024];
-            byte[] receiveData = new byte[1024];
-            String sentence = inFromUser.readLine();
-            sendData = sentence.getBytes();
-
-//            System.out.println(sentence);
-
-            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
-            clientSocket.send(sendPacket);
-            DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-            clientSocket.receive(receivePacket);
-
-            String modifiedSentence = new String(receivePacket.getData());
-            System.out.println("FROM SERVER ["+ receiveData.length +"]:" + modifiedSentence);
-            clientSocket.close();
+            loop();
         }
         catch (Exception e) {
             System.out.println(e.toString());
         }
+    }
+
+    private static void loop() throws IOException {
+        Service service = new Service(InetAddress.getByName("localhost"), receiverPort);
+        service.run();
+
+        Server server = new Server(InetAddress.getByName("localhost"), initiatorPort);
+        ConnectRequest connectRequest =
+                ConnectRequest.newBuilder()
+                        .setName("test")
+                        .build();
+        server.Connect(connectRequest);
     }
 }

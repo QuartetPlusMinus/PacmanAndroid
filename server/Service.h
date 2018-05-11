@@ -11,32 +11,36 @@
 #include "GameRoom.h"
 #include "Client.h"
 
+typedef enum {
+    CONNECT,
+    EVENT
+} RequestType;
+
 class Service : public Network {
 public:
-    Service(unsigned short port):
+    Service(unsigned short port) :
             Network(port) {
     }
 
-    // ----------------------------------------------------------------------------------------------------------------
-
 private:
-    void Connect(Client client, ConnectRequest connectRequest) {
-        // your code
+    virtual void Connect(Client client, ConnectRequest connectRequest) = 0;
 
-        QueueReply queueReply;
+    virtual void Event(Client client, EventRequest eventRequest) = 0;
 
-        client.Queue(queueReply);
-
-        // Код Ильнура должен быть тут
+    void switcher(int type, Client client, const void *request) {
+        switcher((RequestType) type, client, (const google::protobuf::Message *) request);
     }
 
-    void Event(Client client, EventRequest eventRequest) {
-        // your code
-
-        // Код Ильнура должен быть тут
+    void switcher(RequestType type, Client client, const google::protobuf::Message *request) {
+        switch (type) {
+            case CONNECT:
+                Connect(client, *(ConnectRequest *) request);
+                break;
+            case EVENT:
+                Event(client, *(EventRequest *) request);
+                break;
+        }
     }
-
-    std::queue clients; // ???
 };
 
 #endif //SERVER_PROTOCOL_H

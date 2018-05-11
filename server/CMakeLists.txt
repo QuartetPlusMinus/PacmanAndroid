@@ -47,7 +47,7 @@ add_custom_command(
 set(GENERATED_PROTOBUF_FILES ${SERVICE_PB_H_FILE} ${SERVICE_PB_CPP_FILE})
 include_directories(${GENERATED_PROTOBUF_PATH})
 
-set(SERVER_FILES main.cpp Network.cpp Service.cpp GameRoom.cpp Client.cpp)
+set(SERVER_FILES main.cpp Network.cpp Service.cpp GameRoom.cpp Client.cpp Socket.cpp Game.cpp Game.h)
 
 add_executable(PacmanServer ${SERVER_FILES} ${GENERATED_PROTOBUF_FILES})
 target_link_libraries(PacmanServer ${PROTOBUF_LIBRARY} ${Boost_LIBRARIES})
