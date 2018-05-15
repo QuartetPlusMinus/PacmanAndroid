@@ -14,12 +14,12 @@
 
 using namespace ru::threedouble::proto;
 
-enum RequestType {
-    CONNECT = 0,
-    EVENT = 1
-};
-
 class Service : public Network {
+    enum RequestType {
+        CONNECT = 0,
+        EVENT = 1
+    };
+
 public:
     explicit Service(unsigned short port) :
             Network(port) {

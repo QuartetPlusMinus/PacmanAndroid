@@ -31,8 +31,8 @@ class Server{
         private DatagramPacket datagramPacket;
     }
 
-    Server(InetAddress host, int port) throws SocketException {
-        socket = new DatagramSocket();
+    Server(InetAddress host, int port, DatagramSocket socket) throws SocketException {
+        this.socket = socket;
         this.host = host;
         this.port = port;
     }
@@ -52,7 +52,7 @@ class Server{
         byte[] requestBytes = new byte[bytes.length+1];
 
         requestBytes[0] = type;
-        System.arraycopy(requestBytes, 0, requestBytes, 1, requestBytes.length);
+        System.arraycopy(bytes, 0, requestBytes, 1, bytes.length);
 
         DatagramPacket sendPacket = new DatagramPacket(requestBytes, requestBytes.length, host, port);
 

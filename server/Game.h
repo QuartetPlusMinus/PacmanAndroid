@@ -13,7 +13,7 @@ public:
     }
 
     void start() {
-        boost::thread thread([this](){this->run(); });
+        boost::thread thread([this]() { this->run(); });
         thread.join();
     }
 
@@ -22,6 +22,14 @@ private:
     virtual void Connect(Client client, ConnectRequest &connectRequest) final {
         clients.push(client);
         std::cout << "Client connected to server. Username: " << connectRequest.name() << endl;
+
+        // Имитация работа очереди
+        QueueReply queueReply;
+        for (unsigned int i = 20; i > 0; i--) {
+            queueReply.set_position(i);
+            client.Queue(queueReply);
+            usleep(200);
+        }
     }
 
     virtual void Event(Client client, EventRequest &eventRequest) final {

@@ -6,6 +6,8 @@ import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -24,11 +26,7 @@ public class MainActivity extends AppCompatActivity {
         System.loadLibrary("game");
     }
 
-    private GLSurfaceView glSurfaceView;
-    private boolean rendererSet;
-    private Game game;
-
-    private boolean isProbablyEmulator() {
+    public boolean isProbablyEmulator() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1
                 && (Build.FINGERPRINT.startsWith("generic")
                 || Build.FINGERPRINT.startsWith("unknown")
@@ -41,11 +39,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        ActivityManager activityManager
+                = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
+
+        if (!(configurationInfo.reqGlEsVersion >= 0x20000) && !isProbablyEmulator()) {
+            Toast.makeText(this, "This device does not support OpenGL ES 2.0.",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
         setContentView(R.layout.activity_main);
 
         final Button button = findViewById(R.id.button);
         final TextView messageField = findViewById(R.id.message_label);
         final EditText usernameField = findViewById(R.id.username_field);
+
+        final Handler messageHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                messageField.setText((String)msg.obj);
+                super.handleMessage(msg);
+            }
+        };
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -63,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         try {
-            game = new Game(InetAddress.getByName("10.0.2.2")); // machine localhost
+            game = new Game(InetAddress.getByName("192.168.43.86"), this, messageHandler); // machine localhost
+//            game = new Game(InetAddress.getByName("10.0.2.2"), this); // machine localhost
         } catch (UnknownHostException e) {
             messageField.setText(e.toString());
         } catch (SocketException e) {
@@ -75,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        if (rendererSet) {
-            glSurfaceView.onPause();
+        if (game.isRendererSet()) {
+            game.getGLSurfaceView().onPause();
         }
     }
 
@@ -84,37 +101,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (rendererSet) {
-            glSurfaceView.onResume();
+        if (game.isRendererSet()) {
+            game.getGLSurfaceView().onResume();
         }
     }
 
-    private void startGame() {
-        ActivityManager activityManager
-                = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
-
-        final boolean supportsEs2 =
-                configurationInfo.reqGlEsVersion >= 0x20000 || isProbablyEmulator();
-
-        if (supportsEs2) {
-            glSurfaceView = new GLSurfaceView(this);
-
-            if (isProbablyEmulator()) {
-                // Avoids crashes on startup with some emulator images.
-                glSurfaceView.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
-            }
-
-            glSurfaceView.setEGLContextClientVersion(2);
-            glSurfaceView.setRenderer(new RendererWrapper(this));
-            rendererSet = true;
-            setContentView(glSurfaceView);
-        } else {
-            // Should never be seen in production, since the manifest filters
-            // unsupported devices.
-            Toast.makeText(this, "This device does not support OpenGL ES 2.0.",
-                    Toast.LENGTH_LONG).show();
-            return;
-        }
-    }
+    private Game game;
 }

@@ -1,19 +1,13 @@
 package threedouble.pacman;
 
-import com.google.protobuf.GeneratedMessageLite;
+import com.google.protobuf.InvalidProtocolBufferException;
+
 import threedouble.proto.Service.*;
 
 import java.net.InetAddress;
 import java.net.SocketException;
 
 class Service extends Network{
-
-    enum RequestType {
-        QUEUE,
-        START,
-        ITERATION,
-        END
-    }
 
     Service(InetAddress ipAddress) throws SocketException {
         super(ipAddress);
@@ -28,21 +22,29 @@ class Service extends Network{
     protected void End(EndReply endReply) {}
 
     @Override
-    protected void switcher(int type, GeneratedMessageLite request) {
-        switch (RequestType.values()[type]) {
+    protected void switchRequest(byte type, byte[] data, int size) throws InvalidProtocolBufferException {
+        switch (type) {
             case QUEUE:
-                Queue((QueueReply)request);
+                QueueReply queueReply = QueueReply.parseFrom(data);
+                Queue(queueReply);
                 break;
             case START:
-                Start((StartReply) request);
+                StartReply startReply = StartReply.parseFrom(data);
+                Start(startReply);
                 break;
             case ITERATION:
-                Iteration((IterationReply) request);
+                IterationReply iterationReply = IterationReply.parseFrom(data);
+                Iteration(iterationReply);
                 break;
             case END:
-                End((EndReply) request);
+                EndReply endReply = EndReply.parseFrom(data);
+                End(endReply);
                 break;
-
         }
     }
+
+    private final byte QUEUE = 0;
+    private final byte START = 1;
+    private final byte ITERATION = 2;
+    private final byte END = 3;
 }
