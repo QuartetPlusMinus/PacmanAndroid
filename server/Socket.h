@@ -26,62 +26,56 @@ struct Token {
     }
 };
 
-const bool operator==(const Token &left, const Token &right) {
-    return left.rnd == right.rnd and left.tm == right.tm;
-}
-
-const bool operator==(const Token &left, char *&right) {
-    return left.rnd == *(int *) right and left.tm == *(int *) (right + sizeof(int));
-}
 
 
-class Socket : ip::udp::socket {
+
+class Socket : public ip::udp::socket {
 public:
     Socket(boost::asio::io_context &context, const ip::udp::endpoint &ep) :
             ip::udp::socket(context, ep) {
     }
 
-    template<typename ConstBufferSequence>
-    void reliable_send_to(const ConstBufferSequence &buffers, const endpoint_type &destination) {
-        bool wait_response = true;
-        Token token;
+//    template<typename ConstBufferSequence>
+//    void reliable_send_to(const ConstBufferSequence &buffers, const endpoint_type &destination) {
+//        bool wait_response = true;
+//        Token token;
+//
+//        boost::thread thread(boost::bind(reliable_listen_worker, &wait_response, token, destination));
+//
+//        size_t buffSize = sizeof(Token) + buffers[1]
+//        char *buff = new char[buffSize];
+//        token.toBytes(buff);
+//        std::copy(buffers[0], buffers[0]+buffers[1], buff+8);
+//
+//        while (wait_response) {
+//            send_to(buffer(buff, buffSize), destination);
+//            boost::this_thread::sleep(10);
+//        }
+//
+//
+//    }
 
-        boost::thread thread(boost::bind(reliable_listen_worker, &wait_response, token, destination));
-
-        size_t buffSize = sizeof(Token) + buffers[1]
-        char *buff = new char[buffSize];
-        token.toBytes(buff);
-        std::copy(buffers[0], buffers[0]+buffers[1], buff+8);
-
-        while (wait_response) {
-            send_to(buffer(buff, buffSize), destination);
-            boost::this_thread::sleep(10);
-        }
-
-
-    }
-
-    template<typename ConstBufferSequence>
-    void receive_from(const ConstBufferSequence &buffers, const endpoint_type &destination) {
-
-    }
+//    template<typename ConstBufferSequence>
+//    void receive_from(const ConstBufferSequence &buffers, const endpoint_type &destination) {
+//
+//    }
 
 
 private:
 
-    void reliable_listen_worker(Token token, bool *wait_response, const endpoint_type &destination) {
-        char buff[65536];
-        while (true) {
-            ip::udp::endpoint sender_ep;
-            size_t size = receive_from(buffer(buff), sender_ep);
-
-            if (sender_ep.address() == destination.address() and token == buff) {
-                break;
-            }
-        }
-
-        *wait_response = false;
-    }
+//    void reliable_listen_worker(Token token, bool *wait_response, const endpoint_type &destination) {
+//        char buff[65536];
+//        while (true) {
+//            ip::udp::endpoint sender_ep;
+//            size_t size = receive_from(buffer(buff), sender_ep);
+//
+//            if (sender_ep.address() == destination.address() and token == buff) {
+//                break;
+//            }
+//        }
+//
+//        *wait_response = false;
+//    }
 
 };
 

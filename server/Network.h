@@ -15,34 +15,50 @@
 using namespace std;
 using namespace boost::asio;
 
-typedef union {
-    int id;
-    char type;
-} Token;
-
 class Network {
 public:
     explicit Network(unsigned short port) :
             socket(service, ip::udp::endpoint(ip::udp::v4(), port)),
-            listen(false) {
+            listen(false),
+            buff()
+    {
+
+        socket.async_receive_from(
+                buffer(buff),
+                sender_ep,
+                [this](const boost::system::error_code &err, size_t size) {this->onRead(err, size);});
     }
 
     void run() {
-        while (listen) {
-            ip::udp::endpoint sender_ep;
-            socket.receive_from(buffer(buff), sender_ep);
-        }
+        listen = true;
+        service.run();
+    }
+
+    void stop() {
+        listen = false;
     }
 
 private:
 
-    virtual void switcher(int type, Client client, const void* request) = 0;
+    void onRead(const boost::system::error_code &err, size_t size) {
+        switchRequest(buff[0], sender_ep, buff + 1, size - 1);
+        if (listen) {
+            socket.async_receive_from(
+                    buffer(buff),
+                    sender_ep,
+                    [this](const boost::system::error_code &err, size_t size) { this->onRead(err, size); });
+        }
+    }
+
+    virtual void switchRequest(int type, ip::udp::endpoint &sender_ep, const char *data, size_t size) = 0;
 
     io_service service;
-    Socket socket;
-
-    char buff[65536];
     bool listen;
+    char buff[65536];
+    ip::udp::endpoint sender_ep;
+
+protected:
+    Socket socket;
 
 };
 

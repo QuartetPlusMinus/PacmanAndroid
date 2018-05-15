@@ -1,5 +1,5 @@
 //
-// Created by viewsharp on 05.05.18.
+// Created by views on 13.05.18.
 //
 
 #ifndef SERVER_GAME_H
@@ -7,30 +7,29 @@
 
 #include "Service.h"
 
-class Game: public Service {
+class Game : public Service {
 public:
-    Game(unsigned short initiatorPort, unsigned short receiverPort) :
-            Service(receiverPort),
-            initiatorPort(initiatorPort) {
+    Game(unsigned short port) : Service(port) {
     }
 
-    void loop() {
-        boost::thread thread(boost::bind(run));
+    void start() {
+        boost::thread thread([this](){this->run(); });
+        thread.join();
     }
 
 private:
 
-    void Connect(Client client, ConnectRequest connectRequest) final{
+    virtual void Connect(Client client, ConnectRequest &connectRequest) final {
         clients.push(client);
-        std::cout << "Client connected to server\n";
+        std::cout << "Client connected to server. Username: " << connectRequest.name() << endl;
     }
 
-    void Event(Client client, EventRequest eventRequest) final{
+    virtual void Event(Client client, EventRequest &eventRequest) final {
         std::cout << "Client send event to server\n";
     }
 
-    const unsigned short initiatorPort;
     std::queue<Client> clients;
+
 };
 
 #endif //SERVER_GAME_H

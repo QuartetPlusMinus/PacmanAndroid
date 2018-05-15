@@ -6,10 +6,16 @@
 #define SERVER_CLIENT_H
 
 #include <service.pb.h>
+#include "Socket.h"
+
+using namespace ru::threedouble::proto;
 
 class Client {
 public:
-    Client() {
+    Client(Socket &socket, ip::udp::endpoint &ep) :
+        socket(socket),
+        ep(ep)
+    {
 
     }
 
@@ -28,6 +34,10 @@ public:
     void End(EndReply endReply) {
 
     }
+
+private:
+    Socket &socket;
+    ip::udp::endpoint ep;
 };
 
 #endif //SERVER_CLIENT_H

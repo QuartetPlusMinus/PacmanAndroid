@@ -13,16 +13,6 @@ link_directories(/usr/local/lib)
 find_package( Boost 1.6 REQUIRED COMPONENTS system thread)
 include_directories( ${Boost_INCLUDE_DIR} )
 
-#add_executable(server server.cpp)
-#add_executable(client client.cpp)
-#add_executable(server-udp server-udp.cpp)
-#add_executable(client-udp client-udp.cpp)
-#
-#TARGET_LINK_LIBRARIES( server LINK_PUBLIC ${Boost_LIBRARIES} )
-#TARGET_LINK_LIBRARIES( client LINK_PUBLIC ${Boost_LIBRARIES} )
-#TARGET_LINK_LIBRARIES( server-udp LINK_PUBLIC ${Boost_LIBRARIES} )
-#TARGET_LINK_LIBRARIES( client-udp LINK_PUBLIC ${Boost_LIBRARIES} )
-
 find_package(Protobuf REQUIRED)
 
 set(PROTO_PATH "${CMAKE_SOURCE_DIR}/../protocol")

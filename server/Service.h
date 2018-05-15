@@ -7,40 +7,51 @@
 
 #include <service.pb.h>
 #include <queue>
+#include <google/protobuf/message.h>
 #include "Network.h"
 #include "GameRoom.h"
 #include "Client.h"
 
-typedef enum {
-    CONNECT,
-    EVENT
-} RequestType;
+using namespace ru::threedouble::proto;
+
+enum RequestType {
+    CONNECT = 0,
+    EVENT = 1
+};
 
 class Service : public Network {
 public:
-    Service(unsigned short port) :
+    explicit Service(unsigned short port) :
             Network(port) {
     }
 
 private:
-    virtual void Connect(Client client, ConnectRequest connectRequest) = 0;
 
-    virtual void Event(Client client, EventRequest eventRequest) = 0;
+    virtual void switchRequest(int type, ip::udp::endpoint &sender_ep, const char *data, size_t size) final {
+        Client client(socket, sender_ep);
 
-    void switcher(int type, Client client, const void *request) {
-        switcher((RequestType) type, client, (const google::protobuf::Message *) request);
-    }
-
-    void switcher(RequestType type, Client client, const google::protobuf::Message *request) {
-        switch (type) {
-            case CONNECT:
-                Connect(client, *(ConnectRequest *) request);
+        switch ((RequestType)type) {
+            case CONNECT: {
+                ConnectRequest connectRequest;
+                connectRequest.ParseFromArray(data, (int) size);
+                Connect(client, connectRequest);
                 break;
-            case EVENT:
-                Event(client, *(EventRequest *) request);
+            }
+            case EVENT: {
+                EventRequest eventRequest;
+                eventRequest.ParseFromArray(data, (int) size);
+                Event(client, eventRequest);
                 break;
+            }
         }
     }
+
+protected:
+
+    virtual void Connect(Client client, ConnectRequest &connectRequest) = 0;
+
+    virtual void Event(Client client, EventRequest &eventRequest) = 0;
 };
 
 #endif //SERVER_PROTOCOL_H
+
