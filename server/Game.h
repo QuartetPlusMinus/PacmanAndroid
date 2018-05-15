@@ -30,6 +30,9 @@ private:
             client.Queue(queueReply);
             usleep(200);
         }
+
+        StartReply startReply;
+        client.Start(startReply);
     }
 
     virtual void Event(Client client, EventRequest &eventRequest) final {

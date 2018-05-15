@@ -12,9 +12,8 @@ import java.net.SocketException;
 import threedouble.proto.Service.*;
 
 public class Game extends Service{
-    Game(InetAddress host, MainActivity context, Handler messageHandler) throws SocketException{
+    Game(InetAddress host, MainActivity context) throws SocketException{
         super(host);
-        this.messageHandler = messageHandler;
         this.context = context;
         server = new Server(host, 31415, getSocket());
     }
@@ -38,9 +37,9 @@ public class Game extends Service{
     @Override
     protected void Queue(QueueReply queueReply) {
 //        context.log("Position in queue: " + queueReply.getPosition());
-        Message msg = messageHandler.obtainMessage();
+        Message msg = context.messageHandler.obtainMessage();
         msg.obj = "Position in queue: " + queueReply.getPosition();
-        messageHandler.sendMessage(msg);
+        context.messageHandler.sendMessage(msg);
     }
 
     @Override
@@ -56,7 +55,10 @@ public class Game extends Service{
         glSurfaceView.setEGLContextClientVersion(2);
         glSurfaceView.setRenderer(new RendererWrapper(context));
         rendererSet = true;
-        context.setContentView(glSurfaceView);
+//        context.setContentView(glSurfaceView);
+        Message msg = context.viewHandler.obtainMessage();
+        msg.obj = glSurfaceView;
+        context.viewHandler.sendMessage(msg);
     }
 
     @Override
@@ -69,7 +71,6 @@ public class Game extends Service{
 
     }
 
-    private Handler messageHandler;
     private Server server;
     private GLSurfaceView glSurfaceView;
     private boolean rendererSet;

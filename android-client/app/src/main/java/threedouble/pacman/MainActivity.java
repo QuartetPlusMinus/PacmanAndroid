@@ -35,6 +35,22 @@ public class MainActivity extends AppCompatActivity {
                 || Build.MODEL.contains("Android S3cDK built for x86"));
     }
 
+    public final Handler messageHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            messageField.setText((String)msg.obj);
+            super.handleMessage(msg);
+        }
+    };
+
+    public final Handler viewHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            setContentView((View) msg.obj);
+            super.handleMessage(msg);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,16 +68,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Button button = findViewById(R.id.button);
-        final TextView messageField = findViewById(R.id.message_label);
+        messageField = findViewById(R.id.message_label);
         final EditText usernameField = findViewById(R.id.username_field);
 
-        final Handler messageHandler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                messageField.setText((String)msg.obj);
-                super.handleMessage(msg);
-            }
-        };
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -79,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         try {
-            game = new Game(InetAddress.getByName("192.168.43.86"), this, messageHandler); // machine localhost
+            game = new Game(InetAddress.getByName("192.168.43.86"), this); // machine localhost
 //            game = new Game(InetAddress.getByName("10.0.2.2"), this); // machine localhost
         } catch (UnknownHostException e) {
             messageField.setText(e.toString());
@@ -106,5 +115,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private TextView messageField;
     private Game game;
 }

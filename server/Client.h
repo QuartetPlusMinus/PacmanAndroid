@@ -35,19 +35,19 @@ public:
     void Start(StartReply &startReply) {
         std::string bytes;
         startReply.SerializeToString(&bytes);
-        sendBytes(QUEUE, bytes);
+        sendBytes(START, bytes);
     }
 
     void Iteration(IterationReply &iterationReply) {
         std::string bytes;
         iterationReply.SerializeToString(&bytes);
-        sendBytes(QUEUE, bytes);
+        sendBytes(ITERATION, bytes);
     }
 
     void End(EndReply &endReply) {
         std::string bytes;
         endReply.SerializeToString(&bytes);
-        sendBytes(QUEUE, bytes);
+        sendBytes(END, bytes);
     }
 
 private:
