@@ -9,7 +9,7 @@
 #include <service.pb.h>
 #include "Socket.h"
 
-using namespace ru::threedouble::proto;
+using namespace threedouble::proto;
 
 class Client {
     enum RequestType {

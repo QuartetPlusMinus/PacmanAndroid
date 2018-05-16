@@ -12,7 +12,7 @@
 #include "GameRoom.h"
 #include "Client.h"
 
-using namespace ru::threedouble::proto;
+using namespace threedouble::proto;
 
 class Service : public Network {
     enum RequestType {
