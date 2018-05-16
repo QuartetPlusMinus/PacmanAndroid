@@ -6,6 +6,7 @@
 #define SERVER_GAME_H
 
 #include "Service.h"
+#include "GameRoom.h"
 
 class Game : public Service {
 public:
@@ -17,22 +18,46 @@ public:
         thread.join();
     }
 
+    // Количество игроков в комнате
+    int clientsInRoom = 2;
+
 private:
 
     virtual void Connect(Client client, ConnectRequest &connectRequest) final {
+        client.setUsername(connectRequest.name());
+
         clients.push(client);
         std::cout << "Client connected to server. Username: " << connectRequest.name() << endl;
 
-        // Имитация работа очереди
-        QueueReply queueReply;
-        for (unsigned int i = 20; i > 0; i--) {
-            queueReply.set_position(i);
-            client.Queue(queueReply);
-            usleep(200);
-        }
+        // Если набралась комната
+        if (long(clients.size()) >= long(clientsInRoom)) {
 
-        StartReply startReply;
-        client.Start(startReply);
+            // Отслыаем каждому запрос о начале игры
+            for (int i = 0; i < clientsInRoom; i++) {
+
+                Client currentClient = clients.front();
+
+                StartReply startReply;
+
+                startReply.set_id(i);
+
+                UnitInit *unit = startReply.add_unit();
+                unit->set_type(PACMAN);
+                unit->set_name(client.username);
+                //unit->set_data(GameRoom.defaultUnit(i));
+
+                currentClient.Start(startReply);
+
+                clients.pop();
+            }
+
+        } else {
+
+            // Если комната не набралась, то отсылаем статус в очереди
+            QueueReply queueReply;
+            queueReply.set_position(int(clients.size()));
+            client.Queue(queueReply);
+        }
     }
 
     virtual void Event(Client client, EventRequest &eventRequest) final {

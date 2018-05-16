@@ -50,6 +50,13 @@ public:
         sendBytes(END, bytes);
     }
 
+
+    std::string username;
+
+    void setUsername(std::string u) {
+        username = u;
+    }
+
 private:
 
     void sendBytes(char type, std::string &bytes) {
