@@ -6,6 +6,7 @@
 #define SERVER_GAMEROOM_H
 
 #include "Service.h"
+#include "GameMap.h"
 
 class GameRoom {
 
@@ -67,15 +68,23 @@ public:
         }
     }
 
+//    GameMap * getMap() {
+//        return map;
+//    }
+
 private:
 
     void calculateUserStartPosition(int index, Point *point) {
+
+        //TODO: Рассчитать начальную позицию пакмена
 
         point->set_x(0);
         point->set_y(0);
     }
 
     void calculateGhostStartPosition(int index, Point *point) {
+
+        //TODO: Рассчитать начальную позицию приведения
 
         point->set_x(0);
         point->set_y(0);
@@ -86,6 +95,8 @@ private:
 
     int ghostsUnitsCount = 0;
     std::vector<UnitInit *> ghostsUnits;
+
+//    GameMap *map = new GameMap();
 };
 
 #endif //SERVER_GAMEROOM_H

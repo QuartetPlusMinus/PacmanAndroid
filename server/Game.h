@@ -55,6 +55,11 @@ private:
                     room->appendGhost(j, startReply.add_unit());
                 }
 
+                // Добавляем карту
+//                for (int j = 0; j < room->getMap()->data.size(); j++) {
+//                    startReply.add_map(room->getMap()->data[j]);
+//                }
+
                 currentClient.Start(startReply);
 
                 clients.pop();
