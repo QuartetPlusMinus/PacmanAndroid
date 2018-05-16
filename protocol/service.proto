@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package ru.threedouble.proto;
+package threedouble.proto;
 
 message Point {
     uint32 x = 1;

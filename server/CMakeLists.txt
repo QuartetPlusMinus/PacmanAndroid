@@ -13,16 +13,6 @@ link_directories(/usr/local/lib)
 find_package( Boost 1.6 REQUIRED COMPONENTS system thread)
 include_directories( ${Boost_INCLUDE_DIR} )
 
-#add_executable(server server.cpp)
-#add_executable(client client.cpp)
-#add_executable(server-udp server-udp.cpp)
-#add_executable(client-udp client-udp.cpp)
-#
-#TARGET_LINK_LIBRARIES( server LINK_PUBLIC ${Boost_LIBRARIES} )
-#TARGET_LINK_LIBRARIES( client LINK_PUBLIC ${Boost_LIBRARIES} )
-#TARGET_LINK_LIBRARIES( server-udp LINK_PUBLIC ${Boost_LIBRARIES} )
-#TARGET_LINK_LIBRARIES( client-udp LINK_PUBLIC ${Boost_LIBRARIES} )
-
 find_package(Protobuf REQUIRED)
 
 set(PROTO_PATH "${CMAKE_SOURCE_DIR}/../protocol")
@@ -47,7 +37,7 @@ add_custom_command(
 set(GENERATED_PROTOBUF_FILES ${SERVICE_PB_H_FILE} ${SERVICE_PB_CPP_FILE})
 include_directories(${GENERATED_PROTOBUF_PATH})
 
-set(SERVER_FILES main.cpp Network.cpp Service.cpp GameRoom.cpp Client.cpp)
+set(SERVER_FILES main.cpp Network.cpp Service.cpp GameRoom.cpp Client.cpp Socket.cpp Game.cpp Game.h)
 
 add_executable(PacmanServer ${SERVER_FILES} ${GENERATED_PROTOBUF_FILES})
 target_link_libraries(PacmanServer ${PROTOBUF_LIBRARY} ${Boost_LIBRARIES})
