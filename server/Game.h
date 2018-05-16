@@ -32,19 +32,19 @@ private:
         // Если набралась комната
         if (long(clients.size()) >= long(clientsInRoom)) {
 
+            // Создаём комнату
+            GameRoom *room = new GameRoom(clientsInRoom);
+            rooms.push_back(room);
+
             // Отслыаем каждому запрос о начале игры
             for (int i = 0; i < clientsInRoom; i++) {
 
                 Client currentClient = clients.front();
 
                 StartReply startReply;
-
                 startReply.set_id(i);
 
-                UnitInit *unit = startReply.add_unit();
-                unit->set_type(PACMAN);
-                unit->set_name(client.username);
-                //unit->set_data(GameRoom.defaultUnit(i));
+                room->appendClient(client, startReply.add_unit());
 
                 currentClient.Start(startReply);
 
@@ -65,7 +65,7 @@ private:
     }
 
     std::queue<Client> clients;
-
+    std::vector<GameRoom *> rooms;
 };
 
 #endif //SERVER_GAME_H
