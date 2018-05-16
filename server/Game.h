@@ -21,6 +21,9 @@ public:
     // Количество игроков в комнате
     int clientsInRoom = 2;
 
+    // Количество приведений в комнате
+    int ghostsInRoom = 5;
+
 private:
 
     virtual void Connect(Client client, ConnectRequest &connectRequest) final {
@@ -33,10 +36,10 @@ private:
         if (long(clients.size()) >= long(clientsInRoom)) {
 
             // Создаём комнату
-            GameRoom *room = new GameRoom(clientsInRoom);
+            GameRoom *room = new GameRoom(clientsInRoom, ghostsInRoom);
             rooms.push_back(room);
 
-            // Отслыаем каждому запрос о начале игры
+            // Отсылаем каждому запрос о начале игры
             for (int i = 0; i < clientsInRoom; i++) {
 
                 Client currentClient = clients.front();
@@ -44,7 +47,13 @@ private:
                 StartReply startReply;
                 startReply.set_id(i);
 
-                room->appendClient(client, startReply.add_unit());
+                // Генерируем юнит пакмена
+                room->appendUser(client, startReply.add_unit());
+
+                // Генерируем юниты приведений
+                for (int j = 0; j < ghostsInRoom; j++) {
+                    room->appendGhost(j, startReply.add_unit());
+                }
 
                 currentClient.Start(startReply);
 
