@@ -8,11 +8,11 @@
 // Triangle fan
 // position X, Y, texture S, T
 static const float table_data[] = { 0.0f,  0.0f, 0.5f, 0.5f,
-                                    -0.5f, -0.8f, 0.0f, 1.0f,
-                                    0.5f, -0.8f, 1.0f, 1.0f,
-                                    0.5f,  0.8f, 1.0f, 0.0f,
-                                    -0.5f,  0.8f, 0.0f, 0.0f,
-                                    -0.5f, -0.8f, 0.0f, 1.0f};
+                                    -0.5f, -0.5f, 0.0f, 1.0f,
+                                    0.5f, -0.5f, 1.0f, 1.0f,
+                                    0.5f,  0.5f, 1.0f, 0.0f,
+                                    -0.5f,  0.5f, 0.0f, 0.0f,
+                                    -0.5f, -0.5f, 0.0f, 1.0f};
 
 Table create_table(GLuint texture) {
     return (Table) {texture,
