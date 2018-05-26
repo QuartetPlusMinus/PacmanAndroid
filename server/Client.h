@@ -9,7 +9,7 @@
 #include <service.pb.h>
 #include "Socket.h"
 
-using namespace ru::threedouble::proto;
+using namespace threedouble::proto;
 
 class Client {
     enum RequestType {
@@ -48,6 +48,13 @@ public:
         std::string bytes;
         endReply.SerializeToString(&bytes);
         sendBytes(END, bytes);
+    }
+
+
+    std::string username;
+
+    void setUsername(std::string u) {
+        username = u;
     }
 
 private:
