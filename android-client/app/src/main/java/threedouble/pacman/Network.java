@@ -11,9 +11,8 @@ import java.net.Socket;
 import java.net.SocketException;
 
 class Network implements Runnable{
-    Network(InetAddress ipAddress) throws SocketException {
+    Network() throws SocketException {
         socket = new DatagramSocket();
-        this.ipAddress = ipAddress;
     }
 
     @Override
@@ -49,7 +48,6 @@ class Network implements Runnable{
     protected void switchRequest(byte type, byte[] data, int size) throws InvalidProtocolBufferException {}
 
     private final DatagramSocket socket;
-    private final InetAddress ipAddress;
     private boolean listen;
     private byte[] buff = new byte[65536];
 

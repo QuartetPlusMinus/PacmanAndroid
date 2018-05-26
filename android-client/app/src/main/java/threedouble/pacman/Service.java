@@ -9,8 +9,8 @@ import java.net.SocketException;
 
 class Service extends Network{
 
-    Service(InetAddress ipAddress) throws SocketException {
-        super(ipAddress);
+    Service() throws SocketException {
+        super();
     }
 
     protected void Queue(QueueReply queueReply) {}

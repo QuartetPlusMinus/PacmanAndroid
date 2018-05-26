@@ -17,6 +17,7 @@ void onSurfaceChanged(int width, int height);
 
 void onDrawFrame();
 
+
 #ifdef __cplusplus
 extern "C" {
 #endif

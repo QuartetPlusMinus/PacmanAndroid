@@ -12,13 +12,14 @@ import java.net.SocketException;
 import threedouble.proto.Service.*;
 
 public class Game extends Service{
-    Game(InetAddress host, MainActivity context) throws SocketException{
-        super(host);
+    Game(MainActivity context) throws SocketException{
+        super();
         this.context = context;
-        server = new Server(host, 31415, getSocket());
     }
 
-    public void start(String name) throws IOException {
+    public void start(String name, InetAddress host) throws IOException {
+        server = new Server(host, 31415, getSocket());
+
         Thread thread = new Thread(this);
         thread.start();
 
@@ -36,7 +37,6 @@ public class Game extends Service{
 
     @Override
     protected void Queue(QueueReply queueReply) {
-//        context.log("Position in queue: " + queueReply.getPosition());
         Message msg = context.messageHandler.obtainMessage();
         msg.obj = "Position in queue: " + queueReply.getPosition();
         context.messageHandler.sendMessage(msg);
@@ -53,21 +53,32 @@ public class Game extends Service{
         }
 
         glSurfaceView.setEGLContextClientVersion(2);
-        glSurfaceView.setRenderer(new RendererWrapper(context));
+        rendererWrapper = new RendererWrapper(context);
+        glSurfaceView.setRenderer(rendererWrapper);
         rendererSet = true;
-//        context.setContentView(glSurfaceView);
+
         Message msg = context.viewHandler.obtainMessage();
         msg.obj = glSurfaceView;
         context.viewHandler.sendMessage(msg);
+
+//        rendererWrapper.units = new UnitInit[startReply.getUnitCount()];
+//        for (int i = 0; i < startReply.getUnitCount(); i++) {
+//            rendererWrapper.units[i] = startReply.getUnit(i);
+//        }
+//        startReply.getUnitList()
+        rendererWrapper.setUnits(startReply.getUnitList());
+
+        rendererWrapper.start();
     }
 
     @Override
     protected void Iteration(IterationReply iterationReply) {
-
+        rendererWrapper.iterate();
     }
 
     @Override
     protected void End(EndReply endReply) {
+        rendererWrapper.end();
 
     }
 
@@ -75,4 +86,5 @@ public class Game extends Service{
     private GLSurfaceView glSurfaceView;
     private boolean rendererSet;
     private MainActivity context;
+    RendererWrapper rendererWrapper;
 }

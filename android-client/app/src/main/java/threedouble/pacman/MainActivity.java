@@ -9,7 +9,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,6 +26,7 @@ import java.net.UnknownHostException;
 
 
 public class MainActivity extends AppCompatActivity {
+
     static {
         System.loadLibrary("game");
     }
@@ -35,25 +40,19 @@ public class MainActivity extends AppCompatActivity {
                 || Build.MODEL.contains("Android S3cDK built for x86"));
     }
 
-    public final Handler messageHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            messageField.setText((String)msg.obj);
-            super.handleMessage(msg);
-        }
-    };
+    public static Handler messageHandler;
+    public static Handler viewHandler;
 
-    public final Handler viewHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            setContentView((View) msg.obj);
-            super.handleMessage(msg);
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // remove title
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_main);
 
         ActivityManager activityManager
                 = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
@@ -66,10 +65,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
-
         final Button button = findViewById(R.id.button);
-        messageField = findViewById(R.id.message_label);
         final EditText usernameField = findViewById(R.id.username_field);
+        final EditText ipAddresField = findViewById(R.id.ipaddres_field);
+        final TextView messageField = findViewById(R.id.message_label);
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 String username = usernameField.getText().toString();
                 try {
                     if (!username.isEmpty()) {
-                        game.start(username);
+                        game.start(username, InetAddress.getByName(ipAddresField.getText().toString()));
                     } else {
                         messageField.setText(R.string.exception_enter_username);
                     }
@@ -87,11 +86,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        messageHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                messageField.setText((String)msg.obj);
+                super.handleMessage(msg);
+            }
+        };
+
+        viewHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                setContentView((View) msg.obj);
+                super.handleMessage(msg);
+            }
+        };
+
         try {
-            game = new Game(InetAddress.getByName("192.168.43.86"), this); // machine localhost
-//            game = new Game(InetAddress.getByName("10.0.2.2"), this); // machine localhost
-        } catch (UnknownHostException e) {
-            messageField.setText(e.toString());
+            game = new Game(this);
         } catch (SocketException e) {
             messageField.setText(e.toString());
         }
@@ -115,6 +127,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private TextView messageField;
+//    private TextView messageField;
     private Game game;
 }

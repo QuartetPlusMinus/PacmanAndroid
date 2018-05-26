@@ -1,13 +1,9 @@
 cmake_minimum_required(VERSION 3.4.1)
 
 
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(CPP_LOCAL_PATH /home/views/github/PacmanAndroid/android-client/app/src/main/cpp)
+set(CPP_LOCAL_PATH ${CMAKE_SOURCE_DIR}/src/main/cpp)
 set(PNG_LOCAL_PATH ${CPP_LOCAL_PATH}/libpng)
-set(BOOST_LOCAL_PATH ${CPP_LOCAL_PATH}/boost)
-
-
 
 add_library( libpng STATIC
              ${PNG_LOCAL_PATH}/png.c
