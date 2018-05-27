@@ -11,6 +11,8 @@
 
 using namespace threedouble::proto;
 
+static std::hash<std::string> getHshFromSrting;
+
 class Client {
     enum RequestType {
         QUEUE = 0,
@@ -26,47 +28,60 @@ public:
 
     }
 
-    void Queue(QueueReply &queueReply) {
+    void Queue(QueueMessage &queueMsg) const {
         std::string bytes;
-        queueReply.SerializeToString(&bytes);
+        queueMsg.SerializeToString(&bytes);
         sendBytes(QUEUE, bytes);
     }
 
-    void Start(StartReply &startReply) {
+    void Start(StartMessage &startMsg) const{
         std::string bytes;
-        startReply.SerializeToString(&bytes);
+        startMsg.SerializeToString(&bytes);
         sendBytes(START, bytes);
     }
 
-    void Iteration(IterationReply &iterationReply) {
+    void Iteration(IterationMessage &iterationMsg) const {
         std::string bytes;
-        iterationReply.SerializeToString(&bytes);
+        iterationMsg.SerializeToString(&bytes);
         sendBytes(ITERATION, bytes);
     }
 
-    void End(EndReply &endReply) {
+    void End(EndMessage &endMsg) const {
         std::string bytes;
-        endReply.SerializeToString(&bytes);
+        endMsg.SerializeToString(&bytes);
         sendBytes(END, bytes);
     }
 
 
-    std::string username;
 
-    void setUsername(std::string u) {
-        username = u;
+    void setUsername(const std::string &username) {
+        this->username = username;
     }
+
+    std::string getUsername() const{
+        return username;
+    }
+
+    unsigned int hash() {
+        return hash(ep);
+    }
+
+    static unsigned int hash(ip::udp::endpoint &ep) {
+        return (unsigned int)getHshFromSrting(ep.address().to_string()) + ep.port();
+    }
+
 
 private:
 
-    void sendBytes(char type, std::string &bytes) {
+    void sendBytes(char type, std::string &bytes) const {
         socket.send_to(buffer(type + bytes), ep);
         std::string some = type + bytes;
-        std::cout << "Send [" << some << "] to "<< ep.address() << ':' << ep.port() << std::endl;
+//        std::cout << "Send [" << some << "] to "<< ep.address() << ':' << ep.port() << std::endl;
     }
 
     Socket &socket;
     ip::udp::endpoint ep;
+    std::string username;
 };
 
 #endif //SERVER_CLIENT_H

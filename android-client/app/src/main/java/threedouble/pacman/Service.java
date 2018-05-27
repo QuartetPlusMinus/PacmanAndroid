@@ -13,31 +13,31 @@ class Service extends Network{
         super();
     }
 
-    protected void Queue(QueueReply queueReply) {}
+    protected void Queue(QueueMessage queueReply) {}
 
-    protected void Start(StartReply startReply) {}
+    protected void Start(StartMessage startReply) {}
 
-    protected void Iteration(IterationReply iterationReply) {}
+    protected void Iteration(IterationMessage iterationReply) {}
 
-    protected void End(EndReply endReply) {}
+    protected void End(EndMessage endReply) {}
 
     @Override
     protected void switchRequest(byte type, byte[] data, int size) throws InvalidProtocolBufferException {
         switch (type) {
             case QUEUE:
-                QueueReply queueReply = QueueReply.parseFrom(data);
+                QueueMessage queueReply = QueueMessage.parseFrom(data);
                 Queue(queueReply);
                 break;
             case START:
-                StartReply startReply = StartReply.parseFrom(data);
+                StartMessage startReply = StartMessage.parseFrom(data);
                 Start(startReply);
                 break;
             case ITERATION:
-                IterationReply iterationReply = IterationReply.parseFrom(data);
+                IterationMessage iterationReply = IterationMessage.parseFrom(data);
                 Iteration(iterationReply);
                 break;
             case END:
-                EndReply endReply = EndReply.parseFrom(data);
+                EndMessage endReply = EndMessage.parseFrom(data);
                 End(endReply);
                 break;
         }
