@@ -2,43 +2,36 @@
 // Created by Artem Belkov on 17/05/2018.
 //
 
-#ifndef SERVER_MAP_H
-#define SERVER_MAP_H
+#ifndef SERVER_GAMEMAP_H
+#define SERVER_GAMEMAP_H
 
-#include "Service.h"
+#include <string>
+#include <service.pb.h>
 
-using namespace std;
+//using namespace threedouble::proto;
 
-class GameMap {
+namespace GameMap {
+    class Map {
 
-public:
+    public:
+        Map(unsigned int playersCount, unsigned int ghostsCount) :
+                playersCount(playersCount),
+                ghostsCount(ghostsCount),
+                width(0),
+                height(0) {
+        }
 
-    vector<string> data = { "===============",   // 1
-                            "==   ==== =====",   // 2
-                            "== = ==   = ===",   // 3
-                            "== = == == ====",   // 4
-                            "== ======= ====",   // 5
-                            "==       == ====",   // 6
-                            "== ====     ===",   // 7
-                            "== ==== =======",   // 8
-                            "== =    =======",   // 9
-                            "==      =======",   // 10
-                            "== ==== =======",   // 11
-                            "== ==== =======",   // 12
-                            "=  ===== =======",   // 13
-                            "= ===== =======",   // 14
-                            "= ===== =======",   // 15
-                            "= ===== =======",   // 16
-                            "= ===== =======",   // 17
-                            "= ===== =======",   // 18
-                            "= ===== =======",   // 19
-                            "= ===== =======",   // 20
-                            "= ===== =======",   // 21
-                            "=  ==== =======",   // 22
-                            "==      =======",   // 23
-                            "===============" }; // 24
+        const unsigned int playersCount;
+        const unsigned int ghostsCount;
+        const unsigned int width;
+        const unsigned int height;
 
+        virtual const std::string *getTileMap() = 0;
+
+        std::vector<threedouble::proto::Point> playersPositions;
+        std::vector<threedouble::proto::Point> ghostsPositions;
+    };
 };
 
 
-#endif //SERVER_MAP_H
+#endif //SERVER_GAMEMAP_H

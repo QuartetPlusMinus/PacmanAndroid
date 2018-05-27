@@ -9,6 +9,7 @@ typedef struct {
     GLuint buffer;
 } Table;
 
+
 typedef struct {
     vec4 color;
     GLuint buffer;

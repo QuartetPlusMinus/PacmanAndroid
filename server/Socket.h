@@ -66,10 +66,10 @@ private:
 //    void reliable_listen_worker(Token token, bool *wait_response, const endpoint_type &destination) {
 //        char buff[65536];
 //        while (true) {
-//            ip::udp::endpoint sender_ep;
-//            size_t size = receive_from(buffer(buff), sender_ep);
+//            ip::udp::endpoint senderEP;
+//            size_t size = receive_from(buffer(buff), senderEP);
 //
-//            if (sender_ep.address() == destination.address() and token == buff) {
+//            if (senderEP.address() == destination.address() and token == buff) {
 //                break;
 //            }
 //        }

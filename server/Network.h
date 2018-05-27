@@ -25,7 +25,7 @@ public:
 
         socket.async_receive_from(
                 buffer(buff),
-                sender_ep,
+                senderEP,
                 [this](const boost::system::error_code &err, size_t size) {this->onRead(err, size);});
     }
 
@@ -41,21 +41,21 @@ public:
 private:
 
     void onRead(const boost::system::error_code &err, size_t size) {
-        switchRequest(buff[0], sender_ep, buff + 1, size - 1);
+        switchRequest(buff[0], senderEP, buff + 1, size - 1);
         if (listen) {
             socket.async_receive_from(
                     buffer(buff),
-                    sender_ep,
+                    senderEP,
                     [this](const boost::system::error_code &err, size_t size) { this->onRead(err, size); });
         }
     }
 
-    virtual void switchRequest(int type, ip::udp::endpoint &sender_ep, const char *data, size_t size) = 0;
+    virtual void switchRequest(int type, ip::udp::endpoint &senderEP, const char *data, size_t size) = 0;
 
     io_service service;
     bool listen;
     char buff[65536];
-    ip::udp::endpoint sender_ep;
+    ip::udp::endpoint senderEP;
 
 protected:
     Socket socket;

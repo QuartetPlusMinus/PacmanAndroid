@@ -8,12 +8,12 @@ message Point {
 }
 
 enum ItemType {
-	COIN = 0;
+    COIN = 0;
 }
 
 message Item {
-	ItemType type = 1;
-	Point pos = 2;
+    ItemType type = 1;
+    Point pos = 2;
 	// ItemStatus action = 3;
 }
 
@@ -50,36 +50,54 @@ message UnitInit {
 message Unit {
     Point pos = 1;
     Direction direction = 2;
-	float entryPercent = 3;
+    float entryPercent = 3;
     BeingStatus status = 4;
     uint32 health = 5;
 }
 
-message ConnectRequest {
+message ConnectMessage {
+// Client to server request message
+// TODO: Set client name, add client to clients queue
+
     string name = 1;
 }
 
-message QueueReply {
+message QueueMessage {
+// Server to client request message
+// TODO: Show client position in queue
+
 	uint32 position = 1;
 }
 
-message StartReply {
+message StartMessage {
+// Server to client request message
+// TODO: Init game data. Start game on client.
+
     uint32 id = 1; // index in room
     repeated UnitInit unit = 2; // unit init data
-    repeated string map = 3; // not string, some type !!!
-	repeated Item item = 4; // game item init data
+    repeated string map = 3; // game map. Not string, bytes array
+    repeated Item item = 4; // game item init data
 }
 
-message EventRequest {
+message EventMessage {
+// Client to server request message
+// TODO: Handle player event. Send handled game data as IterationMessage
+
     Direction direction = 1;
 }
 
-message IterationReply {
+message IterationMessage {
+// Server to client request message
+// TODO: Save and draw new units positions and derecations. Remove some items?
+
     repeated Unit unit = 1;
-	repeated Item item = 2;
+    repeated Item item = 2;
 }
 
-message EndReply {
+message EndMessage {
+// Server to client request message
+// TODO: End game on client. Show end game gata
+
     GameStatus status = 1;
     uint32 points = 2;
 }

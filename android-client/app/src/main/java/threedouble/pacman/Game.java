@@ -23,7 +23,7 @@ public class Game extends Service{
         Thread thread = new Thread(this);
         thread.start();
 
-        ConnectRequest connectRequest = ConnectRequest.newBuilder().setName(name).build();
+        ConnectMessage connectRequest = ConnectMessage.newBuilder().setName(name).build();
         server.Connect(connectRequest);
     }
 
@@ -36,14 +36,14 @@ public class Game extends Service{
     }
 
     @Override
-    protected void Queue(QueueReply queueReply) {
+    protected void Queue(QueueMessage queueReply) {
         Message msg = context.messageHandler.obtainMessage();
         msg.obj = "Position in queue: " + queueReply.getPosition();
         context.messageHandler.sendMessage(msg);
     }
 
     @Override
-    protected void Start(StartReply startReply) {
+    protected void Start(StartMessage startReply) {
 
         glSurfaceView = new GLSurfaceView(context);
 
@@ -72,12 +72,12 @@ public class Game extends Service{
     }
 
     @Override
-    protected void Iteration(IterationReply iterationReply) {
+    protected void Iteration(IterationMessage iterationReply) {
         rendererWrapper.iterate();
     }
 
     @Override
-    protected void End(EndReply endReply) {
+    protected void End(EndMessage endReply) {
         rendererWrapper.end();
 
     }

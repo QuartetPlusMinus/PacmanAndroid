@@ -40,11 +40,11 @@ class Server{
     private final byte CONNECT = 0;
     private final byte EVENT = 1;
 
-    void Connect(ConnectRequest connectRequest) throws IOException {
+    void Connect(ConnectMessage connectRequest) throws IOException {
         sendBytes(CONNECT, connectRequest.toByteArray());
     }
 
-    void Event(EventRequest eventRequest) throws IOException {
+    void Event(EventMessage eventRequest) throws IOException {
         sendBytes(EVENT, eventRequest.toByteArray());
     }
 
