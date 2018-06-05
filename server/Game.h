@@ -5,10 +5,19 @@
 #ifndef SERVER_GAME_H
 #define SERVER_GAME_H
 
+#include <service.pb.h>
 #include "Service.h"
 #include "GameRoom.h"
 #include "Player.h"
 #include "GameMapDefault.h"
+
+//void steps(std::vector<GameRoom* >& rooms) {
+//    while( 1 ) {
+//        for( int i = 0; i < rooms.size(); ++i) {
+//            std::cout << "Hello" << std::endl;
+//        }
+//    }
+//}
 
 class Game : public Service {
 public:
@@ -16,10 +25,15 @@ public:
     }
 
     void start() {
+//        std::thread gameStepsMaker(steps, std::ref(rooms));
+//        gameStepsMaker.detach();
+//        run();
         boost::thread thread([this]() { this->run(); });
+//        thread.detach();
         thread.join();
+        std::cout << "Я дошел до этой точки!" << std::endl;
     }
-
+    std::vector<GameRoom *> rooms;
 
 private:
 
@@ -33,15 +47,18 @@ private:
 
             // Создаём комнату
             // TODO: Так нельзя делать !!!!!!
+            // Добавить 20 постоянных комнат и менеджер для них
+
             GameRoom *room = new GameRoom(new GameMap::Default());
 
             rooms.push_back(room);
 
-            // Отсылаем каждому запрос о начале игры
             for (unsigned int i = 0; i < clientsInRoom; i++) {
                 Client *currentClient = clients.front();
                 clients.pop();
                 room->addClient(currentClient);
+                // Добавление в таблицу клиент - комната
+                clientInRoom[currentClient->hash()] = room;
             }
 
             try {
@@ -62,14 +79,19 @@ private:
     }
 
     virtual void Event(Client *client, EventMessage &eventMsg) final {
+        if (clientInRoom.find(client->hash()) != clientInRoom.end()){
             std::cout << "Client send event to server\n";
+            GameRoom* room = clientInRoom[client->hash()];
+            room->printPlayers();
+        }
     }
 
     const int clientsInRoom = 2;
     const int ghostsInRoom = 5;
 
     std::queue<Client *> clients;
-    std::vector<GameRoom *> rooms;
+    std::unordered_map<unsigned int, GameRoom *> clientInRoom;
+
 };
 
 #endif //SERVER_GAME_H
