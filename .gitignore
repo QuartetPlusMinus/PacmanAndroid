@@ -56,5 +56,5 @@ freeline_project_description.json
 
 java-client/out
 java-client/build
-server/cmake-build-debug
-.idea
+*/cmake-build-debug
+*/.idea
