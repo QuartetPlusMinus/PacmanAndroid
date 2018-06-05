@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++11 -g   CMakeFiles/serialization.dir/Messages.cpp.o CMakeFiles/serialization.dir/test.cpp.o CMakeFiles/serialization.dir/Repeated.cpp.o CMakeFiles/serialization.dir/Stream.cpp.o  -o serialization -Wl,-rpath,/usr/local/lib /usr/local/lib/libboost_unit_test_framework.so 

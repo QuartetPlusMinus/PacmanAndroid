@@ -1,3 +1,0 @@
-/home/views/github/PacmanAndroid/common/Messages/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/views/github/PacmanAndroid/common/Messages/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/views/github/PacmanAndroid/common/Messages/cmake-build-debug/CMakeFiles/messages_test.dir
