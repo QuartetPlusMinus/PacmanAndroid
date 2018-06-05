@@ -31,6 +31,8 @@ void GameRoom::start() {
         // TODO: Заменить на фабрику ?
 
         *players[i]->mutable_pos() = map->playersPositions[i];
+        players[i]->pos();
+        players[i]->release_pos();
         players[i]->set_direction(RIGHT);
         players[i]->set_entrypercent(0);
         players[i]->set_health(3);

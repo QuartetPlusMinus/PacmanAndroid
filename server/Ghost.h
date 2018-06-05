@@ -5,7 +5,8 @@
 #ifndef SERVER_GHOST_H
 #define SERVER_GHOST_H
 
-#include <service.pb.h>
+//#include <service.pb.h>
+#include "protobuf/service.pb.h"
 
 using namespace threedouble::proto;
 

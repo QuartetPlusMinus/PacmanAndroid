@@ -6,7 +6,8 @@
 #define SERVER_CLIENT_H
 
 #include <string>
-#include <service.pb.h>
+//#include <service.pb.h>
+#include "protobuf/service.pb.h"
 #include "Socket.h"
 
 using namespace threedouble::proto;

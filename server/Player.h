@@ -5,7 +5,6 @@
 #ifndef SERVER_PLAYER_H
 #define SERVER_PLAYER_H
 
-#include <service.pb.h>
 #include "Client.h"
 
 using namespace threedouble::proto;

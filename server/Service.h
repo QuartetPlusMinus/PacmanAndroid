@@ -5,9 +5,7 @@
 #ifndef SERVER_PROTOCOL_H
 #define SERVER_PROTOCOL_H
 
-#include <service.pb.h>
 #include <queue>
-#include <google/protobuf/message.h>
 #include "Network.h"
 #include "GameRoom.h"
 #include "Client.h"

@@ -1,0 +1,16 @@
+/snap/clion/22/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/views/github/PacmanAndroid/common/Messages
+CMake Warning at /snap/clion/22/bin/cmake/share/cmake-3.10/Modules/FindBoost.cmake:801 (message):
+  New Boost version may have incorrect or missing dependencies and imported
+  targets
+Call Stack (most recent call first):
+  /snap/clion/22/bin/cmake/share/cmake-3.10/Modules/FindBoost.cmake:907 (_Boost_COMPONENT_DEPENDENCIES)
+  /snap/clion/22/bin/cmake/share/cmake-3.10/Modules/FindBoost.cmake:1542 (_Boost_MISSING_DEPENDENCIES)
+  CMakeLists.txt:8 (find_package)
+
+
+-- Boost version: 1.67.0
+-- Found the following Boost libraries:
+--   unit_test_framework
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/views/github/PacmanAndroid/common/Messages/cmake-build-debug
