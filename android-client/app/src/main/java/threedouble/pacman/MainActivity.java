@@ -3,14 +3,12 @@ package threedouble.pacman;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
-import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,26 +20,52 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.net.UnknownHostException;
 
-
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
     static {
         System.loadLibrary("game");
     }
 
     public boolean isProbablyEmulator() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1
-                && (Build.FINGERPRINT.startsWith("generic")
+        return (Build.FINGERPRINT.startsWith("generic")
                 || Build.FINGERPRINT.startsWith("unknown")
                 || Build.MODEL.contains("google_sdk")
                 || Build.MODEL.contains("Emulator")
                 || Build.MODEL.contains("Android S3cDK built for x86"));
     }
 
-    public static Handler messageHandler;
-    public static Handler viewHandler;
+    public Handler messageHandler;
+
+    static class MessageHandler extends Handler {
+        MessageHandler(TextView messageField) {
+            super();
+            this.messageField = messageField;
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            messageField.setText((String) msg.obj);
+            super.handleMessage(msg);
+        }
+
+        private final TextView messageField;
+    }
+
+    public Handler viewHandler;
+
+    static class ViewHandler extends Handler {
+        ViewHandler(AppCompatActivity context) {
+            this.context = context;
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            context.setContentView((View) msg.obj);
+            super.handleMessage(msg);
+        }
+
+        AppCompatActivity context;
+    }
 
 
     @Override
@@ -49,14 +73,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // remove title
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         ActivityManager activityManager
                 = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
+
+        ConfigurationInfo configurationInfo;
+
+        if (activityManager == null) {
+            Toast.makeText(this, "Activity Manager is not available",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+        configurationInfo = activityManager.getDeviceConfigurationInfo();
+
 
         if (!(configurationInfo.reqGlEsVersion >= 0x20000) && !isProbablyEmulator()) {
             Toast.makeText(this, "This device does not support OpenGL ES 2.0.",
@@ -76,7 +109,8 @@ public class MainActivity extends AppCompatActivity {
                 String username = usernameField.getText().toString();
                 try {
                     if (!username.isEmpty()) {
-                        game.start(username, InetAddress.getByName(ipAddresField.getText().toString()));
+                        server = new Server(InetAddress.getByName(ipAddresField.getText().toString()), PORT, game.getSocket());
+                        game.start(username);
                     } else {
                         messageField.setText(R.string.exception_enter_username);
                     }
@@ -86,21 +120,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        messageHandler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                messageField.setText((String)msg.obj);
-                super.handleMessage(msg);
-            }
-        };
+        messageHandler = new MessageHandler(messageField);
 
-        viewHandler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                setContentView((View) msg.obj);
-                super.handleMessage(msg);
-            }
-        };
+        viewHandler = new ViewHandler(this);
 
         try {
             game = new Game(this);
@@ -127,6 +149,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    private TextView messageField;
+    @Override
+    public boolean onTouch(View view, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                onTouchX = event.getX();
+                onTouchY = event.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                float xMove = Math.abs(onTouchX - event.getX());
+                float yMove = Math.abs(onTouchY - event.getY());
+                if (xMove < 0.1 && yMove < 0.1)
+                    break;
+                try {
+                    if (xMove > yMove) {
+                        if (onTouchX < event.getX()) {
+                            server.Event(Direction.RIGHT);
+                        } else {
+                            server.Event(Direction.LEFT);
+                        }
+                    } else {
+                        if (onTouchY < event.getY()) {
+                            server.Event(Direction.DOWN);
+                        } else {
+                            server.Event(Direction.UP);
+                        }
+                    }
+                } catch (IOException e) {
+                    Toast.makeText(this, e.toString(),
+                            Toast.LENGTH_LONG).show();
+                }
+        }
+        return view.performClick();
+    }
+
+    public Server server;
     private Game game;
+    private float onTouchX;
+    private float onTouchY;
+    static private final int PORT = 31415;
+
 }

@@ -6,10 +6,9 @@
 #define SERVER_CLIENT_H
 
 #include <string>
-#include <service.pb.h>
-#include "Socket.h"
 
-using namespace threedouble::proto;
+#include "../common/Messages/Messages.h"
+#include "Socket.h"
 
 static std::hash<std::string> getHshFromSrting;
 
@@ -28,27 +27,27 @@ public:
 
     }
 
-    void Queue(QueueMessage &queueMsg) const {
+    void Queue(Messages::QueueMessage &queueMsg) const {
         std::string bytes;
-        queueMsg.SerializeToString(&bytes);
+        queueMsg.serializeToString(bytes);
         sendBytes(QUEUE, bytes);
     }
 
-    void Start(StartMessage &startMsg) const{
+    void Start(Messages::StartMessage &startMsg) const{
         std::string bytes;
-        startMsg.SerializeToString(&bytes);
+        startMsg.serializeToString(bytes);
         sendBytes(START, bytes);
     }
 
-    void Iteration(IterationMessage &iterationMsg) const {
+    void Iteration(Messages::IterationMessage &iterationMsg) const {
         std::string bytes;
-        iterationMsg.SerializeToString(&bytes);
+        iterationMsg.serializeToString(bytes);
         sendBytes(ITERATION, bytes);
     }
 
-    void End(EndMessage &endMsg) const {
+    void End(Messages::EndMessage &endMsg) const {
         std::string bytes;
-        endMsg.SerializeToString(&bytes);
+        endMsg.serializeToString(bytes);
         sendBytes(END, bytes);
     }
 

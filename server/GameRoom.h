@@ -24,6 +24,7 @@ public:
 
     void start();
 
+
     void printPlayers() {
         std::cout << players[0]->client->getUsername() << " - " << players[1]->client->getUsername()<<std::endl;
     }
@@ -32,7 +33,7 @@ public:
 private:
 
     std::vector<Player *> players;
-    std::vector<Unit *> ghosts;
+    std::vector<Messages::Unit *> ghosts;
 
     const GameMap::Map *map;
 

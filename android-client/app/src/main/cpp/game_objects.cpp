@@ -21,29 +21,7 @@ Table create_table(GLuint texture) {
 
 void draw_table(const Table* table, const TextureProgram* texture_program) //, mat4x4 m)
 {
-    glUseProgram(texture_program->program);
 
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, table->texture);
-//    glUniformMatrix4fv(texture_program->u_mvp_matrix_location, 1,
-//                       GL_FALSE, (GLfloat*)m);
-
-    vec4 position = {0.0f, 0.0f, 0.0f, -0.5f}; // x, y, z, scale
-
-    glUniform4fv(texture_program->u_position_location, 1, position);
-
-    glUniform1i(texture_program->u_texture_unit_location, 0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, table->buffer);
-    glVertexAttribPointer(texture_program->a_position_location, 2, GL_FLOAT,
-                          GL_FALSE, 4 * sizeof(GL_FLOAT), BUFFER_OFFSET(0));
-    glVertexAttribPointer(texture_program->a_texture_coordinates_location, 2, GL_FLOAT,
-                          GL_FALSE, 4 * sizeof(GL_FLOAT), BUFFER_OFFSET(2 * sizeof(GL_FLOAT)));
-    glEnableVertexAttribArray(texture_program->a_position_location);
-    glEnableVertexAttribArray(texture_program->a_texture_coordinates_location);
-    glDrawArrays(GL_TRIANGLE_FAN, 0, 6);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 static inline int size_of_circle_in_vertices(int num_points) {
