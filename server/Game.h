@@ -22,8 +22,15 @@
 class Game : public Service {
 public:
     Game(unsigned short port) : Service(port) {
+        GameMap::Map* defaultMap = new GameMap::Default();
+        maps.push_back(defaultMap);
     }
 
+    ~Game() {
+        for( auto gameMap: maps) {
+            delete gameMap;
+        }
+    }
     void start() {
 //        std::thread gameStepsMaker(steps, std::ref(rooms));
 //        gameStepsMaker.detach();
@@ -43,17 +50,18 @@ private:
         clients.push(client); // Добавить пользователя в очередь
         std::cout << "Client connected to server. Username: " << connectMsg.name() << endl;
 
-        if (clients.size() >= clientsInRoom) { // Если набралось нужное кол-во пользователей
+        if (clients.size() >= clientsCountInRoom) { // Если набралось нужное кол-во пользователей
 
             // Создаём комнату
             // TODO: Так нельзя делать !!!!!!
             // Добавить 20 постоянных комнат и менеджер для них
 
             GameRoom *room = new GameRoom(new GameMap::Default());
+//            std::shared_ptr<GameRoom> gameRoom( new GameRoom(getMap())) //TODO: don't forget
 
             rooms.push_back(room);
 
-            for (unsigned int i = 0; i < clientsInRoom; i++) {
+            for (unsigned int i = 0; i < clientsCountInRoom; i++) {
                 Client *currentClient = clients.front();
                 clients.pop();
                 room->addClient(currentClient);
@@ -86,11 +94,18 @@ private:
         }
     }
 
-    const int clientsInRoom = 2;
+    GameMap::Map* getMap() const {
+        std::random_device r;
+        std::default_random_engine e1(r());
+        std::uniform_int_distribution<int> uniform_dist(0, maps.size());
+
+    }
+    const int clientsCountInRoom = 2;
     const int ghostsInRoom = 5;
 
     std::queue<Client *> clients;
     std::unordered_map<unsigned int, GameRoom *> clientInRoom;
+    std::vector<GameMap::Map*> maps;
 
 };
 

@@ -37,7 +37,7 @@ const std::string data[] = {"===============",   // 1
 namespace GameMap {
     class Default : public Map {
     public:
-        Default() : Map(PLAYERS_COUNT, GHOSTS_COUNT) {
+         Default() : Map(PLAYERS_COUNT, GHOSTS_COUNT) {
 
             playersPositions.reserve(PLAYERS_COUNT);
             ghostsPositions.reserve(GHOSTS_COUNT);
