@@ -12,53 +12,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7202bf1-8913-476f-b2d8-c4a98bef290f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../android-client/app/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../android-client/app/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../android-client/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/GameObjects/BackGround.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/GameObjects/BackGround.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/GameObjects/GameObject.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/GameObjects/GameObject.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/GameObjects/Ghost.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/GameObjects/Ghost.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/GameObjects/Pacman.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/GameObjects/Pacman.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/GameObjects/Unit.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/GameObjects/Unit.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/game.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/game.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/odlib/file_data.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/odlib/file_data.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/odlib/od.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/odlib/od.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/odlib/sprite.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/odlib/sprite.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/odlib/texture.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/odlib/texture.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/cpp/platform_asset_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../android-client/app/src/main/cpp/platform_asset_utils.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/java/threedouble/pacman/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android-client/app/src/main/java/threedouble/pacman/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/java/threedouble/pacman/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android-client/app/src/main/java/threedouble/pacman/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/java/threedouble/pacman/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android-client/app/src/main/java/threedouble/pacman/Network.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/java/threedouble/pacman/RendererWrapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/java/threedouble/pacman/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android-client/app/src/main/java/threedouble/pacman/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/app/src/main/java/threedouble/pacman/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android-client/app/src/main/java/threedouble/pacman/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android-client/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../android-client/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../common/Messages/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../common/Messages/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../common/Messages/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../common/Messages/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../common/Messages/Messages.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../common/Messages/Messages.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../common/Messages/Messages.h" beforeDir="false" afterPath="$PROJECT_DIR$/../common/Messages/Messages.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../common/Messages/Types/SimpleTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/../common/Messages/Types/SimpleTypes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../common/Messages/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../common/Messages/test.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client.h" beforeDir="false" afterPath="$PROJECT_DIR$/Client.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameMap.h" beforeDir="false" afterPath="$PROJECT_DIR$/GameMap.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameRoom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/GameRoom.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameRoom.h" beforeDir="false" afterPath="$PROJECT_DIR$/GameRoom.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ghost.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ghost.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/Player.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service.h" beforeDir="false" afterPath="$PROJECT_DIR$/Service.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CompilerIdC/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CompilerIdCXX/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/Client.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/Game.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/GameMap.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/GameMapDefault.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/GameRoom.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/Network.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/Player.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/Service.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/Socket.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Messages.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PacmanServer.dir/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/server.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/server.cbp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,105 +63,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Messages.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../common/Messages/Messages.h">
+    <leaf>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3570">
-              <caret line="238" column="10" selection-start-line="238" selection-start-column="10" selection-end-line="238" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Network.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Network.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-              <folding>
-                <element signature="e#95#120#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Game.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Game.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="48" selection-start-line="48" selection-end-line="48" />
-              <folding>
-                <element signature="e#85#104#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameMapDefault.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GameMapDefault.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="65" selection-start-line="65" selection-end-line="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Service.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Service.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
-              <folding>
-                <element signature="e#97#113#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameRoom.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GameRoom.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="52" column="50" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Messages.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../common/Messages/Messages.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2280">
-              <caret line="152" selection-start-line="152" selection-end-line="152" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Stream.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../common/Messages/Types/Stream.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1125">
-              <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Client.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Client.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+            <state relative-caret-position="298">
+              <caret line="69" column="18" selection-start-line="69" selection-start-column="18" selection-end-line="69" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -243,6 +143,7 @@
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/Game.h" />
         <option value="$PROJECT_DIR$/GameRoom.cpp" />
+        <option value="$PROJECT_DIR$/../.gitignore" />
       </list>
     </option>
   </component>
@@ -268,6 +169,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -278,24 +180,12 @@
             <path>
               <item name="server" type="b2602c69:ProjectViewProjectNode" />
               <item name="PacmanAndroid" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PacmanAndroid" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="Messages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PacmanAndroid" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -377,48 +267,60 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105736000" />
+    <option name="totallyTimeSpent" value="105950000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="-1" y="-11" width="1368" height="780" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24535519" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24944155" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="CMake" order="7" visible="true" weight="0.324295" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3275488" />
+      <window_info anchor="bottom" id="Messages" weight="0.32970452" />
+      <window_info anchor="bottom" id="CMake" weight="0.32917318" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32900432" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
+      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.32917318" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24535519" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3275488" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3275488" />
-    </layout>
-    <layout-to-restore>
-      <window_info anchor="bottom" id="CMake" order="11" weight="0.32575756" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32900432" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info active="true" anchor="bottom" id="CMake" order="7" visible="true" weight="0.324295" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24557522" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32792208" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39935064" />
+      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.32792208" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32900432" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.32792208" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.32575756" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -492,9 +394,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Ghost.cpp" />
-    <entry file="file://$PROJECT_DIR$/Player.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameMapDefault.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -502,37 +401,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/c++/7/bits/functional_hash.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="188" column="17" selection-start-line="188" selection-start-column="11" selection-end-line="188" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/7/bits/basic_string.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="6590" column="35" selection-start-line="6590" selection-start-column="35" selection-end-line="6590" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/7/bits/hashtable_policy.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="773" selection-start-line="773" selection-end-line="773" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/7/bits/unordered_map.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="992" selection-start-line="992" selection-end-line="992" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/google/protobuf/io/coded_stream.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file:///usr/include/c++/7/bits/functional_hash.h" />
+    <entry file="file:///usr/include/c++/7/bits/basic_string.h" />
+    <entry file="file:///usr/include/c++/7/bits/hashtable_policy.h" />
+    <entry file="file:///usr/include/c++/7/bits/unordered_map.h" />
     <entry file="file:///usr/local/include/google/protobuf/stubs/port.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -540,22 +412,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/x86_64-linux-gnu/bits/stdint-uintn.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/include/x86_64-linux-gnu/bits/stdint-uintn.h" />
     <entry file="file:///usr/include/x86_64-linux-gnu/bits/types.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="38" column="38" lean-forward="true" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Service.cpp">
       <provider selected="true" editor-type-id="text-editor">
@@ -582,9 +445,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/generated/service.pb.cc" />
     <entry file="file:///usr/local/include/google/protobuf/repeated_field.h">
       <provider selected="true" editor-type-id="text-editor">
@@ -598,9 +458,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-227" />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.gitmodules">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/GameMap.h">
       <provider selected="true" editor-type-id="text-editor">
@@ -631,9 +488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Game.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Network.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -645,17 +499,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-          <folding>
-            <element signature="e#95#120#0" expanded="true" />
-          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../common/Messages/test.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../common/Messages/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../common/Messages/Types/Stream.cpp">
       <provider selected="true" editor-type-id="text-editor">
@@ -681,13 +526,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/c++/7/bits/stl_queue.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="194" selection-start-line="194" selection-end-line="194" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/include/c++/7/bits/stl_queue.h" />
     <entry file="file://$PROJECT_DIR$/../common/Messages/Messages.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2280">
@@ -733,6 +572,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="69" column="18" selection-start-line="69" selection-start-column="18" selection-end-line="69" selection-end-column="18" />
         </state>
       </provider>
     </entry>

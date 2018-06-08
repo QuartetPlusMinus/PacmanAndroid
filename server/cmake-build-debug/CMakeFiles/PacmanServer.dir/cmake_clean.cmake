@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Messages.cpp.o"
-  "CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.o"
-  "CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.o"
+  "CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.o"
+  "CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.o"
+  "CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.o"
   "CMakeFiles/PacmanServer.dir/main.cpp.o"
   "CMakeFiles/PacmanServer.dir/Network.cpp.o"
   "CMakeFiles/PacmanServer.dir/Service.cpp.o"

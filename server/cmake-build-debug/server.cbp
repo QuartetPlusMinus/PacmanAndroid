@@ -8,158 +8,158 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/views/github/PacmanAndroid/server/cmake-build-debug"/>
+				<Option working_dir="/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/views/github/PacmanAndroid/server/cmake-build-debug"/>
+				<Option working_dir="/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/views/github/PacmanAndroid/server/cmake-build-debug"/>
+				<Option working_dir="/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="PacmanServer">
-				<Option output="/home/views/github/PacmanAndroid/server/cmake-build-debug/PacmanServer" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/views/github/PacmanAndroid/server/cmake-build-debug"/>
+				<Option output="/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/PacmanServer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 PacmanServer"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 PacmanServer"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="PacmanServer/fast">
-				<Option output="/home/views/github/PacmanAndroid/server/cmake-build-debug/PacmanServer" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/views/github/PacmanAndroid/server/cmake-build-debug"/>
+				<Option output="/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/PacmanServer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 PacmanServer/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/views/github/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 PacmanServer/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/views/github/PacmanAndroid/common/Messages/Messages.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/common/Messages/Messages.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/common/Messages/Types/Repeated.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/common/Messages/Types/Stream.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Client.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Client.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Client.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Client.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Game.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Game.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/GameMap.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameMap.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/GameMap.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameMap.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/GameMapDefault.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameMapDefault.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/GameMapDefault.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameMapDefault.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/GameRoom.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameRoom.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/GameRoom.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameRoom.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Network.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Network.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Network.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Network.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Player.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Player.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Player.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Player.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Service.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Service.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Service.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Service.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Socket.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Socket.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/Socket.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Socket.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/main.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/main.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/views/github/PacmanAndroid/server/CMakeLists.txt">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

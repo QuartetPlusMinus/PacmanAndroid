@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/22/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/murt/Programs/clion-2018.1/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/22/bin/cmake/bin/cmake -E remove -f
+RM = /home/murt/Programs/clion-2018.1/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/views/github/PacmanAndroid/server
+CMAKE_SOURCE_DIR = /home/murt/AndroidPacman/PacmanAndroid/server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/views/github/PacmanAndroid/server/cmake-build-debug
+CMAKE_BINARY_DIR = /home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/views/github/PacmanAndroid/server/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/22/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/murt/Programs/clion-2018.1/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/22/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/murt/Programs/clion-2018.1/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/views/github/PacmanAndroid/server/cmake-build-debug/CMakeFiles /home/views/github/PacmanAndroid/server/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/CMakeFiles /home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/views/github/PacmanAndroid/server/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -366,86 +366,86 @@ Socket.cpp.s:
 	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Socket.cpp.s
 .PHONY : Socket.cpp.s
 
-home/views/github/PacmanAndroid/common/Messages/Messages.o: home/views/github/PacmanAndroid/common/Messages/Messages.cpp.o
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.o: home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.o
 
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Messages.o
-
-# target to build an object file
-home/views/github/PacmanAndroid/common/Messages/Messages.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Messages.cpp.o
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Messages.cpp.o
-
-home/views/github/PacmanAndroid/common/Messages/Messages.i: home/views/github/PacmanAndroid/common/Messages/Messages.cpp.i
-
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Messages.i
-
-# target to preprocess a source file
-home/views/github/PacmanAndroid/common/Messages/Messages.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Messages.cpp.i
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Messages.cpp.i
-
-home/views/github/PacmanAndroid/common/Messages/Messages.s: home/views/github/PacmanAndroid/common/Messages/Messages.cpp.s
-
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Messages.s
-
-# target to generate assembly for a file
-home/views/github/PacmanAndroid/common/Messages/Messages.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Messages.cpp.s
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Messages.cpp.s
-
-home/views/github/PacmanAndroid/common/Messages/Types/Repeated.o: home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.o
-
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Repeated.o
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.o
 
 # target to build an object file
-home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.o
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.o
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.o
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.o
 
-home/views/github/PacmanAndroid/common/Messages/Types/Repeated.i: home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.i
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.i: home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.i
 
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Repeated.i
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.i
 
 # target to preprocess a source file
-home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.i
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.i
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.i
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.i
 
-home/views/github/PacmanAndroid/common/Messages/Types/Repeated.s: home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.s
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.s: home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.s
 
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Repeated.s
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.s
 
 # target to generate assembly for a file
-home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.s
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Repeated.cpp.s
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.s
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.s
 
-home/views/github/PacmanAndroid/common/Messages/Types/Stream.o: home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.o
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.o: home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.o
 
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Stream.o
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.o
 
 # target to build an object file
-home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.o
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.o
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.o
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.o
 
-home/views/github/PacmanAndroid/common/Messages/Types/Stream.i: home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.i
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.i: home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.i
 
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Stream.i
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.i
 
 # target to preprocess a source file
-home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.i
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.i
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.i
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.i
 
-home/views/github/PacmanAndroid/common/Messages/Types/Stream.s: home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.s
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.s: home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.s
 
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Stream.s
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.s
 
 # target to generate assembly for a file
-home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.s
-.PHONY : home/views/github/PacmanAndroid/common/Messages/Types/Stream.cpp.s
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.s
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.cpp.s
+
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.o: home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.o
+
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.o
+
+# target to build an object file
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.o
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.o
+
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.i: home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.i
+
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.i
+
+# target to preprocess a source file
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.i
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.i
+
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.s: home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.s
+
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.s
+
+# target to generate assembly for a file
+home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.s
+.PHONY : home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.cpp.s
 
 main.o: main.cpp.o
 
@@ -510,15 +510,15 @@ help:
 	@echo "... Socket.o"
 	@echo "... Socket.i"
 	@echo "... Socket.s"
-	@echo "... home/views/github/PacmanAndroid/common/Messages/Messages.o"
-	@echo "... home/views/github/PacmanAndroid/common/Messages/Messages.i"
-	@echo "... home/views/github/PacmanAndroid/common/Messages/Messages.s"
-	@echo "... home/views/github/PacmanAndroid/common/Messages/Types/Repeated.o"
-	@echo "... home/views/github/PacmanAndroid/common/Messages/Types/Repeated.i"
-	@echo "... home/views/github/PacmanAndroid/common/Messages/Types/Repeated.s"
-	@echo "... home/views/github/PacmanAndroid/common/Messages/Types/Stream.o"
-	@echo "... home/views/github/PacmanAndroid/common/Messages/Types/Stream.i"
-	@echo "... home/views/github/PacmanAndroid/common/Messages/Types/Stream.s"
+	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.o"
+	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.i"
+	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.s"
+	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.o"
+	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.i"
+	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Repeated.s"
+	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.o"
+	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.i"
+	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
