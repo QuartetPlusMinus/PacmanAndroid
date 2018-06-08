@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_SUITE(SerialezeNParseTest)
     }
 
     BOOST_AUTO_TEST_CASE(ConnectMessageSNP) {
-        string name = "Some name";
+        string name = "asdf";
 
         ConnectMessage connectMessage1;
         connectMessage1.set_name(name);

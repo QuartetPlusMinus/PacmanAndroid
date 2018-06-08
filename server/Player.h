@@ -7,9 +7,8 @@
 
 #include "Client.h"
 
-using namespace threedouble::proto;
 
-class Player : public Unit {
+class Player : public Messages::Unit {
 public:
     explicit Player(Client *client) :
             client(client) {

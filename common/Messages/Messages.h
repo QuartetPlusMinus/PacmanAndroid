@@ -17,18 +17,11 @@ namespace Messages {
     public:
         virtual ~Message() = default;
 
-        void serializeToString(string &str) {
-            Stream distStream;
-            serializeToStream(distStream);
-            str = distStream.str();
-        }
+        void serializeToString(string &str);
 
         virtual void serializeToStream(Stream &stream)=0;
 
-        void parseFromString(string &str) {
-            Stream srcStream(str);
-            parseFromStream(srcStream);
-        }
+        void parseFromString(string &str);
 
         virtual void parseFromStream(Stream &stream)=0;
     };

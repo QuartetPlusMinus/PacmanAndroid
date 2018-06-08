@@ -9,6 +9,21 @@ using namespace Messages::SimpleTypes;
 
 // -------------------------------------------------------------------
 
+// Message
+
+void Message::serializeToString(string &str) {
+    Stream distStream;
+    serializeToStream(distStream);
+    str = distStream.str();
+}
+
+void Message::parseFromString(string &str) {
+    Stream srcStream(str);
+    parseFromStream(srcStream);
+}
+
+// -------------------------------------------------------------------
+
 // Point
 
 Point::Point() :

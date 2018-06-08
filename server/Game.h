@@ -5,6 +5,7 @@
 #ifndef SERVER_GAME_H
 #define SERVER_GAME_H
 
+#include <iostream>
 #include "Service.h"
 #include "GameRoom.h"
 #include "Player.h"
@@ -23,7 +24,7 @@ public:
 
 private:
 
-    virtual void Connect(Client *client, ConnectMessage &connectMsg) final {
+    virtual void Connect(Client *client, Messages::ConnectMessage &connectMsg) final {
         client->setUsername(connectMsg.name());
 
         clients.push(client); // Добавить пользователя в очередь
@@ -46,22 +47,22 @@ private:
 
             try {
                 room->start();
-            } catch (PlayerCountException e) {
-                cout<<e.what();
+            } catch (PlayerCountException *e) {
+                cout<<e->what();
             }
 
 
         } else {
 
             // Если комната не набралась, то отсылаем статус в очереди
-            QueueMessage queueReply;
-            queueReply.set_position(int(clients.size()));
+            Messages::QueueMessage queueReply;
+            queueReply.set_position((Messages::SimpleTypes::uint16)clients.size());
             client->Queue(queueReply);
             usleep(2000);
         }
     }
 
-    virtual void Event(Client *client, EventMessage &eventMsg) final {
+    virtual void Event(Client *client, Messages::EventMessage &eventMsg) final {
             std::cout << "Client send event to server\n";
     }
 

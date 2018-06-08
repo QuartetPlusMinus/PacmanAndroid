@@ -2,7 +2,7 @@
 //#include "program.h"
 #include "linmath.h"
 
-#include "odlib/od.h"
+#include "program.h"
 
 typedef struct {
     GLuint texture;
