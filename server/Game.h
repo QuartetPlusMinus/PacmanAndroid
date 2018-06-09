@@ -6,6 +6,7 @@
 #define SERVER_GAME_H
 
 #include <iostream>
+#include <memory>
 #include "Service.h"
 #include "GameRoom.h"
 #include "Player.h"
@@ -22,15 +23,12 @@
 class Game : public Service {
 public:
     Game(unsigned short port) : Service(port) {
-        GameMap::Map* defaultMap = new GameMap::Default();
-        maps.push_back(defaultMap);
+        // инициализация карт
+        std::shared_ptr<GameMap::Map> gameMap(new GameMap::Default());
+        maps.push_back(gameMap); // пока только одна карта`
     }
 
-    ~Game() {
-        for( auto gameMap: maps) {
-            delete gameMap;
-        }
-    }
+
     void start() {
 //        std::thread gameStepsMaker(steps, std::ref(rooms));
 //        gameStepsMaker.detach();
@@ -40,7 +38,8 @@ public:
         thread.join();
         std::cout << "Я дошел до этой точки!" << std::endl;
     }
-    std::vector<GameRoom *> rooms;
+
+    std::vector<std::shared_ptr<GameRoom>> rooms;
 
 private:
 
@@ -55,10 +54,7 @@ private:
             // Создаём комнату
             // TODO: Так нельзя делать !!!!!!
             // Добавить 20 постоянных комнат и менеджер для них
-
-            GameRoom *room = new GameRoom(new GameMap::Default());
-//            std::shared_ptr<GameRoom> gameRoom( new GameRoom(getMap())) //TODO: don't forget
-
+            std::shared_ptr<GameRoom> room(new GameRoom(getMap().get()));
             rooms.push_back(room);
 
             for (unsigned int i = 0; i < clientsCountInRoom; i++) {
@@ -72,7 +68,7 @@ private:
             try {
                 room->start();
             } catch (PlayerCountException *e) {
-                cout<<e->what();
+                cout << e->what();
             }
 
 
@@ -80,32 +76,35 @@ private:
 
             // Если комната не набралась, то отсылаем статус в очереди
             Messages::QueueMessage queueReply;
-            queueReply.set_position((Messages::SimpleTypes::uint16)clients.size());
+            queueReply.set_position((Messages::SimpleTypes::uint16) clients.size());
             client->Queue(queueReply);
             usleep(2000);
         }
     }
 
     virtual void Event(Client *client, Messages::EventMessage &eventMsg) final {
-        if (clientInRoom.find(client->hash()) != clientInRoom.end()){
+        if (clientInRoom.find(client->hash()) != clientInRoom.end()) {
             std::cout << "Client send event to server\n";
-            GameRoom* room = clientInRoom[client->hash()];
-            room->printPlayers();
+            clientInRoom[client->hash()]->printPlayers();
         }
     }
 
-    GameMap::Map* getMap() const {
-        std::random_device r;
-        std::default_random_engine e1(r());
-        std::uniform_int_distribution<int> uniform_dist(0, maps.size());
+    std::shared_ptr<GameMap::Map> getMap() const {
+        std::random_device rd;
+        std::mt19937 mt(rd());
+        std::uniform_int_distribution<int> dist(0, maps.size() - 1);
+        int index = dist(mt);
+        return maps[index];
+
 
     }
+
     const int clientsCountInRoom = 2;
     const int ghostsInRoom = 5;
 
     std::queue<Client *> clients;
-    std::unordered_map<unsigned int, GameRoom *> clientInRoom;
-    std::vector<GameMap::Map*> maps;
+    std::unordered_map<unsigned int, std::shared_ptr<GameRoom>> clientInRoom;
+    std::vector<std::shared_ptr<GameMap::Map>> maps;
 
 };
 
