@@ -5,9 +5,10 @@
 #ifndef SERVER_GAMEROOM_H
 #define SERVER_GAMEROOM_H
 
-#include "Service.h"
+#include "../../NetWork/lib/Service.h"
 #include "GameMap.h"
 #include "Player.h"
+#include "../src/GameMapDefault.h"
 
 class PlayerCountException : public std::runtime_error {
 public:
@@ -17,6 +18,7 @@ public:
 class GameRoom {
 
 public:
+    GameRoom();
 
     explicit GameRoom(GameMap::Map *map);
 

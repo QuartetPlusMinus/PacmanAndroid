@@ -123,248 +123,275 @@ PacmanServer/fast:
 	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/build
 .PHONY : PacmanServer/fast
 
-Client.o: Client.cpp.o
+Game/lib/GameRoomsManager.o: Game/lib/GameRoomsManager.cpp.o
 
-.PHONY : Client.o
-
-# target to build an object file
-Client.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Client.cpp.o
-.PHONY : Client.cpp.o
-
-Client.i: Client.cpp.i
-
-.PHONY : Client.i
-
-# target to preprocess a source file
-Client.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Client.cpp.i
-.PHONY : Client.cpp.i
-
-Client.s: Client.cpp.s
-
-.PHONY : Client.s
-
-# target to generate assembly for a file
-Client.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Client.cpp.s
-.PHONY : Client.cpp.s
-
-Game.o: Game.cpp.o
-
-.PHONY : Game.o
+.PHONY : Game/lib/GameRoomsManager.o
 
 # target to build an object file
-Game.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game.cpp.o
-.PHONY : Game.cpp.o
+Game/lib/GameRoomsManager.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o
+.PHONY : Game/lib/GameRoomsManager.cpp.o
 
-Game.i: Game.cpp.i
+Game/lib/GameRoomsManager.i: Game/lib/GameRoomsManager.cpp.i
 
-.PHONY : Game.i
+.PHONY : Game/lib/GameRoomsManager.i
 
 # target to preprocess a source file
-Game.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game.cpp.i
-.PHONY : Game.cpp.i
+Game/lib/GameRoomsManager.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.i
+.PHONY : Game/lib/GameRoomsManager.cpp.i
 
-Game.s: Game.cpp.s
+Game/lib/GameRoomsManager.s: Game/lib/GameRoomsManager.cpp.s
 
-.PHONY : Game.s
+.PHONY : Game/lib/GameRoomsManager.s
 
 # target to generate assembly for a file
-Game.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game.cpp.s
-.PHONY : Game.cpp.s
+Game/lib/GameRoomsManager.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.s
+.PHONY : Game/lib/GameRoomsManager.cpp.s
 
-GameMap.o: GameMap.cpp.o
+Game/src/Game.o: Game/src/Game.cpp.o
 
-.PHONY : GameMap.o
+.PHONY : Game/src/Game.o
 
 # target to build an object file
-GameMap.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/GameMap.cpp.o
-.PHONY : GameMap.cpp.o
+Game/src/Game.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/Game.cpp.o
+.PHONY : Game/src/Game.cpp.o
 
-GameMap.i: GameMap.cpp.i
+Game/src/Game.i: Game/src/Game.cpp.i
 
-.PHONY : GameMap.i
+.PHONY : Game/src/Game.i
 
 # target to preprocess a source file
-GameMap.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/GameMap.cpp.i
-.PHONY : GameMap.cpp.i
+Game/src/Game.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/Game.cpp.i
+.PHONY : Game/src/Game.cpp.i
 
-GameMap.s: GameMap.cpp.s
+Game/src/Game.s: Game/src/Game.cpp.s
 
-.PHONY : GameMap.s
+.PHONY : Game/src/Game.s
 
 # target to generate assembly for a file
-GameMap.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/GameMap.cpp.s
-.PHONY : GameMap.cpp.s
+Game/src/Game.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/Game.cpp.s
+.PHONY : Game/src/Game.cpp.s
 
-GameMapDefault.o: GameMapDefault.cpp.o
+Game/src/GameMap.o: Game/src/GameMap.cpp.o
 
-.PHONY : GameMapDefault.o
+.PHONY : Game/src/GameMap.o
 
 # target to build an object file
-GameMapDefault.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/GameMapDefault.cpp.o
-.PHONY : GameMapDefault.cpp.o
+Game/src/GameMap.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameMap.cpp.o
+.PHONY : Game/src/GameMap.cpp.o
 
-GameMapDefault.i: GameMapDefault.cpp.i
+Game/src/GameMap.i: Game/src/GameMap.cpp.i
 
-.PHONY : GameMapDefault.i
+.PHONY : Game/src/GameMap.i
 
 # target to preprocess a source file
-GameMapDefault.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/GameMapDefault.cpp.i
-.PHONY : GameMapDefault.cpp.i
+Game/src/GameMap.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameMap.cpp.i
+.PHONY : Game/src/GameMap.cpp.i
 
-GameMapDefault.s: GameMapDefault.cpp.s
+Game/src/GameMap.s: Game/src/GameMap.cpp.s
 
-.PHONY : GameMapDefault.s
+.PHONY : Game/src/GameMap.s
 
 # target to generate assembly for a file
-GameMapDefault.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/GameMapDefault.cpp.s
-.PHONY : GameMapDefault.cpp.s
+Game/src/GameMap.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameMap.cpp.s
+.PHONY : Game/src/GameMap.cpp.s
 
-GameRoom.o: GameRoom.cpp.o
+Game/src/GameMapDefault.o: Game/src/GameMapDefault.cpp.o
 
-.PHONY : GameRoom.o
+.PHONY : Game/src/GameMapDefault.o
 
 # target to build an object file
-GameRoom.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/GameRoom.cpp.o
-.PHONY : GameRoom.cpp.o
+Game/src/GameMapDefault.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameMapDefault.cpp.o
+.PHONY : Game/src/GameMapDefault.cpp.o
 
-GameRoom.i: GameRoom.cpp.i
+Game/src/GameMapDefault.i: Game/src/GameMapDefault.cpp.i
 
-.PHONY : GameRoom.i
+.PHONY : Game/src/GameMapDefault.i
 
 # target to preprocess a source file
-GameRoom.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/GameRoom.cpp.i
-.PHONY : GameRoom.cpp.i
+Game/src/GameMapDefault.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameMapDefault.cpp.i
+.PHONY : Game/src/GameMapDefault.cpp.i
 
-GameRoom.s: GameRoom.cpp.s
+Game/src/GameMapDefault.s: Game/src/GameMapDefault.cpp.s
 
-.PHONY : GameRoom.s
+.PHONY : Game/src/GameMapDefault.s
 
 # target to generate assembly for a file
-GameRoom.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/GameRoom.cpp.s
-.PHONY : GameRoom.cpp.s
+Game/src/GameMapDefault.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameMapDefault.cpp.s
+.PHONY : Game/src/GameMapDefault.cpp.s
 
-Network.o: Network.cpp.o
+Game/src/GameRoom.o: Game/src/GameRoom.cpp.o
 
-.PHONY : Network.o
+.PHONY : Game/src/GameRoom.o
 
 # target to build an object file
-Network.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Network.cpp.o
-.PHONY : Network.cpp.o
+Game/src/GameRoom.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameRoom.cpp.o
+.PHONY : Game/src/GameRoom.cpp.o
 
-Network.i: Network.cpp.i
+Game/src/GameRoom.i: Game/src/GameRoom.cpp.i
 
-.PHONY : Network.i
+.PHONY : Game/src/GameRoom.i
 
 # target to preprocess a source file
-Network.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Network.cpp.i
-.PHONY : Network.cpp.i
+Game/src/GameRoom.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameRoom.cpp.i
+.PHONY : Game/src/GameRoom.cpp.i
 
-Network.s: Network.cpp.s
+Game/src/GameRoom.s: Game/src/GameRoom.cpp.s
 
-.PHONY : Network.s
+.PHONY : Game/src/GameRoom.s
 
 # target to generate assembly for a file
-Network.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Network.cpp.s
-.PHONY : Network.cpp.s
+Game/src/GameRoom.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameRoom.cpp.s
+.PHONY : Game/src/GameRoom.cpp.s
 
-Player.o: Player.cpp.o
+Game/src/Player.o: Game/src/Player.cpp.o
 
-.PHONY : Player.o
+.PHONY : Game/src/Player.o
 
 # target to build an object file
-Player.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Player.cpp.o
-.PHONY : Player.cpp.o
+Game/src/Player.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/Player.cpp.o
+.PHONY : Game/src/Player.cpp.o
 
-Player.i: Player.cpp.i
+Game/src/Player.i: Game/src/Player.cpp.i
 
-.PHONY : Player.i
+.PHONY : Game/src/Player.i
 
 # target to preprocess a source file
-Player.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Player.cpp.i
-.PHONY : Player.cpp.i
+Game/src/Player.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/Player.cpp.i
+.PHONY : Game/src/Player.cpp.i
 
-Player.s: Player.cpp.s
+Game/src/Player.s: Game/src/Player.cpp.s
 
-.PHONY : Player.s
+.PHONY : Game/src/Player.s
 
 # target to generate assembly for a file
-Player.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Player.cpp.s
-.PHONY : Player.cpp.s
+Game/src/Player.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/Player.cpp.s
+.PHONY : Game/src/Player.cpp.s
 
-Service.o: Service.cpp.o
+NetWork/src/Client.o: NetWork/src/Client.cpp.o
 
-.PHONY : Service.o
+.PHONY : NetWork/src/Client.o
 
 # target to build an object file
-Service.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Service.cpp.o
-.PHONY : Service.cpp.o
+NetWork/src/Client.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Client.cpp.o
+.PHONY : NetWork/src/Client.cpp.o
 
-Service.i: Service.cpp.i
+NetWork/src/Client.i: NetWork/src/Client.cpp.i
 
-.PHONY : Service.i
+.PHONY : NetWork/src/Client.i
 
 # target to preprocess a source file
-Service.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Service.cpp.i
-.PHONY : Service.cpp.i
+NetWork/src/Client.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Client.cpp.i
+.PHONY : NetWork/src/Client.cpp.i
 
-Service.s: Service.cpp.s
+NetWork/src/Client.s: NetWork/src/Client.cpp.s
 
-.PHONY : Service.s
+.PHONY : NetWork/src/Client.s
 
 # target to generate assembly for a file
-Service.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Service.cpp.s
-.PHONY : Service.cpp.s
+NetWork/src/Client.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Client.cpp.s
+.PHONY : NetWork/src/Client.cpp.s
 
-Socket.o: Socket.cpp.o
+NetWork/src/Network.o: NetWork/src/Network.cpp.o
 
-.PHONY : Socket.o
+.PHONY : NetWork/src/Network.o
 
 # target to build an object file
-Socket.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Socket.cpp.o
-.PHONY : Socket.cpp.o
+NetWork/src/Network.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Network.cpp.o
+.PHONY : NetWork/src/Network.cpp.o
 
-Socket.i: Socket.cpp.i
+NetWork/src/Network.i: NetWork/src/Network.cpp.i
 
-.PHONY : Socket.i
+.PHONY : NetWork/src/Network.i
 
 # target to preprocess a source file
-Socket.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Socket.cpp.i
-.PHONY : Socket.cpp.i
+NetWork/src/Network.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Network.cpp.i
+.PHONY : NetWork/src/Network.cpp.i
 
-Socket.s: Socket.cpp.s
+NetWork/src/Network.s: NetWork/src/Network.cpp.s
 
-.PHONY : Socket.s
+.PHONY : NetWork/src/Network.s
 
 # target to generate assembly for a file
-Socket.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Socket.cpp.s
-.PHONY : Socket.cpp.s
+NetWork/src/Network.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Network.cpp.s
+.PHONY : NetWork/src/Network.cpp.s
+
+NetWork/src/Service.o: NetWork/src/Service.cpp.o
+
+.PHONY : NetWork/src/Service.o
+
+# target to build an object file
+NetWork/src/Service.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Service.cpp.o
+.PHONY : NetWork/src/Service.cpp.o
+
+NetWork/src/Service.i: NetWork/src/Service.cpp.i
+
+.PHONY : NetWork/src/Service.i
+
+# target to preprocess a source file
+NetWork/src/Service.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Service.cpp.i
+.PHONY : NetWork/src/Service.cpp.i
+
+NetWork/src/Service.s: NetWork/src/Service.cpp.s
+
+.PHONY : NetWork/src/Service.s
+
+# target to generate assembly for a file
+NetWork/src/Service.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Service.cpp.s
+.PHONY : NetWork/src/Service.cpp.s
+
+NetWork/src/Socket.o: NetWork/src/Socket.cpp.o
+
+.PHONY : NetWork/src/Socket.o
+
+# target to build an object file
+NetWork/src/Socket.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Socket.cpp.o
+.PHONY : NetWork/src/Socket.cpp.o
+
+NetWork/src/Socket.i: NetWork/src/Socket.cpp.i
+
+.PHONY : NetWork/src/Socket.i
+
+# target to preprocess a source file
+NetWork/src/Socket.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Socket.cpp.i
+.PHONY : NetWork/src/Socket.cpp.i
+
+NetWork/src/Socket.s: NetWork/src/Socket.cpp.s
+
+.PHONY : NetWork/src/Socket.s
+
+# target to generate assembly for a file
+NetWork/src/Socket.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/NetWork/src/Socket.cpp.s
+.PHONY : NetWork/src/Socket.cpp.s
 
 home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.o: home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.cpp.o
 
@@ -483,33 +510,36 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... PacmanServer"
-	@echo "... Client.o"
-	@echo "... Client.i"
-	@echo "... Client.s"
-	@echo "... Game.o"
-	@echo "... Game.i"
-	@echo "... Game.s"
-	@echo "... GameMap.o"
-	@echo "... GameMap.i"
-	@echo "... GameMap.s"
-	@echo "... GameMapDefault.o"
-	@echo "... GameMapDefault.i"
-	@echo "... GameMapDefault.s"
-	@echo "... GameRoom.o"
-	@echo "... GameRoom.i"
-	@echo "... GameRoom.s"
-	@echo "... Network.o"
-	@echo "... Network.i"
-	@echo "... Network.s"
-	@echo "... Player.o"
-	@echo "... Player.i"
-	@echo "... Player.s"
-	@echo "... Service.o"
-	@echo "... Service.i"
-	@echo "... Service.s"
-	@echo "... Socket.o"
-	@echo "... Socket.i"
-	@echo "... Socket.s"
+	@echo "... Game/lib/GameRoomsManager.o"
+	@echo "... Game/lib/GameRoomsManager.i"
+	@echo "... Game/lib/GameRoomsManager.s"
+	@echo "... Game/src/Game.o"
+	@echo "... Game/src/Game.i"
+	@echo "... Game/src/Game.s"
+	@echo "... Game/src/GameMap.o"
+	@echo "... Game/src/GameMap.i"
+	@echo "... Game/src/GameMap.s"
+	@echo "... Game/src/GameMapDefault.o"
+	@echo "... Game/src/GameMapDefault.i"
+	@echo "... Game/src/GameMapDefault.s"
+	@echo "... Game/src/GameRoom.o"
+	@echo "... Game/src/GameRoom.i"
+	@echo "... Game/src/GameRoom.s"
+	@echo "... Game/src/Player.o"
+	@echo "... Game/src/Player.i"
+	@echo "... Game/src/Player.s"
+	@echo "... NetWork/src/Client.o"
+	@echo "... NetWork/src/Client.i"
+	@echo "... NetWork/src/Client.s"
+	@echo "... NetWork/src/Network.o"
+	@echo "... NetWork/src/Network.i"
+	@echo "... NetWork/src/Network.s"
+	@echo "... NetWork/src/Service.o"
+	@echo "... NetWork/src/Service.i"
+	@echo "... NetWork/src/Service.s"
+	@echo "... NetWork/src/Socket.o"
+	@echo "... NetWork/src/Socket.i"
+	@echo "... NetWork/src/Socket.s"
 	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.o"
 	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.i"
 	@echo "... home/murt/AndroidPacman/PacmanAndroid/common/Messages/Messages.s"

@@ -2,7 +2,7 @@
 // Created by viewsharp on 01.05.18.
 //
 
-#include "Socket.h"
+#include "../lib/Socket.h"
 
 const bool operator==(const Token &left, const Token &right) {
     return left.rnd == right.rnd and left.tm == right.tm;

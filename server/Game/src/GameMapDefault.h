@@ -5,7 +5,7 @@
 #ifndef SERVER_GAMEMAPDEFAULT_H
 #define SERVER_GAMEMAPDEFAULT_H
 
-#include "GameMap.h"
+#include "../lib/GameMap.h"
 
 static const unsigned int PLAYERS_COUNT = 2;
 static const unsigned int GHOSTS_COUNT = 5;

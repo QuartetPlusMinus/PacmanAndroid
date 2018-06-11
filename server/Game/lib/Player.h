@@ -5,7 +5,7 @@
 #ifndef SERVER_PLAYER_H
 #define SERVER_PLAYER_H
 
-#include "Client.h"
+#include "../../NetWork/lib/Client.h"
 
 
 class Player : public Messages::Unit {

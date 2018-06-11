@@ -102,58 +102,40 @@
 		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Client.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/lib/GameRoomsManager.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Client.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/lib/GameRoomsManager.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/src/Game.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/src/GameMap.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameMap.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/src/GameMapDefault.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameMap.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/src/GameMapDefault.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameMapDefault.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/src/GameRoom.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameMapDefault.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/src/Player.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameRoom.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/NetWork/src/Client.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/GameRoom.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/NetWork/src/Network.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Network.cpp">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/NetWork/src/Service.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Network.h">
-			<Option target="PacmanServer"/>
-		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Player.cpp">
-			<Option target="PacmanServer"/>
-		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Player.h">
-			<Option target="PacmanServer"/>
-		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Service.cpp">
-			<Option target="PacmanServer"/>
-		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Service.h">
-			<Option target="PacmanServer"/>
-		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Socket.cpp">
-			<Option target="PacmanServer"/>
-		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Socket.h">
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/NetWork/src/Socket.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
 		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/main.cpp">

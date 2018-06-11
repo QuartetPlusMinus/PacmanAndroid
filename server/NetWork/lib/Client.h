@@ -7,12 +7,13 @@
 
 #include <string>
 
-#include "../common/Messages/Messages.h"
+#include "../../../common/Messages/Messages.h"
 #include "Socket.h"
 
 static std::hash<std::string> getHshFromSrting;
 
 class Client {
+private:
     enum RequestType {
         QUEUE = 0,
         START = 1,
@@ -20,10 +21,17 @@ class Client {
         END = 3
     };
 
+
 public:
+
+    enum ClientStatus {
+        OUT_OF_GAME = 0,
+        IN_QUEUE,
+        IN_GAME
+    };
+
     Client(Socket &socket, ip::udp::endpoint &ep) :
-            socket(socket),
-            ep(ep) {
+            socket(socket), ep(ep), status(OUT_OF_GAME) {
 
     }
 
@@ -69,6 +77,14 @@ public:
         return (unsigned int)getHshFromSrting(ep.address().to_string()) + ep.port();
     }
 
+    ClientStatus getStatus() {
+        return status;
+    }
+
+    void setStatus(ClientStatus clientStatus) {
+        status = clientStatus;
+    }
+
 
 private:
 
@@ -81,6 +97,7 @@ private:
     Socket &socket;
     ip::udp::endpoint ep;
     std::string username;
+    ClientStatus status;
 };
 
 #endif //SERVER_CLIENT_H
