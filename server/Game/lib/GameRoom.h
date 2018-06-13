@@ -7,8 +7,9 @@
 
 #include "../../NetWork/lib/Service.h"
 #include "GameMap.h"
-#include "Player.h"
-#include "../src/GameMapDefault.h"
+#include "../../GameObjects/lib/Pacman.h"
+#include "../../GameObjects/lib/Ghost.h"
+#include "GameMapDefault.h"
 
 class PlayerCountException : public std::runtime_error {
 public:
@@ -27,6 +28,10 @@ public:
 
     void start();
 
+    void step();
+
+    void eventStep(Messages::Direction direction);
+
 
     void printPlayers() {
         std::cout << players[0]->client->getUsername() << " - " << players[1]->client->getUsername()<<std::endl;
@@ -35,8 +40,8 @@ public:
 
 private:
 
-    std::vector<Player *> players;
-    std::vector<Messages::Unit *> ghosts;
+    std::vector<Pacman *> players;
+    std::vector<Ghost *> ghosts;
     const GameMap::Map *map;
     std::atomic<bool> gameOver;
 

@@ -13,7 +13,7 @@ void GameRoom::addClient(Client *client) {
 
     // TODO: добавить игрока
 
-    players.push_back(new Player(client));
+    players.push_back(new Pacman(client));
 }
 
 void GameRoom::start() {
@@ -49,7 +49,7 @@ void GameRoom::start() {
         // TODO: Рассчитать направления ghost'ов
         // TODO: Заменить на фабрику
 
-        auto currentGhost = new Messages::Unit();
+        auto currentGhost = new Ghost();
 
         *currentGhost->mutable_pos() = map->ghostsPositions[i];
         currentGhost->set_direction(Messages::NONE);
@@ -67,4 +67,8 @@ void GameRoom::start() {
         startMessage.set_id(i);
         players[i]->client->Start(startMessage);
     }
+}
+
+void GameRoom::step() {
+
 }
