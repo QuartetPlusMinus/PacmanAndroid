@@ -1,5 +1,4 @@
 #include "image.h"
-#include "platform_log.h"
 #include "libpng/png.h"
 #include "libpng/pngconf.h"
 #include <assert.h>
@@ -44,10 +43,8 @@ RawImageData get_raw_image_data_from_png(const void* png_data, size_t png_data_s
  
     ReadDataHandle png_data_handle = (ReadDataHandle) {{(png_byte *)png_data, png_data_size}, 0};
     png_set_read_fn(png_ptr, &png_data_handle, read_png_data_callback);
- 
-    if (setjmp(png_jmpbuf(png_ptr))) {
-        CRASH("Error reading PNG file!");
-    }
+
+    assert(setjmp(png_jmpbuf(png_ptr)) == 0);
  
 	// Use one of our helper functions here to parse the PNG information, such as the color format, and convert the PNG into a format that we want
     const PngInfo png_info = read_and_update_info(png_ptr, info_ptr);

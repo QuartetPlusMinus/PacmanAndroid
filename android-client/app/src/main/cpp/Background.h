@@ -6,7 +6,6 @@
 #define ANDROID_CLIENT_BACKGROUND_H
 
 #include <GLES2/gl2.h>
-#include "buffer.h"
 #include "IDrawable.h"
 #include "libodraw/linmath.h"
 #include "libodraw/ShaderPrograms.h"

@@ -18,11 +18,16 @@ public:
     }
 
     void draw() final {
+        sprite.setPosition(2 * data().pos().x()/15.0f, 2 * data().pos().y()/24.0f);
         sprite.draw();
     }
 
     void setTexture(OpenDraw::Texture &texture) final {
         sprite.setTexture(texture);
+    }
+
+    void step() {
+        mutable_data()->set_entrypercent(data().entrypercent()+0.01f);
     }
 
 protected:

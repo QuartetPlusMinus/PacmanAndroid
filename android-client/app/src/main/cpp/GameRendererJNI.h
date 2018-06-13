@@ -2,8 +2,6 @@
 #include <android/asset_manager_jni.h>
 #include <Messages.h>
 
-#include "macros.h"
-#include "program.h"
 #include "Game.h"
 
 /* Header for class com_example_viewsharp_pacman_RendererWrapper */

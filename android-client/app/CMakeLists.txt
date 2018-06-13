@@ -54,12 +54,7 @@ add_library( game SHARED
              ${CPP_LOCAL_PATH}/Game.cpp
              ${CPP_LOCAL_PATH}/Background.cpp
              ${CPP_LOCAL_PATH}/platform_asset_utils.cpp
-             ${CPP_LOCAL_PATH}/platform_log.cpp
-             ${CPP_LOCAL_PATH}/buffer.cpp
-             ${CPP_LOCAL_PATH}/program.cpp
              ${CPP_LOCAL_PATH}/image.cpp
-             ${CPP_LOCAL_PATH}/shader.cpp
-             ${CPP_LOCAL_PATH}/game_objects.cpp
              )
 
 target_link_libraries( game

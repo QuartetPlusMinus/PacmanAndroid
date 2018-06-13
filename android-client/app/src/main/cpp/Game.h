@@ -3,7 +3,6 @@
 
 #include <vector>
 
-#include "macros.h"
 #include "IDrawable.h"
 #include "Background.h"
 #include "Units.h"

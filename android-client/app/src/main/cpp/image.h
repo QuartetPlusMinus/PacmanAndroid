@@ -1,5 +1,5 @@
-#include "platform_gl.h"
- 
+#include <GLES2/gl2.h>
+
 typedef struct {
     const int width;
     const int height;
