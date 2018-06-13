@@ -10,6 +10,7 @@
 
 #include "GameRoom.h"
 #include "Player.h"
+#include "GameRoomsManager.h"
 #include "../src/GameMapDefault.h"
 #include "../../NetWork/lib/Service.h"
 
@@ -29,13 +30,7 @@ private:
 
     virtual void Event(std::shared_ptr<Client> client, Messages::EventMessage &eventMsg) final;
 
-    std::shared_ptr<GameMap::Map> getMap() const {
-        std::random_device rd;
-        std::mt19937 mt(rd());
-        std::uniform_int_distribution<int> dist(0, maps.size() - 1);
-        int index = dist(mt);
-        return maps[index];
-    }
+
 
     const int clientsCountInRoom = 2;
     const int ghostsInRoom = 5;
@@ -43,10 +38,8 @@ private:
 
     std::queue<Client *> clients;
     std::vector<std::shared_ptr<Client>> clientsQueue;
-    std::unordered_map<unsigned int, std::shared_ptr<GameRoom>> clientInRoom;
-    std::vector<std::shared_ptr<GameMap::Map>> maps;
-    std::vector<GameRoom> gameRooms{gameRoomsCount};
-
+    std::unordered_map<unsigned int, GameRoom*> clientInRoom;
+    GameRoomsManager manager{gameRoomsCount};
 };
 
 #endif //SERVER_GAME_H

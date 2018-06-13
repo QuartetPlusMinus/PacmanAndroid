@@ -102,9 +102,6 @@
 		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/common/Messages/Types/Stream.h">
 			<Option target="PacmanServer"/>
 		</Unit>
-		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/lib/GameRoomsManager.cpp">
-			<Option target="PacmanServer"/>
-		</Unit>
 		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/lib/GameRoomsManager.h">
 			<Option target="PacmanServer"/>
 		</Unit>
@@ -121,6 +118,9 @@
 			<Option target="PacmanServer"/>
 		</Unit>
 		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/src/GameRoom.cpp">
+			<Option target="PacmanServer"/>
+		</Unit>
+		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/src/GameRoomsManager.cpp">
 			<Option target="PacmanServer"/>
 		</Unit>
 		<Unit filename="/home/murt/AndroidPacman/PacmanAndroid/server/Game/src/Player.cpp">

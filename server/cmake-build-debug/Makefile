@@ -123,33 +123,6 @@ PacmanServer/fast:
 	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/build
 .PHONY : PacmanServer/fast
 
-Game/lib/GameRoomsManager.o: Game/lib/GameRoomsManager.cpp.o
-
-.PHONY : Game/lib/GameRoomsManager.o
-
-# target to build an object file
-Game/lib/GameRoomsManager.cpp.o:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o
-.PHONY : Game/lib/GameRoomsManager.cpp.o
-
-Game/lib/GameRoomsManager.i: Game/lib/GameRoomsManager.cpp.i
-
-.PHONY : Game/lib/GameRoomsManager.i
-
-# target to preprocess a source file
-Game/lib/GameRoomsManager.cpp.i:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.i
-.PHONY : Game/lib/GameRoomsManager.cpp.i
-
-Game/lib/GameRoomsManager.s: Game/lib/GameRoomsManager.cpp.s
-
-.PHONY : Game/lib/GameRoomsManager.s
-
-# target to generate assembly for a file
-Game/lib/GameRoomsManager.cpp.s:
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.s
-.PHONY : Game/lib/GameRoomsManager.cpp.s
-
 Game/src/Game.o: Game/src/Game.cpp.o
 
 .PHONY : Game/src/Game.o
@@ -257,6 +230,33 @@ Game/src/GameRoom.s: Game/src/GameRoom.cpp.s
 Game/src/GameRoom.cpp.s:
 	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameRoom.cpp.s
 .PHONY : Game/src/GameRoom.cpp.s
+
+Game/src/GameRoomsManager.o: Game/src/GameRoomsManager.cpp.o
+
+.PHONY : Game/src/GameRoomsManager.o
+
+# target to build an object file
+Game/src/GameRoomsManager.cpp.o:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o
+.PHONY : Game/src/GameRoomsManager.cpp.o
+
+Game/src/GameRoomsManager.i: Game/src/GameRoomsManager.cpp.i
+
+.PHONY : Game/src/GameRoomsManager.i
+
+# target to preprocess a source file
+Game/src/GameRoomsManager.cpp.i:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.i
+.PHONY : Game/src/GameRoomsManager.cpp.i
+
+Game/src/GameRoomsManager.s: Game/src/GameRoomsManager.cpp.s
+
+.PHONY : Game/src/GameRoomsManager.s
+
+# target to generate assembly for a file
+Game/src/GameRoomsManager.cpp.s:
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.s
+.PHONY : Game/src/GameRoomsManager.cpp.s
 
 Game/src/Player.o: Game/src/Player.cpp.o
 
@@ -510,9 +510,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... PacmanServer"
-	@echo "... Game/lib/GameRoomsManager.o"
-	@echo "... Game/lib/GameRoomsManager.i"
-	@echo "... Game/lib/GameRoomsManager.s"
 	@echo "... Game/src/Game.o"
 	@echo "... Game/src/Game.i"
 	@echo "... Game/src/Game.s"
@@ -525,6 +522,9 @@ help:
 	@echo "... Game/src/GameRoom.o"
 	@echo "... Game/src/GameRoom.i"
 	@echo "... Game/src/GameRoom.s"
+	@echo "... Game/src/GameRoomsManager.o"
+	@echo "... Game/src/GameRoomsManager.i"
+	@echo "... Game/src/GameRoomsManager.s"
 	@echo "... Game/src/Player.o"
 	@echo "... Game/src/Player.i"
 	@echo "... Game/src/Player.s"

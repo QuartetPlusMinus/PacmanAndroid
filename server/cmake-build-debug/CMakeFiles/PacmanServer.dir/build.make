@@ -369,28 +369,28 @@ CMakeFiles/PacmanServer.dir/Game/src/Player.cpp.o.provides: CMakeFiles/PacmanSer
 CMakeFiles/PacmanServer.dir/Game/src/Player.cpp.o.provides.build: CMakeFiles/PacmanServer.dir/Game/src/Player.cpp.o
 
 
-CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o: CMakeFiles/PacmanServer.dir/flags.make
-CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o: ../Game/lib/GameRoomsManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o -c /home/murt/AndroidPacman/PacmanAndroid/server/Game/lib/GameRoomsManager.cpp
+CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o: CMakeFiles/PacmanServer.dir/flags.make
+CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o: ../Game/src/GameRoomsManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/murt/AndroidPacman/PacmanAndroid/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o -c /home/murt/AndroidPacman/PacmanAndroid/server/Game/src/GameRoomsManager.cpp
 
-CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/murt/AndroidPacman/PacmanAndroid/server/Game/lib/GameRoomsManager.cpp > CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.i
+CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/murt/AndroidPacman/PacmanAndroid/server/Game/src/GameRoomsManager.cpp > CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.i
 
-CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/murt/AndroidPacman/PacmanAndroid/server/Game/lib/GameRoomsManager.cpp -o CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.s
+CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/murt/AndroidPacman/PacmanAndroid/server/Game/src/GameRoomsManager.cpp -o CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.s
 
-CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o.requires:
+CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o.requires:
 
-.PHONY : CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o.requires
+.PHONY : CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o.requires
 
-CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o.provides: CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o.requires
-	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o.provides.build
-.PHONY : CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o.provides
+CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o.provides: CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o.requires
+	$(MAKE) -f CMakeFiles/PacmanServer.dir/build.make CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o.provides.build
+.PHONY : CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o.provides
 
-CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o.provides.build: CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o
+CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o.provides.build: CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o
 
 
 # Object files for target PacmanServer
@@ -408,7 +408,7 @@ PacmanServer_OBJECTS = \
 "CMakeFiles/PacmanServer.dir/NetWork/src/Socket.cpp.o" \
 "CMakeFiles/PacmanServer.dir/Game/src/Game.cpp.o" \
 "CMakeFiles/PacmanServer.dir/Game/src/Player.cpp.o" \
-"CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o"
+"CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o"
 
 # External object files for target PacmanServer
 PacmanServer_EXTERNAL_OBJECTS =
@@ -426,7 +426,7 @@ PacmanServer: CMakeFiles/PacmanServer.dir/NetWork/src/Client.cpp.o
 PacmanServer: CMakeFiles/PacmanServer.dir/NetWork/src/Socket.cpp.o
 PacmanServer: CMakeFiles/PacmanServer.dir/Game/src/Game.cpp.o
 PacmanServer: CMakeFiles/PacmanServer.dir/Game/src/Player.cpp.o
-PacmanServer: CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o
+PacmanServer: CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o
 PacmanServer: CMakeFiles/PacmanServer.dir/build.make
 PacmanServer: /usr/local/lib/libboost_system.so
 PacmanServer: /usr/local/lib/libboost_thread.so
@@ -455,7 +455,7 @@ CMakeFiles/PacmanServer.dir/requires: CMakeFiles/PacmanServer.dir/NetWork/src/Cl
 CMakeFiles/PacmanServer.dir/requires: CMakeFiles/PacmanServer.dir/NetWork/src/Socket.cpp.o.requires
 CMakeFiles/PacmanServer.dir/requires: CMakeFiles/PacmanServer.dir/Game/src/Game.cpp.o.requires
 CMakeFiles/PacmanServer.dir/requires: CMakeFiles/PacmanServer.dir/Game/src/Player.cpp.o.requires
-CMakeFiles/PacmanServer.dir/requires: CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o.requires
+CMakeFiles/PacmanServer.dir/requires: CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o.requires
 
 .PHONY : CMakeFiles/PacmanServer.dir/requires
 

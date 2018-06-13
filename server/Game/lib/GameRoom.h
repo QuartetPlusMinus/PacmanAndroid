@@ -15,10 +15,11 @@ public:
     explicit PlayerCountException(const std::string &what_arg) : std::runtime_error(what_arg) {}
 };
 
+
 class GameRoom {
 
 public:
-    GameRoom();
+//    GameRoom();
 
     explicit GameRoom(GameMap::Map *map);
 
@@ -36,8 +37,8 @@ private:
 
     std::vector<Player *> players;
     std::vector<Messages::Unit *> ghosts;
-
     const GameMap::Map *map;
+    std::atomic<bool> gameOver;
 
 };
 

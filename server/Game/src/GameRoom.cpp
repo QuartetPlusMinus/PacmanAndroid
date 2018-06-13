@@ -4,10 +4,10 @@
 
 #include "../lib/GameRoom.h"
 
-GameRoom::GameRoom(): map(nullptr) {}
+//GameRoom::GameRoom(): map(nullptr) {}
 
 GameRoom::GameRoom(GameMap::Map *map) :
-        map(map) {}
+        map(map), gameOver(false) {}
 
 void GameRoom::addClient(Client *client) {
 

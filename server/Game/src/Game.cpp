@@ -5,9 +5,6 @@
 #include "../lib/Game.h"
 
 Game::Game(unsigned short port) : Service(port) {
-    // инициализация карт
-    std::shared_ptr<GameMap::Map> gameMap(new GameMap::Default());
-    maps.push_back(gameMap); // пока только одна карта`
 }
 
 
@@ -25,29 +22,32 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
     client->setUsername(connectMsg.name());
     if (client->getStatus() == Client::OUT_OF_GAME) {  // если клиент вне игры, то добавить его в очередь
         clientsQueue.push_back(client);
-        client->setStatus(Client::IN_GAME);
+        client->setStatus(Client::IN_QUEUE);
     }
     std::cout << "Client connected to server. Username: " << connectMsg.name() << endl;
 
     if (clientsQueue.size() >= clientsCountInRoom) { // Если набралось нужное кол-во пользователей
 
 // Создаём комнату
-        std::shared_ptr<GameRoom> room(new GameRoom(getMap().get()));
-        rooms.push_back(room);
 
-        for (unsigned int i = 0; i < clientsCountInRoom; i++) {
+        GameRoom* newGameRoom = manager.AddRoom();
+        if(newGameRoom != nullptr) {
+            // Добавление клиентов в комнату
+            for (unsigned int i = 0; i < clientsCountInRoom; i++) {
+                Client *currentClient = clientsQueue.front().get();
+                newGameRoom->addClient(currentClient);
+                clientsQueue.erase(clientsQueue.begin());
+                clientInRoom[currentClient->hash()] = newGameRoom;  // Добавление в таблицу клиент - комната
+                currentClient->setStatus(Client::IN_GAME);
+            }
 
-            Client *currentClient = clientsQueue.front().get();
-            room->addClient(currentClient);
-            clientsQueue.erase(clientsQueue.begin());
-// Добавление в таблицу клиент - комната
-            clientInRoom[currentClient->hash()] = room;
-        }
+            // Оправка остальным клиентам нового положения в очереди
+            Messages::QueueMessage queueReply;
+            for (int i = 0; i < clientsQueue.size(); ++i) {
+                queueReply.set_position((Messages::SimpleTypes::uint16) i);
+                clientsQueue[i]->Queue(queueReply);
+            }
 
-        Messages::QueueMessage queueReply;
-        for (int i = 0; i < clientsQueue.size(); ++i) {
-            queueReply.set_position((Messages::SimpleTypes::uint16) i);
-            clientsQueue[i]->Queue(queueReply);
         }
 
 //            try {
@@ -59,7 +59,7 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
 
     } else {
 
-// Если комната не набралась, то отсылаем статус в очереди
+        // Если комната не набралась, то отсылаем статус в очереди
         Messages::QueueMessage queueReply;
         queueReply.set_position((Messages::SimpleTypes::uint16) clients.size());
         client->Queue(queueReply);

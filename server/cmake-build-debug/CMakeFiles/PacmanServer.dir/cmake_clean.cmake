@@ -12,7 +12,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/PacmanServer.dir/NetWork/src/Socket.cpp.o"
   "CMakeFiles/PacmanServer.dir/Game/src/Game.cpp.o"
   "CMakeFiles/PacmanServer.dir/Game/src/Player.cpp.o"
-  "CMakeFiles/PacmanServer.dir/Game/lib/GameRoomsManager.cpp.o"
+  "CMakeFiles/PacmanServer.dir/Game/src/GameRoomsManager.cpp.o"
   "PacmanServer.pdb"
   "PacmanServer"
 )
