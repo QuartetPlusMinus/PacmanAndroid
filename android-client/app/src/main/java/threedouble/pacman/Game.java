@@ -50,15 +50,13 @@ public class Game extends Service {
         }
 
         glSurfaceView.setEGLContextClientVersion(2);
-        gameRenderer = new GameRenderer(context.getAssets());
+        gameRenderer = new GameRenderer(context.getAssets(), message);
         glSurfaceView.setRenderer(gameRenderer);
         rendererSet = true;
 
         Message msg = context.viewHandler.obtainMessage();
         msg.obj = glSurfaceView;
         context.viewHandler.sendMessage(msg);
-
-        GameRenderer.startJNI(message);
     }
 
     @Override

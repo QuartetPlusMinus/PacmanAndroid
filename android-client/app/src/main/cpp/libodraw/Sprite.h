@@ -17,19 +17,19 @@ namespace OpenDraw {
     public:
         explicit Sprite();
 
+        void setSize(float height, float width);
+
+        void setTexture(Texture &texture);
+
+        void setTextureSize(float height, float width);
+
         void init();
 
         void draw();
 
         void setPosition(float x, float y);
 
-        void setSize(float width, float height);
-
-        void setTexture(Texture &texture);
-
         void setTexturePosition(float x, float y);
-
-        void setTextureSize(float width, float height);
 
 
     private:
@@ -39,7 +39,7 @@ namespace OpenDraw {
         vec2 position;
         vec2 size;
         vec2 texturePosition;
-        vec2 textureSize;
+        vec2 tSize;
 
     };
 }

@@ -12,13 +12,6 @@ class Unit : public Messages::UnitInit, public IDrawable {
 public:
     Unit() = default;
     Unit(Messages::UnitInit &unitInit) : Messages::UnitInit(unitInit) {};
-};
-
-class Pacman : public Unit {
-public:
-    Pacman(Messages::UnitInit &unit) : Unit(unit), sprite() {
-        sprite.setTexturePosition(0.7142f, 0);
-    }
 
     void init() final {
         sprite.init();
@@ -32,13 +25,30 @@ public:
         sprite.setTexture(texture);
     }
 
-private:
+protected:
     OpenDraw::Sprite sprite;
 };
 
+class Pacman : public Unit {
+public:
+    Pacman(Messages::UnitInit &unit) : Unit(unit) {
+        sprite.setTexturePosition(0.7142f, 0);
+        sprite.setSize(0.0416f, 0.0666f);
+        sprite.setTextureSize(0.25f, 0.0714f);
+        // TODO: make consts
+        sprite.setPosition(2 * data().pos().x()/15.0f, 2 * data().pos().y()/24.0f);
+    }
+};
+
 class Ghost : public Unit {
-
-
+public:
+    Ghost(Messages::UnitInit &unit) : Unit(unit) {
+        sprite.setTexturePosition(0, 0);
+        sprite.setSize(0.0416f, 0.0666f);
+        sprite.setTextureSize(0.25f, 0.0714f);
+        // TODO: make consts
+        sprite.setPosition(2 * data().pos().x()/15.0f, 2 * data().pos().y()/24.0f);
+    }
 };
 
 #endif //ANDROID_CLIENT_UNIT_H

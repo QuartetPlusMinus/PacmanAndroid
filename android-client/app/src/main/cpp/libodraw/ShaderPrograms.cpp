@@ -62,7 +62,6 @@ void TextureProgram::init() {
     );
     aPosition = glGetAttribLocation(id, "a_Position");
     aTextureCoordinates = glGetAttribLocation(id, "a_TextureCoordinates");
-    uPosition = glGetUniformLocation(id, "u_Position");
     uVertexShift = glGetUniformLocation(id, "u_VertexShift");
     uTextureShift = glGetUniformLocation(id, "u_TextureShift");
     uTextureUnit = glGetUniformLocation(id, "u_TextureUnit");
@@ -76,9 +75,6 @@ GLint TextureProgram::getATextureCoordinates() {
     return aTextureCoordinates;
 }
 
-GLint TextureProgram::getUPosition() {
-    return uPosition;
-}
 
 GLint TextureProgram::getUVertexShift() {
     return uVertexShift;

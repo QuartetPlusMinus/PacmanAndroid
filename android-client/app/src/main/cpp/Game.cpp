@@ -15,8 +15,8 @@ void Game::onSurfaceCreated() {
 
     OpenDraw::Texture textureBG;
     textureBG.loadFromPngAsset("textures/map.png");
-    background.init();
     background.setTexture(textureBG);
+    background.init();
 
     OpenDraw::Texture texturePM;
     texturePM.loadFromPngAsset("textures/units.png");
@@ -24,7 +24,6 @@ void Game::onSurfaceCreated() {
         units[i]->init();
         units[i]->setTexture(texturePM);
     }
-
 }
 
 void Game::onSurfaceChanged(int width, int height) {
@@ -39,13 +38,24 @@ void Game::onDrawFrame() {
     background.draw();
 }
 
+void Game::init() {
+
+}
+
 void Game::start(Messages::StartMessage &startMessage) {
     id = startMessage.id();
+
     unitsCount = startMessage.unit_size();
     units = new Unit *[unitsCount];
+
     for (int i = 0; i < unitsCount; i++) {
-        Messages::UnitInit unitInit = startMessage.unit(i);
-        units[i] = new Pacman(unitInit);
+        // TODO: factory or builder
+        auto unit = startMessage.unit(i);
+        if (unit.type() == Messages::PACMAN) {
+            units[i] = new Pacman(unit);
+        } else if (unit.type() == Messages::GHOST) {
+            units[i] = new Ghost(unit);
+        }
     }
 }
 

@@ -8,20 +8,35 @@
 
 using namespace OpenDraw;
 
-
-Sprite::Sprite() {
+Sprite::Sprite() : buffer(0) {
     setPosition(0.0f, 0.0f);
-    setSize(1.0f, 1.0f);
     setTexturePosition(0.0f, 0.0f);
-    setTextureSize(1.0f, 1.0f);
+    setSize(1.0f,1.0f);
+    setTextureSize(1.0f,1.0f);
+}
+
+void Sprite::setSize(float height, float width) {
+    assert(buffer == 0);
+    size[0] = width;
+    size[1] = height;
+}
+
+void Sprite::setTextureSize(float height, float width) {
+    assert(buffer == 0);
+    tSize[0] = width;
+    tSize[1] = height;
+}
+
+void Sprite::setTexture(Texture &texture) {
+    this->texture = texture;
 }
 
 void Sprite::init() {
     const float data[] = {
-            -1.0f, -1.0f, 0.0f, 1.0f,
-            1.0f, -1.0f, 1.0f, 1.0f,
-            -1.0f, 1.0f, 0.0f, 0.0f,
-            1.0f, 1.0f, 1.0f, 0.0f,
+            -size[0], -size[1], 0.0f, tSize[1],
+            size[0], -size[1], tSize[0], tSize[1],
+            -size[0], size[1], 0.0f, 0.0f,
+            size[0], size[1], tSize[0], 0.0f,
     };
 
     // generate new OpenGL vertex buffer object (buffer)
@@ -62,26 +77,12 @@ void Sprite::draw() {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void Sprite::setTexture(Texture &texture) {
-    this->texture = texture;
-}
-
 void Sprite::setPosition(float x, float y) {
     position[0] = x;
     position[1] = -y;
 }
 
-void Sprite::setSize(float width, float height) {
-    size[0] = width;
-    size[1] = height;
-}
-
 void Sprite::setTexturePosition(float x, float y) {
     texturePosition[0] = x;
     texturePosition[1] = y;
-}
-
-void Sprite::setTextureSize(float width, float height) {
-    textureSize[0] = width;
-    textureSize[1] = height;
 }

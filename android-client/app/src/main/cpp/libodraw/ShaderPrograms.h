@@ -38,8 +38,6 @@ namespace OpenDraw {
 
             GLint getATextureCoordinates();
 
-            GLint getUPosition();
-
             GLint getUVertexShift();
 
             GLint getUTextureShift();
@@ -49,7 +47,6 @@ namespace OpenDraw {
         private:
             GLint aPosition;
             GLint aTextureCoordinates;
-            GLint uPosition;
             GLint uVertexShift;
             GLint uTextureShift;
             GLint uTextureUnit;

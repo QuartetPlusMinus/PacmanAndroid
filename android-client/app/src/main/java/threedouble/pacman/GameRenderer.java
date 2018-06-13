@@ -16,8 +16,9 @@ public class GameRenderer implements Renderer {
         System.loadLibrary("game");
     }
 
-    GameRenderer(AssetManager assetManager) {
+    GameRenderer(AssetManager assetManager, byte[] startMessage) {
         initAssetManagerJNI(assetManager);
+        startJNI(startMessage);
     }
 
     @Override

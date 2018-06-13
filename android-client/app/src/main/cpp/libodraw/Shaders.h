@@ -13,7 +13,6 @@ namespace OpenDraw {
         static const char textureVertexShader[] = ""
                 "uniform vec2 u_VertexShift;\n"
                 "uniform vec2 u_TextureShift;\n"
-                "uniform vec4 u_Position;\n"
                 "attribute vec4 a_Position;\n"
                 "attribute vec2 a_TextureCoordinates;\n"
                 "\n"

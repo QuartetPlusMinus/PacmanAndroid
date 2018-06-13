@@ -10,13 +10,15 @@
 
 class Game {
 public:
-    Game() = default;
+    Game() {}
 
     void onSurfaceCreated();
 
     void onSurfaceChanged(int width, int height);
 
     void onDrawFrame();
+
+    void init();
 
     void start(Messages::StartMessage &startMessage);
 

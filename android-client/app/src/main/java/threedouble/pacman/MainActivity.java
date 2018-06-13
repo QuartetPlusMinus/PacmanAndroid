@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         setContentView(R.layout.activity_main);
         final Button button = findViewById(R.id.button);
         final EditText usernameField = findViewById(R.id.username_field);
-        final EditText ipAddresField = findViewById(R.id.ipaddres_field);
+        final EditText ipAddressField = findViewById(R.id.ipaddress_field);
         final TextView messageField = findViewById(R.id.message_label);
 
 
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 String username = usernameField.getText().toString();
                 try {
                     if (!username.isEmpty()) {
-                        server = new Server(InetAddress.getByName(ipAddresField.getText().toString()), PORT, game.getSocket());
+                        server = new Server(InetAddress.getByName(ipAddressField.getText().toString()), PORT, game.getSocket());
                         game.start(username);
                     } else {
                         messageField.setText(R.string.exception_enter_username);
