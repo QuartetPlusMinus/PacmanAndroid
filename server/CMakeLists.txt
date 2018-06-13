@@ -13,7 +13,7 @@ include_directories( ${Boost_INCLUDE_DIR} )
 
 set(MESSAGES_FILES ../common/Messages/Messages.cpp ../common/Messages/Types/Stream.cpp ../common/Messages/Types/Repeated.cpp)
 
-set(SERVER_FILES main.cpp NetWork/src/Network.cpp NetWork/src/Service.cpp Game/src/GameRoom.cpp Game/src/GameMapDefault.cpp Game/src/GameMap.cpp NetWork/src/Client.cpp NetWork/src/Socket.cpp Game/src/Game.cpp Game/src/Player.cpp Game/src/GameRoomsManager.cpp Game/lib/GameRoomsManager.h)
+set(SERVER_FILES main.cpp NetWork/src/Network.cpp NetWork/src/Service.cpp Game/src/GameRoom.cpp Game/src/GameMapDefault.cpp Game/src/GameMap.cpp NetWork/src/Client.cpp NetWork/src/Socket.cpp Game/src/Game.cpp GameObjects/src/Pacman.cpp Game/src/GameRoomsManager.cpp Game/lib/GameRoomsManager.h GameObjects/src/Ghost.cpp GameObjects/lib/Ghost.h ../common/Constants/ConstValues.h)
 
 add_executable(PacmanServer ${MESSAGES_FILES} ${SERVER_FILES})
 target_link_libraries(PacmanServer ${PROTOBUF_LIBRARY} ${Boost_LIBRARIES})

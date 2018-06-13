@@ -9,9 +9,9 @@
 #include <memory>
 
 #include "GameRoom.h"
-#include "Player.h"
+#include "../../GameObjects/lib/Pacman.h"
 #include "GameRoomsManager.h"
-#include "../src/GameMapDefault.h"
+#include "GameMapDefault.h"
 #include "../../NetWork/lib/Service.h"
 
 
