@@ -41,12 +41,16 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
                 currentClient->setStatus(Client::IN_GAME);
             }
 
+            newGameRoom->start();
+
             // Оправка остальным клиентам нового положения в очереди
             Messages::QueueMessage queueReply;
             for (int i = 0; i < clientsQueue.size(); ++i) {
                 queueReply.set_position((Messages::SimpleTypes::uint16) i);
                 clientsQueue[i]->Queue(queueReply);
             }
+
+
 
         }
 

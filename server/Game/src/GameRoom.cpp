@@ -63,7 +63,7 @@ void GameRoom::start() {
         unitInit->set_type(Messages::GHOST);
     }
 
-    for (unsigned int i = 0; i < map->playersCount; i++) {
+    for (Messages::uint8 i = 0; i < map->playersCount; i++) {
         startMessage.set_id(i);
         players[i]->client->Start(startMessage);
     }

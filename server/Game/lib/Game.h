@@ -32,7 +32,7 @@ private:
 
 
 
-    const int clientsCountInRoom = 2;
+    const int clientsCountInRoom = 1;
     const int ghostsInRoom = 5;
     const unsigned int gameRoomsCount = 10;
 

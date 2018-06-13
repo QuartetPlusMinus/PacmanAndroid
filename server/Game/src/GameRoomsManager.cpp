@@ -2,6 +2,7 @@
 // Created by murt on 11.06.18.
 //
 
+#include <random>
 #include "../lib/GameRoomsManager.h"
 
 GameRoomsManager::GameRoomsManager(unsigned int countOfRooms): countOfRooms(countOfRooms)
