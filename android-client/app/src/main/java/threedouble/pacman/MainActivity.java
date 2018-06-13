@@ -53,29 +53,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     public Handler viewHandler;
 
-    static class ViewHandler extends Handler {
-        ViewHandler(AppCompatActivity context) {
-            this.context = context;
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            context.setContentView((View) msg.obj);
-            super.handleMessage(msg);
-        }
-
-        AppCompatActivity context;
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // remove title
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         ActivityManager activityManager
@@ -122,7 +103,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         messageHandler = new MessageHandler(messageField);
 
-        viewHandler = new ViewHandler(this);
+        viewHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                setContentView((View) msg.obj);
+                super.handleMessage(msg);
+            }
+        };
 
         try {
             game = new Game(this);

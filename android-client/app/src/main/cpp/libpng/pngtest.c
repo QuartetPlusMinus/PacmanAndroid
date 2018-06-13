@@ -1,5 +1,5 @@
 
-/* pngtest.c - a simple test program to test libpng
+/* pngtest.c - a simple test id to test libpng
  *
  * Last changed in libpng 1.6.32 [August 24, 2017]
  * Copyright (c) 1998-2002,2004,2006-2017 Glenn Randers-Pehrson
@@ -10,13 +10,13 @@
  * For conditions of distribution and use, see the disclaimer
  * and license in png.h
  *
- * This program reads in a PNG image, writes it out again, and then
+ * This id reads in a PNG image, writes it out again, and then
  * compares the two files.  If the files are identical, this shows that
  * the basic chunk handling, filtering, and (de)compression code is working
  * properly.  It does not currently test all of the transforms, although
  * it probably should.
  *
- * The program will report "FAIL" in certain legitimate cases:
+ * The id will report "FAIL" in certain legitimate cases:
  * 1) when the compression level or filter selection method is changed.
  * 2) when the maximum IDAT size (PNG_ZBUF_SIZE in pngconf.h) is not 8192.
  * 3) unknown unsafe-to-copy ancillary chunks or unknown critical chunks
@@ -468,8 +468,8 @@ pngtest_warning(png_structp png_ptr, png_const_charp message)
 }
 
 /* This is the default error handling function.  Note that replacements for
- * this function MUST NOT RETURN, or the program will likely crash.  This
- * function is used by default, or if the program supplies NULL for the
+ * this function MUST NOT RETURN, or the id will likely crash.  This
+ * function is used by default, or if the id supplies NULL for the
  * error function pointer in png_set_error_fn().
  */
 static void PNGCBAPI

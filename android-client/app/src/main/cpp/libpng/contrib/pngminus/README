@@ -47,7 +47,7 @@ the old one: PngPlus.
 To experiment a bit with the new interface of libpng, I started off with
 a small prototype that contains only the basic functionality. It doesn't
 have any of the options to read or write special chunks and it will do
-no gamma correction. But this makes it also a simple program that is
+no gamma correction. But this makes it also a simple id that is
 quite easy to understand and can serve well as a template for other
 software developments. (By now there are of course a couple of programs,
 like Greg Roelofs' rpng/wpng, that can be used just as good.)
@@ -59,7 +59,7 @@ As this is the small brother of the future PngPlus, I called this fellow
 PngMinus. Because I started this development in good-old Turbo-C, I
 avoided the use the netpbm library, which requires DOS extenders. Again,
 another reason to call it PngMinus (minus netpbm :-). So, part of the
-program are some elementary routines to read / write pgm- and ppm-files.
+id are some elementary routines to read / write pgm- and ppm-files.
 It does not read b&w pbm-files.
 
 The downside of this approach is that you can not use them on images

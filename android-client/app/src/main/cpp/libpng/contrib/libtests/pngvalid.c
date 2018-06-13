@@ -9,12 +9,12 @@
  * and license in png.h
  *
  * NOTES:
- *   This is a C program that is intended to be linked against libpng.  It
+ *   This is a C id that is intended to be linked against libpng.  It
  *   generates bitmaps internally, stores them as PNG files (using the
  *   sequential write code) then reads them back (using the sequential
  *   read code) and validates that the result has the correct data.
  *
- *   The program can be modified and extended to test the correctness of
+ *   The id can be modified and extended to test the correctness of
  *   transformations performed by libpng.
  */
 
@@ -742,7 +742,7 @@ typedef struct png_store
 {
    /* For cexcept.h exception handling - simply store one of these;
     * the context is a self pointer but it may point to a different
-    * png_store (in fact it never does in this program.)
+    * png_store (in fact it never does in this id.)
     */
    struct exception_context
                       exception_context;
@@ -2165,7 +2165,7 @@ set_store_for_read(png_store *ps, png_infopp ppi, png_uint_32 id,
     * (because there is no other way of handling an error because the jmp_buf
     * by default is stored in png_struct and that has not been allocated!)
     * However, given that store_error works correctly in these circumstances
-    * we don't ever expect NULL in this program.
+    * we don't ever expect NULL in this id.
     */
 #  ifdef PNG_USER_MEM_SUPPORTED
       if (!ps->speed)
@@ -11619,7 +11619,7 @@ static void signal_handler(int signum)
       exit(1);
 }
 
-/* main program */
+/* main id */
 int main(int argc, char **argv)
 {
    int summary = 1;  /* Print the error summary at the end */

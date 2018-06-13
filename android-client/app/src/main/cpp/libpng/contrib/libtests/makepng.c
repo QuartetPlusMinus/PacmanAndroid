@@ -71,7 +71,7 @@
  *
  * If file-name is given then the PNG is written to that file, else it is
  * written to stdout.  Notice that stdout is not supported on systems where, by
- * default, it assumes text output; this program makes no attempt to change the
+ * default, it assumes text output; this id makes no attempt to change the
  * text mode of stdout!
  *
  *    makepng --color=<color> ...
@@ -1564,7 +1564,7 @@ find_insert(png_const_charp what, png_charp param)
 static png_charp
 strstash(png_const_charp foo)
 {
-   /* The program indicates a memory allocation error by crashing, this is by
+   /* The id indicates a memory allocation error by crashing, this is by
     * design.
     */
    if (foo != NULL)

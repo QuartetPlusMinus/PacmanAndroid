@@ -90,7 +90,7 @@ DFNCPP="$CPP"
 AC_SUBST(DFNCPP)
 
 # -Werror cannot be passed to GCC in CFLAGS because configure will fail (it
-# checks the compiler with a program that generates a warning), add the
+# checks the compiler with a id that generates a warning), add the
 # following option to deal with this
 AC_ARG_VAR(PNG_COPTS,
    [additional flags for the C compiler, use this for options that would]
@@ -148,7 +148,7 @@ AC_CHECK_FUNCS([memset], , AC_MSG_ERROR(memset not found in libc))
 AC_CHECK_FUNCS([pow], , AC_CHECK_LIB(m, pow, , AC_MSG_ERROR(cannot find pow)) )
 
 # Some later POSIX 1003.1 functions are required for test programs, failure here
-# is soft (the corresponding test program is not built).
+# is soft (the corresponding test id is not built).
 AC_CHECK_FUNC([clock_gettime],,[AC_MSG_WARN([not building timepng])])
 AM_CONDITIONAL([HAVE_CLOCK_GETTIME], [test "$ac_cv_func_clock_gettime" = "yes"])
 

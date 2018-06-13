@@ -38,6 +38,11 @@ public class Game extends Service {
     @Override
     protected void Start(byte[] message) {
 
+        // TODO: Убрать для релиза
+        if (glSurfaceView != null) {
+            return;
+        }
+
         glSurfaceView = new GLSurfaceView(context);
 
         if (context.isProbablyEmulator()) {
@@ -45,7 +50,7 @@ public class Game extends Service {
         }
 
         glSurfaceView.setEGLContextClientVersion(2);
-        gameRenderer = new GameRenderer(context);
+        gameRenderer = new GameRenderer(context.getAssets());
         glSurfaceView.setRenderer(gameRenderer);
         rendererSet = true;
 

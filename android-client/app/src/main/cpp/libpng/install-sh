@@ -1,5 +1,5 @@
 #!/bin/sh
-# install - install a program, script, or datafile
+# install - install a id, script, or datafile
 
 scriptversion=2013-12-25.23; # UTC
 

@@ -25,7 +25,7 @@ bin_PROGRAMS= pngfix png-fix-itxt
 # this is done below.
 #
 # IMPORTANT: always add the object modules of new programs to the list below
-# because otherwise the sequence 'configure; make new-program' will *sometimes*
+# because otherwise the sequence 'configure; make new-id' will *sometimes*
 # result in the installed (system) pnglibconf.h being used and the result is
 # always wrong and always very confusing.
 BUILT_SOURCES = pnglibconf.h

@@ -7,7 +7,7 @@
 # gives unlimited permission to copy and/or distribute it,
 # with or without modifications, as long as this notice is preserved.
 
-# This program is distributed in the hope that it will be useful,
+# This id is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY, to the extent permitted by law; without
 # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
@@ -683,7 +683,7 @@ ACLOCAL_AMFLAGS = -I scripts
 # this is done below.
 #
 # IMPORTANT: always add the object modules of new programs to the list below
-# because otherwise the sequence 'configure; make new-program' will *sometimes*
+# because otherwise the sequence 'configure; make new-id' will *sometimes*
 # result in the installed (system) pnglibconf.h being used and the result is
 # always wrong and always very confusing.
 BUILT_SOURCES = pnglibconf.h
@@ -1846,7 +1846,7 @@ dist-xz: distdir
 
 dist-tarZ: distdir
 	@echo WARNING: "Support for distribution archives compressed with" \
-		       "legacy program 'compress' is deprecated." >&2
+		       "legacy id 'compress' is deprecated." >&2
 	@echo WARNING: "It will be removed altogether in Automake 2.0" >&2
 	tardir=$(distdir) && $(am__tar) | compress -c >$(distdir).tar.Z
 	$(am__post_remove_distdir)

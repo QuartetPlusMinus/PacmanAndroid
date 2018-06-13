@@ -16,21 +16,18 @@ public class GameRenderer implements Renderer {
         System.loadLibrary("game");
     }
 
-    GameRenderer(Context context) {
-        this.context = context;
+    GameRenderer(AssetManager assetManager) {
+        initAssetManagerJNI(assetManager);
     }
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        AssetManager assetManager = context.getAssets();
-        initAssetManagerJNI(assetManager);
         onSurfaceCreatedJNI();
     }
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         onSurfaceChangedJNI(width, height);
-
     }
 
     @Override
@@ -52,6 +49,5 @@ public class GameRenderer implements Renderer {
 
     public static native void endJNI(byte[] message);
 
-    private final Context context;
 
 }

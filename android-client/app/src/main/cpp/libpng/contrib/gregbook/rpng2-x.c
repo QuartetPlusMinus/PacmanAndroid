@@ -27,7 +27,7 @@
     - 1.11:  added -usleep option for demos; fixed command-line parsing bug
     - 1.12:  added -pause option for demos and testing
     - 1.20:  added runtime MMX-enabling/disabling and new -mmx* options
-    - 1.21:  fixed some small X memory leaks (thanks to François Petitjean)
+    - 1.21:  fixed some small X memory leaks (thanks to Franï¿½ois Petitjean)
     - 1.22:  fixed XFreeGC() crash bug (thanks to Patrick Welche)
     - 1.23:  added -bgpat 0 mode (std white/gray checkerboard, 8x8 squares)
     - 1.30:  added -loop option for -bgpat (ifdef FEATURE_LOOP); fixed bpp =
@@ -1425,7 +1425,7 @@ static void rpng2_x_display_row(ulg row)
     Aside from the use of the rpng2_info struct, the lack of an outer loop
     (over rows) and moving the XPutImage() call outside the "if (depth)"
     tests, this routine is identical to rpng_x_display_image() in the non-
-    progressive version of the program.
+    progressive version of the id.
   ---------------------------------------------------------------------------*/
 
     if (depth == 24 || depth == 32) {
@@ -1643,7 +1643,7 @@ static void rpng2_x_redisplay_image(ulg startcol, ulg startrow,
 /*---------------------------------------------------------------------------
     Aside from the use of the rpng2_info struct and of src2 (for background
     image), this routine is identical to rpng_x_display_image() in the non-
-    progressive version of the program--for the simple reason that redisplay
+    progressive version of the id--for the simple reason that redisplay
     of the image against a new background happens after the image is fully
     decoded and therefore is, by definition, non-progressive.
   ---------------------------------------------------------------------------*/

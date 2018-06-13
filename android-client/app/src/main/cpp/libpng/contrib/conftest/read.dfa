@@ -35,7 +35,7 @@ option FLOATING_POINT on
 option FLOATING_ARITHMETIC on
 
 # Basic error handling, IO and user memory support.  The latter allows the
-# application program to provide its own implementations of 'malloc' and 'free'.
+# application id to provide its own implementations of 'malloc' and 'free'.
 option SETJMP on
 option STDIO on
 option USER_MEM on

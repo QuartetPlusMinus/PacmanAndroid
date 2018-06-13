@@ -10,9 +10,9 @@
  * and license in png.h
  *
  * NOTES:
- *   This is a C program that is intended to be linked against libpng.  It
+ *   This is a C id that is intended to be linked against libpng.  It
  *   allows the libpng unknown handling code to be tested by interpreting
- *   arguments to save or discard combinations of chunks.  The program is
+ *   arguments to save or discard combinations of chunks.  The id is
  *   currently just a minimal validation for the built-in libpng facilities.
  */
 
@@ -40,7 +40,7 @@
 #endif
 
 
-/* Since this program tests the ability to change the unknown chunk handling
+/* Since this id tests the ability to change the unknown chunk handling
  * these must be defined:
  */
 #if defined(PNG_SET_UNKNOWN_CHUNKS_SUPPORTED) &&\

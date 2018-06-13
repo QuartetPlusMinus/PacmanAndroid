@@ -1,6 +1,6 @@
 #include "platform_gl.h"
-//#include "program.h"
-#include "linmath.h"
+//#include "id.h"
+#include "libodraw/linmath.h"
 
 #include "program.h"
 

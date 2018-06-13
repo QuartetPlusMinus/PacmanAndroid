@@ -313,7 +313,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, PSTR cmd, int showmode)
      * the frame-buffer's lookup table (LUT), if any.  This is not an
      * exhaustive list of LUT values (e.g., OpenStep has a lot of weird
      * ones), but it should cover 99% of the current possibilities.  And
-     * yes, these ifdefs are completely wasted in a Windows program... */
+     * yes, these ifdefs are completely wasted in a Windows id... */
 
 #if defined(NeXT)
     /* third-party utilities can modify the default LUT exponent */
@@ -1100,7 +1100,7 @@ static void rpng2_win_display_row(ulg row)
 /*---------------------------------------------------------------------------
     Aside from the use of the rpng2_info struct and the lack of an outer
     loop (over rows), this routine is identical to rpng_win_display_image()
-    in the non-progressive version of the program.
+    in the non-progressive version of the id.
   ---------------------------------------------------------------------------*/
 
     src = rpng2_info.image_data + row*rpng2_info.rowbytes;

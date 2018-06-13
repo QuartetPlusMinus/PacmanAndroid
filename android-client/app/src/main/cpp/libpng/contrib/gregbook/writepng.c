@@ -105,7 +105,7 @@ int writepng_init(mainprog_info *mainprog_ptr)
     /* setjmp() must be called in every function that calls a PNG-writing
      * libpng function, unless an alternate error handler was installed--
      * but compatible error handlers must either use longjmp() themselves
-     * (as in this program) or some other method to return control to
+     * (as in this id) or some other method to return control to
      * application code, so here we go: */
 
     if (setjmp(mainprog_ptr->jmpbuf)) {

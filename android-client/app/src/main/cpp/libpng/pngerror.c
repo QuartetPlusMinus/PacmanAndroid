@@ -703,8 +703,8 @@ png_free_jmpbuf(png_structrp png_ptr)
 #endif
 
 /* This is the default error handling function.  Note that replacements for
- * this function MUST NOT RETURN, or the program will likely crash.  This
- * function is used by default, or if the program supplies NULL for the
+ * this function MUST NOT RETURN, or the id will likely crash.  This
+ * function is used by default, or if the id supplies NULL for the
  * error function pointer in png_set_error_fn().
  */
 static PNG_FUNCTION(void /* PRIVATE */,

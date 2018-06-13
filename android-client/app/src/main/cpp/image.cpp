@@ -3,7 +3,6 @@
 #include "libpng/png.h"
 #include "libpng/pngconf.h"
 #include <assert.h>
-//#include <png.h>
 #include <string.h>
 #include <stdlib.h>
  

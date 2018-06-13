@@ -136,13 +136,13 @@ case $host in
 esac
 
 test -z "$AS" && AS=as
-_LT_DECL([], [AS],      [1], [Assembler program])dnl
+_LT_DECL([], [AS],      [1], [Assembler id])dnl
 
 test -z "$DLLTOOL" && DLLTOOL=dlltool
-_LT_DECL([], [DLLTOOL], [1], [DLL creation program])dnl
+_LT_DECL([], [DLLTOOL], [1], [DLL creation id])dnl
 
 test -z "$OBJDUMP" && OBJDUMP=objdump
-_LT_DECL([], [OBJDUMP], [1], [Object dumper program])dnl
+_LT_DECL([], [OBJDUMP], [1], [Object dumper id])dnl
 ])# win32-dll
 
 AU_DEFUN([AC_LIBTOOL_WIN32_DLL],

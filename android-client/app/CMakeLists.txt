@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.4.1)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CPP_LOCAL_PATH ${CMAKE_SOURCE_DIR}/src/main/cpp)
 set(PNG_LOCAL_PATH ${CPP_LOCAL_PATH}/libpng)
+set(OPENDRAW_LOCAL_PATH ${CPP_LOCAL_PATH}/libodraw)
 set(MESSAGE_LOCAL_PATH ${CMAKE_SOURCE_DIR}/../../common/Messages/)
 
 find_library( z-lib z )
@@ -11,6 +12,17 @@ find_library( log-lib log )
 find_library( android-lib android )
 find_library( stdcpp-lib stdc++ )
 
+add_library( libodraw SHARED
+            ${OPENDRAW_LOCAL_PATH}/ShaderPrograms.cpp
+            ${OPENDRAW_LOCAL_PATH}/Shaders.cpp
+            ${OPENDRAW_LOCAL_PATH}/Texture.cpp
+            ${OPENDRAW_LOCAL_PATH}/Rectangle.cpp
+            ${OPENDRAW_LOCAL_PATH}/Sprite.cpp
+            )
+
+target_link_libraries(libodraw ${gles-lib})
+
+include_directories(${MESSAGE_LOCAL_PATH})
 add_library( libmessage SHARED
             ${MESSAGE_LOCAL_PATH}/Messages.cpp
             ${MESSAGE_LOCAL_PATH}/Types/Stream.cpp
@@ -38,20 +50,20 @@ add_library( libpng STATIC
 target_link_libraries(libpng ${z-lib})
 
 add_library( game SHARED
-             ${CPP_LOCAL_PATH}/GameRendererJNI.h
+             ${CPP_LOCAL_PATH}/GameRendererJNI.cpp
              ${CPP_LOCAL_PATH}/Game.cpp
+             ${CPP_LOCAL_PATH}/Background.cpp
              ${CPP_LOCAL_PATH}/platform_asset_utils.cpp
              ${CPP_LOCAL_PATH}/platform_log.cpp
-             ${CPP_LOCAL_PATH}/asset_utils.cpp
              ${CPP_LOCAL_PATH}/buffer.cpp
              ${CPP_LOCAL_PATH}/program.cpp
              ${CPP_LOCAL_PATH}/image.cpp
              ${CPP_LOCAL_PATH}/shader.cpp
-             ${CPP_LOCAL_PATH}/texture.cpp
              ${CPP_LOCAL_PATH}/game_objects.cpp
              )
 
 target_link_libraries( game
+                       libodraw
                        libmessage
                        libpng
                        ${gles-lib}

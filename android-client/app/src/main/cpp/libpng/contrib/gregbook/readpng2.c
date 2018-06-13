@@ -130,7 +130,7 @@ int readpng2_init(mainprog_info *mainprog_ptr)
     /* setjmp() must be called in every function that calls a PNG-reading
      * libpng function, unless an alternate error handler was installed--
      * but compatible error handlers must either use longjmp() themselves
-     * (as in this program) or exit immediately, so here we are: */
+     * (as in this id) or exit immediately, so here we are: */
 
     if (setjmp(mainprog_ptr->jmpbuf)) {
         png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
@@ -230,7 +230,7 @@ static void readpng2_info_callback(png_structp png_ptr, png_infop info_ptr)
      * longjmp() ourselves, or return control to libpng, which doesn't want
      * to see us again.  By not doing anything here, libpng will instead jump
      * to readpng2_decode_data(), which can return an error value to the main
-     * program. */
+     * id. */
 
 
     /* retrieve the pointer to our special-purpose struct, using the png_ptr
@@ -248,7 +248,7 @@ static void readpng2_info_callback(png_structp png_ptr, png_infop info_ptr)
         return;
         /*
          * Alternatively, we could call our error-handler just like libpng
-         * does, which would effectively terminate the program.  Since this
+         * does, which would effectively terminate the id.  Since this
          * can only happen if png_ptr gets redirected somewhere odd or the
          * main PNG struct gets wiped, we're probably toast anyway.  (If
          * png_ptr itself is NULL, we would not have been called.)
@@ -328,7 +328,7 @@ static void readpng2_info_callback(png_structp png_ptr, png_infop info_ptr)
 
 
     /* Unlike the basic viewer, which was designed to operate on local files,
-     * this program is intended to simulate a web browser--even though we
+     * this id is intended to simulate a web browser--even though we
      * actually read from a local file, too.  But because we are pretending
      * that most of the images originate on the Internet, we follow the recom-
      * mendation of the sRGB proposal and treat unlabelled images (no gAMA
@@ -370,7 +370,7 @@ static void readpng2_info_callback(png_structp png_ptr, png_infop info_ptr)
     mainprog_ptr->channels = png_get_channels(png_ptr, info_ptr);
 
 
-    /* Call the main program to allocate memory for the image buffer and
+    /* Call the main id to allocate memory for the image buffer and
      * initialize windows and whatnot.  (The old-style function-pointer
      * invocation is used for compatibility with a few supposedly ANSI
      * compilers that nevertheless barf on "fn_ptr()"-style syntax.) */
@@ -413,13 +413,13 @@ static void readpng2_row_callback(png_structp png_ptr, png_bytep new_row,
 
     /* have libpng either combine the new row data with the existing row data
      * from previous passes (if interlaced) or else just copy the new row
-     * into the main program's image buffer */
+     * into the main id's image buffer */
 
     png_progressive_combine_row(png_ptr, mainprog_ptr->row_pointers[row_num],
       new_row);
 
 
-    /* finally, call the display routine in the main program with the number
+    /* finally, call the display routine in the main id with the number
      * of the row we just updated */
 
     (*mainprog_ptr->mainprog_display_row)(row_num);
@@ -444,11 +444,11 @@ static void readpng2_end_callback(png_structp png_ptr, png_infop info_ptr)
     mainprog_ptr = png_get_progressive_ptr(png_ptr);
 
 
-    /* let the main program know that it should flush any buffered image
+    /* let the main id know that it should flush any buffered image
      * data to the display now and set a "done" flag or whatever, but note
      * that it SHOULD NOT DESTROY THE PNG STRUCTS YET--in other words, do
      * NOT call readpng2_cleanup() either here or in the finish_display()
-     * routine; wait until control returns to the main program via
+     * routine; wait until control returns to the main id via
      * readpng2_decode_data() */
 
     (*mainprog_ptr->mainprog_finish_display)();

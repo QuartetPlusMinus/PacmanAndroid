@@ -1,5 +1,6 @@
 #include <jni.h>
 #include <android/asset_manager_jni.h>
+#include <Messages.h>
 
 #include "macros.h"
 #include "program.h"
@@ -36,7 +37,7 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_onSurfaceCreatedJNI
  */
 JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_onSurfaceChangedJNI
         (JNIEnv *, jobject, jint width, jint height) {
-    game.onSurfaceChanged((int)width, (int)height);
+    game.onSurfaceChanged((int) width, (int) height);
 }
 
 /*
@@ -55,9 +56,13 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_onDrawFrameJNI
  * Signature: (I)V
  */
 JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_startJNI
-        (JNIEnv *env, jobject, jbyteArray message) {
+        (JNIEnv *env, jobject, jbyteArray msgBytes) {
     jboolean isCopy = JNI_FALSE;
-    game.start((char*)env->GetByteArrayElements(message, &isCopy), (size_t)env->GetArrayLength(message));
+    std::string message((char *) env->GetByteArrayElements(msgBytes, &isCopy),
+                        (size_t) env->GetArrayLength(msgBytes));
+    Messages::StartMessage startMessage;
+    startMessage.parseFromString(message);
+    game.start(startMessage);
 }
 
 /*
@@ -66,9 +71,13 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_startJNI
  * Signature: (I)V
  */
 JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_iterateJNI
-        (JNIEnv *env, jobject, jbyteArray message) {
+        (JNIEnv *env, jobject, jbyteArray msgBytes) {
     jboolean isCopy = JNI_FALSE;
-    game.iterate((char*)env->GetByteArrayElements(message, &isCopy), (size_t)env->GetArrayLength(message));
+    std::string message((char *) env->GetByteArrayElements(msgBytes, &isCopy),
+                        (size_t) env->GetArrayLength(msgBytes));
+    Messages::IterationMessage iterationMessage;
+    iterationMessage.parseFromString(message);
+    game.iterate(iterationMessage);
 }
 
 /*
@@ -77,12 +86,16 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_iterateJNI
  * Signature: (I)V
  */
 JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_endJNI
-        (JNIEnv *env, jobject, jbyteArray message) {
+        (JNIEnv *env, jobject, jbyteArray msgBytes) {
     jboolean isCopy = JNI_FALSE;
-    game.iterate((char*)env->GetByteArrayElements(message, &isCopy), (size_t)env->GetArrayLength(message));
+    std::string message((char *) env->GetByteArrayElements(msgBytes, &isCopy),
+                        (size_t) env->GetArrayLength(msgBytes));
+    Messages::EndMessage endMessage;
+    endMessage.parseFromString(message);
+    game.end(endMessage);
 }
 
 #ifdef __cplusplus
 }
 #endif
-#endif _Included_com_example_viewsharp_pacman_GameRenderer
+#endif // _Included_com_example_viewsharp_pacman_GameRenderer

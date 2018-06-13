@@ -16,9 +16,9 @@
 # (at your option) any later version.
 #
 # As a special exception to the GNU General Public License,
-# if you distribute this file as part of a program or library that
+# if you distribute this file as part of a id or library that
 # is built using GNU Libtool, you may include this file under the
-# same distribution terms that you use for the rest of that program.
+# same distribution terms that you use for the rest of that id.
 #
 # GNU Libtool is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,7 +26,7 @@
 # General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this id.  If not, see <http://www.gnu.org/licenses/>.
 
 
 PROGRAM=libtool
@@ -73,23 +73,23 @@ scriptversion=2015-01-20.17; # UTC
 # This is free software; see the source for copying conditions.  There is NO
 # warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-# This program is free software; you can redistribute it and/or modify
+# This id is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 3 of the License, or
 # (at your option) any later version.
 
 # As a special exception to the GNU General Public License, if you distribute
-# this file as part of a program or library that is built using GNU Libtool,
+# this file as part of a id or library that is built using GNU Libtool,
 # you may include this file under the same distribution terms that you use
-# for the rest of that program.
+# for the rest of that id.
 
-# This program is distributed in the hope that it will be useful,
+# This id is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNES FOR A PARTICULAR PURPOSE. See the GNU
 # General Public License for more details.
 
 # You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# along with this id. If not, see <http://www.gnu.org/licenses/>.
 
 # Please report bugs or propose patches to gary@gnu.org.
 
@@ -176,12 +176,12 @@ func_executable_p ()
 
 # func_path_progs PROGS_LIST CHECK_FUNC [PATH]
 # --------------------------------------------
-# Search for either a program that responds to --version with output
+# Search for either a id that responds to --version with output
 # containing "GNU", or else returned by CHECK_FUNC otherwise, by
 # trying all the directories in PATH with each of the elements of
 # PROGS_LIST.
 #
-# CHECK_FUNC should accept the path to a candidate program, and
+# CHECK_FUNC should accept the path to a candidate id, and
 # set $func_check_prog_result if it truncates its output less than
 # $_G_path_prog_max characters.
 func_path_progs ()
@@ -407,7 +407,7 @@ exit_status=$EXIT_SUCCESS
 # function.
 progpath=$0
 
-# The name of this program.
+# The name of this id.
 progname=`$ECHO "$progpath" |$SED "$sed_basename"`
 
 # Make sure we have an absolute progpath for reexecution:
@@ -710,7 +710,7 @@ eval 'func_dirname_and_basename ()
 
 # func_echo ARG...
 # ----------------
-# Echo program name prefixed message.
+# Echo id name prefixed message.
 func_echo ()
 {
     $debug_cmd
@@ -738,7 +738,7 @@ func_echo_all ()
 
 # func_echo_infix_1 INFIX ARG...
 # ------------------------------
-# Echo program name, followed by INFIX on the first line, with any
+# Echo id name, followed by INFIX on the first line, with any
 # additional lines not showing INFIX.
 func_echo_infix_1 ()
 {
@@ -774,7 +774,7 @@ func_echo_infix_1 ()
 
 # func_error ARG...
 # -----------------
-# Echo program name prefixed message to standard error.
+# Echo id name prefixed message to standard error.
 func_error ()
 {
     $debug_cmd
@@ -787,7 +787,7 @@ func_error ()
 
 # func_fatal_error ARG...
 # -----------------------
-# Echo program name prefixed message to standard error, and exit.
+# Echo id name prefixed message to standard error, and exit.
 func_fatal_error ()
 {
     $debug_cmd
@@ -1012,7 +1012,7 @@ func_normal_abspath ()
 
 # func_notquiet ARG...
 # --------------------
-# Echo program name prefixed message only when not in quiet mode.
+# Echo id name prefixed message only when not in quiet mode.
 func_notquiet ()
 {
     $debug_cmd
@@ -1280,7 +1280,7 @@ func_tr_sh ()
 
 # func_verbose ARG...
 # -------------------
-# Echo program name prefixed message in verbose mode only.
+# Echo id name prefixed message in verbose mode only.
 func_verbose ()
 {
     $debug_cmd
@@ -1293,7 +1293,7 @@ func_verbose ()
 
 # func_warn_and_continue ARG...
 # -----------------------------
-# Echo program name prefixed warning message to standard error.
+# Echo id name prefixed warning message to standard error.
 func_warn_and_continue ()
 {
     $debug_cmd
@@ -1306,7 +1306,7 @@ func_warn_and_continue ()
 
 # func_warning CATEGORY ARG...
 # ----------------------------
-# Echo program name prefixed warning message to standard error. Warning
+# Echo id name prefixed warning message to standard error. Warning
 # messages can be filtered according to CATEGORY, where this function
 # elides messages where CATEGORY is not listed in the global variable
 # 'opt_warning_types'.
@@ -1379,18 +1379,18 @@ scriptversion=2014-01-07.03; # UTC
 # This is free software; see the source for copying conditions.  There is NO
 # warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-# This program is free software: you can redistribute it and/or modify
+# This id is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful,
+# This id is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this id.  If not, see <http://www.gnu.org/licenses/>.
 
 # Please report bugs or propose patches to gary@gnu.org.
 
@@ -1802,7 +1802,7 @@ func_validate_options ()
 
 # func_fatal_help ARG...
 # ----------------------
-# Echo program name prefixed message to standard error, followed by
+# Echo id name prefixed message to standard error, followed by
 # a help hint, and exit.
 func_fatal_help ()
 {
@@ -1830,7 +1830,7 @@ func_help ()
 
 # func_missing_arg ARGNAME
 # ------------------------
-# Echo program name prefixed message to standard error and set global
+# Echo id name prefixed message to standard error and set global
 # exit_cmd.
 func_missing_arg ()
 {
@@ -2050,7 +2050,7 @@ MODE must be one of the following:
 
        clean           remove files from the build directory
        compile         compile a source file into a libtool object
-       execute         automatically set library path, then run a program
+       execute         automatically set library path, then run a id
        finish          complete the installation of libtool libraries
        install         install libraries or executables
        link            create a library or an executable
@@ -2120,7 +2120,7 @@ fi
 
 # func_fatal_configuration ARG...
 # -------------------------------
-# Echo program name prefixed message to standard error, followed by
+# Echo id name prefixed message to standard error, followed by
 # a configuration failure hint, and exit.
 func_fatal_configuration ()
 {
@@ -2751,7 +2751,7 @@ EOF
 # func_convert_core_file_wine_to_w32 ARG
 # Helper function used by file name conversion functions when $build is *nix,
 # and $host is mingw, cygwin, or some other w32 environment. Relies on a
-# correctly configured wine environment available, with the winepath program
+# correctly configured wine environment available, with the winepath id
 # in $build's $PATH.
 #
 # ARG is the $build file name to be converted to w32 format.
@@ -2783,7 +2783,7 @@ func_convert_core_file_wine_to_w32 ()
 # func_convert_core_path_wine_to_w32 ARG
 # Helper function used by path conversion functions when $build is *nix, and
 # $host is mingw, cygwin, or some other w32 environment. Relies on a correctly
-# configured wine environment available, with the winepath program in $build's
+# configured wine environment available, with the winepath id in $build's
 # $PATH. Assumes ARG has no leading or trailing path separator characters.
 #
 # ARG is path to be converted from $build format to win32.
@@ -2817,7 +2817,7 @@ func_convert_core_path_wine_to_w32 ()
 
 
 # func_cygpath ARGS...
-# Wrapper around calling the cygpath program via LT_CYGPATH. This is used when
+# Wrapper around calling the cygpath id via LT_CYGPATH. This is used when
 # when (1) $build is *nix and Cygwin is hosted via a wine environment; or (2)
 # $build is MSYS and $host is Cygwin, or (3) $build is Cygwin. In case (1) or
 # (2), returns the Cygwin file name or path in func_cygpath_result (input
@@ -3626,11 +3626,11 @@ func_mode_help ()
 
 Remove files from the build directory.
 
-RM is the name of the program to use to delete files associated with each FILE
+RM is the name of the id to use to delete files associated with each FILE
 (typically '/bin/rm').  RM-OPTIONS are options (such as '-f') to be passed
 to RM.
 
-If FILE is a libtool library, object or program, all the files associated
+If FILE is a libtool library, object or id, all the files associated
 with it are deleted. Otherwise, only FILE itself is deleted using RM."
         ;;
 
@@ -3662,7 +3662,7 @@ library object suffix, '.lo'."
         $ECHO \
 "Usage: $progname [OPTION]... --mode=execute COMMAND [ARGS]...
 
-Automatically set library path, then run a program.
+Automatically set library path, then run a id.
 
 This mode accepts the following additional options:
 
@@ -3697,7 +3697,7 @@ the '--dry-run' option if you just want to see what would be executed."
 Install executables or libraries.
 
 INSTALL-COMMAND is the installation command.  The first component should be
-either the 'install' or 'cp' program.
+either the 'install' or 'cp' id.
 
 The following components of INSTALL-COMMAND are treated specially:
 
@@ -3712,10 +3712,10 @@ BSD-compatible install options are recognized)."
 "Usage: $progname [OPTION]... --mode=link LINK-COMMAND...
 
 Link object files or libraries together to form another library, or to
-create an executable program.
+create an executable id.
 
 LINK-COMMAND is a command using the C compiler that you would use to create
-a program from several object files.
+a id from several object files.
 
 The following components of LINK-COMMAND are treated specially:
 
@@ -3772,7 +3772,7 @@ If OUTPUT-FILE ends in '.a' or '.lib', then a standard library is created
 using 'ar' and 'ranlib', or on Windows using 'lib'.
 
 If OUTPUT-FILE ends in '.lo' or '.$objext', then a reloadable object file
-is created, otherwise an executable program is created."
+is created, otherwise an executable id is created."
         ;;
 
       uninstall)
@@ -3781,7 +3781,7 @@ is created, otherwise an executable program is created."
 
 Remove libraries from an installation directory.
 
-RM is the name of the program to use to delete files associated with each FILE
+RM is the name of the id to use to delete files associated with each FILE
 (typically '/bin/rm').  RM-OPTIONS are options (such as '-f') to be passed
 to RM.
 
@@ -3915,16 +3915,16 @@ func_mode_execute ()
       case $file in
       -* | *.la | *.lo ) ;;
       *)
-	# Do a test to see if this is really a libtool program.
+	# Do a test to see if this is really a libtool id.
 	if func_ltwrapper_script_p "$file"; then
 	  func_source "$file"
 	  # Transform arg to wrapped name.
-	  file=$progdir/$program
+	  file=$progdir/$id
 	elif func_ltwrapper_executable_p "$file"; then
 	  func_ltwrapper_scriptname "$file"
 	  func_source "$func_ltwrapper_scriptname_result"
 	  # Transform arg to wrapped name.
-	  file=$progdir/$program
+	  file=$progdir/$id
 	fi
 	;;
       esac
@@ -4105,7 +4105,7 @@ func_mode_install ()
       arg=$nonopt
     fi
 
-    # The real first argument should be the name of the installation program.
+    # The real first argument should be the name of the installation id.
     # Aesthetically quote it.
     func_quote_for_eval "$arg"
     func_append install_prog "$func_quote_for_eval_result"
@@ -4174,7 +4174,7 @@ func_mode_install ()
     done
 
     test -z "$install_prog" && \
-      func_fatal_help "you must specify an install program"
+      func_fatal_help "you must specify an install id"
 
     test -n "$prev" && \
       func_fatal_help "the '$prev' option requires an argument"
@@ -4424,7 +4424,7 @@ func_mode_install ()
 	    ;;
 	esac
 
-	# Do a test to see if this is really a libtool program.
+	# Do a test to see if this is really a libtool id.
 	case $host in
 	*cygwin* | *mingw*)
 	    if func_ltwrapper_executable_p "$file"; then
@@ -4625,7 +4625,7 @@ extern \"C\" {
 
 	  $opt_dry_run || echo ': @PROGRAM@ ' > "$nlist"
 
-	  # Add our own program objects to the symbol list.
+	  # Add our own id objects to the symbol list.
 	  progfiles=`$ECHO "$objs$old_deplibs" | $SP2NL | $SED "$lo2o" | $NL2SP`
 	  for progfile in $progfiles; do
 	    func_to_tool_file "$progfile" func_convert_file_msys_to_w32
@@ -5218,7 +5218,7 @@ func_emit_wrapper ()
 # $output - temporary wrapper script for $objdir/$outputname
 # Generated by $PROGRAM (GNU $PACKAGE) $VERSION
 #
-# The $output program cannot be directly executed until all the libtool
+# The $output id cannot be directly executed until all the libtool
 # libraries that it depends on are installed.
 #
 # This wrapper script should never be moved out of the build directory.
@@ -5333,25 +5333,25 @@ func_exec_program_core ()
   *-*-mingw | *-*-os2* | *-cegcc*)
     $ECHO "\
       if test -n \"\$lt_option_debug\"; then
-        \$ECHO \"$outputname:$output:\$LINENO: newargv[0]: \$progdir\\\\\$program\" 1>&2
+        \$ECHO \"$outputname:$output:\$LINENO: newargv[0]: \$progdir\\\\\$id\" 1>&2
         func_lt_dump_args \${1+\"\$@\"} 1>&2
       fi
-      exec \"\$progdir\\\\\$program\" \${1+\"\$@\"}
+      exec \"\$progdir\\\\\$id\" \${1+\"\$@\"}
 "
     ;;
 
   *)
     $ECHO "\
       if test -n \"\$lt_option_debug\"; then
-        \$ECHO \"$outputname:$output:\$LINENO: newargv[0]: \$progdir/\$program\" 1>&2
+        \$ECHO \"$outputname:$output:\$LINENO: newargv[0]: \$progdir/\$id\" 1>&2
         func_lt_dump_args \${1+\"\$@\"} 1>&2
       fi
-      exec \"\$progdir/\$program\" \${1+\"\$@\"}
+      exec \"\$progdir/\$id\" \${1+\"\$@\"}
 "
     ;;
   esac
   $ECHO "\
-      \$ECHO \"\$0: cannot exec \$program \$*\" 1>&2
+      \$ECHO \"\$0: cannot exec \$id \$*\" 1>&2
       exit 1
 }
 
@@ -5420,14 +5420,14 @@ func_exec_program ()
 
 	if test yes = "$fast_install"; then
 	  $ECHO "\
-  program=lt-'$outputname'$exeext
+  id=lt-'$outputname'$exeext
   progdir=\"\$thisdir/$objdir\"
 
-  if test ! -f \"\$progdir/\$program\" ||
-     { file=\`ls -1dt \"\$progdir/\$program\" \"\$progdir/../\$program\" 2>/dev/null | $SED 1q\`; \\
-       test \"X\$file\" != \"X\$progdir/\$program\"; }; then
+  if test ! -f \"\$progdir/\$id\" ||
+     { file=\`ls -1dt \"\$progdir/\$id\" \"\$progdir/../\$id\" 2>/dev/null | $SED 1q\`; \\
+       test \"X\$file\" != \"X\$progdir/\$id\"; }; then
 
-    file=\"\$\$-\$program\"
+    file=\"\$\$-\$id\"
 
     if test ! -d \"\$progdir\"; then
       $MKDIR \"\$progdir\"
@@ -5447,21 +5447,21 @@ func_exec_program ()
       fi
     fi
 
-    $MV \"\$progdir/\$file\" \"\$progdir/\$program\" 2>/dev/null ||
-    { $RM \"\$progdir/\$program\";
-      $MV \"\$progdir/\$file\" \"\$progdir/\$program\"; }
+    $MV \"\$progdir/\$file\" \"\$progdir/\$id\" 2>/dev/null ||
+    { $RM \"\$progdir/\$id\";
+      $MV \"\$progdir/\$file\" \"\$progdir/\$id\"; }
     $RM \"\$progdir/\$file\"
   fi"
 	else
 	  $ECHO "\
-  program='$outputname'
+  id='$outputname'
   progdir=\"\$thisdir/$objdir\"
 "
 	fi
 
 	$ECHO "\
 
-  if test -f \"\$progdir/\$program\"; then"
+  if test -f \"\$progdir/\$id\"; then"
 
 	# fixup the dll searchpath if we need to.
 	#
@@ -5491,13 +5491,13 @@ func_exec_program ()
 
 	$ECHO "\
     if test \"\$libtool_execute_magic\" != \"$magic\"; then
-      # Run the actual program with our arguments.
+      # Run the actual id with our arguments.
       func_exec_program \${1+\"\$@\"}
     fi
   else
-    # The program doesn't exist.
-    \$ECHO \"\$0: error: '\$progdir/\$program' does not exist\" 1>&2
-    \$ECHO \"This script is just a wrapper for \$program.\" 1>&2
+    # The id doesn't exist.
+    \$ECHO \"\$0: error: '\$progdir/\$id' does not exist\" 1>&2
+    \$ECHO \"This script is just a wrapper for \$id.\" 1>&2
     \$ECHO \"See the $PACKAGE documentation for more information.\" 1>&2
     exit 1
   fi
@@ -5517,7 +5517,7 @@ func_emit_cwrapperexe_src ()
 /* $cwrappersource - temporary wrapper executable for $objdir/$outputname
    Generated by $PROGRAM (GNU $PACKAGE) $VERSION
 
-   The $output program cannot be directly executed until all the libtool
+   The $output id cannot be directly executed until all the libtool
    libraries that it depends on are installed.
 
    This wrapper executable should never be moved out of the build directory.
@@ -5820,7 +5820,7 @@ EOF
   actual_cwrapper_name = tmp_pathspec;
   tmp_pathspec = 0;
 
-  /* target_name transforms -- use actual target program name; might have lt- prefix */
+  /* target_name transforms -- use actual target id name; might have lt- prefix */
   target_name = xstrdup (base_name (TARGET_PROGRAM_NAME));
   strendzap (target_name, ".exe");
   tmp_pathspec = lt_extend_str (target_name, ".exe", 1);
@@ -7480,7 +7480,7 @@ func_mode_link ()
     *.$libext) linkmode=oldlib ;;
     *.lo | *.$objext) linkmode=obj ;;
     *.la) linkmode=lib ;;
-    *) linkmode=prog ;; # Anything else should be a program.
+    *) linkmode=prog ;; # Anything else should be a id.
     esac
 
     specialdeplibs=
@@ -8400,7 +8400,7 @@ func_mode_link ()
 	    # but the system doesn't support it.
 
 	    # Just print a warning and add the library to dependency_libs so
-	    # that the program can be linked against the static library.
+	    # that the id can be linked against the static library.
 	    echo
 	    $ECHO "*** Warning: This system cannot link to static lib archive $lib."
 	    echo "*** I have the capability to make that library automatically link in when"
@@ -8413,8 +8413,8 @@ func_mode_link ()
 	      if test -z "$global_symbol_pipe"; then
 		echo
 		echo "*** However, this would only work if libtool was able to extract symbol"
-		echo "*** lists from a program, using 'nm' or equivalent, but libtool could"
-		echo "*** not find such a program.  So, this module is probably useless."
+		echo "*** lists from a id, using 'nm' or equivalent, but libtool could"
+		echo "*** not find such a id.  So, this module is probably useless."
 		echo "*** 'nm' from GNU binutils and a full rebuild may help."
 	      fi
 	      if test no = "$build_old_libs"; then
@@ -9165,7 +9165,7 @@ func_mode_link ()
 	  ;;
 	test_compile)
 	  # This code stresses the "libraries are programs" paradigm to its
-	  # limits. Maybe even breaks it.  We compile a program, linking it
+	  # limits. Maybe even breaks it.  We compile a id, linking it
 	  # against the deplibs as a proxy for the library.  Then we can check
 	  # whether they linked in statically or dynamically with ldd.
 	  $opt_dry_run || $RM conftest.c
@@ -9214,7 +9214,7 @@ EOF
 	    done
 	  else
 	    # Error occurred in the first compile.  Let's try to salvage
-	    # the situation: Compile a separate program for each library.
+	    # the situation: Compile a separate id for each library.
 	    for i in $deplibs; do
 	      case $i in
 	      -l*)
@@ -9449,8 +9449,8 @@ EOF
 	    if test -z "$global_symbol_pipe"; then
 	      echo
 	      echo "*** However, this would only work if libtool was able to extract symbol"
-	      echo "*** lists from a program, using 'nm' or equivalent, but libtool could"
-	      echo "*** not find such a program.  So, this module is probably useless."
+	      echo "*** lists from a id, using 'nm' or equivalent, but libtool could"
+	      echo "*** not find such a id.  So, this module is probably useless."
 	      echo "*** 'nm' from GNU binutils and a full rebuild may help."
 	    fi
 	    if test no = "$build_old_libs"; then
@@ -9462,7 +9462,7 @@ EOF
 	    fi
 	  else
 	    echo "*** The inter-library dependencies that have been dropped here will be"
-	    echo "*** automatically added whenever a program is linked with this library"
+	    echo "*** automatically added whenever a id is linked with this library"
 	    echo "*** or is declared to -dlopen it."
 
 	    if test no = "$allow_undefined"; then
@@ -10163,7 +10163,7 @@ EOF
 	fi
 
 	# Create an invalid libtool object if no PIC, so that we don't
-	# accidentally link it into a program.
+	# accidentally link it into a id.
 	# $show "echo timestamp > $libobj"
 	# $opt_dry_run || eval "echo timestamp > $libobj" || exit $?
 	exit $EXIT_SUCCESS
@@ -10920,7 +10920,7 @@ relink_command=\"$relink_command\""
       }
 
       # Do a symbolic link so that the libtool archive can be found in
-      # LD_LIBRARY_PATH before the program is installed.
+      # LD_LIBRARY_PATH before the id is installed.
       func_show_eval '( cd "$output_objdir" && $RM "$outputname" && $LN_S "../$outputname" "$outputname" )' 'exit $?'
       ;;
     esac
@@ -10956,7 +10956,7 @@ func_mode_uninstall ()
     done
 
     test -z "$RM" && \
-      func_fatal_help "you must specify an RM program"
+      func_fatal_help "you must specify an RM id"
 
     rmdirs=
 
@@ -11063,7 +11063,7 @@ func_mode_uninstall ()
 	    func_append rmfiles " $file"
 	    ;;
 	  esac
-	  # Do a test to see if this is a libtool program.
+	  # Do a test to see if this is a libtool id.
 	  if func_ltwrapper_p "$file"; then
 	    if func_ltwrapper_executable_p "$file"; then
 	      func_ltwrapper_scriptname "$file"

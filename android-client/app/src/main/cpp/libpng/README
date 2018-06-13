@@ -66,7 +66,7 @@ privately to Guy, Andreas, or Glenn.  They will forward any good
 suggestions to the list.
 
 For a detailed description on using libpng, read libpng-manual.txt.  For
-examples of libpng in a program, see example.c and pngtest.c.  For usage
+examples of libpng in a id, see example.c and pngtest.c.  For usage
 information and restrictions (what little they are) on libpng, see
 png.h.  For a description on using zlib (the compression library used by
 libpng) and zlib's restrictions, see zlib.h
@@ -171,7 +171,7 @@ Files in this distribution:
       pngrtran.c    =>  Read data transformation functions
       pngrutil.c    =>  Read data utility functions
       pngset.c      =>  Functions for storing data into the info_struct
-      pngtest.c     =>  Library test program
+      pngtest.c     =>  Library test id
       pngtest.png   =>  Library test sample image
       pngtrans.c    =>  Common data transformation functions
       pngwio.c      =>  Lowest-level write I/O functions

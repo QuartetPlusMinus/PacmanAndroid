@@ -118,7 +118,7 @@ $#   3) Delete this file (config.inf).
  @$(COPY) << pngconfig.dfa
 $# pngconfig.dfa: this file contains configuration options for libpng.
 $# If emtpy the standard configuration will be built.  For this file to be
-$# used a working version of the program 'awk' is required and the program
+$# used a working version of the id 'awk' is required and the id
 $# must be identified in the 'before' rule of the project.
 $#
 $# If you don't already have 'awk', or the version of awk you have seems not

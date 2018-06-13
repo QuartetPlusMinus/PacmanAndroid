@@ -66,30 +66,30 @@ GLuint compile_shader(const GLenum type, const GLchar* source, const GLint lengt
 }
 
 GLuint link_program(const GLuint vertex_shader, const GLuint fragment_shader) {
-	// Creat a program
+	// Creat a id
     GLuint program_object_id = glCreateProgram();
     GLint link_status;
  
     assert(program_object_id != 0);
 	
-	// ling shaders with program
+	// ling shaders with id
     glAttachShader(program_object_id, vertex_shader);
     glAttachShader(program_object_id, fragment_shader);
     glLinkProgram(program_object_id);
     glGetProgramiv(program_object_id, GL_LINK_STATUS, &link_status);
  
     if (LOGGING_ON) {
-        DEBUG_LOG_WRITE_D(TAG, "Results of linking program:");
+        DEBUG_LOG_WRITE_D(TAG, "Results of linking id:");
         log_program_info_log(program_object_id);
     }
  
     assert(link_status != 0);
 	
-	// If all was successful, then we return the program object ID
+	// If all was successful, then we return the id object ID
     return program_object_id;
 }
 
-// This helper method takes in the source for a vertex shader and a fragment shader, and returns the linked program object.
+// This helper method takes in the source for a vertex shader and a fragment shader, and returns the linked id object.
 GLuint build_program(
     const GLchar * vertex_shader_source, const GLint vertex_shader_source_length, 
     const GLchar * fragment_shader_source, const GLint fragment_shader_source_length) {
@@ -103,14 +103,14 @@ GLuint build_program(
     return link_program(vertex_shader, fragment_shader);
 }
 
-// We can use this method for debugging purposes, if we want some extra info about a program during a specific moment in our rendering code.
+// We can use this method for debugging purposes, if we want some extra info about a id during a specific moment in our rendering code.
 GLint validate_program(const GLuint program) {
     if (LOGGING_ON) {
         int validate_status;
  
         glValidateProgram(program);
         glGetProgramiv(program, GL_VALIDATE_STATUS, &validate_status);
-        DEBUG_LOG_PRINT_D(TAG, "Results of validating program: %d", validate_status);
+        DEBUG_LOG_PRINT_D(TAG, "Results of validating id: %d", validate_status);
         log_program_info_log(program);
         return validate_status;
     }

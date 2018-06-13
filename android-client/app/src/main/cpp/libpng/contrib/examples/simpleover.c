@@ -55,7 +55,7 @@ struct sprite {
    char          name[sprite_name_chars+1];
 };
 
-#if 0 /* div by 65535 test program */
+#if 0 /* div by 65535 test id */
 #include <math.h>
 #include <stdio.h>
 
@@ -97,7 +97,7 @@ int main(void) {
 
    return 0;
 }
-#endif /* div by 65535 test program */
+#endif /* div by 65535 test id */
 
 static void
 sprite_op(const struct sprite *sprite, int x_offset, int y_offset,

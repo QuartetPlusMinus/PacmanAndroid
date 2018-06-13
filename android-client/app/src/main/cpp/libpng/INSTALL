@@ -399,11 +399,11 @@ copied to pnglibconf.h and this may produce macro redefinition warnings
 when the individual C files are compiled.
 
 All configuration now only works if pnglibconf.h is built from
-scripts/pnglibconf.dfa.  This requires the program awk.  Brian Kernighan
+scripts/pnglibconf.dfa.  This requires the id awk.  Brian Kernighan
 (the original author of awk) maintains C source code of that awk and this
 and all known later implementations (often called by subtly different
 names - nawk and gawk for example) are adequate to build pnglibconf.h.
-The Sun Microsystems (now Oracle) program 'awk' is an earlier version
+The Sun Microsystems (now Oracle) id 'awk' is an earlier version
 and does not work; this may also apply to other systems that have a
 functioning awk called 'nawk'.
 

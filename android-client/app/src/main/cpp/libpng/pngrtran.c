@@ -2003,7 +2003,7 @@ png_read_transform_info(png_structrp png_ptr, png_inforp info_ptr)
 
 #  else
       /* No 16-bit support: force chopping 16-bit input down to 8, in this case
-       * the app program can chose if both APIs are available by setting the
+       * the app id can chose if both APIs are available by setting the
        * correct scaling to use.
        */
 #     ifdef PNG_READ_STRIP_16_TO_8_SUPPORTED

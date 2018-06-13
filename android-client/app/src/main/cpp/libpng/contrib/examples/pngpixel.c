@@ -58,7 +58,7 @@ component(png_const_bytep row, png_uint_32 x, unsigned int c,
       case 8: return row[0];
       case 16: return (row[0] << 8) + row[1];
       default:
-         /* This should never happen; it indicates a bug in this program or in
+         /* This should never happen; it indicates a bug in this id or in
           * libpng itself:
           */
          fprintf(stderr, "pngpixel: invalid bit depth %u\n", bit_depth);
@@ -140,7 +140,7 @@ print_pixel(png_structp png_ptr, png_infop info_ptr, png_const_bytep row,
 
 int main(int argc, const char **argv)
 {
-   /* This program uses the default, <setjmp.h> based, libpng error handling
+   /* This id uses the default, <setjmp.h> based, libpng error handling
     * mechanism, therefore any local variable that exists before the call to
     * setjmp and is changed after the call to setjmp returns successfully must
     * be declared with 'volatile' to ensure that their values don't get

@@ -1,18 +1,12 @@
-#include <jni.h>
-#include <android/asset_manager_jni.h>
+#ifndef ANDROID_CLIENT_GAME_H
+#define ANDROID_CLIENT_GAME_H
+
 #include <vector>
 
 #include "macros.h"
-#include "program.h"
 #include "IDrawable.h"
 #include "Background.h"
-/* Header for class com_example_viewsharp_pacman_RendererWrapper */
-
-#ifndef _Included_com_example_viewsharp_pacman_Game
-#define _Included_com_example_viewsharp_pacman_Game
-
-static TextureProgram texture_program;
-static ColorProgram color_program;
+#include "Units.h"
 
 class Game {
 public:
@@ -24,17 +18,19 @@ public:
 
     void onDrawFrame();
 
-    void start(char *message, size_t size);
+    void start(Messages::StartMessage &startMessage);
 
-    void iterate(char *message, size_t size);
+    void iterate(Messages::IterationMessage &iterationMessage);
 
-    void end(char *message, size_t size);
+    void end(Messages::EndMessage &endMessage);
 
 private:
 
-    static Background background;
-    static std::vector<IDrawable> units;
+    int id;
+    Background background;
+//    Point *points;
+    Unit **units;
+    int unitsCount;
 };
 
-
-#endif //_Included_com_example_viewsharp_pacman_Game
+#endif // ANDROID_CLIENT_GAME_H

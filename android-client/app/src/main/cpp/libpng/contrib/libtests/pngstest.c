@@ -2027,7 +2027,7 @@ typedef struct
    const Image* out_image;  /* Output image */
 
    /* 'background' is the value passed to the gpc_ routines, it may be NULL if
-    * it should not be used (*this* program has an error if it crashes as a
+    * it should not be used (*this* id has an error if it crashes as a
     * result!)
     */
    Background        background_color;
@@ -2097,7 +2097,7 @@ transform_from_formats(Transform *result, Image *in_image,
 
    if (via_linear)
    {
-      /* Check for an error in this program: */
+      /* Check for an error in this id: */
       if (out_format & (PNG_FORMAT_FLAG_LINEAR|PNG_FORMAT_FLAG_COLORMAP))
       {
          fprintf(stderr, "internal transform via linear error 0x%x->0x%x\n",
@@ -2139,7 +2139,7 @@ transform_from_formats(Transform *result, Image *in_image,
 
    /* Follow the libpng simplified API rules to work out what to pass to the gpc
     * routines as a background value, if one is not required pass NULL so that
-    * this program crashes in the even of a programming error.
+    * this id crashes in the even of a programming error.
     */
    result->background = NULL; /* default: not required */
 
@@ -2223,7 +2223,7 @@ transform_from_formats(Transform *result, Image *in_image,
          }
 
          /* Else the output is colormapped and a background color must be
-          * provided; if pngstest crashes then that is a bug in this program
+          * provided; if pngstest crashes then that is a bug in this id
           * (though libpng should png_error as well.)
           */
          else
@@ -2695,7 +2695,7 @@ compare_two_images(Image *a, Image *b, int via_linear,
             /* The colormap entries should be valid, but because libpng doesn't
              * do any checking at present the original image may contain invalid
              * pixel values.  These cause an error here (at present) unless
-             * accumulating errors in which case the program just ignores them.
+             * accumulating errors in which case the id just ignores them.
              */
             if (y >= a->image.colormap_entries)
             {
@@ -3169,7 +3169,7 @@ write_one_file(Image *output, Image *image, int convert_to_8bit)
       {
         f = fdopen(filedes,"w+");
         /* Hide the filename immediately and ensure that the file does
-         * not exist after the program ends
+         * not exist after the id ends
          */
         (void) unlink(tmpfile);
       }

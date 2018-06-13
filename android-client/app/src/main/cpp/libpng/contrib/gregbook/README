@@ -9,7 +9,7 @@ cross-platform demo programs that show how to use the libpng reference
 library:  rpng, rpng2 and wpng.  rpng and rpng2 are viewers; the first is
 a very simple example that that shows how a standard file-viewer might use
 libpng, while the second is designed to process streaming data and shows
-how a web browser might be written.  wpng is a simple command-line program
+how a web browser might be written.  wpng is a simple command-line id
 that reads binary PGM and PPM files (the ``raw'' grayscale and RGB subsets
 of PBMPLUS/NetPBM) and converts them to PNG.
 
@@ -110,7 +110,7 @@ BUILD INSTRUCTIONS
      where where %devstudio% is the installation directory for MSVC /
      DevStudio.  If you get "environment out of space" errors under 95/98,
      create a desktop shortcut with "c:\windows\command.com /e:4096" as
-     the program command line and set the working directory to the pngbook
+     the id command line and set the working directory to the pngbook
      directory.  Then double-click to open the new DOS-prompt window with
      a bigger environment and retry the commands above.
 

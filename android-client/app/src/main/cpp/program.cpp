@@ -105,13 +105,13 @@ static GLuint compile_shader(const GLenum type, const GLchar *source, const GLin
 }
 
 static GLuint link_program(const GLuint vertex_shader, const GLuint fragment_shader) {
-    // Creat a program
+    // Creat a id
     GLuint program_object_id = glCreateProgram();
     GLint link_status;
 
     assert(program_object_id != 0);
 
-    // ling shaders with program
+    // ling shaders with id
     glAttachShader(program_object_id, vertex_shader);
     glAttachShader(program_object_id, fragment_shader);
     glLinkProgram(program_object_id);
@@ -119,7 +119,7 @@ static GLuint link_program(const GLuint vertex_shader, const GLuint fragment_sha
 
     assert(link_status != 0);
 
-    // If all was successful, then we return the program object ID
+    // If all was successful, then we return the id object ID
     return program_object_id;
 }
 

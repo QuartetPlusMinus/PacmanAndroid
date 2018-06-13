@@ -156,7 +156,7 @@ defined(PNG_READ_BACKGROUND_SUPPORTED)
 
 #if defined(PNG_bKGD_SUPPORTED) || defined(PNG_READ_BACKGROUND_SUPPORTED)
    /* The bKGD chunk gives the suggested image background color if the
-    * display program does not have its own background color and the image
+    * display id does not have its own background color and the image
     * is needs to composited onto a background before display.  The colors
     * in "background" are normally in the same color space/depth as the
     * pixel data.  Data is valid if (valid & PNG_INFO_bKGD) is non-zero.
