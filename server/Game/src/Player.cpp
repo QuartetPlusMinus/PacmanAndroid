@@ -2,4 +2,4 @@
 // Created by views on 26.05.18.
 //
 
-#include "Player.h"
+#include "../lib/Player.h"

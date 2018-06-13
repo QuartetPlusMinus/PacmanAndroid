@@ -7,7 +7,7 @@
 
 #include <string>
 #include <vector>
-#include "../common/Messages/Messages.h"
+#include "../../../common/Messages/Messages.h"
 
 //using namespace threedouble::proto;
 

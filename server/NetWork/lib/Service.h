@@ -8,7 +8,7 @@
 #include <queue>
 #include <unordered_map>
 #include "Network.h"
-#include "GameRoom.h"
+#include "../../Game/lib/GameRoom.h"
 #include "Client.h"
 
 class Service : public Network {
@@ -25,12 +25,13 @@ public:
 private:
 
     virtual void switchRequest(int type, ip::udp::endpoint &clientEP, const char *data, size_t size) final {
-        Client *client;
+        std::shared_ptr<Client> client(nullptr);
 
         std::string data_string(data, size);
 
         if (clients.count(Client::hash(clientEP)) == 0) {
-            client = new Client(socket, clientEP);
+            client = std::make_shared<Client>(socket, clientEP);
+//            client = new Client(socket, clientEP);
             clients[client->hash()] = client;
         } else {
             client = clients[Client::hash(clientEP)];
@@ -54,10 +55,10 @@ private:
 
 protected:
 
-    unordered_map<unsigned int, Client *> clients;
+    unordered_map<unsigned int, std::shared_ptr<Client>> clients;
 
-    virtual void Connect(Client *client, Messages::ConnectMessage &connectMsg) = 0;
-    virtual void Event(Client *client, Messages::EventMessage &eventMsg) = 0;
+    virtual void Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &connectMsg) = 0;
+    virtual void Event(std::shared_ptr<Client> client, Messages::EventMessage &eventMsg) = 0;
 };
 
 #endif //SERVER_PROTOCOL_H
