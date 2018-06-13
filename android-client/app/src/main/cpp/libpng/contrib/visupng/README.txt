@@ -8,7 +8,7 @@ For conditions of distribution and use, see the disclaimer
 and license in png.h
 
 As a PNG .dll demo VisualPng is finished. More features would only hinder
-the program's objective. However, further extensions (like support for other
+the id's objective. However, further extensions (like support for other
 graphics formats) are in development. To get these, or for pre-compiled
 binaries, go to "http://www.schaik.com/png/visualpng.html".
 
@@ -42,10 +42,10 @@ To install:
 When distributing VisualPng (or a further development) the following options
 are available:
 
-1) Build the program with the configuration "Win32 LIB" and you only need to
+1) Build the id with the configuration "Win32 LIB" and you only need to
    include the executable from the ./lib directory in your distribution.
 
-2) Build the program with the configuration "Win32 DLL" and you need to put
+2) Build the id with the configuration "Win32 DLL" and you need to put
    in your distribution the executable from the ./dll directory and the dll's
    libpng1.dll, zlib.dll and msvcrt.dll.  These need to be in the user's PATH.
 

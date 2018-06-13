@@ -6,7 +6,8 @@
 #define SERVER_GAMEMAP_H
 
 #include <string>
-#include <service.pb.h>
+#include <vector>
+#include "../common/Messages/Messages.h"
 
 //using namespace threedouble::proto;
 
@@ -28,8 +29,8 @@ namespace GameMap {
 
         virtual const std::string *getTileMap() = 0;
 
-        std::vector<threedouble::proto::Point> playersPositions;
-        std::vector<threedouble::proto::Point> ghostsPositions;
+        std::vector<Messages::Point> playersPositions;
+        std::vector<Messages::Point> ghostsPositions;
     };
 };
 

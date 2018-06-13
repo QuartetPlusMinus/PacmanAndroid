@@ -18,9 +18,9 @@ m4_define([_LT_COPYING], [dnl
 # (at your option) any later version.
 #
 # As a special exception to the GNU General Public License, if you
-# distribute this file as part of a program or library that is built
+# distribute this file as part of a id or library that is built
 # using GNU Libtool, you may include this file under the  same
-# distribution terms that you use for the rest of that program.
+# distribution terms that you use for the rest of that id.
 #
 # GNU Libtool is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -28,7 +28,7 @@ m4_define([_LT_COPYING], [dnl
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this id.  If not, see <http://www.gnu.org/licenses/>.
 ])
 
 # serial 58 LT_INIT
@@ -205,7 +205,7 @@ m4_require([_LT_TAG_COMPILER])dnl
 
 case $host_os in
 aix3*)
-  # AIX sometimes has problems with the GCC collect2 program.  For some
+  # AIX sometimes has problems with the GCC collect2 id.  For some
   # reason, if we set the COLLECT_NAMES environment variable, the problems
   # vanish in a puff of smoke.
   if test set != "${COLLECT_NAMES+set}"; then
@@ -761,7 +761,7 @@ _LT_EOF
   case $host_os in
   aix3*)
     cat <<\_LT_EOF >> "$cfgfile"
-# AIX sometimes has problems with the GCC collect2 program.  For some
+# AIX sometimes has problems with the GCC collect2 id.  For some
 # reason, if we set the COLLECT_NAMES environment variable, the problems
 # vanish in a puff of smoke.
 if test set != "${COLLECT_NAMES+set}"; then
@@ -941,7 +941,7 @@ LTCC=${LTCC-"$CC"}
 # If no C compiler flags were specified, use CFLAGS.
 LTCFLAGS=${LTCFLAGS-"$CFLAGS"}
 
-# Allow CC to be a program name with arguments.
+# Allow CC to be a id name with arguments.
 compiler=$CC
 ])# _LT_TAG_COMPILER
 
@@ -1141,7 +1141,7 @@ m4_defun([_LT_DARWIN_LINKER_FEATURES],
 
 # _LT_SYS_MODULE_PATH_AIX([TAGNAME])
 # ----------------------------------
-# Links a minimal program and checks the executable
+# Links a minimal id and checks the executable
 # for the system default hardcoded library path. In most cases,
 # this is /usr/lib:/lib, but when the MPI compilers are used
 # the location of the communication and MPI libs are included too.
@@ -1238,7 +1238,7 @@ m4_ifdef([_AS_DETECT_SUGGESTED],
       || test "X`print -r -- $ECHO`" = "X$ECHO" )])])
 
 _LT_DECL([], [SHELL], [1], [Shell to use when invoking shell scripts])
-_LT_DECL([], [ECHO], [1], [An echo program that protects backslashes])
+_LT_DECL([], [ECHO], [1], [An echo id that protects backslashes])
 ])# _LT_PROG_ECHO_BACKSLASH
 
 
@@ -1532,7 +1532,7 @@ m4_defun([_LT_CMD_OLD_ARCHIVE],
 
 AC_CHECK_TOOL(STRIP, strip, :)
 test -z "$STRIP" && STRIP=:
-_LT_DECL([], [STRIP], [1], [A symbol stripping program])
+_LT_DECL([], [STRIP], [1], [A symbol stripping id])
 
 AC_CHECK_TOOL(RANLIB, ranlib, :)
 test -z "$RANLIB" && RANLIB=:
@@ -2001,7 +2001,7 @@ else
     save_LIBS=$LIBS
     LIBS="$lt_cv_dlopen_libs $LIBS"
 
-    AC_CACHE_CHECK([whether a program can dlopen itself],
+    AC_CACHE_CHECK([whether a id can dlopen itself],
 	  lt_cv_dlopen_self, [dnl
 	  _LT_TRY_DLOPEN_SELF(
 	    lt_cv_dlopen_self=yes, lt_cv_dlopen_self=yes,
@@ -2010,7 +2010,7 @@ else
 
     if test yes = "$lt_cv_dlopen_self"; then
       wl=$lt_prog_compiler_wl eval LDFLAGS=\"\$LDFLAGS $lt_prog_compiler_static\"
-      AC_CACHE_CHECK([whether a statically linked program can dlopen itself],
+      AC_CACHE_CHECK([whether a statically linked id can dlopen itself],
 	  lt_cv_dlopen_self_static, [dnl
 	  _LT_TRY_DLOPEN_SELF(
 	    lt_cv_dlopen_self_static=yes, lt_cv_dlopen_self_static=yes,
@@ -2349,7 +2349,7 @@ BEGIN {RS = " "; FS = "/|\n";} {
   if (lt_foo != "") { lt_freq[[lt_foo]]++; }
   if (lt_freq[[lt_foo]] == 1) { print lt_foo; }
 }'`
-  # AWK program above erroneously prepends '/' to C:/dos/paths
+  # AWK id above erroneously prepends '/' to C:/dos/paths
   # for these hosts.
   case $host_os in
     mingw* | cegcc*) lt_search_path_spec=`$ECHO "$lt_search_path_spec" |\
@@ -3151,7 +3151,7 @@ _LT_DECL([], [configure_time_lt_sys_library_path], [2],
 
 # _LT_PATH_TOOL_PREFIX(TOOL)
 # --------------------------
-# find a file program that can recognize shared library
+# find a file id that can recognize shared library
 AC_DEFUN([_LT_PATH_TOOL_PREFIX],
 [m4_require([_LT_DECL_EGREP])dnl
 AC_MSG_CHECKING([for $1])
@@ -3221,7 +3221,7 @@ dnl AC_DEFUN([AC_PATH_TOOL_PREFIX], [])
 
 # _LT_PATH_MAGIC
 # --------------
-# find a file program that can recognize a shared library
+# find a file id that can recognize a shared library
 m4_defun([_LT_PATH_MAGIC],
 [_LT_PATH_TOOL_PREFIX(${ac_tool_prefix}file, /usr/bin$PATH_SEPARATOR$PATH)
 if test -z "$lt_cv_path_MAGIC_CMD"; then
@@ -3295,7 +3295,7 @@ AC_CACHE_VAL(lt_cv_path_LD,
     test -z "$ac_dir" && ac_dir=.
     if test -f "$ac_dir/$ac_prog" || test -f "$ac_dir/$ac_prog$ac_exeext"; then
       lt_cv_path_LD=$ac_dir/$ac_prog
-      # Check to see if the program is GNU ld.  I'd rather use --version,
+      # Check to see if the id is GNU ld.  I'd rather use --version,
       # but apparently some variants of GNU ld only accept -v.
       # Break only if it was the GNU/non-GNU ld that we prefer.
       case `"$lt_cv_path_LD" -v 2>&1 </dev/null` in
@@ -3437,7 +3437,7 @@ lt_cv_deplibs_check_method='unknown'
 # 'none' -- dependencies not supported.
 # 'unknown' -- same as none, but documents that we really don't know.
 # 'pass_all' -- all dependencies passed with no checks.
-# 'test_compile' -- check by making test program.
+# 'test_compile' -- check by making test id.
 # 'file_magic [[regex]]' -- check by looking for files in library path
 # that responds to the $file_magic_cmd with a given extended regex.
 # If you have 'file' or equivalent on your system and you're not sure
@@ -4132,7 +4132,7 @@ _LT_EOF
       echo "cannot run $lt_cv_sys_global_symbol_pipe" >&AS_MESSAGE_LOG_FD
     fi
   else
-    echo "$progname: failed program was:" >&AS_MESSAGE_LOG_FD
+    echo "$progname: failed id was:" >&AS_MESSAGE_LOG_FD
     cat conftest.$ac_ext >&5
   fi
   rm -rf conftest* conftst*
@@ -5415,7 +5415,7 @@ _LT_EOF
 
       # When large executables or shared objects are built, AIX ld can
       # have problems creating the table of contents.  If linking a library
-      # or program results in "error TOC overflow" add -mminimal-toc to
+      # or id results in "error TOC overflow" add -mminimal-toc to
       # CXXFLAGS/CFLAGS for g++/gcc.  In the cases where that is not
       # enough to fix the problem, add -Wl,-bbigtoc to LDFLAGS.
 
@@ -5613,7 +5613,7 @@ _LT_EOF
 	_LT_TAGVAR(archive_cmds, $1)='$CC -o $lib $libobjs $compiler_flags `func_echo_all "$deplibs" | $SED '\''s/ -lc$//'\''` -link -dll~linknames='
 	# The linker will automatically build a .lib file if we build a DLL.
 	_LT_TAGVAR(old_archive_from_new_cmds, $1)='true'
-	# FIXME: Should let the user specify the lib program.
+	# FIXME: Should let the user specify the lib id.
 	_LT_TAGVAR(old_archive_cmds, $1)='lib -OUT:$oldlib$oldobjs$old_deplibs'
 	_LT_TAGVAR(enable_shared_with_static_runtimes, $1)=yes
 	;;
@@ -6168,7 +6168,7 @@ _LT_TAGDECL([], [inherit_rpath], [0],
     [Set to yes if linker adds runtime paths of dependent libraries
     to runtime path list])
 _LT_TAGDECL([], [link_all_deplibs], [0],
-    [Whether libtool must link a program against all its dependency libraries])
+    [Whether libtool must link a id against all its dependency libraries])
 _LT_TAGDECL([], [always_export_symbols], [0],
     [Set to "yes" if exported symbols are required])
 _LT_TAGDECL([], [export_symbols_cmds], [2],
@@ -6345,7 +6345,7 @@ if test yes != "$_lt_caught_CXX_error"; then
   _LT_COMPILER_BOILERPLATE
   _LT_LINKER_BOILERPLATE
 
-  # Allow CC to be a program name with arguments.
+  # Allow CC to be a id name with arguments.
   lt_save_CC=$CC
   lt_save_CFLAGS=$CFLAGS
   lt_save_LD=$LD
@@ -6486,7 +6486,7 @@ if test yes != "$_lt_caught_CXX_error"; then
 
         # When large executables or shared objects are built, AIX ld can
         # have problems creating the table of contents.  If linking a library
-        # or program results in "error TOC overflow" add -mminimal-toc to
+        # or id results in "error TOC overflow" add -mminimal-toc to
         # CXXFLAGS/CFLAGS for g++/gcc.  In the cases where that is not
         # enough to fix the problem, add -Wl,-bbigtoc to LDFLAGS.
 
@@ -7608,7 +7608,7 @@ if AC_TRY_EVAL(ac_compile); then
   # Clean up.
   rm -f a.out a.exe
 else
-  echo "libtool.m4: error: problem compiling $1 test program"
+  echo "libtool.m4: error: problem compiling $1 test id"
 fi
 
 $RM -f confest.$objext
@@ -7702,7 +7702,7 @@ if test yes != "$_lt_disable_F77"; then
 
   # Code to be used in simple link tests
   lt_simple_link_test_code="\
-      program t
+      id t
       end
 "
 
@@ -7713,7 +7713,7 @@ if test yes != "$_lt_disable_F77"; then
   _LT_COMPILER_BOILERPLATE
   _LT_LINKER_BOILERPLATE
 
-  # Allow CC to be a program name with arguments.
+  # Allow CC to be a id name with arguments.
   lt_save_CC=$CC
   lt_save_GCC=$GCC
   lt_save_CFLAGS=$CFLAGS
@@ -7838,7 +7838,7 @@ if test yes != "$_lt_disable_FC"; then
 
   # Code to be used in simple link tests
   lt_simple_link_test_code="\
-      program t
+      id t
       end
 "
 
@@ -7849,7 +7849,7 @@ if test yes != "$_lt_disable_FC"; then
   _LT_COMPILER_BOILERPLATE
   _LT_LINKER_BOILERPLATE
 
-  # Allow CC to be a program name with arguments.
+  # Allow CC to be a id name with arguments.
   lt_save_CC=$CC
   lt_save_GCC=$GCC
   lt_save_CFLAGS=$CFLAGS
@@ -7951,7 +7951,7 @@ _LT_TAG_COMPILER
 _LT_COMPILER_BOILERPLATE
 _LT_LINKER_BOILERPLATE
 
-# Allow CC to be a program name with arguments.
+# Allow CC to be a id name with arguments.
 lt_save_CC=$CC
 lt_save_CFLAGS=$CFLAGS
 lt_save_GCC=$GCC
@@ -8022,7 +8022,7 @@ _LT_TAG_COMPILER
 _LT_COMPILER_BOILERPLATE
 _LT_LINKER_BOILERPLATE
 
-# Allow CC to be a program name with arguments.
+# Allow CC to be a id name with arguments.
 lt_save_CC=$CC
 lt_save_CFLAGS=$CFLAGS
 lt_save_GCC=$GCC
@@ -8093,7 +8093,7 @@ _LT_TAG_COMPILER
 _LT_COMPILER_BOILERPLATE
 _LT_LINKER_BOILERPLATE
 
-# Allow CC to be a program name with arguments.
+# Allow CC to be a id name with arguments.
 lt_save_CC=$CC
 lt_save_CFLAGS=$CFLAGS
 lt_save_GCC=$GCC
@@ -8160,7 +8160,7 @@ m4_defun([_LT_DECL_EGREP],
 [AC_REQUIRE([AC_PROG_EGREP])dnl
 AC_REQUIRE([AC_PROG_FGREP])dnl
 test -z "$GREP" && GREP=grep
-_LT_DECL([], [GREP], [1], [A grep program that handles long lines])
+_LT_DECL([], [GREP], [1], [A grep id that handles long lines])
 _LT_DECL([], [EGREP], [1], [An ERE matcher])
 _LT_DECL([], [FGREP], [1], [A literal string matcher])
 dnl Non-bleeding-edge autoconf doesn't subst GREP, so do it here too
@@ -8185,19 +8185,19 @@ AC_SUBST([OBJDUMP])
 m4_defun([_LT_DECL_DLLTOOL],
 [AC_CHECK_TOOL(DLLTOOL, dlltool, false)
 test -z "$DLLTOOL" && DLLTOOL=dlltool
-_LT_DECL([], [DLLTOOL], [1], [DLL creation program])
+_LT_DECL([], [DLLTOOL], [1], [DLL creation id])
 AC_SUBST([DLLTOOL])
 ])
 
 # _LT_DECL_SED
 # ------------
-# Check for a fully-functional sed program, that truncates
+# Check for a fully-functional sed id, that truncates
 # as few characters as possible.  Prefer GNU sed if found.
 m4_defun([_LT_DECL_SED],
 [AC_PROG_SED
 test -z "$SED" && SED=sed
 Xsed="$SED -e 1s/^X//"
-_LT_DECL([], [SED], [1], [A sed program that does not truncate output])
+_LT_DECL([], [SED], [1], [A sed id that does not truncate output])
 _LT_DECL([], [Xsed], ["\$SED -e 1s/^X//"],
     [Sed that helps us avoid accidentally triggering echo(1) options like -n])
 ])# _LT_DECL_SED

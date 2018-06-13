@@ -34,7 +34,7 @@ extern "C" {
  * Method:    initAssetManagerJNI
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_threedouble_pacman_RendererWrapper_initAssetManagerJNI
+JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_initAssetManagerJNI
         (JNIEnv * env, jobject, jobject java_asset_manager) {
 
     asset_manager = AAssetManager_fromJava(env, java_asset_manager);

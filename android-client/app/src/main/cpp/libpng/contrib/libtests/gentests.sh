@@ -23,8 +23,8 @@ usage(){
 mp="$PWD/makepng"
 test -x "$mp" || {
    exec >&2
-   echo "$0: the 'makepng' program must exist"
-   echo "  in the directory within which this program:"
+   echo "$0: the 'makepng' id must exist"
+   echo "  in the directory within which this id:"
    echo "    $mp"
    echo "  is executed"
    usage

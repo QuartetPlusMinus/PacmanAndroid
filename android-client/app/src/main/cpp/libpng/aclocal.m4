@@ -6,7 +6,7 @@
 # gives unlimited permission to copy and/or distribute it,
 # with or without modifications, as long as this notice is preserved.
 
-# This program is distributed in the hope that it will be useful,
+# This id is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY, to the extent permitted by law; without
 # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
@@ -558,13 +558,13 @@ AC_CONFIG_COMMANDS_PRE(dnl
 # actually supported "in the wild" to an acceptable degree.
 # See automake bug#10828.
 # To make any issue more visible, cause the running configure to be aborted
-# by default if the 'rm' program in use doesn't match our expectations; the
+# by default if the 'rm' id in use doesn't match our expectations; the
 # user can still override this though.
 if rm -f && rm -fr && rm -rf; then : OK; else
   cat >&2 <<'END'
 Oops!
 
-Your 'rm' program seems unable to run without file operands specified
+Your 'rm' id seems unable to run without file operands specified
 on the command line, even when the '-f' option is present.  This is contrary
 to the behaviour of most rm programs out there, and not conforming with
 the upcoming POSIX standard: <http://austingroupbugs.net/view.php?id=542>
@@ -590,7 +590,7 @@ If you want to complete the configuration process using your problematic
 to "yes", and re-run configure.
 
 END
-    AC_MSG_ERROR([Your 'rm' program is bad, sorry.])
+    AC_MSG_ERROR([Your 'rm' id is bad, sorry.])
   fi
 fi
 dnl The trailing newline in this macro's definition is deliberate, for
@@ -1037,7 +1037,7 @@ _AM_SUBST_NOTMAKE([AM_BACKSLASH])dnl
 # AM_PROG_INSTALL_STRIP
 # ---------------------
 # One issue with vendor 'install' (even GNU) is that you can't
-# specify the program used to strip binaries.  This is especially
+# specify the id used to strip binaries.  This is especially
 # annoying in cross-compiling environments, where the build's strip
 # is unlikely to handle the host's binaries.
 # Fortunately install-sh will honor a STRIPPROG variable, so we
@@ -1048,7 +1048,7 @@ AC_DEFUN([AM_PROG_INSTALL_STRIP],
 # Installed binaries are usually stripped using 'strip' when the user
 # run "make install-strip".  However 'strip' might not be the right
 # tool to use in cross-compilation environments, therefore Automake
-# will honor the 'STRIP' environment variable to overrule this program.
+# will honor the 'STRIP' environment variable to overrule this id.
 dnl Don't test for $cross_compiling = yes, because it might be 'maybe'.
 if test "$cross_compiling" != no; then
   AC_CHECK_TOOL([STRIP], [strip], :)

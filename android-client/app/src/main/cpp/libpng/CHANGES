@@ -45,7 +45,7 @@ version 0.6 [May 1, 1995]
 version 0.7 [June 24, 1995]
   cleaned up lots of bugs
   finished dithering and other stuff
-  added test program
+  added test id
   changed name from pnglib to libpng
 
 version 0.71 [June 26, 1995]
@@ -2910,7 +2910,7 @@ Version 1.5.0beta33 [July 6, 3010]
   Make png_set_sRGB_gAMA_and_cHRM set values using either the fixed or
     floating point APIs, but not both.
   Reversed patch to remove error handler when the jmp_buf is stored in the
-    main program structure, not the png_struct.
+    main id structure, not the png_struct.
     The error handler is needed because the default handler in libpng will
     always use the jmp_buf in the library control structure; this is never
     set.  The gregbook code is a useful example because, even though it
@@ -2944,7 +2944,7 @@ Version 1.5.0beta36 [July 29, 2010]
   Two new APIs exist to get the number of passes without turning on the
     PNG_INTERLACE transform and to get the number of rows in the current
     pass.
-  A new test program, pngvalid.c, validates the gamma code.
+  A new test id, pngvalid.c, validates the gamma code.
   Errors in the 16-bit gamma correction (overflows) have been corrected.
   cHRM chunk testing is done consistently (previously the floating point
     API bypassed it, because the test really didn't work on FP, now the test
@@ -4039,7 +4039,7 @@ Version 1.6.0beta16 [March 6, 2012]
     by ANSI-C to be ~x+1).  The padding calculation was changed to use a
     different method.  Removed the tests on png_ptr->pass.
   Added contrib/libtests/tarith.c to test internal arithmetic functions from
-    png.c. This is a libpng maintainer program used to validate changes to the
+    png.c. This is a libpng maintainer id used to validate changes to the
     internal arithmetic functions.
   Made read 'inflate' handling like write 'deflate' handling. The read
     code now claims and releases png_ptr->zstream, like the write code.
@@ -4213,7 +4213,7 @@ Version 1.6.0beta28 [August 29, 2012]
     control of the unknown handling, corrects the pre-existing bug where
     the per-chunk 'keep' setting is ignored and makes it possible to skip
     IDAT chunks in the sequential reader (broken in earlier 1.6 versions).
-    There is a new test program, test-unknown.c, which is a work in progress
+    There is a new test id, test-unknown.c, which is a work in progress
     (not currently part of the test suite).  Comments in the header files now
     explain how the unknown handling works.
   Allow fine grain control of unknown chunk APIs. This change allows
@@ -4675,7 +4675,7 @@ Version 1.6.7beta01 [September 30, 2013]
 
 Version 1.6.7beta02 [October 12, 2013]
   Made changes for compatibility with automake 1.14:
-    1) Added the 'compile' program to the list of programs that must be cleaned
+    1) Added the 'compile' id to the list of programs that must be cleaned
        in autogen.sh
     2) Added 'subdir-objects' which causes .c files in sub-directories to be
        compiled such that the corresponding .o files are also in the
@@ -4817,7 +4817,7 @@ Version 1.6.10beta01 [February 9, 2014]
   Backported changes from libpng-1.7.0beta30 and beta31:
   Fixed a large number of instances where PNGCBAPI was omitted from
     function definitions.
-  Added pngimage test program for png_read_png() and png_write_png()
+  Added pngimage test id for png_read_png() and png_write_png()
     with two new test scripts.
   Removed dependence on !PNG_READ_EXPAND_SUPPORTED for calling
     png_set_packing() in png_read_png().
@@ -5071,7 +5071,7 @@ Version 1.6.15beta05 [November 5, 2014]
     converted to double. This is probably a GCC bug but this change
     avoids the issue by explicitly converting to (int) where safe.
   Free all allocated memory in pngimage. The file buffer cache was left
-    allocated at the end of the program, harmless but it causes memory
+    allocated at the end of the id, harmless but it causes memory
     leak reports from clang.
   Fixed array size calculations to avoid warnings. At various points
     in the code the number of elements in an array is calculated using

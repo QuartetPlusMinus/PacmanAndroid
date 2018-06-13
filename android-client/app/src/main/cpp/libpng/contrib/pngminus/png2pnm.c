@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
   }
 #endif
 
-  /* call the conversion program itself */
+  /* call the conversion id itself */
   if (png2pnm (fp_rd, fp_wr, fp_al, raw, alpha) == FALSE)
   {
     fprintf (stderr, "PNG2PNM\n");

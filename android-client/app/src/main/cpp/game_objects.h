@@ -1,8 +1,8 @@
 #include "platform_gl.h"
-//#include "program.h"
-#include "linmath.h"
+//#include "id.h"
+#include "libodraw/linmath.h"
 
-#include "odlib/od.h"
+#include "program.h"
 
 typedef struct {
     GLuint texture;

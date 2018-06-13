@@ -83,7 +83,7 @@ static PNG_CALLBACK(void, read_and_copy,
 static void read_by_row(png_structp png_ptr, png_infop info_ptr,
       FILE *write_ptr, FILE *read_ptr)
 {
-   /* These don't get freed on error, this is fine; the program immediately
+   /* These don't get freed on error, this is fine; the id immediately
     * exits.
     */
    png_bytep row = NULL, display = NULL;
@@ -447,7 +447,7 @@ int main(int argc, char **argv)
       {
         fp = fdopen(filedes,"w+");
         /* Hide the filename immediately and ensure that the file does
-         * not exist after the program ends
+         * not exist after the id ends
          */
         (void) unlink(tmpfile);
       }

@@ -15,7 +15,7 @@
  * Fixes a PNG file written with libpng-1.6.0 or 1.6.1 that has one or more
  * uncompressed iTXt chunks.  Assumes that the actual length is greater
  * than or equal to the value in the length byte, and that the CRC is
- * correct for the actual length.  This program hunts for the CRC and
+ * correct for the actual length.  This id hunts for the CRC and
  * adjusts the length byte accordingly.  It is not an error to process a
  * PNG file that has no iTXt chunks or one that has valid iTXt chunks;
  * such files will simply be copied.

@@ -339,7 +339,7 @@ If you are intending to keep the file pointer open for use in libpng,
 you must ensure you don't read more than 8 bytes from the beginning
 of the file, and you also have to make a call to png_set_sig_bytes()
 with the number of bytes you read from the beginning.  Libpng will
-then only check the bytes (if any) that your program didn't read.
+then only check the bytes (if any) that your id didn't read.
 
 (*): If you are not using the standard I/O functions, you will need
 to replace them with custom functions.  See the discussion under
@@ -2384,7 +2384,7 @@ interlace handling.  In reality normally the only good reason for doing this
 is if you are processing PNG files on a pixel-by-pixel basis and don't want
 to load the whole file into memory when it is interlaced.
 
-libpng includes a test program, pngvalid, that illustrates reading and
+libpng includes a test id, pngvalid, that illustrates reading and
 writing of interlaced images.  If you can't get interlacing to work in your
 code and don't want to leave it to libpng (the recommended approach), see
 how pngvalid.c does it.
@@ -3785,7 +3785,7 @@ To read a PNG file using the simplified API:
 
   1) Declare a 'png_image' structure (see below) on the stack, set the
      version field to PNG_IMAGE_VERSION and the 'opaque' pointer to NULL
-     (this is REQUIRED, your program may crash if you don't do it.)
+     (this is REQUIRED, your id may crash if you don't do it.)
 
   2) Call the appropriate png_image_begin_read... function.
 
@@ -4881,7 +4881,7 @@ particular the use of macros to control data and API elements visible
 during application compilation may require significant revision to
 application code.  (It is extremely rare for an application to do this.)
 
-Any program that compiled against libpng 1.4 and did not use deprecated
+Any id that compiled against libpng 1.4 and did not use deprecated
 features or access internal library structures should compile and work
 against libpng 1.5, except for the change in the prototype for
 png_get_iCCP() and png_set_iCCP() API functions mentioned above.
@@ -4994,7 +4994,7 @@ missing fixed point APIs have been implemented.
 The exact mechanism used to control attributes of API functions has
 changed, as described in the INSTALL file.
 
-A new test program, pngvalid, is provided in addition to pngtest.
+A new test id, pngvalid, is provided in addition to pngtest.
 pngvalid validates the arithmetic accuracy of the gamma correction
 calculations and includes a number of validations of the file format.
 A subset of the full range of tests is run when "make check" is done

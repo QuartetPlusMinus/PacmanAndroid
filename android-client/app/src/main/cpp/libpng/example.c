@@ -25,7 +25,7 @@
  */
 
 /* The simple, but restricted, approach to reading a PNG file or data stream
- * just requires two function calls, as in the following complete program.
+ * just requires two function calls, as in the following complete id.
  * Writing a file just needs one function call, so long as the data has an
  * appropriate layout.
  *
@@ -193,13 +193,13 @@ int main(int argc, const char **argv)
  * is unavoidable - the 8-bit format just doesn't have enough resolution.
  */
 
-/* If your program needs more information from the PNG data it reads, or if you
+/* If your id needs more information from the PNG data it reads, or if you
  * need to do more complex transformations, or minimize transformations, on the
  * data you read, then you must use one of the several lower level libpng
  * interfaces.
  *
  * All these interfaces require that you do your own error handling - your
- * program must be able to arrange for control to return to your own code any
+ * id must be able to arrange for control to return to your own code any
  * time libpng encounters a problem.  There are several ways to do this, but the
  * standard way is to use the ANSI-C (C90) <setjmp.h> interface to establish a
  * return point within your own code.  You must do this if you do not use the
@@ -207,7 +207,7 @@ int main(int argc, const char **argv)
  *
  * The first step is to include the header files you need, including the libpng
  * header file.  Include any standard headers and feature test macros your
- * program requires before including png.h:
+ * id requires before including png.h:
  */
 #include <png.h>
 

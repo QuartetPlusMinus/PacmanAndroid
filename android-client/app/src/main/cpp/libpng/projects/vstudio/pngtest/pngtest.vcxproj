@@ -100,7 +100,7 @@
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
-      <Message>Executing PNG test program</Message>
+      <Message>Executing PNG test id</Message>
       <Command>"$(OutDir)pngtest.exe" ..\..\..\pngtest.png "$(IntDir)pngout.png"</Command>
       <Outputs>$(IntDir)pngout.png</Outputs>
       <Inputs>..\..\..\pngtest.png;$(OutDir)pngtest.exe</Inputs>
@@ -133,7 +133,7 @@
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
-      <Message>Executing PNG test program</Message>
+      <Message>Executing PNG test id</Message>
       <Command>"$(OutDir)pngtest.exe" ..\..\..\pngtest.png "$(IntDir)pngout.png"</Command>
       <Outputs>$(IntDir)pngout.png</Outputs>
       <Inputs>..\..\..\pngtest.png;$(OutDir)pngtest.exe</Inputs>
@@ -168,7 +168,7 @@
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
-      <Message>Executing PNG test program</Message>
+      <Message>Executing PNG test id</Message>
       <Command>"$(OutDir)pngtest.exe" ..\..\..\pngtest.png "$(IntDir)pngout.png"</Command>
       <Outputs>$(IntDir)pngout.png</Outputs>
       <Inputs>..\..\..\pngtest.png;$(OutDir)pngtest.exe</Inputs>
@@ -204,7 +204,7 @@
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
-      <Message>Executing PNG test program</Message>
+      <Message>Executing PNG test id</Message>
       <Command>$(OutDir)pngtest.exe ..\..\..\pngtest.png $(IntDir)pngout.png</Command>
       <Command>"$(OutDir)pngtest.exe" ..\..\..\pngtest.png "$(IntDir)pngout.png"</Command>
       <Outputs>$(IntDir)pngout.png</Outputs>

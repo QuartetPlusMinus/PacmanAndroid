@@ -98,7 +98,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
     if (!RegisterClass (&wndclass))
     {
-        MessageBox (NULL, TEXT ("Error: this program requires Windows NT!"),
+        MessageBox (NULL, TEXT ("Error: this id requires Windows NT!"),
             szProgName, MB_ICONERROR);
         return 0;
     }

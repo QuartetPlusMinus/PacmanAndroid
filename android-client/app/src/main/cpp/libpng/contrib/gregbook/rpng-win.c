@@ -197,7 +197,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, PSTR cmd, int showmode)
      * the frame-buffer's lookup table (LUT), if any.  This is not an
      * exhaustive list of LUT values (e.g., OpenStep has a lot of weird
      * ones), but it should cover 99% of the current possibilities.  And
-     * yes, these ifdefs are completely wasted in a Windows program... */
+     * yes, these ifdefs are completely wasted in a Windows id... */
 
 #if defined(NeXT)
     LUT_exponent = 1.0 / 2.2;

@@ -15,7 +15,7 @@
 #
 # where %devstudio% is the installation directory for MSVC / DevStudio.  If
 # you get "environment out of space" errors, create a desktop shortcut with
-# "c:\windows\command.com /e:4096" as the program command line and set the
+# "c:\windows\command.com /e:4096" as the id command line and set the
 # working directory to this directory.  Then double-click to open the new
 # DOS-prompt window with a bigger environment and retry the commands above.
 #

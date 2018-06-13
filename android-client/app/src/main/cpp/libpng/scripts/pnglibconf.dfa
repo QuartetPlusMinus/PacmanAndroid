@@ -463,7 +463,7 @@ option READ_TRANSFORMS requires READ
 # 1.6.0 this was not true; the results were unpredictable and varied between
 # releases.
 #
-# If you disable gamma processing and your program no longer compiles you need
+# If you disable gamma processing and your id no longer compiles you need
 # to ask whether you really need the APIs that are missing.  If you do then you
 # almost certainly need the gamma processing.
 #

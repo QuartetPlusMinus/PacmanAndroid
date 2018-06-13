@@ -1,9 +1,5 @@
 package threedouble.pacman;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-
-import threedouble.proto.Service.*;
-
 import java.net.InetAddress;
 import java.net.SocketException;
 
@@ -13,38 +9,34 @@ class Service extends Network{
         super();
     }
 
-    protected void Queue(QueueMessage queueReply) {}
+    protected void Queue(byte[] message) {}
 
-    protected void Start(StartMessage startReply) {}
+    protected void Start(byte[] message) {}
 
-    protected void Iteration(IterationMessage iterationReply) {}
+    protected void Iteration(byte[] message) {}
 
-    protected void End(EndMessage endReply) {}
+    protected void End(byte[] message) {}
 
     @Override
-    protected void switchRequest(byte type, byte[] data, int size) throws InvalidProtocolBufferException {
+    protected void switchRequest(byte type, byte[] data, int size) {
         switch (type) {
             case QUEUE:
-                QueueMessage queueReply = QueueMessage.parseFrom(data);
-                Queue(queueReply);
+                Queue(data);
                 break;
             case START:
-                StartMessage startReply = StartMessage.parseFrom(data);
-                Start(startReply);
+                Start(data);
                 break;
             case ITERATION:
-                IterationMessage iterationReply = IterationMessage.parseFrom(data);
-                Iteration(iterationReply);
+                Iteration(data);
                 break;
             case END:
-                EndMessage endReply = EndMessage.parseFrom(data);
-                End(endReply);
+                End(data);
                 break;
         }
     }
 
-    private final byte QUEUE = 0;
-    private final byte START = 1;
-    private final byte ITERATION = 2;
-    private final byte END = 3;
+    static private final byte QUEUE = 0;
+    static private final byte START = 1;
+    static private final byte ITERATION = 2;
+    static private final byte END = 3;
 }

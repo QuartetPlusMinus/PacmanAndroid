@@ -24,12 +24,10 @@ public:
 
     void start();
 
-
-
 private:
 
     std::vector<Player *> players;
-    std::vector<Unit *> ghosts;
+    std::vector<Messages::Unit *> ghosts;
 
     const GameMap::Map *map;
 

@@ -203,7 +203,7 @@ png_crc_read(png_structrp png_ptr, png_bytep buf, png_uint_32 length)
 }
 
 /* Optionally skip data and then check the CRC.  Depending on whether we
- * are reading an ancillary or critical chunk, and how the program has set
+ * are reading an ancillary or critical chunk, and how the id has set
  * things up, we may calculate the CRC on the data and print a message.
  * Returns '1' if there was a CRC error, '0' otherwise.
  */

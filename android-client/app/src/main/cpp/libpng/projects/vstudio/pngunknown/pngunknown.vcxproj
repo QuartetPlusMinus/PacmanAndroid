@@ -100,7 +100,7 @@
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
-      <Message>Executing PNG validation program</Message>
+      <Message>Executing PNG validation id</Message>
       <Command>"$(OutDir)pngunknown.exe" --strict --default --touch "$(IntDir)pngunknown.out" ../../../pngtest.png</Command>
       <Outputs>$(IntDir)pngunknown.out</Outputs>
       <Inputs>$(OutDir)pngunknown.exe</Inputs>
@@ -133,7 +133,7 @@
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
-      <Message>Executing PNG validation program</Message>
+      <Message>Executing PNG validation id</Message>
       <Command>"$(OutDir)pngunknown.exe" --strict --default --touch "$(IntDir)pngunknown.out" ../../../pngtest.png</Command>
       <Outputs>$(IntDir)pngunknown.out</Outputs>
       <Inputs>$(OutDir)pngunknown.exe</Inputs>
@@ -168,7 +168,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <CustomBuildStep>
-      <Message>Executing PNG validation program</Message>
+      <Message>Executing PNG validation id</Message>
       <Command>"$(OutDir)pngunknown.exe" --strict --default --touch "$(IntDir)pngunknown.out" ../../../pngtest.png</Command>
       <Outputs>$(IntDir)pngunknown.out</Outputs>
       <Inputs>$(OutDir)pngunknown.exe</Inputs>
@@ -204,7 +204,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <CustomBuildStep>
-      <Message>Executing PNG validation program</Message>
+      <Message>Executing PNG validation id</Message>
       <Command>"$(OutDir)pngunknown.exe" --strict --default --touch "$(IntDir)pngunknown.out" ../../../pngtest.png</Command>
       <Outputs>$(IntDir)pngunknown.out</Outputs>
       <Inputs>$(OutDir)pngunknown.exe</Inputs>

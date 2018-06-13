@@ -16,8 +16,6 @@ static GLuint build_program(
 // -------------------------------------- Shaders data ---------------------------------------------
 
 static const char shaders_texture_vertex[] = ""
-//        "uniform mat4 u_MvpMatrix;\n"
-//        "\n"
         "uniform vec4 u_Position;\n"
         "attribute vec4 a_Position;\n"
         "attribute vec2 a_TextureCoordinates;\n"
@@ -27,7 +25,6 @@ static const char shaders_texture_vertex[] = ""
         "void main()\n"
         "{\n"
         "    v_TextureCoordinates = a_TextureCoordinates;\n"
-//        "    gl_Position = u_MvpMatrix * a_Position;\n"
         "    gl_Position = a_Position + u_Position;\n"
         "}";
 
@@ -43,12 +40,9 @@ static const char shaders_texture_fragment[] = ""
         "}";
 
 static const char shaders_color_vertex[] = ""
-//        "uniform mat4 u_MvpMatrix;\n"
-//        "\n"
         "attribute vec4 a_Position;\n"
         "void main()\n"
         "{\n"
-//        "    gl_Position = u_MvpMatrix * a_Position;\n"
         "    gl_Position = a_Position;\n"
         "}";
 
@@ -72,7 +66,6 @@ TextureProgram get_texture_program() {
             program,
             glGetAttribLocation(program, "a_Position"),
             glGetAttribLocation(program, "a_TextureCoordinates"),
-//            glGetUniformLocation(program, "u_MvpMatrix"),
             glGetUniformLocation(program, "u_Position"),
             glGetUniformLocation(program, "u_TextureUnit")
     };
@@ -87,7 +80,6 @@ ColorProgram get_color_program() {
     return (ColorProgram) {
             program,
             glGetAttribLocation(program, "a_Position"),
-//            glGetUniformLocation(program, "u_MvpMatrix"),
             glGetUniformLocation(program, "u_Color")
     };
 }
@@ -113,13 +105,13 @@ static GLuint compile_shader(const GLenum type, const GLchar *source, const GLin
 }
 
 static GLuint link_program(const GLuint vertex_shader, const GLuint fragment_shader) {
-    // Creat a program
+    // Creat a id
     GLuint program_object_id = glCreateProgram();
     GLint link_status;
 
     assert(program_object_id != 0);
 
-    // ling shaders with program
+    // ling shaders with id
     glAttachShader(program_object_id, vertex_shader);
     glAttachShader(program_object_id, fragment_shader);
     glLinkProgram(program_object_id);
@@ -127,7 +119,7 @@ static GLuint link_program(const GLuint vertex_shader, const GLuint fragment_sha
 
     assert(link_status != 0);
 
-    // If all was successful, then we return the program object ID
+    // If all was successful, then we return the id object ID
     return program_object_id;
 }
 
