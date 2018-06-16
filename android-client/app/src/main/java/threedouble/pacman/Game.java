@@ -5,7 +5,6 @@ import android.os.Message;
 
 import java.io.IOException;
 import java.net.SocketException;
-import java.nio.ByteBuffer;
 
 public class Game extends Service {
     Game(MainActivity context) throws SocketException {

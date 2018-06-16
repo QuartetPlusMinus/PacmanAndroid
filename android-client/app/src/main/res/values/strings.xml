@@ -3,6 +3,7 @@
     <string name="button">start game</string>
     <string name="username">username</string>
     <string name="exception_enter_username">enter username</string>
-    <string name="default_ip_addres">10.0.2.2</string>
+    <string name="default_ip_addres">192.168.0.105</string>
+    <!--<string name="default_ip_addres">10.0.2.2</string>-->
     <string name="ip_addres">ip address</string>
 </resources>
