@@ -19,6 +19,7 @@ public:
 
     void step() {
         this->mutable_pos()->set_x(this->pos().x() + 1);
+        this->set_direction(Messages::Direction::RIGHT);
     }
 };
 

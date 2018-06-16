@@ -33,7 +33,7 @@ namespace Messages {
                 delete[] data_;
             }
 
-            friend Stream &operator<<(Stream &stream, Repeated<T> &value) {
+            friend Stream &operator<<(Stream &stream, const Repeated<T> &value) {
                 stream << (uint32) value.size_;
                 for (int i = 0; i < value.size_; i++) {
                     value.data_[i]->serializeToStream(stream);
