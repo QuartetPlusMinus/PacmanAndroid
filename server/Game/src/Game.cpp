@@ -25,6 +25,16 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
         client->setStatus(Client::IN_QUEUE);
     }
     if (client->getStatus() == Client::IN_GAME) {
+        // reconnect
+        if (clientInRoom.count(client->hash()) != 0) {
+
+            if (clientInRoom[client->hash()]->gameOver) {
+//                client->End();
+            } else {
+                clientInRoom[client->hash()]->connect(client.get());
+            }
+        }
+//        connect(client);
         return;
     }
     std::cout << "Client connected to server. Username: " << connectMsg.name() << endl;
@@ -37,7 +47,7 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
         if(newGameRoom != nullptr) {
             // Добавление клиентов в комнату
             for (unsigned int i = 0; i < clientsCountInRoom; i++) {
-                Client *currentClient = clientsQueue.front().get();
+                Client *currentClient = clientsQueue.front().get(); // TODO: add shared ptr
                 newGameRoom->addClient(currentClient);
                 clientsQueue.erase(clientsQueue.begin());
                 clientInRoom[currentClient->hash()] = newGameRoom;  // Добавление в таблицу клиент - комната

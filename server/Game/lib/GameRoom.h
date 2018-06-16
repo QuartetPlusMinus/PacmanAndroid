@@ -28,6 +28,8 @@ public:
 
     void start();
 
+    void connect(Client *client);
+
     void step();
 
     void eventStep(Messages::Direction direction);
@@ -38,12 +40,13 @@ public:
     }
 
     std::atomic<bool> ready;
+    std::atomic<bool> gameOver;
+
 private:
 
     std::vector<Pacman *> players;
     std::vector<Ghost *> ghosts;
     const GameMap::Map *map;
-    std::atomic<bool> gameOver;
 
 
 };

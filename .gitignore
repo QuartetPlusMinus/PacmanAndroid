@@ -66,3 +66,5 @@ android-client/.externalNativeBuild
 
 #cmake build files
 cmake-build-debug
+
+server/.idea/
