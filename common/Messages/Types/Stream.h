@@ -39,7 +39,7 @@ namespace Messages {
 
             Stream &operator<<(float value);
 
-            Stream &operator<<(string &value);
+            Stream &operator<<(const string &value);
 
             Stream &operator>>(int8 &value);
 

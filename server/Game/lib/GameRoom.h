@@ -37,13 +37,14 @@ public:
         std::cout << players[0]->client->getUsername() << " - " << players[1]->client->getUsername()<<std::endl;
     }
 
-
+    std::atomic<bool> ready;
 private:
 
     std::vector<Pacman *> players;
     std::vector<Ghost *> ghosts;
     const GameMap::Map *map;
     std::atomic<bool> gameOver;
+
 
 };
 

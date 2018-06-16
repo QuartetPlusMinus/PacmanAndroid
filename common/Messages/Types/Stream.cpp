@@ -34,7 +34,7 @@ Stream &Stream::operator<<(uint64 value) { return write(value); }
 
 Stream &Stream::operator<<(float value) { return write(value); }
 
-Stream &Stream::operator<<(string &value) {
+Stream &Stream::operator<<(const string &value) {
     write((uint32) value.length());
     stream_ << value;
     return *this;

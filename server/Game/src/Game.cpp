@@ -24,6 +24,9 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
         clientsQueue.push_back(client);
         client->setStatus(Client::IN_QUEUE);
     }
+    if (client->getStatus() == Client::IN_GAME) {
+        return;
+    }
     std::cout << "Client connected to server. Username: " << connectMsg.name() << endl;
 
     if (clientsQueue.size() >= clientsCountInRoom) { // Если набралось нужное кол-во пользователей

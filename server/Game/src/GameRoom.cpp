@@ -7,7 +7,7 @@
 //GameRoom::GameRoom(): map(nullptr) {}
 
 GameRoom::GameRoom(GameMap::Map *map) :
-        map(map), gameOver(false) {}
+        map(map), gameOver(false), ready(false) {}
 
 void GameRoom::addClient(Client *client) {
 
@@ -17,6 +17,8 @@ void GameRoom::addClient(Client *client) {
 }
 
 void GameRoom::start() {
+    std::cout << "Game started" << std::endl;
+
 
     // TODO: инициализирует объекты игры
 
@@ -67,8 +69,26 @@ void GameRoom::start() {
         startMessage.set_id(i);
         players[i]->client->Start(startMessage);
     }
+
+    ready = true;
+
 }
 
 void GameRoom::step() {
+    Messages::IterationMessage iterationMessage;
+    for( auto pacman: players){
+       pacman->step();
+        *iterationMessage.add_unit() = *(Messages::Unit *)pacman;
+//        auto unit = iterationMessage.add_unit();
+    }
+    for(auto ghost: ghosts){
+        ghost->step();
+        *iterationMessage.add_unit() = *(Messages::Unit *)ghost;
+    }
+
+    for( auto pacman: players){
+        pacman->client->Iteration(iterationMessage);
+        std::cout << "Send iteration" << std::endl;
+    }
 
 }

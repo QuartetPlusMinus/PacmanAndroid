@@ -19,7 +19,7 @@ namespace Messages {
 
         void serializeToString(string &str);
 
-        virtual void serializeToStream(Stream &stream)=0;
+        virtual void serializeToStream(Stream &stream) const =0;
 
         void parseFromString(string &str);
 
@@ -30,9 +30,7 @@ namespace Messages {
     public:
         Point();
 
-        Point(const Point &from);
-
-        void serializeToStream(Stream &stream) override;
+        void serializeToStream(Stream &stream) const override;
 
         void parseFromStream(Stream &stream) override;
 
@@ -61,7 +59,7 @@ namespace Messages {
 
         Item(const Item &from);
 
-        void serializeToStream(Stream &stream) override;
+        void serializeToStream(Stream &stream) const override;
 
         void parseFromStream(Stream &stream) override;
 
@@ -119,7 +117,16 @@ namespace Messages {
 
         Unit(const Unit &from);
 
-        void serializeToStream(Stream &stream) override;
+        Unit &operator=(const Unit &from) {
+            set_allocated_pos(new Point(*from.pos_));
+            direction_ = from.direction_;
+            entrypercent_ = from.entrypercent_;
+            status_ = from.status_;
+            health_ = from.health_;
+            return *this;
+        }
+
+        void serializeToStream(Stream &stream) const override;
 
         void parseFromStream(Stream &stream) override;
 
@@ -167,7 +174,7 @@ namespace Messages {
 
         UnitInit(const UnitInit &from);
 
-        void serializeToStream(Stream &stream) override;
+        void serializeToStream(Stream &stream) const override;
 
         void parseFromStream(Stream &stream) override;
 
@@ -214,7 +221,7 @@ namespace Messages {
 
         ConnectMessage(const ConnectMessage &from);
 
-        void serializeToStream(Stream &stream) override;
+        void serializeToStream(Stream &stream) const override;
 
         void parseFromStream(Stream &stream) override;
 
@@ -244,7 +251,7 @@ namespace Messages {
 
         QueueMessage(const QueueMessage &from);
 
-        void serializeToStream(Stream &stream) override;
+        void serializeToStream(Stream &stream) const override;
 
         void parseFromStream(Stream &stream) override;
 
@@ -264,7 +271,7 @@ namespace Messages {
 
         StartMessage(const StartMessage &from);
 
-        void serializeToStream(Stream &stream) override;
+        void serializeToStream(Stream &stream) const override;
 
         void parseFromStream(Stream &stream) override;
 
@@ -329,7 +336,7 @@ namespace Messages {
 
         EventMessage(const EventMessage &from);
 
-        void serializeToStream(Stream &stream) override;
+        void serializeToStream(Stream &stream) const override;
 
         void parseFromStream(Stream &stream) override;
 
@@ -349,7 +356,7 @@ namespace Messages {
 
         IterationMessage(const IterationMessage &from);
 
-        void serializeToStream(Stream &stream) override;
+        void serializeToStream(Stream &stream) const override;
 
         void parseFromStream(Stream &stream) override;
 
@@ -391,11 +398,11 @@ namespace Messages {
     public:
         EndMessage();
 
-        ~EndMessage() override ;
+        ~EndMessage() override;
 
         EndMessage(const EndMessage &from);
 
-        void serializeToStream(Stream &stream) override;
+        void serializeToStream(Stream &stream) const override;
 
         void parseFromStream(Stream &stream) override;
 
@@ -404,9 +411,9 @@ namespace Messages {
         void set_status(GameStatus value);
 
         uint32 points() const;
-        
+
         void set_points(uint16 value);
-        
+
     private:
         GameStatus status_;
         uint16 points_;

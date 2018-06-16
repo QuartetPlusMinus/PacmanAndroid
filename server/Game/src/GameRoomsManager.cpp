@@ -5,11 +5,27 @@
 #include <random>
 #include "../lib/GameRoomsManager.h"
 
+void gameStep(std::list<GameRoom*>& gameRooms) {
+    std::cout << "STEPPER" << std::endl;
+    while (true) {
+        for (auto room: gameRooms) {
+            if( room->ready ){
+                room->step();
+                std::cout << "ITERATION" << std::endl;
+            }
+            usleep(1000000);
+        }
+    }
+}
+
 GameRoomsManager::GameRoomsManager(unsigned int countOfRooms): countOfRooms(countOfRooms)
 {
     // инициализация карт
     GameMap::Map* gameMap = new GameMap::Default();
     maps.push_back(gameMap); // пока только одна карта
+    std::thread gameStepper(gameStep, std::ref(gameRooms));
+    gameStepper.detach();
+
 }
 
 bool GameRoomsManager::CanAddRoom() {
