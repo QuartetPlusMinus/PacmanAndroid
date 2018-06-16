@@ -61,7 +61,6 @@ void Game::start(Messages::StartMessage &startMessage) {
 
 void Game::iterate(Messages::IterationMessage &iterationMessage) {
     for (int i = 0; i < unitsCount; i++) {
-        // TODO: factory or builder
         *units[i]->mutable_data() = iterationMessage.unit(i);
     }
 }
