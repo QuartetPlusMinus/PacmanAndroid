@@ -19,7 +19,7 @@ void Game::start() {
 }
 
 void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &connectMsg) {
-    client->setUsername(connectMsg.name());
+        client->setUsername(connectMsg.name());
     if (client->getStatus() == Client::OUT_OF_GAME) {  // если клиент вне игры, то добавить его в очередь
         clientsQueue.push_back(client);
         client->setStatus(Client::IN_QUEUE);

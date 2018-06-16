@@ -44,12 +44,16 @@ namespace OpenDraw {
 
             GLint getUTextureUnit();
 
+            GLint getUZIndex();
+
+
         private:
             GLint aPosition;
             GLint aTextureCoordinates;
             GLint uVertexShift;
             GLint uTextureShift;
             GLint uTextureUnit;
+            GLint uZIndex;
         };
 
         class ColorProgram : public ShaderProgram {

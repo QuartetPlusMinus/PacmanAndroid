@@ -6,7 +6,6 @@
 
 #include "Game.h"
 
-
 void Game::onSurfaceCreated() {
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glEnable(GL_DEPTH_TEST);
@@ -32,10 +31,10 @@ void Game::onSurfaceChanged(int width, int height) {
 
 void Game::onDrawFrame() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    background.draw();
     for (int i = 0; i < unitsCount; i++) {
         units[i]->draw();
     }
-    background.draw();
 }
 
 void Game::init() {

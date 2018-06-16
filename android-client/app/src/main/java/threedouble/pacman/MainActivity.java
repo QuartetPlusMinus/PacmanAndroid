@@ -3,6 +3,7 @@ package threedouble.pacman;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
+import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -101,10 +102,22 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         messageHandler = new MessageHandler(messageField);
 
+        final MainActivity glContext = this;
+
         viewHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                setContentView((View) msg.obj);
+                glSurfaceView = new GLSurfaceView(glContext);
+
+                if (isProbablyEmulator()) {
+                    glSurfaceView.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+                }
+
+                glSurfaceView.setEGLContextClientVersion(2);
+                GameRenderer gameRenderer = new GameRenderer(getAssets(), (byte[])msg.obj);
+                glSurfaceView.setRenderer(gameRenderer);
+
+                setContentView(glSurfaceView);
                 super.handleMessage(msg);
             }
         };
@@ -120,8 +133,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     protected void onPause() {
         super.onPause();
 
-        if (game.isRendererSet()) {
-            game.getGLSurfaceView().onPause();
+        if (glSurfaceView != null) {
+            glSurfaceView.onPause();
         }
     }
 
@@ -129,8 +142,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     protected void onResume() {
         super.onResume();
 
-        if (game.isRendererSet()) {
-            game.getGLSurfaceView().onResume();
+        if (glSurfaceView != null) {
+            glSurfaceView.onResume();
         }
     }
 
@@ -171,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     public Server server;
     private Game game;
+    private GLSurfaceView glSurfaceView;
     private float onTouchX;
     private float onTouchY;
     static private final int PORT = 31415;
