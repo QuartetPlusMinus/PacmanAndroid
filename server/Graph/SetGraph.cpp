@@ -2,7 +2,7 @@
 #include "SetGraph.h"
 
 
-SetGraph::SetGraph( int n ) : adjacencyHashTable( n )
+SetGraph::SetGraph( unsigned int n ) : adjacencyHashTable( n )
 {
 }
 

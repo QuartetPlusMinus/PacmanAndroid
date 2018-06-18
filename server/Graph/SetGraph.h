@@ -7,7 +7,7 @@
 
 class SetGraph: public VirtGraph {
 public:
-    explicit SetGraph( int n );
+    explicit SetGraph(unsigned int n );
     explicit SetGraph( const VirtGraph* other );
 
     void AddEdge( int from, int to ) final;
