@@ -111,7 +111,7 @@ void GameRoom::step() {
 
     for( auto pacman: players){
         pacman->client->Iteration(iterationMessage);
-        std::cout << "Send iteration" << std::endl;
+//        std::cout << "Send iteration" << std::endl;
     }
 
 }

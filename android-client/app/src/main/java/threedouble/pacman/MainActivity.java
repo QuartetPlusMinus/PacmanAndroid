@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
+public class MainActivity extends AppCompatActivity {
     static {
         System.loadLibrary("game");
     }
@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 glSurfaceView.setEGLContextClientVersion(2);
                 GameRenderer gameRenderer = new GameRenderer(getAssets(), (byte[])msg.obj);
                 glSurfaceView.setRenderer(gameRenderer);
+                glSurfaceView.setOnTouchListener(new GameOnTouchListener(server));
 
                 setContentView(glSurfaceView);
                 super.handleMessage(msg);
@@ -147,46 +148,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
     }
 
-    @Override
-    public boolean onTouch(View view, MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                onTouchX = event.getX();
-                onTouchY = event.getY();
-                break;
-            case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_CANCEL:
-                float xMove = Math.abs(onTouchX - event.getX());
-                float yMove = Math.abs(onTouchY - event.getY());
-                if (xMove < 0.1 && yMove < 0.1)
-                    break;
-                try {
-                    if (xMove > yMove) {
-                        if (onTouchX < event.getX()) {
-                            server.Event(Direction.RIGHT);
-                        } else {
-                            server.Event(Direction.LEFT);
-                        }
-                    } else {
-                        if (onTouchY < event.getY()) {
-                            server.Event(Direction.DOWN);
-                        } else {
-                            server.Event(Direction.UP);
-                        }
-                    }
-                } catch (IOException e) {
-                    Toast.makeText(this, e.toString(),
-                            Toast.LENGTH_LONG).show();
-                }
-        }
-        return view.performClick();
-    }
-
     public Server server;
     private Game game;
     private GLSurfaceView glSurfaceView;
-    private float onTouchX;
-    private float onTouchY;
     static private final int PORT = 31415;
 
 }
