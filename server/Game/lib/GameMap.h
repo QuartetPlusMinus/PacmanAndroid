@@ -20,12 +20,9 @@ namespace GameMap {
         Map(unsigned int playersCount, unsigned int ghostsCount) :
                 playersCount(playersCount),
                 ghostsCount(ghostsCount) {
-//            gameMap = new SetGraph(width * height);
         }
 
-        ~Map() {
-//            delete gameMap;
-        }
+        virtual ~Map() = default;
 
         const unsigned int playersCount;
         const unsigned int ghostsCount;
