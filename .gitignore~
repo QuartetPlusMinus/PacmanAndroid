@@ -67,5 +67,3 @@ android-client/.externalNativeBuild
 
 #cmake build files
 cmake-build-debug
-
-map-editor/cmake-build

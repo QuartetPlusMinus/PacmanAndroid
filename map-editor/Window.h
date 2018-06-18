@@ -1,6 +1,8 @@
 #ifndef Window_h
 #define Window_h
 
+#include <SFML/Graphics.hpp>
+
 class Window {
 public:
     virtual void draw(sf::RenderWindow &window) = 0;
@@ -32,12 +34,6 @@ public:
     sf::Vector2i spriteSelected; // выбраный спрайт
     sf::Vector2i selectionPos; // нужно для корректного отображения selectionBox
 };
-
-SelectionBox::SelectionBox(sf::Vector2f size, sf::Vector2f position, sf::Color color) :
-    WinShape(size, position, color),
-    spriteSelected(0, 0),
-    selectionPos(2, 2)
-    {}
 
 class Tileset {
 public:

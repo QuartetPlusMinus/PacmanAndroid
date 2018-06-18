@@ -75,6 +75,12 @@ void Tileset::TextureCutting(WinShape tilesetShape) {
     }
 }
 
+SelectionBox::SelectionBox(sf::Vector2f size, sf::Vector2f position, sf::Color color) :
+    WinShape(size, position, color),
+    spriteSelected(0, 0),
+    selectionPos(2, 2)
+    {}
+
 Grid::Grid(int w, int h, int th) :
     width(w),
     height(h),

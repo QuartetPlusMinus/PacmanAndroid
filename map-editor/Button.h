@@ -1,6 +1,8 @@
 #ifndef Button_h
 #define Button_h
 
+#include <SFML/Graphics.hpp>
+
 class Button {
 public:
     virtual void draw(sf::RenderWindow &window) = 0;
