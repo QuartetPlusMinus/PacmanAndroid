@@ -2,8 +2,6 @@
 
 #include "setUpGraph.h"
 
-
-
 enum Direction {
     NONE = 0,
     RIGHT = 1,
@@ -57,7 +55,8 @@ void setUp(VirtGraph *gameMap, std::string *stringMap, unsigned int width, unsig
     }
 
 }
-void find () {
+
+void find() {
     int start = 6;
     int goal = 13;
     std::queue<int> frontier;
@@ -69,36 +68,36 @@ void find () {
         int curent = frontier.front();
         frontier.pop();
 
-        for (auto next: gameMap->GetNextVertices(curent)) {
-//            std::unordered_set<int>::const_iterator vertex = visited.find(next);
-            if (visited.count(next) == 0) {
-                if (next == goal) {
-                    Direction dir = NONE;
-                    int difference = next - curent;
-                    switch (difference) {
-                        case 1:
-                            dir = RIGHT;
-                            break;
-                        case -1:
-                            dir = LEFT;
-                            break;
-                        case WIDTH:
-                            dir = DOWN;
-                            break;
-                        case -WIDTH:
-                            dir = UP;
-                            break;
-                        default:
-                            dir = NONE;
-                            break;
-                    }
-                    std::cout << "DIRECTION: " << dir << std::endl;
-                    break;
-                }
-                std::cout << next << ") " << next / WIDTH << " : " << next % WIDTH << std::endl;
-                frontier.push(next);
-                visited.insert(next);
-            }
-        }
+//        for (auto next: gameMap->GetNextVertices(curent)) {
+////            std::unordered_set<int>::const_iterator vertex = visited.find(next);
+//            if (visited.count(next) == 0) {
+//                if (next == goal) {
+//                    Direction dir = NONE;
+//                    int difference = next - curent;
+//                    switch (difference) {
+//                        case 1:
+//                            dir = RIGHT;
+//                            break;
+//                        case -1:
+//                            dir = LEFT;
+//                            break;
+//                        case WIDTH:
+//                            dir = DOWN;
+//                            break;
+//                        case -WIDTH:
+//                            dir = UP;
+//                            break;
+//                        default:
+//                            dir = NONE;
+//                            break;
+//                    }
+//                    std::cout << "DIRECTION: " << dir << std::endl;
+//                    break;
+//                }
+//                std::cout << next << ") " << next / WIDTH << " : " << next % WIDTH << std::endl;
+//                frontier.push(next);
+//                visited.insert(next);
+//            }
+//        }
     }
 }
