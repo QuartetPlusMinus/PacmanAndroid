@@ -19,8 +19,7 @@ class Network {
 public:
     explicit Network(unsigned short port) :
             socket(service, ip::udp::endpoint(ip::udp::v4(), port)),
-            listen(false),
-            buff()
+            listen(false)
     {
 
         socket.async_receive_from(
