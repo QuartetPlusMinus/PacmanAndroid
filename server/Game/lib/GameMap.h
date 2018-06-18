@@ -20,11 +20,11 @@ namespace GameMap {
         Map(unsigned int playersCount, unsigned int ghostsCount) :
                 playersCount(playersCount),
                 ghostsCount(ghostsCount) {
-            gameMap = new SetGraph(width * height);
+//            gameMap = new SetGraph(width * height);
         }
 
         ~Map() {
-            delete gameMap;
+//            delete gameMap;
         }
 
         const unsigned int playersCount;
@@ -39,7 +39,7 @@ namespace GameMap {
 
         std::vector<Messages::Point> playersPositions;
         std::vector<Messages::Point> ghostsPositions;
-        SetGraph* gameMap;
+        SetGraph gameMap{width * height};
     };
 
 };
