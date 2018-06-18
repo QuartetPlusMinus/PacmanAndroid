@@ -7,6 +7,7 @@
 
 #include <sstream>
 #include <iostream>
+#include <vector>
 
 #include "SimpleTypes.h"
 
@@ -62,15 +63,20 @@ namespace Messages {
             Stream &operator>>(string &value);
 
             string str();
+// TODO: вернуть
+//            std::stringstream stream_;
 
         private:
-            std::stringstream stream_;
 
             template<typename T>
             Stream &write(const T &value);
 
             template<typename T>
             Stream &read(T &value);
+
+            std::vector<char> data_;
+            std::vector<char>::iterator iterator_;
+
         };
     }
 }

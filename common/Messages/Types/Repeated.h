@@ -44,7 +44,6 @@ namespace Messages {
             friend Stream &operator>>(Stream &stream, Repeated<T> &value) {
                 value.clear();
 
-                auto some = stream.str();
                 uint32 size;
                 stream >> size;
                 value.size_ = (unsigned int) size;
@@ -52,6 +51,7 @@ namespace Messages {
                 value.data_ = new T *[size];
 
                 for (int i = 0; i < value.size_; i++) {
+                    auto some = stream.str();
                     value.data_[i] = new T();
                     value.data_[i]->parseFromStream(stream);
                 }

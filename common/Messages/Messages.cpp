@@ -148,8 +148,6 @@ Unit::Unit(const Unit &from) :
 }
 
 void Unit::serializeToStream(Stream &stream) const {
-//    stream << pos_->x();
-//    stream << pos_->y();
     pos_->serializeToStream(stream);
     stream << (uint8) direction_;
     stream << entrypercent_;

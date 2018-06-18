@@ -6,12 +6,12 @@
 
 using namespace Messages::SimpleTypes;
 
-Stream::Stream() : stream_() {}
+Stream::Stream() : iterator_(data_.begin()) {}
 
- Stream::Stream(string &str) : stream_(str) {}
+Stream::Stream(string &str) : data_(str.begin(), str.end()), iterator_(data_.begin()) {}
 
 Stream &Stream::operator<<(int8 value) {
-    stream_ << value;
+    data_.push_back(value);
     return *this;
 }
 
@@ -22,7 +22,7 @@ Stream &Stream::operator<<(int32 value) { return write(value); }
 Stream &Stream::operator<<(int64 value) { return write(value); }
 
 Stream &Stream::operator<<(uint8 value) {
-    stream_ << value;
+    data_.push_back(value);
     return *this;
 }
 
@@ -36,12 +36,15 @@ Stream &Stream::operator<<(float value) { return write(value); }
 
 Stream &Stream::operator<<(const string &value) {
     write((uint32) value.length());
-    stream_ << value;
+    std::copy(value.begin(), value.end(), std::back_inserter(data_));
     return *this;
 }
 
 Stream &Stream::operator>>(int8 &value) {
-    stream_ >> value;
+    value = *iterator_;
+    if (iterator_ != data_.end()) {
+        iterator_++;
+    }
     return *this;
 }
 
@@ -52,7 +55,9 @@ Stream &Stream::operator>>(int32 &value) { return read(value); }
 Stream &Stream::operator>>(int64 &value) { return read(value); }
 
 Stream &Stream::operator>>(uint8 &value) {
-    stream_ >> value;
+    int8 buff;
+    operator>>(buff);
+    value = (uint8)buff;
     return *this;
 }
 
@@ -67,23 +72,25 @@ Stream &Stream::operator>>(float &value) { return read(value); }
 Stream &Stream::operator>>(string &value) {
     uint32 size;
     read(size);
-    value.resize(size);
-    stream_.read(&value[0], size);
+    value = string(iterator_, iterator_+size);
+    iterator_ += size;
     return *this;
 }
 
 string Stream::str() {
-    return stream_.str();
+    return string(data_.begin(), data_.end());
 }
 
 template<typename T>
 Stream &Stream::write(const T &value) {
-    stream_.write((char *) &value, sizeof(T));
+    auto start = (char*) &value;
+    std::copy(start, start + sizeof(T), std::back_inserter(data_));
     return *this;
 }
 
 template<typename T>
 Stream &Stream::read(T &value) {
-    stream_.read((char *) &value, sizeof(T));
+    std::copy(iterator_, iterator_+ sizeof(T), (char*) &value);
+    iterator_ += sizeof(T);
     return *this;
 }

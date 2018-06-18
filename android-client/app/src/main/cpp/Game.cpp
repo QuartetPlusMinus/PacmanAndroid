@@ -23,6 +23,8 @@ void Game::onSurfaceCreated() {
         units[i]->init();
         units[i]->setTexture(texturePM);
     }
+
+    started = true;
 }
 
 void Game::onSurfaceChanged(int width, int height) {
@@ -35,10 +37,6 @@ void Game::onDrawFrame() {
     for (int i = 0; i < unitsCount; i++) {
         units[i]->draw();
     }
-}
-
-void Game::init() {
-
 }
 
 void Game::start(Messages::StartMessage &startMessage) {
@@ -65,5 +63,9 @@ void Game::iterate(Messages::IterationMessage &iterationMessage) {
 }
 
 void Game::end(Messages::EndMessage &endMessage) {
+    started = false;
+}
 
+bool Game::isStarted() {
+    return started;
 }

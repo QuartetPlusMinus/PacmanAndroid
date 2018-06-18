@@ -27,9 +27,9 @@ public class Game extends Service {
 
     @Override
     protected void Start(byte[] message) {
-        Message msg = context.viewHandler.obtainMessage();
+        Message msg = context.startHandler.obtainMessage();
         msg.obj = message;
-        context.viewHandler.sendMessage(msg);
+        context.startHandler.sendMessage(msg);
     }
 
     @Override

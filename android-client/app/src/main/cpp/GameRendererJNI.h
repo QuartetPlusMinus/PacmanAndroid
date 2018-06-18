@@ -70,6 +70,10 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_startJNI
  */
 JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_iterateJNI
         (JNIEnv *env, jobject, jbyteArray msgBytes) {
+    if (not game.isStarted()) {
+        return;
+    }
+
     jboolean isCopy = JNI_FALSE;
     std::string message((char *) env->GetByteArrayElements(msgBytes, &isCopy),
                         (size_t) env->GetArrayLength(msgBytes));

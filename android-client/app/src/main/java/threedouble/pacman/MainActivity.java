@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         private final TextView messageField;
     }
 
-    public Handler viewHandler;
+    public Handler startHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         final MainActivity glContext = this;
 
-        viewHandler = new Handler() {
+        startHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 glSurfaceView = new GLSurfaceView(glContext);
