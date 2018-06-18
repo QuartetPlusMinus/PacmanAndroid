@@ -10,17 +10,17 @@
 class GameRoomsManager {
 public:
     GameRoomsManager(unsigned int countOfRooms);
+    ~GameRoomsManager();
     bool CanAddRoom();
     GameRoom* AddRoom();
+    void cleanRooms();
 
 private:
     GameMap::Map* getMap() const;
 
-
     std::list<GameRoom*> gameRooms;
     unsigned int countOfRooms;
     std::vector<GameMap::Map*> maps;
-
 
 };
 

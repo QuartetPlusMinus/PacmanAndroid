@@ -40,9 +40,9 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
     std::cout << "Client connected to server. Username: " << connectMsg.name() << endl;
 
     if (clientsQueue.size() >= clientsCountInRoom) { // Если набралось нужное кол-во пользователей
+        //
 
-// Создаём комнату
-
+        // Создаём комнату
         GameRoom* newGameRoom = manager.AddRoom();
         if(newGameRoom != nullptr) {
             // Добавление клиентов в комнату

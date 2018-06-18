@@ -25,10 +25,27 @@ GameRoomsManager::GameRoomsManager(unsigned int countOfRooms): countOfRooms(coun
     maps.push_back(gameMap); // пока только одна карта
     std::thread gameStepper(gameStep, std::ref(gameRooms));
     gameStepper.detach();
+}
 
+GameRoomsManager::~GameRoomsManager(){
+    for(auto room: gameRooms) {
+        delete room;
+    }
+};
+
+
+void GameRoomsManager::cleanRooms() {
+
+    for(auto room: gameRooms) {
+        if( room->gameOver ) {
+            delete room;
+        }
+    }
+    gameRooms.remove_if([](GameRoom* room){return !room->gameOver;});
 }
 
 bool GameRoomsManager::CanAddRoom() {
+    cleanRooms();
     if( gameRooms.size() < countOfRooms) {
         return true;
     }

@@ -70,6 +70,10 @@ namespace GameMap {
             return data;
         }
 
+        virtual void setUpGraph() final {
+
+         }
+
     };
 }
 // 24

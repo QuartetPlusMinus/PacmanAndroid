@@ -47,11 +47,6 @@ std::vector<int> SetGraph::GetPrevVertices( int vertex ) const
         if ( v != fromVertices.end()){
             buf.push_back( *v );
         }
-//        for( int v : fromVertices ) {
-//            if( v == vertex ) {
-//                buf.push_back(v);
-//            }
-//        }
     }
     return buf;
 }

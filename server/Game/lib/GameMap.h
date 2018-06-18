@@ -8,6 +8,8 @@
 #include <string>
 #include <vector>
 #include "../../../common/Messages/Messages.h"
+#include "../../Graph/SetGraph.h"
+#include "../../../common/Constants/ConstValues.h"
 
 //using namespace threedouble::proto;
 
@@ -17,21 +19,29 @@ namespace GameMap {
     public:
         Map(unsigned int playersCount, unsigned int ghostsCount) :
                 playersCount(playersCount),
-                ghostsCount(ghostsCount),
-                width(0),
-                height(0) {
+                ghostsCount(ghostsCount) {
+            gameMap = new SetGraph(width * height);
+        }
+
+        ~Map() {
+            delete gameMap;
         }
 
         const unsigned int playersCount;
         const unsigned int ghostsCount;
-        const unsigned int width;
-        const unsigned int height;
+        const unsigned int width = GameConstants::MAP_WIDTH;
+        const unsigned int height = GameConstants::MAP_HEIGHT;
 
         virtual const std::string *getTileMap() = 0;
+        void setUpGraph(std::string* stringMap );
+
+
 
         std::vector<Messages::Point> playersPositions;
         std::vector<Messages::Point> ghostsPositions;
+        SetGraph* gameMap;
     };
+
 };
 
 
