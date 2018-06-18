@@ -13,6 +13,7 @@ namespace OpenDraw {
         static const char textureVertexShader[] = ""
                 "uniform vec2 u_VertexShift;\n"
                 "uniform vec2 u_TextureShift;\n"
+                "uniform float u_ZIndex;\n"
                 "attribute vec4 a_Position;\n"
                 "attribute vec2 a_TextureCoordinates;\n"
                 "\n"
@@ -21,7 +22,7 @@ namespace OpenDraw {
                 "void main()\n"
                 "{\n"
                 "    v_TextureCoordinates = vec2(a_TextureCoordinates.x + u_TextureShift.x, a_TextureCoordinates.y + u_TextureShift.y);\n"
-                "    gl_Position = vec4(a_Position.x + u_VertexShift.x, a_Position.y + u_VertexShift.y, a_Position.z, a_Position.w);\n"
+                "    gl_Position = vec4(a_Position.x + u_VertexShift.x, a_Position.y + u_VertexShift.y, a_Position.z - u_ZIndex, 0.5 * a_Position.w);\n"
                 "}";
 
         static const char textureFragmentShader[] = ""

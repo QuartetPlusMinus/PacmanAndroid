@@ -11,6 +11,7 @@
 class Unit : public Messages::UnitInit, public IDrawable {
 public:
     Unit() = default;
+
     Unit(Messages::UnitInit &unitInit) : Messages::UnitInit(unitInit) {};
 
     void init() final {
@@ -18,11 +19,25 @@ public:
     }
 
     void draw() final {
+        step();
+        switch (data().direction()) {
+            case Messages::RIGHT :
+                sprite.setPosition(data().pos().x() / 15.0f + data().entrypercent(),
+                                   data().pos().y() / 24.0f
+                );
+                break;
+            default:
+                break;
+        }
         sprite.draw();
     }
 
     void setTexture(OpenDraw::Texture &texture) final {
         sprite.setTexture(texture);
+    }
+
+    void step() {
+        mutable_data()->set_entrypercent(data().entrypercent() + 0.0014f);
     }
 
 protected:
@@ -35,8 +50,9 @@ public:
         sprite.setTexturePosition(0.7142f, 0);
         sprite.setSize(0.0416f, 0.0666f);
         sprite.setTextureSize(0.25f, 0.0714f);
+        sprite.setZIndex(0.01);
         // TODO: make consts
-        sprite.setPosition(2 * data().pos().x()/15.0f, 2 * data().pos().y()/24.0f);
+        sprite.setPosition(data().pos().x() / 15.0f, data().pos().y() / 24.0f);
     }
 };
 
@@ -46,8 +62,10 @@ public:
         sprite.setTexturePosition(0, 0);
         sprite.setSize(0.0416f, 0.0666f);
         sprite.setTextureSize(0.25f, 0.0714f);
+        sprite.setZIndex(0.01);
+
         // TODO: make consts
-        sprite.setPosition(2 * data().pos().x()/15.0f, 2 * data().pos().y()/24.0f);
+        sprite.setPosition(data().pos().x() / 15.0f, data().pos().y() / 24.0f);
     }
 };
 

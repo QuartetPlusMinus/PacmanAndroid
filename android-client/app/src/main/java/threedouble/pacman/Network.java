@@ -9,7 +9,7 @@ import java.net.SocketException;
 
 class Network implements Runnable{
     Network() throws SocketException {
-        socket = new DatagramSocket();
+        socket = new DatagramSocket(27182);
     }
 
     @Override

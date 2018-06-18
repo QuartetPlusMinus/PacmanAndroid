@@ -65,6 +65,7 @@ void TextureProgram::init() {
     uVertexShift = glGetUniformLocation(id, "u_VertexShift");
     uTextureShift = glGetUniformLocation(id, "u_TextureShift");
     uTextureUnit = glGetUniformLocation(id, "u_TextureUnit");
+    uZIndex = glGetUniformLocation(id, "u_ZIndex");
 }
 
 GLint TextureProgram::getAPosition() {
@@ -86,4 +87,8 @@ GLint TextureProgram::getUTextureShift() {
 
 GLint TextureProgram::getUTextureUnit() {
     return uTextureUnit;
+}
+
+GLint TextureProgram::getUZIndex() {
+    return uZIndex;
 }

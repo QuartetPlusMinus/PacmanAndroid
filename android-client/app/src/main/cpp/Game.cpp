@@ -6,7 +6,6 @@
 
 #include "Game.h"
 
-
 void Game::onSurfaceCreated() {
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glEnable(GL_DEPTH_TEST);
@@ -24,6 +23,8 @@ void Game::onSurfaceCreated() {
         units[i]->init();
         units[i]->setTexture(texturePM);
     }
+
+    started = true;
 }
 
 void Game::onSurfaceChanged(int width, int height) {
@@ -32,14 +33,10 @@ void Game::onSurfaceChanged(int width, int height) {
 
 void Game::onDrawFrame() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    background.draw();
     for (int i = 0; i < unitsCount; i++) {
         units[i]->draw();
     }
-    background.draw();
-}
-
-void Game::init() {
-
 }
 
 void Game::start(Messages::StartMessage &startMessage) {
@@ -60,8 +57,15 @@ void Game::start(Messages::StartMessage &startMessage) {
 }
 
 void Game::iterate(Messages::IterationMessage &iterationMessage) {
+    for (int i = 0; i < unitsCount; i++) {
+        *units[i]->mutable_data() = iterationMessage.unit(i);
+    }
 }
 
 void Game::end(Messages::EndMessage &endMessage) {
+    started = false;
+}
 
+bool Game::isStarted() {
+    return started;
 }

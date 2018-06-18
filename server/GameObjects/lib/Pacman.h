@@ -8,14 +8,19 @@
 #include "../../NetWork/lib/Client.h"
 
 
-class Player : public Messages::Unit {
+class Pacman : public Messages::Unit {
 public:
-    explicit Player(Client *client) :
+    explicit Pacman(Client *client) :
             client(client) {
 
     }
 
     const Client *client;
+
+    void step() {
+        this->mutable_pos()->set_x(this->pos().x() + 1);
+        this->set_direction(Messages::Direction::RIGHT);
+    }
 };
 
 #endif //SERVER_PLAYER_H

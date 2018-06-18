@@ -53,7 +53,7 @@ freeline.py
 freeline/
 freeline_project_description.json
 
-#android-client
+# android-client
 android-client/*.iml
 android-client/.gradle
 android-client/local.properties
@@ -65,5 +65,8 @@ android-client/build
 android-client/captures
 android-client/.externalNativeBuild
 
-#cmake build files
+# cmake build files
 cmake-build-debug
+
+server/.idea
+server/cmake-build-debug

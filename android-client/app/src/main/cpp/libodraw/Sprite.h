@@ -27,6 +27,8 @@ namespace OpenDraw {
 
         void draw();
 
+        void setZIndex(float index);
+
         void setPosition(float x, float y);
 
         void setTexturePosition(float x, float y);
@@ -40,6 +42,7 @@ namespace OpenDraw {
         vec2 size;
         vec2 texturePosition;
         vec2 tSize;
+        float zIndex;
 
     };
 }

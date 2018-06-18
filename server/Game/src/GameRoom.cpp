@@ -7,16 +7,41 @@
 //GameRoom::GameRoom(): map(nullptr) {}
 
 GameRoom::GameRoom(GameMap::Map *map) :
-        map(map), gameOver(false) {}
+        map(map), gameOver(false), ready(false) {}
 
 void GameRoom::addClient(Client *client) {
 
     // TODO: добавить игрока
 
-    players.push_back(new Player(client));
+    players.push_back(new Pacman(client));
+}
+
+void GameRoom::connect(Client* client) {
+    Messages::StartMessage startMessage;
+
+    for (int i = 0; i < map->playersCount; i++) {
+        Messages::UnitInit *unitInit = startMessage.add_unit();
+        *unitInit->mutable_data() = *(Messages::Unit *) players[i];
+        unitInit->set_name(players[i]->client->getUsername());
+        unitInit->set_type(Messages::PACMAN);
+    }
+
+    for (int i = 0; i < map->ghostsCount; i++) {
+
+        Messages::UnitInit *unitInit = startMessage.add_unit();
+        *unitInit->mutable_data() = *(Messages::Unit *) ghosts[i];
+        unitInit->set_type(Messages::GHOST);
+    }
+
+    client->Start(startMessage);
+
+
+
 }
 
 void GameRoom::start() {
+    std::cout << "Game started" << std::endl;
+
 
     // TODO: инициализирует объекты игры
 
@@ -49,7 +74,7 @@ void GameRoom::start() {
         // TODO: Рассчитать направления ghost'ов
         // TODO: Заменить на фабрику
 
-        auto currentGhost = new Messages::Unit();
+        auto currentGhost = new Ghost();
 
         *currentGhost->mutable_pos() = map->ghostsPositions[i];
         currentGhost->set_direction(Messages::NONE);
@@ -67,4 +92,26 @@ void GameRoom::start() {
         startMessage.set_id(i);
         players[i]->client->Start(startMessage);
     }
+
+    ready = true;
+
+}
+
+void GameRoom::step() {
+    Messages::IterationMessage iterationMessage;
+    for( auto pacman: players){
+       pacman->step();
+        *iterationMessage.add_unit() = *(Messages::Unit *)pacman;
+//        auto unit = iterationMessage.add_unit();
+    }
+    for(auto ghost: ghosts){
+        ghost->step();
+        *iterationMessage.add_unit() = *(Messages::Unit *)ghost;
+    }
+
+    for( auto pacman: players){
+        pacman->client->Iteration(iterationMessage);
+        std::cout << "Send iteration" << std::endl;
+    }
+
 }

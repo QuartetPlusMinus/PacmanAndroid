@@ -3,14 +3,13 @@
 
 #include <vector>
 
-#include "macros.h"
 #include "IDrawable.h"
 #include "Background.h"
 #include "Units.h"
 
 class Game {
 public:
-    Game() {}
+    Game() : started(false) {}
 
     void onSurfaceCreated();
 
@@ -18,13 +17,13 @@ public:
 
     void onDrawFrame();
 
-    void init();
-
     void start(Messages::StartMessage &startMessage);
 
     void iterate(Messages::IterationMessage &iterationMessage);
 
     void end(Messages::EndMessage &endMessage);
+
+    bool isStarted();
 
 private:
 
@@ -33,6 +32,7 @@ private:
 //    Point *points;
     Unit **units;
     int unitsCount;
+    bool started;
 };
 
 #endif // ANDROID_CLIENT_GAME_H

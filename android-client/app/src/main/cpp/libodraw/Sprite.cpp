@@ -11,8 +11,9 @@ using namespace OpenDraw;
 Sprite::Sprite() : buffer(0) {
     setPosition(0.0f, 0.0f);
     setTexturePosition(0.0f, 0.0f);
-    setSize(1.0f,1.0f);
-    setTextureSize(1.0f,1.0f);
+    setSize(1.0f, 1.0f);
+    setTextureSize(1.0f, 1.0f);
+    zIndex = 0.0f;
 }
 
 void Sprite::setSize(float height, float width) {
@@ -33,10 +34,10 @@ void Sprite::setTexture(Texture &texture) {
 
 void Sprite::init() {
     const float data[] = {
-            -size[0], -size[1], 0.0f, tSize[1],
-            size[0], -size[1], tSize[0], tSize[1],
-            -size[0], size[1], 0.0f, 0.0f,
-            size[0], size[1], tSize[0], 0.0f,
+            -0.5f, 0.5f - size[1], 0.0f, tSize[1],
+            -0.5f + size[0], 0.5f - size[1], tSize[0], tSize[1],
+            -0.5f, 0.5f, 0.0f, 0.0f,
+            -0.5f + size[0], 0.5f, tSize[0], 0.0f,
     };
 
     // generate new OpenGL vertex buffer object (buffer)
@@ -59,6 +60,7 @@ void Sprite::draw() {
     glUniform2fv(program.getUVertexShift(), 1, position);
     glUniform2fv(program.getUTextureShift(), 1, texturePosition);
     glUniform1i(program.getUTextureUnit(), texture.getId());
+    glUniform1f(program.getUZIndex(), zIndex);
 
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
 
@@ -76,6 +78,11 @@ void Sprite::draw() {
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
+
+void Sprite::setZIndex(float index) {
+    zIndex = index;
+}
+
 
 void Sprite::setPosition(float x, float y) {
     position[0] = x;

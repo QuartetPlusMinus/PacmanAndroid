@@ -30,11 +30,7 @@ Point::Point() :
         x_(0),
         y_(0) {}
 
-Point::Point(const Point &from) :
-        x_(from.x_),
-        y_(from.y_) {}
-
-void Point::serializeToStream(Stream &stream) {
+void Point::serializeToStream(Stream &stream) const{
     stream << x_ << y_;
 }
 
@@ -78,7 +74,7 @@ Item::Item(const Item &from) :
     }
 }
 
-void Item::serializeToStream(Stream &stream) {
+void Item::serializeToStream(Stream &stream) const {
     stream << (uint8) type_;
     pos_->serializeToStream(stream);
 }
@@ -143,13 +139,15 @@ Unit::~Unit() {
 }
 
 Unit::Unit(const Unit &from) :
-        pos_(from.pos_),
+        pos_(new Point(*from.pos_)),
         direction_(from.direction_),
         entrypercent_(from.entrypercent_),
         status_(from.status_),
-        health_(from.health_) {}
+        health_(from.health_) {
+    std::cout << "KOPIROVANIE" << std::endl;
+}
 
-void Unit::serializeToStream(Stream &stream) {
+void Unit::serializeToStream(Stream &stream) const {
     pos_->serializeToStream(stream);
     stream << (uint8) direction_;
     stream << entrypercent_;
@@ -194,6 +192,7 @@ Point *Unit::mutable_pos() {
 }
 
 void Unit::set_allocated_pos(Point *pos) {
+    clear_pos();
     pos_ = pos;
 }
 
@@ -247,7 +246,7 @@ UnitInit::UnitInit(const UnitInit &from) :
         name_(from.name_),
         data_(new Unit(*from.data_)) {}
 
-void UnitInit::serializeToStream(Stream &stream) {
+void UnitInit::serializeToStream(Stream &stream) const {
     stream << (uint8) type_;
     stream << name_;
     data_->serializeToStream(stream);
@@ -339,7 +338,7 @@ ConnectMessage::ConnectMessage() :
 ConnectMessage::ConnectMessage(const ConnectMessage &from) :
         name_(from.name_) {}
 
-void ConnectMessage::serializeToStream(Stream &stream) {
+void ConnectMessage::serializeToStream(Stream &stream) const {
     stream << name_;
 }
 
@@ -387,7 +386,7 @@ QueueMessage::~QueueMessage() = default;
 
 QueueMessage::QueueMessage(const QueueMessage &from) : position_(from.position_) {}
 
-void QueueMessage::serializeToStream(Stream &stream) {
+void QueueMessage::serializeToStream(Stream &stream) const {
     stream << position_;
 }
 
@@ -419,7 +418,7 @@ StartMessage::StartMessage(const StartMessage &from) : id_(from.id_),
                                                        unit_(from.unit_),
                                                        item_(from.item_) {}
 
-void StartMessage::serializeToStream(Stream &stream) {
+void StartMessage::serializeToStream(Stream &stream) const {
     stream << id_ << map_ << unit_ << item_;
 }
 
@@ -534,7 +533,7 @@ EventMessage::~EventMessage() = default;
 
 EventMessage::EventMessage(const EventMessage &from) : direction_(from.direction_) {}
 
-void EventMessage::serializeToStream(Stream &stream) {
+void EventMessage::serializeToStream(Stream &stream) const {
     stream << (uint8) direction_;
 }
 
@@ -564,7 +563,7 @@ IterationMessage::IterationMessage(const IterationMessage &from) :
         unit_(from.unit_),
         item_(from.item_) {}
 
-void IterationMessage::serializeToStream(Stream &stream) {
+void IterationMessage::serializeToStream(Stream &stream) const {
     stream << unit_ << item_;
 }
 
@@ -646,7 +645,7 @@ EndMessage::EndMessage(const EndMessage &from) :
         status_(from.status_),
         points_(from.status_) {}
 
-void EndMessage::serializeToStream(Stream &stream) {
+void EndMessage::serializeToStream(Stream &stream) const {
     stream<<(uint8)status_<<points_;
 }
 
