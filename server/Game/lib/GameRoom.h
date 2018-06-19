@@ -35,13 +35,9 @@ public:
     void eventStep(Messages::Direction direction);
 
 
-    void printPlayers() {
-        std::cout << players[0]->client->getUsername() << " - " << players[1]->client->getUsername()<<std::endl;
-    }
-
     std::atomic<bool> ready;
     std::atomic<bool> gameOver;
-
+    std::chrono::time_point<std::chrono::steady_clock> lastStepTime;
 private:
 
     std::vector<Pacman *> players;

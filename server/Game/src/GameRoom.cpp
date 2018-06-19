@@ -93,6 +93,7 @@ void GameRoom::start() {
         players[i]->client->Start(startMessage);
     }
 
+    lastStepTime = std::chrono::steady_clock::now();
     ready = true;
 
 }
@@ -113,5 +114,8 @@ void GameRoom::step() {
         pacman->client->Iteration(iterationMessage);
 //        std::cout << "Send iteration" << std::endl;
     }
+
+    lastStepTime = std::chrono::steady_clock::now();
+
 
 }

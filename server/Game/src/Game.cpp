@@ -85,7 +85,6 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
 
 void Game::Event(std::shared_ptr<Client> client, Messages::EventMessage &eventMsg) {
     if (clientInRoom.find(client->hash()) != clientInRoom.end()) {
-        std::cout << "Client send event to server\n";
-        clientInRoom[client->hash()]->printPlayers();
+        std::cout << "Client "<< client->getUsername() << " send event to server\n";
     }
 }
