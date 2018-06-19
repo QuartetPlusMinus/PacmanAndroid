@@ -5,14 +5,14 @@
 #ifndef ANDROID_CLIENT_UNIT_H
 #define ANDROID_CLIENT_UNIT_H
 
-#include <Messages.h>
+#include <Samples.h>
 #include "IDrawable.h"
 
-class Unit : public Messages::UnitInit, public IDrawable {
+class Unit : public Samples::UnitInit, public IDrawable {
 public:
     Unit() = default;
 
-    Unit(Messages::UnitInit &unitInit) : Messages::UnitInit(unitInit) {};
+    Unit(Samples::UnitInit &unitInit) : Samples::UnitInit(unitInit) {};
 
     void init() final {
         sprite.init();
@@ -21,7 +21,7 @@ public:
     void draw() final {
         step();
         switch (data().direction()) {
-            case Messages::RIGHT :
+            case Samples::RIGHT :
                 sprite.setPosition(data().pos().x() / 15.0f + data().entrypercent(),
                                    data().pos().y() / 24.0f
                 );
@@ -46,7 +46,7 @@ protected:
 
 class Pacman : public Unit {
 public:
-    Pacman(Messages::UnitInit &unit) : Unit(unit) {
+    Pacman(Samples::UnitInit &unit) : Unit(unit) {
         sprite.setTexturePosition(0.7142f, 0);
         sprite.setSize(0.0416f, 0.0666f);
         sprite.setTextureSize(0.25f, 0.0714f);
@@ -58,7 +58,7 @@ public:
 
 class Ghost : public Unit {
 public:
-    Ghost(Messages::UnitInit &unit) : Unit(unit) {
+    Ghost(Samples::UnitInit &unit) : Unit(unit) {
         sprite.setTexturePosition(0, 0);
         sprite.setSize(0.0416f, 0.0666f);
         sprite.setTextureSize(0.25f, 0.0714f);

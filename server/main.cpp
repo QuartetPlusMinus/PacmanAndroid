@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Game/lib/Game.h"
+#include "Game/Game.h"
 
 static const unsigned short PORT = 31415;
 

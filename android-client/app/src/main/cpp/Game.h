@@ -3,6 +3,9 @@
 
 #include <vector>
 
+#include <Messages.h>
+#include <Samples.h>
+
 #include "IDrawable.h"
 #include "Background.h"
 #include "Units.h"
