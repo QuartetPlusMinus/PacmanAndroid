@@ -10,4 +10,8 @@ namespace GameConstants {
     const unsigned int MAP_HEIGHT = 24;
 }
 
+namespace GameTimer {
+    const unsigned int PERIOD = 250; // milliseconds
+}
+
 #endif //SERVER_CONSTVALUES_H
