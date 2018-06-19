@@ -1,3 +1,3 @@
-[submodule "app/src/main/cpp/linmath"]
-	path = app/src/main/cpp/linmath
-	url = https://github.com/datenwolf/linmath.h.git
+[submodule "android-client/app/src/main/cpp/libpng"]
+	path = android-client/app/src/main/cpp/libpng
+	url = https://github.com/glennrp/libpng.git
