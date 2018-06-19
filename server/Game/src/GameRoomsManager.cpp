@@ -13,7 +13,6 @@ void gameStep(std::list<GameRoom*>& gameRooms) {
                 room->step();
 //                std::cout << "ITERATION" << std::endl;
             }
-            usleep(1000000);
         }
     }
 }
