@@ -3,8 +3,7 @@
 
 #include <vector>
 
-#include <Messages.h>
-#include <Samples.h>
+#include <Serialization/Messages.h>
 
 #include "IDrawable.h"
 #include "Background.h"
@@ -19,6 +18,8 @@ public:
     void onSurfaceChanged(int width, int height);
 
     void onDrawFrame();
+
+    void setAssertManager(AAssetManager* assetManager);
 
     void start(Messages::StartMessage &startMessage);
 
@@ -36,6 +37,7 @@ private:
     Unit **units;
     int unitsCount;
     bool started;
+    AAssetManager* assetManager;
 };
 
 #endif // ANDROID_CLIENT_GAME_H

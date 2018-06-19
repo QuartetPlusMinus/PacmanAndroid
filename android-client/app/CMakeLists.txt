@@ -2,34 +2,14 @@ cmake_minimum_required(VERSION 3.4.1)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CPP_LOCAL_PATH ${CMAKE_SOURCE_DIR}/src/main/cpp)
-set(PNG_LOCAL_PATH ${CPP_LOCAL_PATH}/libpng)
-set(OPENDRAW_LOCAL_PATH ${CPP_LOCAL_PATH}/libodraw)
-set(MESSAGE_LOCAL_PATH ${CMAKE_SOURCE_DIR}/../../common/Serialization/)
+set(PNG_LOCAL_PATH ${CPP_LOCAL_PATH}/libodraw/libpng)
+set(OPENDRAW_LOCAL_PATH ${CPP_LOCAL_PATH}/libodraw/src)
+set(COMMON_LOCAL_PATH ${CMAKE_SOURCE_DIR}/../../common/)
 
 find_library( z-lib z )
 find_library( gles-lib GLESv2 )
-find_library( log-lib log )
 find_library( android-lib android )
-find_library( stdcpp-lib stdc++ )
 
-add_library( libodraw SHARED
-            ${OPENDRAW_LOCAL_PATH}/ShaderPrograms.cpp
-            ${OPENDRAW_LOCAL_PATH}/Shaders.cpp
-
-            ${OPENDRAW_LOCAL_PATH}/Texture.cpp
-            ${OPENDRAW_LOCAL_PATH}/Rectangle.cpp
-            ${OPENDRAW_LOCAL_PATH}/Sprite.cpp
-            )
-
-target_link_libraries(libodraw ${gles-lib})
-
-include_directories(${MESSAGE_LOCAL_PATH})
-add_library( libmessage SHARED
-            ${MESSAGE_LOCAL_PATH}/Serialization/src/Stream.cpp
-            ${MESSAGE_LOCAL_PATH}/Serialization/src/Serializable.cpp
-            ${MESSAGE_LOCAL_PATH}/Samples.cpp
-            ${MESSAGE_LOCAL_PATH}/Messages.cpp
-            )
 
 add_library( libpng STATIC
              ${PNG_LOCAL_PATH}/png.c
@@ -51,19 +31,41 @@ add_library( libpng STATIC
 
 target_link_libraries(libpng ${z-lib})
 
+
+add_library( libodraw SHARED
+            ${OPENDRAW_LOCAL_PATH}/ShaderPrograms.cpp
+            ${OPENDRAW_LOCAL_PATH}/Shaders.cpp
+            ${OPENDRAW_LOCAL_PATH}/Texture.cpp
+            ${OPENDRAW_LOCAL_PATH}/Sprite.cpp
+            ${OPENDRAW_LOCAL_PATH}/RawImage.cpp
+            )
+
+target_link_libraries(libodraw
+                      libpng
+                      ${gles-lib}
+                      ${android-lib}
+                      )
+
+
+include_directories(${COMMON_LOCAL_PATH})
+
+add_library( libmessage SHARED
+            ${COMMON_LOCAL_PATH}/Serialization/Serialization/src/Stream.cpp
+            ${COMMON_LOCAL_PATH}/Serialization/Serialization/src/Serializable.cpp
+            ${COMMON_LOCAL_PATH}/Serialization/Samples.cpp
+            ${COMMON_LOCAL_PATH}/Serialization/Messages.cpp
+            )
+
+
 add_library( game SHARED
              ${CPP_LOCAL_PATH}/GameRendererJNI.cpp
              ${CPP_LOCAL_PATH}/Game.cpp
              ${CPP_LOCAL_PATH}/Background.cpp
-             ${CPP_LOCAL_PATH}/platform_asset_utils.cpp
-             ${CPP_LOCAL_PATH}/image.cpp
+             ${CPP_LOCAL_PATH}/Units.cpp
              )
 
 target_link_libraries( game
                        libodraw
                        libmessage
-                       libpng
-                       ${gles-lib}
-                       ${log-lib}
                        ${android-lib}
                        )
