@@ -2,7 +2,6 @@
 // Created by viewsharp on 11.04.18.
 //
 
-#include <Messages.h>
 
 #include "Game.h"
 
@@ -48,9 +47,9 @@ void Game::start(Messages::StartMessage &startMessage) {
     for (int i = 0; i < unitsCount; i++) {
         // TODO: factory or builder
         auto unit = startMessage.unit(i);
-        if (unit.type() == Messages::PACMAN) {
+        if (unit.type() == Samples::PACMAN) {
             units[i] = new Pacman(unit);
-        } else if (unit.type() == Messages::GHOST) {
+        } else if (unit.type() == Samples::GHOST) {
             units[i] = new Ghost(unit);
         }
     }
