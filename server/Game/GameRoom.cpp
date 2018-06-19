@@ -3,11 +3,12 @@
 //
 
 #include "GameRoom.h"
+#include "../Graph/setUpGraph.h"
 
 
 GameRoom::GameRoom(const TileMap &map) :
-        map(map), gameOver(false), ready(false) {
-//    lastStepTime = std::chrono::steady_clock::now();
+        map(map), gameOver(false), ready(false), started(false), lastStepTime(std::chrono::steady_clock::now()) {
+    gameGraph.setUp(map.getStringMap());
 }
 
 void GameRoom::addClient(Client *client) {
@@ -72,11 +73,13 @@ void GameRoom::start() {
         // TODO: Рассчитать направления ghost'ов
         // TODO: Заменить на фабрику
 
-        auto currentGhost = new Ghost();
+        auto currentGhost = new Ghost(players);
 
         *currentGhost->mutable_pos() = map.ghost(i);
         currentGhost->set_direction(Samples::NONE);
         currentGhost->set_entrypercent(0);
+
+        currentGhost->choiceDirection(gameGraph);
 
         ghosts.push_back(currentGhost);
 
@@ -93,22 +96,23 @@ void GameRoom::start() {
 
 //    lastStepTime = std::chrono::steady_clock::now();
     ready = true;
-
+    started = true;
 }
 
 void GameRoom::step() {
-//    auto sleep_time =  std::chrono::duration_cast<std::chrono::milliseconds>(period - (std::chrono::steady_clock::now() - lastStepTime));
 
-//    auto sleep_time =  std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(250) - (std::chrono::steady_clock::now() - lastStepTime));
-//    std::this_thread::sleep_for(std::chrono::milliseconds (sleep_time));
+    auto sleep_time =  std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(250) - (std::chrono::steady_clock::now() - lastStepTime));
+    std::this_thread::sleep_for(std::chrono::milliseconds (sleep_time));
 
     Messages::IterationMessage iterationMessage;
     for( auto pacman: players){
        pacman->step();
         *iterationMessage.add_unit() = *(Samples::Unit *)pacman;
     }
+
+    // GhostManager->step()
     for(auto ghost: ghosts){
-        ghost->step();
+        ghost->step(gameGraph);
         *iterationMessage.add_unit() = *(Samples::Unit *)ghost;
     }
 
@@ -117,7 +121,7 @@ void GameRoom::step() {
 //        std::cout << "Send iteration" << std::endl;
     }
 
-//    lastStepTime = std::chrono::steady_clock::now();
+    lastStepTime = std::chrono::steady_clock::now();
 
 
 }

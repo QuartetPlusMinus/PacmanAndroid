@@ -16,6 +16,7 @@ public:
 
     std::vector<int> GetNextVertices( int vertex ) const final;
     std::vector<int> GetPrevVertices( int vertex ) const final;
+    void setUp(std::string stringMap);
 
 private:
     std::vector<std::unordered_set<int>> adjacencyHashTable;

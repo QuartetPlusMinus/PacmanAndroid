@@ -1,5 +1,6 @@
 #include <assert.h>
 #include "SetGraph.h"
+#include "../../common/Constants/ConstValues.h"
 
 
 SetGraph::SetGraph( unsigned int n ) : adjacencyHashTable( n )
@@ -54,4 +55,28 @@ std::vector<int> SetGraph::GetPrevVertices( int vertex ) const
 bool SetGraph::isValidIndex( int index ) const
 {
     return index >= 0 && index < adjacencyHashTable.size();
+}
+
+void SetGraph::setUp(std::string stringMap) {
+    for (int i = 0; i < GameConstants::MAP_HEIGHT * GameConstants::MAP_WIDTH; ++i) {
+
+        if (stringMap[i] == ' ') {
+            int neighbor = i - GameConstants::MAP_WIDTH;
+            if (stringMap[neighbor] == ' ') {
+                this->AddEdge(i, neighbor);
+            }
+            neighbor = i + 1;
+            if (stringMap[neighbor] == ' ') {
+                this->AddEdge(i, neighbor);
+            }
+            neighbor = i - 1;
+            if (stringMap[neighbor] == ' ') {
+                this->AddEdge(i, neighbor);
+            }
+            neighbor = i + GameConstants::MAP_WIDTH;
+            if (stringMap[neighbor] == ' ') {
+                this->AddEdge(i, neighbor);
+            }
+        }
+    }
 }
