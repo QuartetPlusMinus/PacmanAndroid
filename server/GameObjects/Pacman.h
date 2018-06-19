@@ -18,8 +18,8 @@ public:
     const Client *client;
 
     void step() {
-        this->mutable_pos()->set_x(this->pos().x() + 1);
-        this->set_direction(Samples::RIGHT);
+        this->mutable_pos()->set_x(this->pos().x());
+        this->set_direction(Samples::NONE);
     }
 };
 

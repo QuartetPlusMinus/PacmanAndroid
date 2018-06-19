@@ -49,6 +49,7 @@ public:
         }
 
         if( !haveCollision ){
+            this->set_entrypercent(this->entrypercent() + 0.25f);
             if( this->entrypercent() >= 1.0f) {
                 switch (this->direction()){
                     case Samples::Direction::RIGHT:
@@ -72,7 +73,7 @@ public:
                     choiceDirection(gameMap);
                 }
             }
-            this->set_entrypercent(this->entrypercent() + 0.25f);
+
         }
 
     }
