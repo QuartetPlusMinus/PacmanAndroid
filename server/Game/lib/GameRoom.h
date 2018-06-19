@@ -38,7 +38,7 @@ public:
     std::atomic<bool> ready;
     std::atomic<bool> gameOver;
     std::chrono::time_point<std::chrono::steady_clock> lastStepTime;
-    std::chrono::milliseconds period{GameTimer::PERIOD};
+    const std::chrono::milliseconds period{GameTimer::PERIOD};
 private:
 
     std::vector<Pacman *> players;

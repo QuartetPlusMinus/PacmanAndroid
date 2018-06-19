@@ -7,7 +7,10 @@
 //GameRoom::GameRoom(): map(nullptr) {}
 
 GameRoom::GameRoom(GameMap::Map *map) :
-        map(map), gameOver(false), ready(false) {}
+        map(map), gameOver(false), ready(false) {
+    lastStepTime = std::chrono::steady_clock::now();
+
+}
 
 void GameRoom::addClient(Client *client) {
 
