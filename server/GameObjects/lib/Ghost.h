@@ -17,8 +17,13 @@ public:
 
     Pacman* target;
     void step() {
-        this->mutable_pos()->set_x(this->pos().x() + 1);
+        if( this->entrypercent() == 100) {
+            this->mutable_pos()->set_x(this->pos().x() + 1);
+            this->set_entrypercent(0.f);
+        }
         this->set_direction(Messages::Direction::RIGHT);
+        this->set_entrypercent(this->entrypercent() + 25);
+
     }
 
 };
