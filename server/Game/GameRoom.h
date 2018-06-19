@@ -5,11 +5,13 @@
 #ifndef SERVER_GAMEROOM_H
 #define SERVER_GAMEROOM_H
 
+#include <chrono>
 #include "../NetWork/Service.h"
 #include "../GameObjects/Pacman.h"
 #include "../GameObjects/Ghost.h"
 #include "../../common/Serialization/TileMap.h"
 #include "../../common/Constants/ConstValues.h"
+#include "../Graph/SetGraph.h"
 
 class PlayerCountException : public std::runtime_error {
 public:
@@ -37,9 +39,12 @@ public:
 
     std::atomic<bool> ready;
     std::atomic<bool> gameOver;
+    std::atomic<bool> started;
     std::chrono::time_point<std::chrono::steady_clock> lastStepTime;
-//    std::chrono::milliseconds period{GameTimer::PERIOD};
-private:
+    std::chrono::milliseconds period{GameTimer::PERIOD};
+
+    SetGraph gameGraph{GameConstants::MAP_HEIGHT * GameConstants::MAP_WIDTH};
+    private:
 
     std::vector<Pacman *> players;
     std::vector<Ghost *> ghosts;

@@ -12,26 +12,27 @@ void gameStep(std::list<GameRoom *> &gameRooms) {
         GameRoom *firstRoom = nullptr;
         GameRoom *lastRoom = nullptr;
         for (auto room: gameRooms) {
-            if (room->ready) {
+            if (room->ready && room->started) {
                 if (!firstRoom) {
                     firstRoom = room;
                 }
                 lastRoom = room;
                 room->step();
-//                std::cout << "ITERATION" << std::endl;
             }
-
-            auto sleep_time = std::chrono::duration_cast<std::chrono::milliseconds>(
-                    period - (lastRoom->lastStepTime - firstRoom->lastStepTime));
-            std::this_thread::sleep_for(std::chrono::milliseconds(sleep_time));
+            if (!room->started) {
+                room->start();
+            }
+            if (firstRoom && lastRoom) {
+                auto sleep_time = std::chrono::duration_cast<std::chrono::milliseconds>(
+                        period - (std::chrono::steady_clock::now() - firstRoom->lastStepTime));
+                std::this_thread::sleep_for(std::chrono::milliseconds(sleep_time));
+            }
         }
-
     }
 }
 
 
-GameRoomsManager::GameRoomsManager(unsigned int countOfRooms): countOfRooms(countOfRooms)
-{
+GameRoomsManager::GameRoomsManager(unsigned int countOfRooms) : countOfRooms(countOfRooms) {
     std::thread gameStepper(gameStep, std::ref(gameRooms));
     gameStepper.detach();
 }
@@ -66,7 +67,7 @@ GameRoom *GameRoomsManager::AddRoom() {
         return nullptr;
     }
 
-    GameRoom* newGameRoom = new GameRoom(MapManager::Instance()->getRandomMap());
+    GameRoom *newGameRoom = new GameRoom(MapManager::Instance()->getRandomMap());
     gameRooms.push_back(newGameRoom);
     return newGameRoom;
 }

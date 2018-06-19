@@ -54,7 +54,7 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
                 currentClient->setStatus(Client::IN_GAME);
             }
 
-            newGameRoom->start();
+//            newGameRoom->start();
 
             // Оправка остальным клиентам нового положения в очереди
             Messages::QueueMessage queueReply;
