@@ -1,3 +1,0 @@
-[submodule "android-client/app/src/main/cpp/libpng"]
-	path = android-client/app/src/main/cpp/libpng
-	url = https://github.com/glennrp/libpng.git
