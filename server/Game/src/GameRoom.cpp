@@ -99,6 +99,9 @@ void GameRoom::start() {
 }
 
 void GameRoom::step() {
+    auto sleep_time =  std::chrono::duration_cast<std::chrono::milliseconds>(period - (std::chrono::steady_clock::now() - lastStepTime));
+    std::cout << sleep_time.count() << std::endl;
+    std::this_thread::sleep_for(period - (std::chrono::steady_clock::now() - lastStepTime));
     Messages::IterationMessage iterationMessage;
     for( auto pacman: players){
        pacman->step();
