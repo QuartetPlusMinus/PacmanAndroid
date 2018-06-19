@@ -1,3 +1,0 @@
-[submodule "app/src/main/cpp/linmath"]
-	path = app/src/main/cpp/linmath
-	url = https://github.com/datenwolf/linmath.h.git

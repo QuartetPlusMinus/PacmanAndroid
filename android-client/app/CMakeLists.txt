@@ -15,6 +15,7 @@ find_library( stdcpp-lib stdc++ )
 add_library( libodraw SHARED
             ${OPENDRAW_LOCAL_PATH}/ShaderPrograms.cpp
             ${OPENDRAW_LOCAL_PATH}/Shaders.cpp
+
             ${OPENDRAW_LOCAL_PATH}/Texture.cpp
             ${OPENDRAW_LOCAL_PATH}/Rectangle.cpp
             ${OPENDRAW_LOCAL_PATH}/Sprite.cpp
