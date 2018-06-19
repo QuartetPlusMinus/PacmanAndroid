@@ -13,9 +13,17 @@ void Unit::draw() {
     step();
     switch (data().direction()) {
         case Samples::RIGHT :
-            sprite.setPosition(data().pos().x() / 15.0f + data().entrypercent(),
-                               data().pos().y() / 24.0f
-            );
+            sprite.setPosition(data().pos().x() / GameMap::WIDTH + data().entrypercent(),
+                               data().pos().y() / GameMap::HEIGHT);
+        case Samples::DOWN :
+            sprite.setPosition(data().pos().x() / GameMap::WIDTH,
+                               data().pos().y() / GameMap::HEIGHT + data().entrypercent());
+        case Samples::LEFT :
+            sprite.setPosition(data().pos().x() / GameMap::WIDTH - data().entrypercent(),
+                               data().pos().y() / GameMap::HEIGHT);
+        case Samples::UP :
+            sprite.setPosition(data().pos().x() / GameMap::WIDTH,
+                               data().pos().y() / GameMap::HEIGHT - data().entrypercent());
             break;
         default:
             break;
@@ -37,7 +45,8 @@ Pacman::Pacman(Samples::UnitInit &unit) : Unit(unit) {
     sprite.setSize(0.0416f, 0.0666f);
     sprite.setTextureSize(0.25f, 0.0714f);
     sprite.setZIndex(0.01);
-    sprite.setPosition((float)data().pos().x() / GameMap::WIDTH, (float)data().pos().y() / GameMap::HEIGHT);
+    sprite.setPosition((float) data().pos().x() / GameMap::WIDTH,
+                       (float) data().pos().y() / GameMap::HEIGHT);
 }
 
 Ghost::Ghost(Samples::UnitInit &unit) : Unit(unit) {
@@ -45,5 +54,6 @@ Ghost::Ghost(Samples::UnitInit &unit) : Unit(unit) {
     sprite.setSize(0.0416f, 0.0666f);
     sprite.setTextureSize(0.25f, 0.0714f);
     sprite.setZIndex(0.01);
-    sprite.setPosition((float)data().pos().x() / GameMap::WIDTH, (float)data().pos().y() / GameMap::HEIGHT);
+    sprite.setPosition((float) data().pos().x() / GameMap::WIDTH,
+                       (float) data().pos().y() / GameMap::HEIGHT);
 }

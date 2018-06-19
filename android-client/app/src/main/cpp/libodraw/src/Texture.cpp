@@ -11,15 +11,15 @@ Texture::Texture(AAssetManager *assetManager, std::string path) {
     assert(asset != NULL);
 
     const RawImage rawImage(AAsset_getBuffer(asset), (size_t) AAsset_getLength(asset));
-    id = load(
+    id_ = load(
             rawImage.width(), rawImage.height(),
             rawImage.glColorFormat(), rawImage.getData());
 
     AAsset_close(asset);
 }
 
-GLuint Texture::getId() const {
-    return id;
+GLuint Texture::id() const {
+    return id_;
 }
 
 GLuint Texture::load(

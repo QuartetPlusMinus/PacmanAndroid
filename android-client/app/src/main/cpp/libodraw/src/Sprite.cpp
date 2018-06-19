@@ -54,12 +54,12 @@ void Sprite::init() {
 void Sprite::draw() {
     glUseProgram(program.getProgram());
 
-    glActiveTexture(GL_TEXTURE0 + texture->getId());
-    glBindTexture(GL_TEXTURE_2D, texture->getId());
+    glActiveTexture(GL_TEXTURE0 + texture->id());
+    glBindTexture(GL_TEXTURE_2D, texture->id());
 
     glUniform2fv(program.getUVertexShift(), 1, position);
     glUniform2fv(program.getUTextureShift(), 1, texturePosition);
-    glUniform1i(program.getUTextureUnit(), texture->getId());
+    glUniform1i(program.getUTextureUnit(), texture->id());
     glUniform1f(program.getUZIndex(), zIndex);
 
     glBindBuffer(GL_ARRAY_BUFFER, buffer);

@@ -17,8 +17,8 @@ Ghost::Ghost(std::vector<Pacman *> &pacmans) {
 }
 
 void Ghost::choiceDirection(SetGraph& gameMap) {
-    int startVertex = this->pos().x() + GameConstants::MAP_WIDTH * this->pos().y();
-    int goalVertex = target->pos().x() + GameConstants::MAP_WIDTH * target->pos().y();
+    int startVertex = this->pos().x() + GameMap::WIDTH * this->pos().y();
+    int goalVertex = target->pos().x() + GameMap::WIDTH * target->pos().y();
     std::queue<int> frontier;
     frontier.push(startVertex);
     std::unordered_set<int> visited;
@@ -41,10 +41,10 @@ void Ghost::choiceDirection(SetGraph& gameMap) {
                         case -1:
                             dir = Samples::Direction::LEFT;
                             break;
-                        case GameConstants::MAP_WIDTH:
+                        case GameMap::WIDTH:
                             dir = Samples::Direction::DOWN;
                             break;
-                        case -GameConstants::MAP_WIDTH:
+                        case -GameMap::WIDTH:
                             dir = Samples::Direction::UP;
                             break;
                         default:

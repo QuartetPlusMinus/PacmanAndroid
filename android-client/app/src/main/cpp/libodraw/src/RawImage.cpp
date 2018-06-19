@@ -1,5 +1,18 @@
 #include "RawImage.h"
 
+using namespace OpenDraw;
+
+// Will be called by libpng to read from the memory buffer.
+// To read from the right place in the memory buffer, we store an offset and we increase that offset every time that method is called.
+static void readPngDataCallback(
+        png_structp png_ptr, png_byte *raw_data, png_size_t read_length) {
+    ReadDataHandle *handle = (ReadDataHandle *) png_get_io_ptr(png_ptr);
+    const png_byte *png_src = handle->data.data + handle->offset;
+
+    memcpy(raw_data, png_src, read_length);
+    handle->offset += read_length;
+}
+
 RawImage::RawImage(const void *data, size_t size) {
 
     // Checks that the PNG data is present and has a valid header.
@@ -56,15 +69,6 @@ GLenum RawImage::glColorFormat() const {
 
 const png_byte *RawImage::getData() const {
     return data_;
-}
-
-static void RawImage::readPngDataCallback(
-        png_structp png_ptr, png_byte *raw_data, png_size_t read_length) {
-    ReadDataHandle *handle = (ReadDataHandle *) png_get_io_ptr(png_ptr);
-    const png_byte *png_src = handle->data.data + handle->offset;
-
-    memcpy(raw_data, png_src, read_length);
-    handle->offset += read_length;
 }
 
 PngInfo RawImage::readAndUpdateInfo(const png_structp png_ptr, const png_infop info_ptr) {

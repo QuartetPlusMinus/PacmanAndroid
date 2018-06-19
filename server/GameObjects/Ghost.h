@@ -19,7 +19,7 @@ public:
     void choiceDirection(SetGraph& gameMap);
 
     void step(SetGraph& gameMap) {
-        int curentVertex = pos().y() * GameConstants::MAP_WIDTH + pos().x();
+        int curentVertex = pos().y() * GameMap::WIDTH + pos().x();
         auto nextTiles = gameMap.GetNextVertices(curentVertex);
 
         int nextVertex = curentVertex;
@@ -33,10 +33,10 @@ public:
                 nextVertex -= 1;
                 break;
             case Samples::Direction::DOWN:
-                nextVertex += GameConstants::MAP_WIDTH;
+                nextVertex += GameMap::WIDTH;
                 break;
             case Samples::Direction::UP:
-                nextVertex -= GameConstants::MAP_WIDTH;
+                nextVertex -= GameMap::WIDTH;
                 break;
             default:
                 break;
@@ -68,7 +68,7 @@ public:
                 }
                 this->mutable_pos()->set_x((sz::uint8)(this->pos().x() + 1));
                 this->set_entrypercent(0.0f);
-                if(nextTiles.size() == 1 || nextTiles.size() == 2 and ( 1 < abs(nextTiles[0] - nextTiles[1]) < 2 * GameConstants::MAP_WIDTH)){
+                if(nextTiles.size() == 1 || nextTiles.size() == 2 and ( 1 < abs(nextTiles[0] - nextTiles[1]) < 2 * GameMap::WIDTH)){
                     choiceDirection(gameMap);
                 }
             }

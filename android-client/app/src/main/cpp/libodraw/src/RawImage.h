@@ -5,53 +5,47 @@
 #include "../libpng/png.h"
 #include "../libpng/pngconf.h"
 
-typedef struct {
-    const png_byte *data;
-    const png_size_t size;
-} DataHandle;
+namespace OpenDraw {
+    typedef struct {
+        const png_byte *data;
+        const png_size_t size;
+    } DataHandle;
 
-typedef struct {
-    const DataHandle data;
-    png_size_t offset;
-} ReadDataHandle;
+    typedef struct {
+        const DataHandle data;
+        png_size_t offset;
+    } ReadDataHandle;
 
-typedef struct {
-    const png_uint_32 width;
-    const png_uint_32 height;
-    const int color_type;
-} PngInfo;
+    typedef struct {
+        const png_uint_32 width;
+        const png_uint_32 height;
+        const int color_type;
+    } PngInfo;
 
-class RawImage {
-public:
-    RawImage(const void *data, size_t size);
+    class RawImage {
+    public:
+        RawImage(const void *data, size_t size);
 
-    ~RawImage();
+        ~RawImage();
 
-    int width() const;
+        int width() const;
 
-    int height() const;
+        int height() const;
 
-    int size() const;
+        int size() const;
 
-    GLenum glColorFormat() const;
+        GLenum glColorFormat() const;
 
-    const png_byte *getData() const;
+        const png_byte *getData() const;
 
 
-private:
+    private:
 
-    int width_;
-    int height_;
-    int size_;
-    GLenum glColorFormat_;
-    const png_byte *data_;
-
-// Will be called by libpng to read from the memory buffer.
-// To read from the right place in the memory buffer, we store an offset and we increase that offset every time that method is called.
-    static void readPngDataCallback(
-            png_structp png_ptr,
-            png_byte *raw_data,
-            png_size_t read_length);
+        int width_;
+        int height_;
+        int size_;
+        GLenum glColorFormat_;
+        const png_byte *data_;
 
 // Reads in the PNG data, and then it asks libpng to perform several transformations based on the PNG type:
 // - Transparency information is converted into a full alpha channel.
@@ -59,13 +53,14 @@ private:
 // - Paletted images are converted to full RGB.
 // - RGB images get an alpha channel added, if none is present.
 // - Color channels are converted to 8-bit, if less than 8-bit or 16-bit.
-    PngInfo readAndUpdateInfo(const png_structp png_ptr, const png_infop info_ptr);
+        PngInfo readAndUpdateInfo(const png_structp png_ptr, const png_infop info_ptr);
 
 // Decode the PNG image data into raw image data
-    DataHandle readEntirePNGImage(
-            const png_structp png_ptr,
-            const png_infop info_ptr,
-            const png_uint_32 height);
+        DataHandle readEntirePNGImage(
+                const png_structp png_ptr,
+                const png_infop info_ptr,
+                const png_uint_32 height);
 
-    GLenum getGLColorFormat(const int pngColorFormat);
-};
+        GLenum getGLColorFormat(const int pngColorFormat);
+    };
+}

@@ -16,10 +16,10 @@ namespace OpenDraw {
     public:
         Texture(AAssetManager *assetManager, std::string path);
 
-        GLuint getId() const;
+        GLuint id() const;
 
     private:
-        GLuint id;
+        GLuint id_;
 
         GLuint load(const GLsizei width, const GLsizei height,
                     const GLenum type, const GLvoid* pixels);

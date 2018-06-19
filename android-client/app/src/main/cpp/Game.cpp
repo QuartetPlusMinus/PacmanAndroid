@@ -6,6 +6,8 @@
 #include "Game.h"
 
 void Game::onSurfaceCreated() {
+    assert(assetManager != nullptr);
+
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);

@@ -102,7 +102,7 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_endJNI
  * Method:    setAssetManagerJNI
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_initAssetManagerJNI
+JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_setAssetManagerJNI
         (JNIEnv *env, jobject, jobject java_asset_manager) {
     game.setAssertManager(AAssetManager_fromJava(env, java_asset_manager));
 }
