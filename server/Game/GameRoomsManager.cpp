@@ -21,9 +21,9 @@ void gameStep(std::list<GameRoom *> &gameRooms) {
 //                std::cout << "ITERATION" << std::endl;
             }
 
-            auto sleep_time = std::chrono::duration_cast<std::chrono::milliseconds>(
-                    period - (lastRoom->lastStepTime - firstRoom->lastStepTime));
-            std::this_thread::sleep_for(std::chrono::milliseconds(sleep_time));
+//            auto sleep_time = std::chrono::duration_cast<std::chrono::milliseconds>(
+//                    period - (lastRoom->lastStepTime - firstRoom->lastStepTime));
+//            std::this_thread::sleep_for(std::chrono::milliseconds(sleep_time));
         }
 
     }
