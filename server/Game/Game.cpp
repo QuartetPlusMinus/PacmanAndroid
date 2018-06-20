@@ -83,9 +83,15 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
 }
 
 void Game::Event(std::shared_ptr<Client> client, Messages::EventMessage &eventMsg) {
+    if(client->getStatus() != Client::IN_GAME) {
+        return;
+    }
     if (clientInRoom.find(client->hash()) != clientInRoom.end()) {
         std::cout << "Client " << client->getUsername() << " send event to server\n";
-        auto gameRoom = clientInRoom[client->hash()];
-        auto clientPacman = gameRoom->getPacman(client->getUsername());
+        auto room = clientInRoom[client->hash()];
+        auto pacman = room->getPacman(client->getUsername());
+        if(pacman) {
+            pacman->newDirection = eventMsg.direction();
+        }
     }
 }

@@ -106,12 +106,10 @@ void GameRoom::step() {
 
     Messages::IterationMessage iterationMessage;
     for( auto pacman: players){
-       pacman->step();
+       pacman->step(gameGraph);
         *iterationMessage.add_unit() = *(Samples::Unit *)pacman;
     }
 
-    // GhostManager->step()
-    int index = 0;
     for(auto ghost: ghosts){
         ghost->step(gameGraph);
         *iterationMessage.add_unit() = *(Samples::Unit *)ghost;
