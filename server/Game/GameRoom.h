@@ -36,14 +36,7 @@ public:
 
     void eventStep(Samples::Direction direction);
 
-    Pacman* getPacman(const std::string &username) {
-        for(auto pacman: players ) {
-            if(username == pacman->client->getUsername()) {
-                return pacman;
-            }
-        }
-        return nullptr;
-    }
+    Pacman* getPacman(const std::string &username);
 
 
     std::atomic<bool> ready;

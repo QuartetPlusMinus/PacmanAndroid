@@ -24,6 +24,7 @@ private:
 
 public:
 
+
     enum ClientStatus {
         OUT_OF_GAME = 0,
         IN_QUEUE,

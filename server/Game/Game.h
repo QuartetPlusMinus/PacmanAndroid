@@ -17,7 +17,6 @@
 class Game : public Service {
 public:
     Game(unsigned short port);
-
     void start();
 
     std::vector<std::shared_ptr<GameRoom>> rooms;
@@ -26,9 +25,7 @@ public:
 private:
 
     virtual void Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &connectMsg) final;
-
     virtual void Event(std::shared_ptr<Client> client, Messages::EventMessage &eventMsg) final;
-
 
 
     const int clientsCountInRoom = 1;
