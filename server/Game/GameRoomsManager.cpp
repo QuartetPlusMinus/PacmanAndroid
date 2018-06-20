@@ -57,18 +57,15 @@ void GameRoomsManager::cleanRooms() {
 
 bool GameRoomsManager::CanAddRoom() {
     cleanRooms();
-    if (gameRooms.size() < countOfRooms) {
-        return true;
-    }
-    return false;
+    return gameRooms.size() < countOfRooms;
 }
 
-GameRoom *GameRoomsManager::AddRoom() {
+GameRoom *GameRoomsManager::AddRoom(const TileMap *map) {
     if (!CanAddRoom()) {
         return nullptr;
     }
 
-    GameRoom *newGameRoom = new GameRoom(MapManager::Instance()->getRandomMap());
+    GameRoom *newGameRoom = new GameRoom(map);
     gameRooms.push_back(newGameRoom);
     return newGameRoom;
 }

@@ -82,16 +82,16 @@ MapManager::MapManager() {
     }
 }
 
-const TileMap &MapManager::getRandomMap() const {
+const TileMap *MapManager::getRandomMap() const {
     std::random_device random_device;
     std::mt19937 engine{random_device()};
     std::uniform_int_distribution<int> dist(0, (int) maps.size() - 1);
-    return maps[dist(engine)];
+    return &maps[dist(engine)];
 }
 
-const TileMap &MapManager::getMap(int index) const {
+const TileMap *MapManager::getMap(int index) const {
     assert(index < maps.size());
-    return maps[index];
+    return &maps[index];
 }
 
 MapManager *MapManager::Instance() {

@@ -16,7 +16,7 @@
 
 class Game : public Service {
 public:
-    Game(unsigned short port);
+    explicit Game(unsigned short port);
     void start();
 
     std::vector<std::shared_ptr<GameRoom>> rooms;
@@ -28,14 +28,15 @@ private:
     virtual void Event(std::shared_ptr<Client> client, Messages::EventMessage &eventMsg) final;
 
 
-    const int clientsCountInRoom = 1;
-    const int ghostsInRoom = 5;
     const unsigned int gameRoomsCount = 10;
 
     std::queue<Client *> clients;
     std::vector<std::shared_ptr<Client>> clientsQueue;
     std::unordered_map<unsigned int, GameRoom*> clientInRoom;
     GameRoomsManager manager{gameRoomsCount};
+
+    const TileMap *currentMap;
+    MapManager *mapManager;
 };
 
 #endif //SERVER_GAME_H

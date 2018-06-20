@@ -24,7 +24,7 @@ class GameRoom {
 public:
 //    GameRoom();
 
-    explicit GameRoom(const TileMap &map);
+    explicit GameRoom(const TileMap *map);
 
     void addClient(Client *client);
 
@@ -34,7 +34,7 @@ public:
 
     void step();
 
-    void eventStep(Samples::Direction direction);
+//    void eventStep(Samples::Direction direction);
 
     Pacman* getPacman(const std::string &username);
 
@@ -50,9 +50,7 @@ public:
 
     std::vector<Pacman *> players;
     std::vector<Ghost *> ghosts;
-    const TileMap &map;
-
-
+    const TileMap *map;
 };
 
 #endif //SERVER_GAMEROOM_H

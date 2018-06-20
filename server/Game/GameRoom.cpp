@@ -6,9 +6,9 @@
 #include "../Graph/setUpGraph.h"
 
 
-GameRoom::GameRoom(const TileMap &map) :
+GameRoom::GameRoom(const TileMap *map) :
         map(map), gameOver(false), ready(false), started(false), lastStepTime(std::chrono::steady_clock::now()) {
-    gameGraph.setUp(map.map());
+    gameGraph.setUp(map->map());
 }
 
 void GameRoom::addClient(Client *client) {
@@ -19,14 +19,14 @@ void GameRoom::addClient(Client *client) {
 void GameRoom::connect(Client* client) {
     Messages::StartMessage startMessage;
 
-    for (int i = 0; i < map.pacman_size(); i++) {
+    for (int i = 0; i < map->pacman_size(); i++) {
         Samples::UnitInit *unitInit = startMessage.add_unit();
         *unitInit->mutable_data() = *(Samples::Unit *) players[i];
         unitInit->set_name(players[i]->client->getUsername());
         unitInit->set_type(Samples::PACMAN);
     }
 
-    for (int i = 0; i < map.ghost_size(); i++) {
+    for (int i = 0; i < map->ghost_size(); i++) {
 
         Samples::UnitInit *unitInit = startMessage.add_unit();
         *unitInit->mutable_data() = *(Samples::Unit *) ghosts[i];
@@ -41,15 +41,17 @@ void GameRoom::start() {
 
     Messages::StartMessage startMessage;
 
-    if (map.pacman_size() != players.size()) {
+    std::cout << map->pacman_size() << ' ' << players.size() <<std::endl;
+
+    if (map->pacman_size() != players.size()) {
         throw PlayerCountException("Count of added players not equal map players count");
     }
 
-    for (int i = 0; i < map.pacman_size(); i++) {
+    for (int i = 0; i < map->pacman_size(); i++) {
 
         // TODO: Заменить на фабрику ?
 
-        *players[i]->mutable_pos() = map.pacman(i);
+        *players[i]->mutable_pos() = map->pacman(i);
         players[i]->set_direction(Samples::NONE);
         players[i]->set_entrypercent(0);
         players[i]->set_health(3);
@@ -61,14 +63,14 @@ void GameRoom::start() {
         unitInit->set_type(Samples::PACMAN);
     }
 
-    for (int i = 0; i < map.ghost_size(); i++) {
+    for (int i = 0; i < map->ghost_size(); i++) {
 
         // TODO: Рассчитать направления ghost'ов
         // TODO: Заменить на фабрику
 
         auto currentGhost = new Ghost(players);
 
-        *currentGhost->mutable_pos() = map.ghost(i);
+        *currentGhost->mutable_pos() = map->ghost(i);
         currentGhost->set_direction(Samples::NONE);
         currentGhost->set_entrypercent(0);
 
@@ -81,7 +83,7 @@ void GameRoom::start() {
         unitInit->set_type(Samples::GHOST);
     }
 
-    for (Serialization::uint8 i = 0; i < map.pacman_size(); i++) {
+    for (Serialization::uint8 i = 0; i < map->pacman_size(); i++) {
         startMessage.set_id(i);
         players[i]->client->Start(startMessage);
     }
