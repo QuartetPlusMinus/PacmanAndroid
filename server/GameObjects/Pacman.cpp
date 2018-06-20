@@ -4,7 +4,7 @@
 
 #include "Pacman.h"
 
-Pacman::Pacman(Client *client) : client(client), newDirection(Samples::Direction::NONE) {
+Pacman::Pacman(Client *client) : client(client), newDirection(Samples::Direction::NONE), injured(false) {
 }
 
 
@@ -52,7 +52,7 @@ bool Pacman::step(SetGraph &gameMap) {
 
     if (newDirection != Samples::Direction::NONE) {
         if (entrypercent() == 0.0f) {
-            if (!haveCollision(gameMap, newDirection)){
+            if (!haveCollision(gameMap, newDirection)) {
                 this->set_direction(newDirection);
             }
             newDirection = Samples::Direction::NONE;
@@ -94,4 +94,9 @@ void Pacman::stepToDirection(Samples::Direction direction) {
             break;
     }
 
+}
+
+
+void Pacman::setRoundPosition() {
+    rPos.setPosition(pos().x(), pos().y(), direction(), entrypercent());
 }

@@ -17,8 +17,9 @@ public:
     Ghost(std::vector<Pacman *> &pacmans);
     void choiceDirection(SetGraph &gameMap);
     void step(SetGraph &gameMap);
+    void setRoundPosition();
 
-
+    RoundPosition rPos;
     Pacman *target;
 };
 

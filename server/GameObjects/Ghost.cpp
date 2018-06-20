@@ -102,3 +102,7 @@ void Ghost::step(SetGraph &gameMap) {
         }
     }
 }
+
+void Ghost::setRoundPosition() {
+    rPos.setPosition(pos().x(), pos().y(), direction(), entrypercent());
+}

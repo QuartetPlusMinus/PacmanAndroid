@@ -27,7 +27,7 @@ set(TILEMAP_AND_MESSAGES_FILES
 
 set(SERVER_FILES main.cpp NetWork/Network.cpp NetWork/Service.cpp Game/GameRoom.cpp NetWork/Client.cpp NetWork/Socket.cpp Game/Game.cpp GameObjects/Pacman.cpp Game/GameRoomsManager.cpp Game/GameRoomsManager.h Game/MapManager.cpp GameObjects/Ghost.cpp GameObjects/Ghost.h ../common/Constants/ConstValues.h)
 
-set(GRAPH_FILES Graph/SetGraph.cpp Graph/setUpGraph.cpp Graph/setUpGraph.h )
+set(GRAPH_FILES Graph/SetGraph.cpp Graph/setUpGraph.cpp Graph/setUpGraph.h GameObjects/GameObject.cpp GameObjects/GameObject.h)
 
 add_executable(PacmanServer ${SERIALIZATION_FILES} ${TILEMAP_AND_MESSAGES_FILES} ${GRAPH_FILES} ${SERVER_FILES})
 target_link_libraries(PacmanServer ${PROTOBUF_LIBRARY} ${Boost_LIBRARIES})
