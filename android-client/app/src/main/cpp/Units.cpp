@@ -13,17 +13,17 @@ void Unit::draw() {
     step();
     switch (data().direction()) {
         case Samples::RIGHT :
-            sprite.setPosition(data().pos().x() / GameMap::WIDTH + data().entrypercent(),
-                               data().pos().y() / GameMap::HEIGHT);
+            sprite.setPosition((data().pos().x() + data().entrypercent()) / GameMap::WIDTH,
+                               (float) data().pos().y() / GameMap::HEIGHT);
         case Samples::DOWN :
-            sprite.setPosition(data().pos().x() / GameMap::WIDTH,
-                               data().pos().y() / GameMap::HEIGHT + data().entrypercent());
+            sprite.setPosition((float) data().pos().x() / GameMap::WIDTH,
+                               (data().pos().y() + data().entrypercent()) / GameMap::HEIGHT);
         case Samples::LEFT :
-            sprite.setPosition(data().pos().x() / GameMap::WIDTH - data().entrypercent(),
-                               data().pos().y() / GameMap::HEIGHT);
+            sprite.setPosition((data().pos().x() - data().entrypercent()) / GameMap::WIDTH,
+                               (float) data().pos().y() / GameMap::HEIGHT);
         case Samples::UP :
-            sprite.setPosition(data().pos().x() / GameMap::WIDTH,
-                               data().pos().y() / GameMap::HEIGHT - data().entrypercent());
+            sprite.setPosition((float) data().pos().x() / GameMap::WIDTH,
+                               (data().pos().y() - data().entrypercent()) / GameMap::HEIGHT);
             break;
         default:
             break;
@@ -36,7 +36,7 @@ void Unit::setTexture(std::shared_ptr<od::Texture> texture) {
 }
 
 void Unit::step() {
-    mutable_data()->set_entrypercent(data().entrypercent() + 0.0014f);
+    mutable_data()->set_entrypercent(data().entrypercent() + 0.014f);
 }
 
 
