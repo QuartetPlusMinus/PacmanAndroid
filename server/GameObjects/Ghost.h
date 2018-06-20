@@ -59,10 +59,10 @@ public:
                         this->mutable_pos()->set_x((sz::uint8)(this->pos().x() - 1));
                         break;
                     case Samples::Direction::UP:
-                        this->mutable_pos()->set_x((sz::uint8)(this->pos().y() - 1));
+                        this->mutable_pos()->set_y((sz::uint8)(this->pos().y() - 1));
                         break;
                     case Samples::Direction::DOWN:
-                        this->mutable_pos()->set_x((sz::uint8)(this->pos().y() + 1));
+                        this->mutable_pos()->set_y((sz::uint8)(this->pos().y() + 1));
                         break;
                     default:
                         break;
