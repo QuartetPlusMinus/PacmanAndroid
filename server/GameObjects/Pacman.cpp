@@ -4,7 +4,8 @@
 
 #include "Pacman.h"
 
-Pacman::Pacman(Client *client) : client(client), newDirection(Samples::Direction::NONE), injured(false) {
+Pacman::Pacman(Client *client) : client(client), newDirection(Samples::Direction::NONE), injured(false),
+                                 injuredTimer(0) {
 }
 
 
@@ -41,6 +42,13 @@ bool Pacman::haveCollision(SetGraph &gameMap, Samples::Direction direction) {
 
 bool Pacman::step(SetGraph &gameMap) {
     bool result = false;
+
+    if(injuredTimer == 0 and injured == true) {
+        injured = false;
+    }
+    if( injuredTimer > 0 ){
+        --injuredTimer;
+    }
 
     if (direction() != Samples::Direction::NONE) {
         this->set_entrypercent(this->entrypercent() + 0.25f);

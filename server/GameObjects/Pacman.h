@@ -22,6 +22,8 @@ public:
 
     bool injured;
     const Client *client;
+    unsigned int injuredTimer;
+    unsigned int dyingTimer;
     RoundPosition rPos;
 
 };

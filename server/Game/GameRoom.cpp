@@ -14,6 +14,10 @@ GameRoom::GameRoom(const TileMap &map) :
 void GameRoom::addClient(Client *client) {
 
     players.push_back(new Pacman(client));
+    if (players.size() == map.pacman_size()){
+        ready = true;
+    }
+
 }
 
 void GameRoom::connect(Client *client) {
@@ -86,7 +90,6 @@ void GameRoom::start() {
         players[i]->client->Start(startMessage);
     }
 
-    ready = true;
     started = true;
 }
 
@@ -106,6 +109,7 @@ void GameRoom::step() {
     for (auto ghost: ghosts) {
         ghost->step(gameGraph);
         ghost->setRoundPosition();
+
         *iterationMessage.add_unit() = *(Samples::Unit *) ghost;
     }
 
@@ -130,8 +134,18 @@ Pacman *GameRoom::getPacman(const std::string &username) {
 void GameRoom::checkGhostPacmanCollision() {
     for (auto pacman: players) {
         for (auto ghost: ghosts) {
-            if(pacman->rPos == ghost->rPos) {
-
+            if (pacman->rPos == ghost->rPos) {
+                if (!pacman->injured and pacman->status() != Samples::UnitStatus::DYING) {
+                    pacman->injured = true;
+                    pacman->injuredTimer = 8;
+                    pacman->set_health(pacman->health() - 1);
+                    std::cout << "HP " << (int) pacman->health() << std::endl;
+                    if(pacman->health() == 0){
+                        pacman->set_status(Samples::UnitStatus::DYING);
+//                        pacman->
+                        // TODO: dodelat'
+                    }
+                }
             }
         }
     }
