@@ -14,9 +14,13 @@ GameRoom::GameRoom(const TileMap *map) :
 void GameRoom::addClient(Client *client) {
 
     players.push_back(new Pacman(client));
+    if (players.size() == map.pacman_size()){
+        ready = true;
+    }
+
 }
 
-void GameRoom::connect(Client* client) {
+void GameRoom::connect(Client *client) {
     Messages::StartMessage startMessage;
 
     for (int i = 0; i < map->pacman_size(); i++) {
@@ -88,38 +92,64 @@ void GameRoom::start() {
         players[i]->client->Start(startMessage);
     }
 
-    ready = true;
     started = true;
 }
 
 void GameRoom::step() {
 
-    auto sleep_time =  std::chrono::duration_cast<std::chrono::milliseconds>(period - (std::chrono::steady_clock::now() - lastStepTime));
-    std::this_thread::sleep_for(std::chrono::milliseconds (sleep_time));
+    auto sleep_time = std::chrono::duration_cast<std::chrono::milliseconds>(
+            period - (std::chrono::steady_clock::now() - lastStepTime));
+    std::this_thread::sleep_for(std::chrono::milliseconds(sleep_time));
 
     Messages::IterationMessage iterationMessage;
-    for( auto pacman: players){
-       pacman->step(gameGraph);
-        *iterationMessage.add_unit() = *(Samples::Unit *)pacman;
+    for (auto pacman: players) {
+        pacman->step(gameGraph);
+        pacman->setRoundPosition();
+        *iterationMessage.add_unit() = *(Samples::Unit *) pacman;
     }
 
-    for(auto ghost: ghosts){
+    for (auto ghost: ghosts) {
         ghost->step(gameGraph);
-        *iterationMessage.add_unit() = *(Samples::Unit *)ghost;
+        ghost->setRoundPosition();
+
+        *iterationMessage.add_unit() = *(Samples::Unit *) ghost;
     }
 
-    for( auto pacman: players){
+    checkGhostPacmanCollision();
+
+    for (auto pacman: players) {
         pacman->client->Iteration(iterationMessage);
     }
     lastStepTime = std::chrono::steady_clock::now();
 }
 
 
-Pacman* GameRoom::getPacman(const std::string &username) {
-    for(auto pacman: players ) {
-        if(username == pacman->client->getUsername()) {
+Pacman *GameRoom::getPacman(const std::string &username) {
+    for (auto pacman: players) {
+        if (username == pacman->client->getUsername()) {
             return pacman;
         }
     }
     return nullptr;
+}
+
+void GameRoom::checkGhostPacmanCollision() {
+    for (auto pacman: players) {
+        for (auto ghost: ghosts) {
+            if (pacman->rPos == ghost->rPos) {
+                if (!pacman->injured and pacman->status() != Samples::UnitStatus::DYING) {
+                    pacman->injured = true;
+                    pacman->injuredTimer = 8;
+                    pacman->set_health(pacman->health() - 1);
+                    std::cout << "HP " << (int) pacman->health() << std::endl;
+                    if(pacman->health() == 0){
+                        pacman->set_status(Samples::UnitStatus::DYING);
+//                        pacman->
+                        // TODO: dodelat'
+                    }
+                }
+            }
+        }
+    }
+
 }

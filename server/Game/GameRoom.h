@@ -36,6 +36,9 @@ public:
 
 //    void eventStep(Samples::Direction direction);
 
+
+    void checkGhostPacmanCollision();
+
     Pacman* getPacman(const std::string &username);
 
 

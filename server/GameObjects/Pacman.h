@@ -8,6 +8,7 @@
 #include "../NetWork/Client.h"
 #include "../Graph/SetGraph.h"
 #include "../../common/Constants/ConstValues.h"
+#include "GameObject.h"
 
 
 class Pacman : public Samples::Unit {
@@ -17,8 +18,14 @@ public:
     bool haveCollision(SetGraph &gameMap, Samples::Direction direction);
     bool step(SetGraph &gameMap);
     void stepToDirection(Samples::Direction direction);
+    void setRoundPosition();
 
+    bool injured;
     const Client *client;
+    unsigned int injuredTimer;
+    unsigned int dyingTimer;
+    RoundPosition rPos;
+
 };
 
 #endif //SERVER_PLAYER_H
