@@ -7,7 +7,7 @@
 void gameStep(std::list<GameRoom *> &gameRooms) {
     std::cout << "STEPPER" << std::endl;
     std::chrono::milliseconds period{GameTimer::PERIOD};
-
+    int count = 0;
     while (true) {
         GameRoom *firstRoom = nullptr;
         GameRoom *lastRoom = nullptr;
@@ -18,6 +18,7 @@ void gameStep(std::list<GameRoom *> &gameRooms) {
                 }
                 lastRoom = room;
                 room->step();
+                ++count;
             }
             if (!room->started) {
                 room->start();
