@@ -21,20 +21,13 @@ public:
 
     Samples::Direction newDirection;
 
-    void step(SetGraph &gameMap) {
-
+    bool haveCollision(SetGraph &gameMap, Samples::Direction direction) {
         int curentVertex = pos().y() * GameMap::WIDTH + pos().x();
         auto nextTiles = gameMap.GetNextVertices(curentVertex);
 
         int nextVertex = curentVertex;
 
-
-        Samples::Direction curentDirection =
-                newDirection != Samples::Direction::NONE ? newDirection : direction();
-
-        newDirection = Samples::Direction::NONE;
-
-        switch (curentDirection) {
+        switch (direction) {
             case Samples::Direction::RIGHT:
                 nextVertex += 1;
                 break;
@@ -50,27 +43,44 @@ public:
             default:
                 break;
         }
-        bool haveCollision = true;
         for (auto tile: nextTiles) {
             if (tile == nextVertex) {
-                haveCollision = false;
-                break;
+                return false;
             }
         }
-        if (!haveCollision) {
-            if (entrypercent() == 0) {
-                this->set_direction(curentDirection);
+        return true;
+    }
+
+    void step(SetGraph &gameMap) {
+
+
+        Samples::Direction curentDirection;
+//                newDirection != Samples::Direction::NONE ? newDirection : direction();
+
+//        newDirection = Samples::Direction::NONE;
+        if (newDirection != Samples::Direction::NONE) {
+//            bool differentDirection = newDirection == direction();
+
+            if (!haveCollision(gameMap, newDirection)) {
+                this->set_direction(newDirection);
+                curentDirection = newDirection;
+
+            } else if (!haveCollision(gameMap, direction())) {
+                this->set_direction(direction());
                 this->set_entrypercent(this->entrypercent() + 0.25f);
-            } else if (entrypercent() < 1.0f) {
-                this->set_entrypercent(this->entrypercent() + 0.25f);
+                curentDirection = direction();
             }
+        } else if (!haveCollision(gameMap, direction())) {
+            this->set_direction(direction());
+            this->set_entrypercent(this->entrypercent() + 0.25f);
+            curentDirection = direction();
         } else {
             this->set_direction(Samples::Direction::NONE);
         }
-
+        newDirection = Samples::Direction::NONE;
 
         if (this->entrypercent() >= 1.0f) {
-            switch (this->direction()) {
+            switch (curentDirection) {
                 case Samples::Direction::RIGHT:
                     this->mutable_pos()->set_x((sz::uint8) (this->pos().x() + 1));
                     break;
