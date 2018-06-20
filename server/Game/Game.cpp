@@ -40,9 +40,8 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
     std::cout << "Client connected to server. Username: " << connectMsg.name() << endl;
 
     if (clientsQueue.size() >= clientsCountInRoom) { // Если набралось нужное кол-во пользователей
-        //
 
-        // Создаём комнату
+        // Создание комнаты
         GameRoom *newGameRoom = manager.AddRoom();
         if (newGameRoom != nullptr) {
             // Добавление клиентов в комнату
@@ -54,8 +53,6 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
                 currentClient->setStatus(Client::IN_GAME);
             }
 
-//            newGameRoom->start();
-
             // Оправка остальным клиентам нового положения в очереди
             Messages::QueueMessage queueReply;
             for (int i = 0; i < clientsQueue.size(); ++i) {
@@ -65,13 +62,6 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
 
 
         }
-
-//            try {
-//                room->start();
-//            } catch (PlayerCountException *e) {
-//                cout << e->what();
-//            }
-
 
     } else {
 

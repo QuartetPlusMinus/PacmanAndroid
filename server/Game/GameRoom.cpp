@@ -13,8 +13,6 @@ GameRoom::GameRoom(const TileMap &map) :
 
 void GameRoom::addClient(Client *client) {
 
-    // TODO: добавить игрока
-
     players.push_back(new Pacman(client));
 }
 
@@ -41,16 +39,11 @@ void GameRoom::connect(Client* client) {
 void GameRoom::start() {
     std::cout << "Game started" << std::endl;
 
-
-    // TODO: инициализирует объекты игры
-
     Messages::StartMessage startMessage;
 
     if (map.pacman_size() != players.size()) {
         throw PlayerCountException("Count of added players not equal map players count");
     }
-
-//    ghosts.reserve(map->ghostsCount);
 
     for (int i = 0; i < map.pacman_size(); i++) {
 
@@ -85,7 +78,6 @@ void GameRoom::start() {
 
         Samples::UnitInit *unitInit = startMessage.add_unit();
         *unitInit->mutable_data() = *(Samples::Unit *) ghosts[i];
-//        unitInit->set_name(players[i]->client->getUsername());
         unitInit->set_type(Samples::GHOST);
     }
 
@@ -94,14 +86,13 @@ void GameRoom::start() {
         players[i]->client->Start(startMessage);
     }
 
-//    lastStepTime = std::chrono::steady_clock::now();
     ready = true;
     started = true;
 }
 
 void GameRoom::step() {
 
-    auto sleep_time =  std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(250) - (std::chrono::steady_clock::now() - lastStepTime));
+    auto sleep_time =  std::chrono::duration_cast<std::chrono::milliseconds>(period - (std::chrono::steady_clock::now() - lastStepTime));
     std::this_thread::sleep_for(std::chrono::milliseconds (sleep_time));
 
     Messages::IterationMessage iterationMessage;
@@ -117,10 +108,16 @@ void GameRoom::step() {
 
     for( auto pacman: players){
         pacman->client->Iteration(iterationMessage);
-//        std::cout << "Send iteration" << std::endl;
     }
-
     lastStepTime = std::chrono::steady_clock::now();
+}
 
 
+Pacman* GameRoom::getPacman(const std::string &username) {
+    for(auto pacman: players ) {
+        if(username == pacman->client->getUsername()) {
+            return pacman;
+        }
+    }
+    return nullptr;
 }

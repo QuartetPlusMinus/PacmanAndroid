@@ -18,8 +18,7 @@ Ghost::Ghost(std::vector<Pacman *> &pacmans) {
 }
 
 void Ghost::choiceDirection(SetGraph& gameMap) {
-//    std::cout << "IM HERE" <<std::endl;
-//    std::cout << (int) pos().x() << " - " << (int) pos().y() << std::endl;
+
     int startVertex = this->pos().x() + GameMap::WIDTH * this->pos().y();
     int goalVertex = target->pos().x() + GameMap::WIDTH * target->pos().y();
     std::queue<int> frontier;
@@ -28,44 +27,20 @@ void Ghost::choiceDirection(SetGraph& gameMap) {
     visited.insert(startVertex);
     std::unordered_map<int, int> cameFrom;
 
+    // поиск кратчайшего пути до pacman'а
     while (frontier.size() > 0) {
         int curent = frontier.front();
         frontier.pop();
-
         for (auto next: gameMap.GetNextVertices(curent)) {
-            std::unordered_set<int>::const_iterator vertex = visited.find(next);
             if (visited.count(next) == 0) {
-
-//                if (next == goalVertex) {
-//                    Samples::Direction dir = Samples::Direction::NONE;
-//                    int difference = cameFrom[goalVertex] - curent;
-//                    switch (difference) {
-//                        case 1:
-//                            dir = Samples::Direction::RIGHT;
-//                            break;
-//                        case -1:
-//                            dir = Samples::Direction::LEFT;
-//                            break;
-//                        case GameConstants::MAP_WIDTH:
-//                            dir = Samples::Direction::DOWN;
-//                            break;
-//                        case -GameConstants::MAP_WIDTH:
-//                            dir = Samples::Direction::UP;
-//                            break;
-//                        default:
-//                            dir = Samples::Direction::NONE;
-//                            break;
-//                    }
-//                    this->set_direction(dir);
-////                    std::cout << "DIRECTION: " << dir << std::endl;
-//                    break;
-//                }
                 frontier.push(next);
                 visited.insert(next);
                 cameFrom.insert({next, curent});
             }
         }
     }
+
+    // восстановление пути
     int current = goalVertex;
     int prev = startVertex;
     while(current != startVertex) {
@@ -93,7 +68,37 @@ void Ghost::choiceDirection(SetGraph& gameMap) {
             break;
     }
     this->set_direction(dir);
+}
 
 
+void Ghost::step(SetGraph &gameMap) {
+    int currentVertex = pos().y() * GameMap::WIDTH + pos().x();
+    auto nextTiles = gameMap.GetNextVertices(currentVertex);
 
+    this->set_entrypercent(this->entrypercent() + 0.25f);
+
+    if (this->entrypercent() >= 1.0f) {
+        switch (this->direction()) {
+            case Samples::Direction::RIGHT:
+                this->mutable_pos()->set_x((sz::uint8) (this->pos().x() + 1));
+                break;
+            case Samples::Direction::LEFT:
+                this->mutable_pos()->set_x((sz::uint8) (this->pos().x() - 1));
+                break;
+            case Samples::Direction::UP:
+                this->mutable_pos()->set_y((sz::uint8) (this->pos().y() - 1));
+                break;
+            case Samples::Direction::DOWN:
+                this->mutable_pos()->set_y((sz::uint8) (this->pos().y() + 1));
+                break;
+            default:
+                break;
+        }
+        this->set_entrypercent(0.0f);
+        if (nextTiles.size() == 1 ||
+            (nextTiles.size() == 2 and (2 < abs(nextTiles[0] - nextTiles[1]) < 2 * GameMap::WIDTH)) ||
+            nextTiles.size() > 2) {
+            choiceDirection(gameMap);
+        }
+    }
 }
