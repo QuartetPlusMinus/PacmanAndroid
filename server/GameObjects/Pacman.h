@@ -15,7 +15,7 @@ public:
     explicit Pacman(Client *client);
     Samples::Direction newDirection;
     bool haveCollision(SetGraph &gameMap, Samples::Direction direction);
-    void step(SetGraph &gameMap);
+    bool step(SetGraph &gameMap);
     void stepToDirection(Samples::Direction direction);
 
     const Client *client;

@@ -39,7 +39,9 @@ bool Pacman::haveCollision(SetGraph &gameMap, Samples::Direction direction) {
 }
 
 
-void Pacman::step(SetGraph &gameMap) {
+bool Pacman::step(SetGraph &gameMap) {
+    bool result = false;
+
     if (direction() != Samples::Direction::NONE) {
         this->set_entrypercent(this->entrypercent() + 0.25f);
         if (this->entrypercent() >= 1.0f) {
@@ -54,6 +56,7 @@ void Pacman::step(SetGraph &gameMap) {
                 this->set_direction(newDirection);
             }
             newDirection = Samples::Direction::NONE;
+            result = true;
         } else if ((direction() == Samples::RIGHT && newDirection == Samples::LEFT) ||
                    (direction() == Samples::LEFT && newDirection == Samples::RIGHT) ||
                    (direction() == Samples::UP && newDirection == Samples::DOWN) ||
@@ -61,13 +64,16 @@ void Pacman::step(SetGraph &gameMap) {
             stepToDirection(direction());
             set_entrypercent(1.0f - entrypercent());
             this->set_direction(newDirection);
-            return;
+            return true;
         }
     }
 
     if (haveCollision(gameMap, direction())) {
         set_direction(Samples::NONE);
+        return true;
     }
+
+    return result;
 }
 
 void Pacman::stepToDirection(Samples::Direction direction) {
