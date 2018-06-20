@@ -7,7 +7,7 @@
 
 //TODO: убрать хардкод
 //static const std::string MAPS_PATH = "/home/murmurt/GitHub/PacmanAndroid/server/src/maps/";
-static const std::string MAPS_PATH = "/home/views/github/PacmanAndroid/server/src/maps/";
+//static const std::string MAPS_PATH = "/home/views/github/PacmanAndroid/server/src/maps/";
 
 #ifdef _WIN32
 
@@ -56,7 +56,7 @@ std::string getCurrentPath() {
 
     cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
 
-    printf("The current working directory is %s\n", cCurrentPath);
+//    printf("The current working directory is %s\n", cCurrentPath);
     return std::string(cCurrentPath);
 }
 
@@ -65,9 +65,9 @@ MapManager *MapManager::_self = nullptr;
 MapManager::MapManager() {
     std::vector <std::string> mapsNames;
 
-    std::string mapsPath = getCurrentPath();
+    std::string mapsPath = getCurrentPath() + "/src/maps/";
 
-    read_directory(MAPS_PATH, mapsNames);
+    read_directory(mapsPath, mapsNames);
 
     for (auto &mapName: mapsNames) {
 
@@ -75,7 +75,7 @@ MapManager::MapManager() {
             continue;
 
         TileMap tileMap;
-        std::ifstream in(MAPS_PATH + mapName, std::ios::binary);
+        std::ifstream in(mapsPath + mapName, std::ios::binary);
 
         in.seekg(0, std::ios::end);
         size_t size = in.tellg();
