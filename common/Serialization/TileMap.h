@@ -62,9 +62,6 @@ public:
 
     const sz::Repeated<Samples::Point> &ghost() const;
 
-    const sz::string getStringMap() const;
-
-    
 private:
     sz::string map_;
     sz::Repeated<Samples::Point> pacman_;

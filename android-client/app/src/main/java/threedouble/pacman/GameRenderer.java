@@ -17,7 +17,7 @@ public class GameRenderer implements Renderer {
     }
 
     GameRenderer(AssetManager assetManager, byte[] startMessage) {
-        initAssetManagerJNI(assetManager);
+        setAssetManagerJNI(assetManager);
         startJNI(startMessage);
     }
 
@@ -36,7 +36,7 @@ public class GameRenderer implements Renderer {
         onDrawFrameJNI();
     }
 
-    public static native void initAssetManagerJNI(AssetManager assetManager);
+    public static native void setAssetManagerJNI(AssetManager assetManager);
 
     public static native void onSurfaceCreatedJNI();
 

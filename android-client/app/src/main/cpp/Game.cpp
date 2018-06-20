@@ -6,21 +6,22 @@
 #include "Game.h"
 
 void Game::onSurfaceCreated() {
+    assert(assetManager != nullptr);
+
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    OpenDraw::Texture textureBG;
-    textureBG.loadFromPngAsset("textures/map.png");
-    background.setTexture(textureBG);
+    od::Texture bgTexture(assetManager, "textures/map.png");
+    background.setTexture(std::make_shared<od::Texture>(bgTexture));
     background.init();
 
-    OpenDraw::Texture texturePM;
-    texturePM.loadFromPngAsset("textures/units.png");
+    std::shared_ptr<od::Texture> unitTexture = std::make_shared<od::Texture>(
+            od::Texture(assetManager, "textures/units.png"));
     for (int i = 0; i < unitsCount; i++) {
         units[i]->init();
-        units[i]->setTexture(texturePM);
+        units[i]->setTexture(unitTexture);
     }
 
     started = true;
@@ -36,6 +37,10 @@ void Game::onDrawFrame() {
     for (int i = 0; i < unitsCount; i++) {
         units[i]->draw();
     }
+}
+
+void Game::setAssertManager(AAssetManager *assetManager) {
+    this->assetManager = assetManager;
 }
 
 void Game::start(Messages::StartMessage &startMessage) {

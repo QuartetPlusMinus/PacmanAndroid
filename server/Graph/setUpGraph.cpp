@@ -7,10 +7,10 @@
 
 void setUp(VirtGraph *gameMap, std::string stringMap) {
 
-    for (int i = 0; i < GameConstants::MAP_HEIGHT * GameConstants::MAP_WIDTH; ++i) {
+    for (int i = 0; i < GameMap::HEIGHT * GameMap::WIDTH; ++i) {
 
         if (stringMap[i] == 1) {
-            int neighbor = i - GameConstants::MAP_WIDTH;
+            int neighbor = i - GameMap::WIDTH;
             if (stringMap[neighbor] == 1) {
                 gameMap->AddEdge(i, neighbor);
             }
@@ -22,7 +22,7 @@ void setUp(VirtGraph *gameMap, std::string stringMap) {
             if (stringMap[neighbor] == 1) {
                 gameMap->AddEdge(i, neighbor);
             }
-            neighbor = i + GameConstants::MAP_WIDTH;
+            neighbor = i + GameMap::WIDTH;
             if (stringMap[neighbor] == 1) {
                 gameMap->AddEdge(i, neighbor);
             }

@@ -7,10 +7,7 @@
 
 #include <GLES2/gl2.h>
 #include "IDrawable.h"
-#include "libodraw/linmath.h"
-#include "libodraw/ShaderPrograms.h"
-#include "libodraw/Texture.h"
-#include "libodraw/Sprite.h"
+#include "libodraw/libodraw.h"
 
 class Background : public IDrawable {
 public:
@@ -18,7 +15,7 @@ public:
 
     }
 
-    void setTexture(OpenDraw::Texture &texture) final {
+    void setTexture(std::shared_ptr<od::Texture> texture) {
         sprite.setTexture(texture);
     }
 
@@ -31,7 +28,7 @@ public:
     }
 
 private:
-    OpenDraw::Sprite sprite;
+    od::Sprite sprite;
 };
 
 #endif //ANDROID_CLIENT_BACKGROUND_H

@@ -2,14 +2,18 @@
 // Created by views on 19.06.18.
 //
 
+#include <cstdio>  /* defines FILENAME_MAX */
 #include "MapManager.h"
 
 //TODO: убрать хардкод
-static const std::string MAPS_PATH = "/home/murmurt/GitHub/PacmanAndroid/server/src/maps/";
+//static const std::string MAPS_PATH = "/home/murmurt/GitHub/PacmanAndroid/server/src/maps/";
+static const std::string MAPS_PATH = "/home/views/github/PacmanAndroid/server/src/maps/";
 
 #ifdef _WIN32
 
 #include <windows.h>
+#include <direct.h>
+#define GetCurrentDir _getcwd
 
 void read_directory(const std::string& name, std::vector<std::string>& v)
 {
@@ -29,11 +33,12 @@ void read_directory(const std::string& name, std::vector<std::string>& v)
 
 #include <sys/types.h>
 #include <dirent.h>
+#include <unistd.h>
+#define GetCurrentDir getcwd
 
-void read_directory(const std::string& name, std::vector<std::string>& v)
-{
-    DIR* dirp = opendir(name.c_str());
-    struct dirent * dp;
+void read_directory(const std::string &name, std::vector <std::string> &v) {
+    DIR *dirp = opendir(name.c_str());
+    struct dirent *dp;
     while ((dp = readdir(dirp)) != nullptr) {
         v.emplace_back(dp->d_name);
     }
@@ -42,10 +47,25 @@ void read_directory(const std::string& name, std::vector<std::string>& v)
 
 #endif
 
+
+std::string getCurrentPath() {
+
+    char cCurrentPath[FILENAME_MAX];
+
+    GetCurrentDir(cCurrentPath, sizeof(cCurrentPath));
+
+    cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
+
+    printf("The current working directory is %s\n", cCurrentPath);
+    return std::string(cCurrentPath);
+}
+
 MapManager *MapManager::_self = nullptr;
 
 MapManager::MapManager() {
-    std::vector<std::string> mapsNames;
+    std::vector <std::string> mapsNames;
+
+    std::string mapsPath = getCurrentPath();
 
     read_directory(MAPS_PATH, mapsNames);
 
@@ -71,7 +91,7 @@ MapManager::MapManager() {
 const TileMap &MapManager::getRandomMap() const {
     std::random_device random_device;
     std::mt19937 engine{random_device()};
-    std::uniform_int_distribution<int> dist(0, (int)maps.size() - 1);
+    std::uniform_int_distribution<int> dist(0, (int) maps.size() - 1);
     return maps[dist(engine)];
 }
 

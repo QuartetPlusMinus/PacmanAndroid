@@ -52,7 +52,7 @@ public:
     std::chrono::time_point<std::chrono::steady_clock> lastStepTime;
     std::chrono::milliseconds period{GameTimer::PERIOD};
 
-    SetGraph gameGraph{GameConstants::MAP_HEIGHT * GameConstants::MAP_WIDTH};
+    SetGraph gameGraph{GameMap::HEIGHT * GameMap::WIDTH};
     private:
 
     std::vector<Pacman *> players;

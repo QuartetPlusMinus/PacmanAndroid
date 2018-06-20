@@ -18,8 +18,8 @@ Ghost::Ghost(std::vector<Pacman *> &pacmans) {
 }
 
 void Ghost::choiceDirection(SetGraph& gameMap) {
-    int startVertex = this->pos().x() + GameConstants::MAP_WIDTH * this->pos().y();
-    int goalVertex = target->pos().x() + GameConstants::MAP_WIDTH * target->pos().y();
+    int startVertex = this->pos().x() + GameMap::WIDTH * this->pos().y();
+    int goalVertex = target->pos().x() + GameMap::WIDTH * target->pos().y();
     std::queue<int> frontier;
     frontier.push(startVertex);
     std::unordered_set<int> visited;
@@ -33,6 +33,7 @@ void Ghost::choiceDirection(SetGraph& gameMap) {
         for (auto next: gameMap.GetNextVertices(curent)) {
             std::unordered_set<int>::const_iterator vertex = visited.find(next);
             if (visited.count(next) == 0) {
+
 //                if (next == goalVertex) {
 //                    Samples::Direction dir = Samples::Direction::NONE;
 //                    int difference = cameFrom[goalVertex] - curent;
@@ -74,19 +75,19 @@ void Ghost::choiceDirection(SetGraph& gameMap) {
     int difference = prev - current;
     switch (difference) {
         case 1:
-            dir = Samples::Direction::RIGHT;
+            dir = Samples::RIGHT;
             break;
         case -1:
-            dir = Samples::Direction::LEFT;
+            dir = Samples::LEFT;
             break;
-        case GameConstants::MAP_WIDTH:
-            dir = Samples::Direction::DOWN;
+        case GameMap::WIDTH:
+            dir = Samples::DOWN;
             break;
-        case -GameConstants::MAP_WIDTH:
-            dir = Samples::Direction::UP;
+        case -GameMap::WIDTH:
+            dir = Samples::UP;
             break;
         default:
-            dir = Samples::Direction::NONE;
+            dir = Samples::NONE;
             break;
     }
     this->set_direction(dir);

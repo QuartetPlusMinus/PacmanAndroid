@@ -110,7 +110,3 @@ sz::Repeated<Samples::Point> *TileMap::mutable_ghost() {
 const sz::Repeated<Samples::Point> &TileMap::ghost() const {
     return ghost_;
 }
-
-const sz::string TileMap::getStringMap() const {
-    return map_;
-}

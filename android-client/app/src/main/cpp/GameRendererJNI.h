@@ -1,6 +1,6 @@
 #include <jni.h>
 #include <android/asset_manager_jni.h>
-#include <Messages.h>
+#include <Serialization/Messages.h>
 
 #include "Game.h"
 
@@ -95,6 +95,16 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_endJNI
     Messages::EndMessage endMessage;
     endMessage.parseFromString(message);
     game.end(endMessage);
+}
+
+/*
+ * Class:     com_example_viewsharp_pacman_RendererWrapper
+ * Method:    setAssetManagerJNI
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_setAssetManagerJNI
+        (JNIEnv *env, jobject, jobject java_asset_manager) {
+    game.setAssertManager(AAssetManager_fromJava(env, java_asset_manager));
 }
 
 #ifdef __cplusplus

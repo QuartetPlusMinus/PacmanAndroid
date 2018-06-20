@@ -8,7 +8,7 @@
 
 GameRoom::GameRoom(const TileMap &map) :
         map(map), gameOver(false), ready(false), started(false), lastStepTime(std::chrono::steady_clock::now()) {
-    gameGraph.setUp(map.getStringMap());
+    gameGraph.setUp(map.map());
 }
 
 void GameRoom::addClient(Client *client) {
