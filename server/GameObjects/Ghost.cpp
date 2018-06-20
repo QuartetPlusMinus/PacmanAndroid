@@ -18,6 +18,8 @@ Ghost::Ghost(std::vector<Pacman *> &pacmans) {
 }
 
 void Ghost::choiceDirection(SetGraph& gameMap) {
+    std::cout << "IM HERE" <<std::endl;
+    std::cout << (int) pos().x() << " - " << (int) pos().y() << std::endl;
     int startVertex = this->pos().x() + GameMap::WIDTH * this->pos().y();
     int goalVertex = target->pos().x() + GameMap::WIDTH * target->pos().y();
     std::queue<int> frontier;
