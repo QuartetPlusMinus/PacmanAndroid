@@ -15,12 +15,15 @@ void Unit::draw() {
         case Samples::RIGHT :
             sprite.setPosition((data().pos().x() + data().entrypercent()) / GameMap::WIDTH,
                                (float) data().pos().y() / GameMap::HEIGHT);
+            break;
         case Samples::DOWN :
             sprite.setPosition((float) data().pos().x() / GameMap::WIDTH,
                                (data().pos().y() + data().entrypercent()) / GameMap::HEIGHT);
+            break;
         case Samples::LEFT :
             sprite.setPosition((data().pos().x() - data().entrypercent()) / GameMap::WIDTH,
                                (float) data().pos().y() / GameMap::HEIGHT);
+            break;
         case Samples::UP :
             sprite.setPosition((float) data().pos().x() / GameMap::WIDTH,
                                (data().pos().y() - data().entrypercent()) / GameMap::HEIGHT);

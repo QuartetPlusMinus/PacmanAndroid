@@ -27,3 +27,24 @@ set(GRAPH_FILES Graph/SetGraph.cpp Graph/setUpGraph.cpp Graph/setUpGraph.h GameO
 
 add_executable(PacmanServer ${SERIALIZATION_FILES} ${TILEMAP_AND_MESSAGES_FILES} ${GRAPH_FILES} ${SERVER_FILES})
 target_link_libraries(PacmanServer ${PROTOBUF_LIBRARY} ${Boost_LIBRARIES})
+
+#file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/some_dir)
+
+macro(configure_files srcDir destDir)
+    message(STATUS "Configuring directory ${destDir}")
+    make_directory(${destDir})
+
+    file(GLOB templateFiles RELATIVE ${srcDir} ${srcDir}/*)
+    foreach(templateFile ${templateFiles})
+        set(srcTemplatePath ${srcDir}/${templateFile})
+        if(NOT IS_DIRECTORY ${srcTemplatePath})
+            message(STATUS "Configuring file ${templateFile}")
+            configure_file(
+                    ${srcTemplatePath}
+                    ${destDir}/${templateFile}
+                    @ONLY)
+        endif(NOT IS_DIRECTORY ${srcTemplatePath})
+    endforeach(templateFile)
+endmacro(configure_files)
+
+configure_files(src ${CMAKE_BINARY_DIR}/src)
