@@ -4,6 +4,8 @@
 
 
 #include "Game.h"
+#include "Pacman.h"
+#include "Ghost.h"
 
 void Game::onSurfaceCreated() {
     assert(assetManager != nullptr);
@@ -52,8 +54,13 @@ void Game::start(Messages::StartMessage &startMessage) {
     for (int i = 0; i < unitsCount; i++) {
         // TODO: factory or builder
         auto unit = startMessage.unit(i);
+
         if (unit.type() == Samples::PACMAN) {
-            units[i] = new Pacman(unit);
+            if (i == startMessage.id()) {
+                units[i] = new Pacman(unit, true);
+            } else {
+                units[i] = new Pacman(unit);
+            }
         } else if (unit.type() == Samples::GHOST) {
             units[i] = new Ghost(unit);
         }

@@ -61,7 +61,9 @@ add_library( game SHARED
              ${CPP_LOCAL_PATH}/GameRendererJNI.cpp
              ${CPP_LOCAL_PATH}/Game.cpp
              ${CPP_LOCAL_PATH}/Background.cpp
-             ${CPP_LOCAL_PATH}/Units.cpp
+             ${CPP_LOCAL_PATH}/Unit.cpp
+             ${CPP_LOCAL_PATH}/Pacman.cpp
+             ${CPP_LOCAL_PATH}/Ghost.cpp
              )
 
 target_link_libraries( game

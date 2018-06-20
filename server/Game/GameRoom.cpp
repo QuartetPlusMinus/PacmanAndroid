@@ -14,7 +14,7 @@ GameRoom::GameRoom(const TileMap *map) :
 void GameRoom::addClient(Client *client) {
 
     players.push_back(new Pacman(client));
-    if (players.size() == map.pacman_size()){
+    if (players.size() == map->pacman_size()){
         ready = true;
     }
 

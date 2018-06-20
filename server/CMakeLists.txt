@@ -34,5 +34,4 @@ target_link_libraries(PacmanServer ${PROTOBUF_LIBRARY} ${Boost_LIBRARIES})
 
 make_directory(${CMAKE_BINARY_DIR}/src/)
 make_directory(${CMAKE_BINARY_DIR}/src/maps)
-#configure_file(src/maps/default-map.map ${CMAKE_BINARY_DIR}/src/maps/default-map.map)
-file(COPY src/maps/default-map-two-pacman.map DESTINATION ${CMAKE_BINARY_DIR}/src/maps/)
+file(COPY src/maps/default-map-one-pacman.map DESTINATION ${CMAKE_BINARY_DIR}/src/maps/)
