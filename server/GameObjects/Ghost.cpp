@@ -71,7 +71,7 @@ void Ghost::choiceDirection(SetGraph& gameMap) {
         current = cameFrom[current];
     }
 
-    Samples::Direction dir.;
+    Samples::Direction dir;
     int difference = prev - current;
     switch (difference) {
         case 1:
