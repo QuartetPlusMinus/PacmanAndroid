@@ -71,7 +71,7 @@ void Ghost::choiceDirection(SetGraph& gameMap) {
         current = cameFrom[current];
     }
 
-    Samples::Direction dir = Samples::Direction::NONE;
+    Samples::Direction dir.;
     int difference = prev - current;
     switch (difference) {
         case 1:
@@ -91,7 +91,4 @@ void Ghost::choiceDirection(SetGraph& gameMap) {
             break;
     }
     this->set_direction(dir);
-
-
-
 }

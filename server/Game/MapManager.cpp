@@ -43,7 +43,6 @@ void read_directory(const std::string &name, std::vector <std::string> &v) {
 
 #endif
 
-
 std::string getCurrentPath() {
 
     char cCurrentPath[FILENAME_MAX];
@@ -52,7 +51,6 @@ std::string getCurrentPath() {
 
     cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
 
-//    printf("The current working directory is %s\n", cCurrentPath);
     return std::string(cCurrentPath);
 }
 

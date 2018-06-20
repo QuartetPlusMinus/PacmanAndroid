@@ -11,11 +11,13 @@
 class Pacman : public Samples::Unit {
 public:
     explicit Pacman(Client *client) :
-            client(client) {
+            client(client), newDirection(Samples::Direction::NONE) {
 
     }
 
     const Client *client;
+
+    Samples::Direction newDirection;
 
     void step() {
         this->mutable_pos()->set_x(this->pos().x());

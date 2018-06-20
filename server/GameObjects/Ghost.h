@@ -67,7 +67,7 @@ public:
                     default:
                         break;
                 }
-                this->mutable_pos()->set_x((sz::uint8)(this->pos().x() + 1));
+//                this->mutable_pos()->set_x((sz::uint8)(this->pos().x() + 1));
                 this->set_entrypercent(0.0f);
                 if(nextTiles.size() == 1 || nextTiles.size() == 2 and ( 1 < abs(nextTiles[0] - nextTiles[1]) < 2 * GameMap::WIDTH)){
                     choiceDirection(gameMap);
