@@ -70,13 +70,14 @@ public:
             }
             this->set_entrypercent(0.0f);
             if (nextTiles.size() == 1 ||
-                (nextTiles.size() == 2 and (1 < abs(nextTiles[0] - nextTiles[1]) < 2 * GameMap::WIDTH))) {
+                (nextTiles.size() == 2 and (1 < abs(nextTiles[0] - nextTiles[1]) < 2 * GameMap::WIDTH)) ||
+                    nextTiles.size() > 2) {
                 choiceDirection(gameMap);
             }
         }
 
 
-        std::cout << (int) pos().x() << " - " << (int) pos().y() << std::endl;
+//        std::cout << (int) pos().x() << " - " << (int) pos().y() << std::endl;
 
     }
 
