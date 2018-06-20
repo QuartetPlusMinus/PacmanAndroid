@@ -43,7 +43,6 @@ namespace OpenDraw {
         vec2 texturePosition;
         vec2 tSize;
         float zIndex;
-
     };
 }
 
