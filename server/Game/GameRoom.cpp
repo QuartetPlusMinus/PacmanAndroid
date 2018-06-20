@@ -117,9 +117,18 @@ void GameRoom::step() {
 
     checkGhostPacmanCollision();
 
+    int killedPacmans = 0;
     for (auto pacman: players) {
+        if(pacman->status() == Samples::UnitStatus::KILLED) {
+            ++killedPacmans;
+        }
         pacman->client->Iteration(iterationMessage);
     }
+    if(killedPacmans == map->pacman_size()){
+        gameOver = true;
+    }
+
+
     lastStepTime = std::chrono::steady_clock::now();
 }
 
@@ -144,6 +153,7 @@ void GameRoom::checkGhostPacmanCollision() {
                     std::cout << "HP " << (int) pacman->health() << std::endl;
                     if(pacman->health() == 0){
                         pacman->set_status(Samples::UnitStatus::DYING);
+                        pacman->dyingTimer = 12;
 //                        pacman->
                         // TODO: dodelat'
                     }

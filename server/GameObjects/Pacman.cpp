@@ -46,6 +46,17 @@ bool Pacman::step(SetGraph &gameMap) {
     if(injuredTimer == 0 and injured == true) {
         injured = false;
     }
+    if(dyingTimer == 0){
+        this->set_status(Samples::UnitStatus::KILLED);
+        Messages::EndMessage endMessage;
+
+        endMessage.set_status(Samples::GameStatus::LOSE);
+        endMessage.set_points(777);
+
+    }
+    if(dyingTimer > 0) {
+        --dyingTimer;
+    }
     if( injuredTimer > 0 ){
         --injuredTimer;
     }

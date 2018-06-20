@@ -11,7 +11,7 @@ void gameStep(std::list<GameRoom *> &gameRooms) {
         GameRoom *firstRoom = nullptr;
         GameRoom *lastRoom = nullptr;
         for (auto room: gameRooms) {
-            if (room->ready && room->started) {
+            if (room->ready && room->started && !room->gameOver) {
                 if (!firstRoom) {
                     firstRoom = room;
                 }
