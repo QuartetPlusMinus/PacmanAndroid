@@ -5,10 +5,6 @@
 #include <cstdio>  /* defines FILENAME_MAX */
 #include "MapManager.h"
 
-//TODO: убрать хардкод
-//static const std::string MAPS_PATH = "/home/murmurt/GitHub/PacmanAndroid/server/src/maps/";
-//static const std::string MAPS_PATH = "/home/views/github/PacmanAndroid/server/src/maps/";
-
 #ifdef _WIN32
 
 #include <windows.h>
