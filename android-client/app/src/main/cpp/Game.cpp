@@ -2,10 +2,12 @@
 // Created by viewsharp on 11.04.18.
 //
 
-
 #include "Game.h"
 #include "Pacman.h"
 #include "Ghost.h"
+
+const std::string MAP_TEXTURE_PATH = "textures/map.png";
+const std::string UNITS_TEXTURE_PATH = "textures/units.png";
 
 void Game::onSurfaceCreated() {
     assert(assetManager != nullptr);
@@ -15,15 +17,15 @@ void Game::onSurfaceCreated() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    od::Texture bgTexture(assetManager, "textures/map.png");
+    od::Texture bgTexture(assetManager, MAP_TEXTURE_PATH);
     background.setTexture(std::make_shared<od::Texture>(bgTexture));
     background.init();
 
     std::shared_ptr<od::Texture> unitTexture = std::make_shared<od::Texture>(
-            od::Texture(assetManager, "textures/units.png"));
-    for (int i = 0; i < unitsCount; i++) {
-        units[i]->init();
-        units[i]->setTexture(unitTexture);
+            od::Texture(assetManager, UNITS_TEXTURE_PATH));
+    for (auto &unit: units) {
+        unit->init();
+        unit->setTexture(unitTexture);
     }
 
     started = true;
@@ -36,8 +38,8 @@ void Game::onSurfaceChanged(int width, int height) {
 void Game::onDrawFrame() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     background.draw();
-    for (int i = 0; i < unitsCount; i++) {
-        units[i]->draw();
+    for (auto &unit: units) {
+        unit->draw();
     }
 }
 
@@ -48,27 +50,20 @@ void Game::setAssertManager(AAssetManager *assetManager) {
 void Game::start(Messages::StartMessage &startMessage) {
     id = startMessage.id();
 
-    unitsCount = startMessage.unit_size();
-    units = new Unit *[unitsCount];
-
-    for (int i = 0; i < unitsCount; i++) {
+    for (int i = 0; i < startMessage.unit_size(); i++) {
         // TODO: factory or builder
-        auto unit = startMessage.unit(i);
+        const Samples::UnitInit &unit = startMessage.unit(i);
 
         if (unit.type() == Samples::PACMAN) {
-            if (i == startMessage.id()) {
-                units[i] = new Pacman(unit, true);
-            } else {
-                units[i] = new Pacman(unit);
-            }
+            units.emplace_back(new Pacman(unit, i == startMessage.id()));
         } else if (unit.type() == Samples::GHOST) {
-            units[i] = new Ghost(unit);
+            units.emplace_back(new Ghost(unit));
         }
     }
 }
 
 void Game::iterate(Messages::IterationMessage &iterationMessage) {
-    for (int i = 0; i < unitsCount; i++) {
+    for (int i = 0; i < iterationMessage.unit_size(); i++) {
         *units[i]->mutable_data() = iterationMessage.unit(i);
     }
 }

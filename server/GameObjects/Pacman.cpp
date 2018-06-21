@@ -4,9 +4,11 @@
 
 #include "Pacman.h"
 
-Pacman::Pacman(Client *client) : client(client), newDirection(Samples::Direction::NONE), injured(false),
-                                 injuredTimer(0) {
-}
+Pacman::Pacman(Client *client) : client(client),
+                                 newDirection(Samples::Direction::NONE),
+                                 injured(false),
+                                 injuredTimer(0),
+                                 dyingTimer(10) {}
 
 
 bool Pacman::haveCollision(SetGraph &gameMap, Samples::Direction direction) {
@@ -43,21 +45,22 @@ bool Pacman::haveCollision(SetGraph &gameMap, Samples::Direction direction) {
 bool Pacman::step(SetGraph &gameMap) {
     bool result = false;
 
-    if(injuredTimer == 0 and injured == true) {
+    if (injuredTimer == 0 and injured == true) {
         injured = false;
     }
-    if(dyingTimer == 0){
+    if (dyingTimer == 0) {
         this->set_status(Samples::UnitStatus::KILLED);
         Messages::EndMessage endMessage;
 
         endMessage.set_status(Samples::GameStatus::LOSE);
         endMessage.set_points(777);
-
     }
-    if(dyingTimer > 0) {
+
+    if (dyingTimer > 0 && health() == 0) {
         --dyingTimer;
     }
-    if( injuredTimer > 0 ){
+
+    if (injuredTimer > 0) {
         --injuredTimer;
     }
 

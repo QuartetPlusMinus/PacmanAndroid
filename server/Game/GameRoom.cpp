@@ -149,7 +149,9 @@ void GameRoom::checkGhostPacmanCollision() {
                 if (!pacman->injured and pacman->status() != Samples::UnitStatus::DYING) {
                     pacman->injured = true;
                     pacman->injuredTimer = 8;
-                    pacman->set_health(pacman->health() - 1);
+
+                    pacman->set_health(static_cast<sz::uint8> (pacman->health() == 0 ? 0: pacman->health() - 1));
+
                     std::cout << "HP " << (int) pacman->health() << std::endl;
                     if(pacman->health() == 0){
                         pacman->set_status(Samples::UnitStatus::DYING);

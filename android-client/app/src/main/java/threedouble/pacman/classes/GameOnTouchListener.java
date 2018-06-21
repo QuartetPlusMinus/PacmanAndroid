@@ -1,4 +1,4 @@
-package threedouble.pacman;
+package threedouble.pacman.classes;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class GameOnTouchListener implements View.OnTouchListener{
 
-    GameOnTouchListener(Server server) {
+    public GameOnTouchListener(Server server) {
         this.server = server;
     }
 
@@ -50,7 +50,6 @@ public class GameOnTouchListener implements View.OnTouchListener{
                 }
         }
         return true;
-
     }
 
     private float onTouchX;

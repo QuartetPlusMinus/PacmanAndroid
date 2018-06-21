@@ -16,7 +16,7 @@ class Unit : public Samples::UnitInit, public IDrawable {
 public:
     Unit() = default;
 
-    Unit(Samples::UnitInit &unitInit) : Samples::UnitInit(unitInit) {};
+    Unit(const Samples::UnitInit &unitInit) : Samples::UnitInit(unitInit) {};
 
     void init() override;
 

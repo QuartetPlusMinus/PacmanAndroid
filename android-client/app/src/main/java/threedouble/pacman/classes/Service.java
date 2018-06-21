@@ -1,9 +1,8 @@
-package threedouble.pacman;
+package threedouble.pacman.classes;
 
-import java.net.InetAddress;
 import java.net.SocketException;
 
-class Service extends Network{
+public class Service extends Network{
 
     Service() throws SocketException {
         super();

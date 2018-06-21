@@ -11,7 +11,7 @@ static float ghostZIndex = 0.2f;
 
 class Ghost : public Unit {
 public:
-    Ghost(Samples::UnitInit &unit);
+    Ghost(const Samples::UnitInit &unit);
 
     void draw() final;
 
