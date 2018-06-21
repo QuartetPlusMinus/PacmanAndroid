@@ -8,21 +8,19 @@
 
 #include "../../common/Serialization/Samples.h"
 #include "Pacman.h"
+#include "../Graph/SetGraph.h"
+#include "../../common/Constants/ConstValues.h"
 
 class Ghost : public Samples::Unit {
 public:
-    Ghost() : target(nullptr) {}
 
-    Pacman* target;
-    void step() {
-        if( this->entrypercent() >= 1.0f) {
-            this->mutable_pos()->set_x((sz::uint8)(this->pos().x() + 1));
-            this->set_entrypercent(0.0f);
-        }
-        this->set_direction(Samples::RIGHT);
-        this->set_entrypercent(this->entrypercent() + 0.25f);
-    }
+    Ghost(std::vector<Pacman *> &pacmans);
+    void choiceDirection(SetGraph &gameMap);
+    void step(SetGraph &gameMap);
+    void setRoundPosition();
 
+    RoundPosition rPos;
+    Pacman *target;
 };
 
 

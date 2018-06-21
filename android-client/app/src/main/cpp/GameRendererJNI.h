@@ -1,6 +1,6 @@
 #include <jni.h>
 #include <android/asset_manager_jni.h>
-#include <Messages.h>
+#include <Serialization/Messages.h>
 
 #include "Game.h"
 
@@ -23,7 +23,7 @@ static Game game;
  * Method:    onSurfaceCreated
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_onSurfaceCreatedJNI
+JNIEXPORT void JNICALL Java_threedouble_pacman_classes_GameRenderer_onSurfaceCreatedJNI
         (JNIEnv *, jobject) {
     game.onSurfaceCreated();
 }
@@ -33,7 +33,7 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_onSurfaceCreatedJNI
  * Method:    onSurfaceChanged
  * Signature: (II)V
  */
-JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_onSurfaceChangedJNI
+JNIEXPORT void JNICALL Java_threedouble_pacman_classes_GameRenderer_onSurfaceChangedJNI
         (JNIEnv *, jobject, jint width, jint height) {
     game.onSurfaceChanged((int) width, (int) height);
 }
@@ -43,7 +43,7 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_onSurfaceChangedJNI
  * Method:    onDrawFrame
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_onDrawFrameJNI
+JNIEXPORT void JNICALL Java_threedouble_pacman_classes_GameRenderer_onDrawFrameJNI
         (JNIEnv *, jobject) {
     game.onDrawFrame();
 }
@@ -53,7 +53,7 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_onDrawFrameJNI
  * Method:    start
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_startJNI
+JNIEXPORT void JNICALL Java_threedouble_pacman_classes_GameRenderer_startJNI
         (JNIEnv *env, jobject, jbyteArray msgBytes) {
     jboolean isCopy = JNI_FALSE;
     std::string message((char *) env->GetByteArrayElements(msgBytes, &isCopy),
@@ -68,7 +68,7 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_startJNI
  * Method:    iterate
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_iterateJNI
+JNIEXPORT void JNICALL Java_threedouble_pacman_classes_GameRenderer_iterateJNI
         (JNIEnv *env, jobject, jbyteArray msgBytes) {
     if (not game.isStarted()) {
         return;
@@ -87,7 +87,7 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_iterateJNI
  * Method:    end
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_endJNI
+JNIEXPORT void JNICALL Java_threedouble_pacman_classes_GameRenderer_endJNI
         (JNIEnv *env, jobject, jbyteArray msgBytes) {
     jboolean isCopy = JNI_FALSE;
     std::string message((char *) env->GetByteArrayElements(msgBytes, &isCopy),
@@ -95,6 +95,16 @@ JNIEXPORT void JNICALL Java_threedouble_pacman_GameRenderer_endJNI
     Messages::EndMessage endMessage;
     endMessage.parseFromString(message);
     game.end(endMessage);
+}
+
+/*
+ * Class:     com_example_viewsharp_pacman_RendererWrapper
+ * Method:    setAssetManagerJNI
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_threedouble_pacman_classes_GameRenderer_setAssetManagerJNI
+        (JNIEnv *env, jobject, jobject java_asset_manager) {
+    game.setAssertManager(AAssetManager_fromJava(env, java_asset_manager));
 }
 
 #ifdef __cplusplus

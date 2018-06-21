@@ -6,21 +6,26 @@
 #define SERVER_PLAYER_H
 
 #include "../NetWork/Client.h"
+#include "../Graph/SetGraph.h"
+#include "../../common/Constants/ConstValues.h"
+#include "GameObject.h"
 
 
 class Pacman : public Samples::Unit {
 public:
-    explicit Pacman(Client *client) :
-            client(client) {
+    explicit Pacman(Client *client);
+    Samples::Direction newDirection;
+    bool haveCollision(SetGraph &gameMap, Samples::Direction direction);
+    bool step(SetGraph &gameMap);
+    void stepToDirection(Samples::Direction direction);
+    void setRoundPosition();
 
-    }
-
+    bool injured;
     const Client *client;
+    unsigned int injuredTimer;
+    unsigned int dyingTimer;
+    RoundPosition rPos;
 
-    void step() {
-        this->mutable_pos()->set_x(this->pos().x() + 1);
-        this->set_direction(Samples::RIGHT);
-    }
 };
 
 #endif //SERVER_PLAYER_H

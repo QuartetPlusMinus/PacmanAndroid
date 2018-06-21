@@ -12,7 +12,7 @@
 
 namespace SetUpGraph {
 
-    void setUp(VirtGraph* gameMap, std::string* stringMap, unsigned int width, unsigned int height );
+//    void setUp(VirtGraph* gameMap, std::string stringMap);
 
 }
 

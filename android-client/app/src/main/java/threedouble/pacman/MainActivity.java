@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +18,11 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
+
+import threedouble.pacman.classes.Game;
+import threedouble.pacman.classes.GameOnTouchListener;
+import threedouble.pacman.classes.GameRenderer;
+import threedouble.pacman.classes.Server;
 
 public class MainActivity extends AppCompatActivity {
     static {
@@ -51,6 +55,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Handler startHandler;
+
+    static class StartHandler extends Handler {
+        StartHandler(MainActivity context) {
+            this.context = context;
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            GLSurfaceView glSurfaceView = new GLSurfaceView(context);
+            context.setGLSurfaceView(glSurfaceView);
+
+            if (context.isProbablyEmulator()) {
+                glSurfaceView.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+            }
+
+            glSurfaceView.setEGLContextClientVersion(2);
+            GameRenderer gameRenderer = new GameRenderer(context.getAssets(), (byte[])msg.obj);
+            glSurfaceView.setRenderer(gameRenderer);
+            glSurfaceView.setOnTouchListener(new GameOnTouchListener(context.server));
+
+            context.setContentView(glSurfaceView);
+            super.handleMessage(msg);
+        }
+
+        MainActivity context;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,32 +132,17 @@ public class MainActivity extends AppCompatActivity {
 
         messageHandler = new MessageHandler(messageField);
 
-        final MainActivity glContext = this;
-
-        startHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                glSurfaceView = new GLSurfaceView(glContext);
-
-                if (isProbablyEmulator()) {
-                    glSurfaceView.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
-                }
-
-                glSurfaceView.setEGLContextClientVersion(2);
-                GameRenderer gameRenderer = new GameRenderer(getAssets(), (byte[])msg.obj);
-                glSurfaceView.setRenderer(gameRenderer);
-                glSurfaceView.setOnTouchListener(new GameOnTouchListener(server));
-
-                setContentView(glSurfaceView);
-                super.handleMessage(msg);
-            }
-        };
+        startHandler = new StartHandler(this);
 
         try {
             game = new Game(this);
         } catch (SocketException e) {
             messageField.setText(e.toString());
         }
+    }
+
+    public void setGLSurfaceView(GLSurfaceView glSurfaceView) {
+        this.glSurfaceView = glSurfaceView;
     }
 
     @Override

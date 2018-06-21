@@ -1,58 +1,52 @@
 #include <iostream>
 
 #include "setUpGraph.h"
-
-enum Direction {
-    NONE = 0,
-    RIGHT = 1,
-    DOWN = 2,
-    LEFT = 3,
-    UP = 4,
-};
+#include "../../common/Constants/ConstValues.h"
 
 
-void setUp(VirtGraph *gameMap, std::string *stringMap, unsigned int width, unsigned int height) {
 
-//    for (int i = 0; i < height * width; ++i) {
-//
-//        if (stringMap[i] == 1) {
-//            int neighbor = i - WIDTH;
-//            if (stringMap[neighbor] == 1) {
-//                gameMap.AddEdge(i, neighbor);
-//            }
-//            neighbor = i + 1;
-//            if (stringMap[neighbor] == 1) {
-//                gameMap.AddEdge(i, neighbor);
-//            }
-//            neighbor = i - 1;
-//            if (stringMap[neighbor] == 1) {
-//                gameMap.AddEdge(i, neighbor);
-//            }
-//            neighbor = i + WIDTH;
-//            if (stringMap[neighbor] == 1) {
-//                gameMap.AddEdge(i, neighbor);
-//            }
-//        }
-//    }
+void setUp(VirtGraph *gameMap, std::string stringMap) {
 
-    for (int i = 1; i < height - 1; ++i) {
-        for (int j = 1; j < width - 1; ++j) {
-            if (stringMap[i][j] == ' ') {
-                if (stringMap[i][j + 1] == 1) { // Есть путь спрва
-                    gameMap->AddEdge(i * height + j, i * height + j + 1);
-                }
-                if (stringMap[i][j - 1] == 1) {
-                    gameMap->AddEdge(i * height + j, i * height + j - 1);
-                }
-                if (stringMap[i - 1][j] == 1) {
-                    gameMap->AddEdge(i * height + j, (i - 1) * height + j);
-                }
-                if (stringMap[i + 1][j] == 1) {
-                    gameMap->AddEdge(i * height + j, (i + 1) * height + j);
-                }
+    for (int i = 0; i < GameMap::HEIGHT * GameMap::WIDTH; ++i) {
+
+        if (stringMap[i] == 1) {
+            int neighbor = i - GameMap::WIDTH;
+            if (stringMap[neighbor] == 1) {
+                gameMap->AddEdge(i, neighbor);
+            }
+            neighbor = i + 1;
+            if (stringMap[neighbor] == 1) {
+                gameMap->AddEdge(i, neighbor);
+            }
+            neighbor = i - 1;
+            if (stringMap[neighbor] == 1) {
+                gameMap->AddEdge(i, neighbor);
+            }
+            neighbor = i + GameMap::WIDTH;
+            if (stringMap[neighbor] == 1) {
+                gameMap->AddEdge(i, neighbor);
             }
         }
     }
+
+//    for (int i = 1; i < height - 1; ++i) {
+//        for (int j = 1; j < width - 1; ++j) {
+//            if (stringMap[i][j] == ' ') {
+//                if (stringMap[i][j + 1] == 1) { // Есть путь спрва
+//                    gameMap->AddEdge(i * height + j, i * height + j + 1);
+//                }
+//                if (stringMap[i][j - 1] == 1) {
+//                    gameMap->AddEdge(i * height + j, i * height + j - 1);
+//                }
+//                if (stringMap[i - 1][j] == 1) {
+//                    gameMap->AddEdge(i * height + j, (i - 1) * height + j);
+//                }
+//                if (stringMap[i + 1][j] == 1) {
+//                    gameMap->AddEdge(i * height + j, (i + 1) * height + j);
+//                }
+//            }
+//        }
+//    }
 
 }
 

@@ -3,31 +3,34 @@
 //
 
 #include "GameRoom.h"
+#include "../Graph/setUpGraph.h"
 
 
-GameRoom::GameRoom(const TileMap &map) :
-        map(map), gameOver(false), ready(false) {
-//    lastStepTime = std::chrono::steady_clock::now();
+GameRoom::GameRoom(const TileMap *map) :
+        map(map), gameOver(false), ready(false), started(false), lastStepTime(std::chrono::steady_clock::now()) {
+    gameGraph.setUp(map->map());
 }
 
 void GameRoom::addClient(Client *client) {
 
-    // TODO: добавить игрока
-
     players.push_back(new Pacman(client));
+    if (players.size() == map->pacman_size()){
+        ready = true;
+    }
+
 }
 
-void GameRoom::connect(Client* client) {
+void GameRoom::connect(Client *client) {
     Messages::StartMessage startMessage;
 
-    for (int i = 0; i < map.pacman_size(); i++) {
+    for (int i = 0; i < map->pacman_size(); i++) {
         Samples::UnitInit *unitInit = startMessage.add_unit();
         *unitInit->mutable_data() = *(Samples::Unit *) players[i];
         unitInit->set_name(players[i]->client->getUsername());
         unitInit->set_type(Samples::PACMAN);
     }
 
-    for (int i = 0; i < map.ghost_size(); i++) {
+    for (int i = 0; i < map->ghost_size(); i++) {
 
         Samples::UnitInit *unitInit = startMessage.add_unit();
         *unitInit->mutable_data() = *(Samples::Unit *) ghosts[i];
@@ -40,22 +43,19 @@ void GameRoom::connect(Client* client) {
 void GameRoom::start() {
     std::cout << "Game started" << std::endl;
 
-
-    // TODO: инициализирует объекты игры
-
     Messages::StartMessage startMessage;
 
-    if (map.pacman_size() != players.size()) {
+    std::cout << map->pacman_size() << ' ' << players.size() <<std::endl;
+
+    if (map->pacman_size() != players.size()) {
         throw PlayerCountException("Count of added players not equal map players count");
     }
 
-//    ghosts.reserve(map->ghostsCount);
-
-    for (int i = 0; i < map.pacman_size(); i++) {
+    for (int i = 0; i < map->pacman_size(); i++) {
 
         // TODO: Заменить на фабрику ?
 
-        *players[i]->mutable_pos() = map.pacman(i);
+        *players[i]->mutable_pos() = map->pacman(i);
         players[i]->set_direction(Samples::NONE);
         players[i]->set_entrypercent(0);
         players[i]->set_health(3);
@@ -67,55 +67,101 @@ void GameRoom::start() {
         unitInit->set_type(Samples::PACMAN);
     }
 
-    for (int i = 0; i < map.ghost_size(); i++) {
+    for (int i = 0; i < map->ghost_size(); i++) {
 
         // TODO: Рассчитать направления ghost'ов
         // TODO: Заменить на фабрику
 
-        auto currentGhost = new Ghost();
+        auto currentGhost = new Ghost(players);
 
-        *currentGhost->mutable_pos() = map.ghost(i);
+        *currentGhost->mutable_pos() = map->ghost(i);
         currentGhost->set_direction(Samples::NONE);
         currentGhost->set_entrypercent(0);
+
+        currentGhost->choiceDirection(gameGraph);
 
         ghosts.push_back(currentGhost);
 
         Samples::UnitInit *unitInit = startMessage.add_unit();
         *unitInit->mutable_data() = *(Samples::Unit *) ghosts[i];
-//        unitInit->set_name(players[i]->client->getUsername());
         unitInit->set_type(Samples::GHOST);
     }
 
-    for (Serialization::uint8 i = 0; i < map.pacman_size(); i++) {
+    for (Serialization::uint8 i = 0; i < map->pacman_size(); i++) {
         startMessage.set_id(i);
         players[i]->client->Start(startMessage);
     }
 
-    lastStepTime = std::chrono::steady_clock::now();
-    ready = true;
-
+    started = true;
 }
 
 void GameRoom::step() {
-//    auto sleep_time =  std::chrono::duration_cast<std::chrono::milliseconds>(period - (std::chrono::steady_clock::now() - lastStepTime));
-    auto sleep_time =  std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(250) - (std::chrono::steady_clock::now() - lastStepTime));
-    std::this_thread::sleep_for(std::chrono::milliseconds (sleep_time));
+
+    auto sleep_time = std::chrono::duration_cast<std::chrono::milliseconds>(
+            period - (std::chrono::steady_clock::now() - lastStepTime));
+    std::this_thread::sleep_for(std::chrono::milliseconds(sleep_time));
+
     Messages::IterationMessage iterationMessage;
-    for( auto pacman: players){
-       pacman->step();
-        *iterationMessage.add_unit() = *(Samples::Unit *)pacman;
-    }
-    for(auto ghost: ghosts){
-        ghost->step();
-        *iterationMessage.add_unit() = *(Samples::Unit *)ghost;
+    for (auto pacman: players) {
+        pacman->step(gameGraph);
+        pacman->setRoundPosition();
+        *iterationMessage.add_unit() = *(Samples::Unit *) pacman;
     }
 
-    for( auto pacman: players){
-        pacman->client->Iteration(iterationMessage);
-//        std::cout << "Send iteration" << std::endl;
+    for (auto ghost: ghosts) {
+        ghost->step(gameGraph);
+        ghost->setRoundPosition();
+
+        *iterationMessage.add_unit() = *(Samples::Unit *) ghost;
     }
+
+    checkGhostPacmanCollision();
+
+    int killedPacmans = 0;
+    for (auto pacman: players) {
+        if(pacman->status() == Samples::UnitStatus::KILLED) {
+            ++killedPacmans;
+        }
+        pacman->client->Iteration(iterationMessage);
+    }
+    if(killedPacmans == map->pacman_size()){
+        gameOver = true;
+    }
+
 
     lastStepTime = std::chrono::steady_clock::now();
+}
 
+
+Pacman *GameRoom::getPacman(const std::string &username) {
+    for (auto pacman: players) {
+        if (username == pacman->client->getUsername()) {
+            return pacman;
+        }
+    }
+    return nullptr;
+}
+
+void GameRoom::checkGhostPacmanCollision() {
+    for (auto pacman: players) {
+        for (auto ghost: ghosts) {
+            if (pacman->rPos == ghost->rPos) {
+                if (!pacman->injured and pacman->status() != Samples::UnitStatus::DYING) {
+                    pacman->injured = true;
+                    pacman->injuredTimer = 8;
+
+                    pacman->set_health(static_cast<sz::uint8> (pacman->health() == 0 ? 0: pacman->health() - 1));
+
+                    std::cout << "HP " << (int) pacman->health() << std::endl;
+                    if(pacman->health() == 0){
+                        pacman->set_status(Samples::UnitStatus::DYING);
+                        pacman->dyingTimer = 12;
+//                        pacman->
+                        // TODO: dodelat'
+                    }
+                }
+            }
+        }
+    }
 
 }

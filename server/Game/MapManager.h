@@ -27,9 +27,9 @@ public:
 
     static bool DeleteInstance();
 
-    const TileMap &getRandomMap() const;
+    const TileMap *getRandomMap() const;
 
-    const TileMap &getMap(int index) const;
+    const TileMap *getMap(int index) const;
 
 private:
     std::vector<TileMap> maps;

@@ -16,9 +16,9 @@ int main() {
     pacman_pos->set_x(1);
     pacman_pos->set_y(1);
 
-//    pacman_pos = tileMap.add_pacman();
-//    pacman_pos.set_x(13);
-//    pacman_pos.set_y(1);
+    pacman_pos = tileMap.add_pacman();
+    pacman_pos->set_x(13);
+    pacman_pos->set_y(1);
 
     // add GHOSTS to TileMap
     sz::uint8 ghost_postions[] = {

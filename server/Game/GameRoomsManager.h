@@ -9,16 +9,17 @@
 
 #include "GameRoom.h"
 #include "MapManager.h"
+#include <chrono>
 
 class GameRoomsManager {
 public:
-    GameRoomsManager(unsigned int countOfRooms);
+    explicit GameRoomsManager(unsigned int countOfRooms);
 
     ~GameRoomsManager();
 
     bool CanAddRoom();
 
-    GameRoom *AddRoom();
+    GameRoom *AddRoom(const TileMap *map);
 
     void cleanRooms();
 

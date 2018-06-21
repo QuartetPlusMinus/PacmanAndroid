@@ -61,7 +61,7 @@ public:
     sz::Repeated<Samples::Point> *mutable_ghost();
 
     const sz::Repeated<Samples::Point> &ghost() const;
-    
+
 private:
     sz::string map_;
     sz::Repeated<Samples::Point> pacman_;
