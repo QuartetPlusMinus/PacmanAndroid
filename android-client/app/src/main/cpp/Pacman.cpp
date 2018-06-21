@@ -10,7 +10,7 @@ void Pacman::init() {
     healthSprite.init();
 }
 
-Pacman::Pacman(const Samples::UnitInit &unit, bool main) : Unit(unit) {
+Pacman::Pacman(const Samples::UnitInit &unit, bool main) : Unit(unit), dyingPoint(0), drowPoint(0) {
     if (main) {
         xTexturePosition = MAIN_PACMAN_TEXTURE_POSITIONS_X;
     } else {
@@ -36,13 +36,13 @@ Pacman::Pacman(const Samples::UnitInit &unit, bool main) : Unit(unit) {
 }
 
 void Pacman::draw() {
-    if (data().entrypercent() == 0.0f || data().entrypercent() == 0.5f) {
-        if (data().entrypercent() == 0.0f) {
+//    if (data().entrypercent() == 0.0f || data().entrypercent() == 0.5f) {
+        if (howDraw()) {
             sprite.setTexturePosition(xTexturePosition, getYTexturePosition());
         } else {
             sprite.setTexturePosition(xTexturePosition + HTS, getYTexturePosition());
         }
-    }
+//    }
 
     mutable_data()->set_entrypercent(data().entrypercent() + speed);
 

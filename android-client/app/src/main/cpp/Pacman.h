@@ -46,9 +46,14 @@ private:
     od::Sprite healthSprite;
     float xTexturePosition;
     int dyingPoint;
+    int drowPoint;
 
     bool doDraw() {
         return (data().status() != Samples::DYING || dyingPoint++ % 30 > 15);
+    }
+
+    bool howDraw() {
+        return drowPoint++ % 30 > 15;
     }
 
 };
