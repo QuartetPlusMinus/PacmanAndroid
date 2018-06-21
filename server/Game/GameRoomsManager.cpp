@@ -5,7 +5,7 @@
 #include "GameRoomsManager.h"
 
 void gameStep(std::list<std::shared_ptr<GameRoom>> &gameRooms) {
-    std::cout << "STEPPER" << std::endl;
+//    std::cout << "STEPPER" << std::endl;
     std::chrono::milliseconds period{GameTimer::PERIOD};
 
     // TODO: handle Ctrl+C

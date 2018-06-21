@@ -28,7 +28,7 @@ void Game::connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
         }
         return;
     }
-    std::cout << "Client connected to server. Username: " << connectMsg.name() << endl;
+//    std::cout << "Client connected to server. Username: " << connectMsg.name() << endl;
 
     if (clientsQueue.size() >= currentMap->pacman_size()) { // Если набралось нужное кол-во пользователей
 
@@ -67,7 +67,7 @@ void Game::event(std::shared_ptr<Client> client, Messages::EventMessage &eventMs
     }
 
     if (clientInRoom.count(client->hash()) > 0) {
-        std::cout << "Client " << client->getUsername() << " send event to server\n"; // TODO: remove to release
+//        std::cout << "Client " << client->getUsername() << " send event to server\n"; // TODO: remove to release
         auto room = clientInRoom[client->hash()];
         auto pacman = room->getPacman(client);
         if (pacman) {

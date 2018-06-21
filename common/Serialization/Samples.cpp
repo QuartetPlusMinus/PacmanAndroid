@@ -128,7 +128,6 @@ Unit::Unit(const Unit &from) :
         entrypercent_(from.entrypercent_),
         status_(from.status_),
         health_(from.health_) {
-    std::cout << "KOPIROVANIE" << std::endl;
 }
 
 void Unit::serializeToStream(sz::Stream &stream) const {

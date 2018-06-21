@@ -43,7 +43,7 @@ void GameRoom::connect(Client *client) {
 }
 
 void GameRoom::start() {
-    std::cout << "Game started" << std::endl;
+//    std::cout << "Game started" << std::endl;
 
     Messages::StartMessage startMessage;
 
@@ -154,7 +154,7 @@ void GameRoom::checkGhostPacmanCollision() {
 
                     pacman->set_health(static_cast<sz::uint8> (pacman->health() == 0 ? 0 : pacman->health() - 1));
 
-                    std::cout << "HP " << (int) pacman->health() << std::endl;
+//                    std::cout << "HP " << (int) pacman->health() << std::endl;
                     if (pacman->health() == 0) {
                         pacman->set_status(Samples::UnitStatus::DYING);
                     }
