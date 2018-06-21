@@ -1,16 +1,18 @@
 #ifndef Tile_h
 #define Tile_h
 
-//TODO: make private or const propertys
-
 class Tile {
 public:
-    int x, y;
     int sx, sy;
     bool isCollidable;
+    char id;
 
-    Tile(int x, int y, int sx, int sy, bool isCollidable);
     Tile();
+    Tile(int sx, int sy, bool isCollidable, char _id);
+    Tile(int x, int y, int sx, int sy, bool isCollidable);
+
+private:
+    int x, y;
 };
 
 class ScrollingField {

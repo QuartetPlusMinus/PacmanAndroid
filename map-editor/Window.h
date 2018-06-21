@@ -33,6 +33,8 @@ public:
 
     sf::Vector2i spriteSelected; // выбраный спрайт
     sf::Vector2i selectionPos; // нужно для корректного отображения selectionBox
+
+    bool isWall;
 };
 
 class Tileset {

@@ -180,14 +180,12 @@ void HeroMenu::SelectedItem(int selectedItemIndex, bool selected) {
 }
 
 void HeroMenu::whichItemSelected(sf::RenderWindow &window) {
-    if(sf::IntRect(530, 220, 200, 35).contains(sf::Mouse::getPosition(window))) {
+    if(sf::IntRect(530, 220, 200, 35).contains(sf::Mouse::getPosition(window)) && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         selectedItemIndex = 0;
         selected = true;
     }
-    if(sf::IntRect(530, 280, 200, 35).contains(sf::Mouse::getPosition(window))) {
+    if(sf::IntRect(530, 280, 200, 35).contains(sf::Mouse::getPosition(window)) && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         selectedItemIndex = 1;
         selected = true;
     }
 }
-
-#endif
