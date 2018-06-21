@@ -53,8 +53,10 @@ int main() {
                     "= === ==    = ="   // 21
                     "= === == ==== ="   // 22
                     "=     =       ="   // 23
-                    "==============="  // 24
+                    "==============="   // 24
     );
+
+    char c = '=';
 
     for (int i = 0; i < sizeof(ghost_postions); i+=2) {
         Samples::Point* ghost_pos = tileMap.add_ghost();
