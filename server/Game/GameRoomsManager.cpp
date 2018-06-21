@@ -7,6 +7,8 @@
 void gameStep(std::list<GameRoom *> &gameRooms) {
     std::cout << "STEPPER" << std::endl;
     std::chrono::milliseconds period{GameTimer::PERIOD};
+
+    // TODO: handle Ctrl+C
     while (true) {
         GameRoom *firstRoom = nullptr;
         GameRoom *lastRoom = nullptr;
@@ -62,7 +64,7 @@ GameRoom *GameRoomsManager::AddRoom(const TileMap *map) {
         return nullptr;
     }
 
-    GameRoom *newGameRoom = new GameRoom(map);
+    GameRoom *newGameRoom = new GameRoom(map); // TODO: make smart ptr
     gameRooms.push_back(newGameRoom);
     return newGameRoom;
 }

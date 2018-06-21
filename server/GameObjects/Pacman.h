@@ -20,8 +20,9 @@ public:
     void stepToDirection(Samples::Direction direction);
     void setRoundPosition();
 
+    // TODO: make private
     bool injured;
-    const Client *client;
+    const Client *client; // TODO: make shared ptr
     unsigned int injuredTimer;
     unsigned int dyingTimer;
     RoundPosition rPos;

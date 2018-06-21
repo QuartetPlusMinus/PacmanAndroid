@@ -16,6 +16,7 @@ public:
 
     friend const bool operator==(const RoundPosition &position1, const RoundPosition &position2);
 
+    // TODO: replace to cpp
     void setPosition(unsigned int x_, unsigned int y_, Samples::Direction direction, float entryPercent) {
         switch (direction) {
             case Samples::Direction::RIGHT:

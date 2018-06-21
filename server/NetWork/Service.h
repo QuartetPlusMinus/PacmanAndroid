@@ -31,7 +31,6 @@ private:
 
         if (clients.count(Client::hash(clientEP)) == 0) {
             client = std::make_shared<Client>(socket, clientEP);
-//            client = new Client(socket, clientEP);
             clients[client->hash()] = client;
         } else {
             client = clients[Client::hash(clientEP)];

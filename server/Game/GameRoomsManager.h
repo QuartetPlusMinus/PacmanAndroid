@@ -19,12 +19,12 @@ public:
 
     bool CanAddRoom();
 
-    GameRoom *AddRoom(const TileMap *map);
+    GameRoom *AddRoom(const TileMap *map); // TODO: make  smart ptr
 
     void cleanRooms();
 
 private:
-    std::list<GameRoom *> gameRooms;
+    std::list<GameRoom *> gameRooms; // TODO: make smart ptr
     unsigned int countOfRooms;
 
 };

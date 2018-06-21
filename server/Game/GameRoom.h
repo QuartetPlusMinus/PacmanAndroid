@@ -18,11 +18,8 @@ public:
     explicit PlayerCountException(const std::string &what_arg) : std::runtime_error(what_arg) {}
 };
 
-
 class GameRoom {
-
 public:
-//    GameRoom();
 
     explicit GameRoom(const TileMap *map);
 
@@ -34,12 +31,9 @@ public:
 
     void step();
 
-//    void eventStep(Samples::Direction direction);
-
-
     void checkGhostPacmanCollision();
 
-    Pacman* getPacman(const std::string &username);
+    Pacman *getPacman(const std::string &username); // TODO: make unique ptr or remove ptr
 
 
     std::atomic<bool> ready;
@@ -49,11 +43,11 @@ public:
     std::chrono::milliseconds period{GameTimer::PERIOD};
 
     SetGraph gameGraph{GameMap::HEIGHT * GameMap::WIDTH};
-    private:
+private:
 
-    std::vector<Pacman *> players;
-    std::vector<Ghost *> ghosts;
-    const TileMap *map;
+    std::vector<Pacman *> players; // TODO: make unique ptr or remove ptr
+    std::vector<Ghost *> ghosts; // TODO: make unique ptr or remove ptr
+    const TileMap *map; // TODO: make shared ptr
 };
 
 #endif //SERVER_GAMEROOM_H

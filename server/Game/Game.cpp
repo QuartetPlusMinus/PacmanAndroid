@@ -13,7 +13,6 @@ Game::Game(unsigned short port) :
 
 void Game::start() {
     run();
-    std::cout << "Я дошел до этой точки!" << std::endl;
 }
 
 void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &connectMsg) {
@@ -27,12 +26,11 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
         if (clientInRoom.count(client->hash()) != 0) {
 
             if (clientInRoom[client->hash()]->gameOver) {
-//                client->End();
+//                client->End(); // TODO: dodelt'
             } else {
                 clientInRoom[client->hash()]->connect(client.get());
             }
         }
-//        connect(client);
         return;
     }
     std::cout << "Client connected to server. Username: " << connectMsg.name() << endl;
@@ -55,18 +53,15 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
 
             // Оправка остальным клиентам нового положения в очереди
             Messages::QueueMessage queueReply;
-            for (int i = 0; i < clientsQueue.size(); ++i) {
-                queueReply.set_position((sz::uint16) i);
+            for (sz::uint16 i = 0; i < clientsQueue.size(); ++i) {
+                queueReply.set_position(i);
                 clientsQueue[i]->Queue(queueReply);
             }
         }
-
-
     } else {
-
         // Если комната не набралась, то отсылаем статус в очереди
         Messages::QueueMessage queueReply;
-        queueReply.set_position((sz::uint16) clients.size());
+        queueReply.set_position(static_cast<sz::uint8>(clients.size()));
         client->Queue(queueReply);
     }
 }
@@ -75,8 +70,9 @@ void Game::Event(std::shared_ptr<Client> client, Messages::EventMessage &eventMs
     if (client->getStatus() != Client::IN_GAME) {
         return;
     }
-    if (clientInRoom.find(client->hash()) != clientInRoom.end()) {
-        std::cout << "Client " << client->getUsername() << " send event to server\n";
+
+    if (clientInRoom.count(client->hash()) > 0) {
+        std::cout << "Client " << client->getUsername() << " send event to server\n"; // TODO: remove to release
         auto room = clientInRoom[client->hash()];
         auto pacman = room->getPacman(client->getUsername());
         if (pacman) {

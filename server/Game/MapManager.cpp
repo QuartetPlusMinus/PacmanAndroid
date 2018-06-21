@@ -7,6 +7,8 @@
 
 #ifdef _WIN32
 
+const std::string RELATIV_MAPS_PATH = "\\src\\maps\\";
+
 #include <windows.h>
 #include <direct.h>
 #define GetCurrentDir _getcwd
@@ -31,6 +33,8 @@ void read_directory(const std::string& name, std::vector<std::string>& v)
 #include <dirent.h>
 #include <unistd.h>
 #define GetCurrentDir getcwd
+
+const std::string RELATIV_MAPS_PATH = "/src/maps/";
 
 void read_directory(const std::string &name, std::vector <std::string> &v) {
     DIR *dirp = opendir(name.c_str());
@@ -59,7 +63,7 @@ MapManager *MapManager::_self = nullptr;
 MapManager::MapManager() {
     std::vector <std::string> mapsNames;
 
-    std::string mapsPath = getCurrentPath() + "/src/maps/";
+    std::string mapsPath = getCurrentPath() + RELATIV_MAPS_PATH;
 
     read_directory(mapsPath, mapsNames);
 
