@@ -49,8 +49,7 @@ void Ghost::choiceDirection(SetGraph &gameMap) {
     }
 
     Samples::Direction dir;
-    int difference = prev - current;
-    switch (difference) {
+    switch (prev - current) {
         case 1:
             dir = Samples::RIGHT;
             break;
@@ -75,11 +74,11 @@ void Ghost::step(SetGraph &gameMap) {
     int currentVertex = pos().y() * GameMap::WIDTH + pos().x();
     auto nextTiles = gameMap.GetNextVertices(currentVertex);
 
-    this->set_entrypercent(this->entrypercent() + 0.25f);
+    this->set_entrypercent(this->entrypercent() + 0.25f); // TODO: make monstant
 
     if (this->entrypercent() >= 1.0f) {
         switch (this->direction()) {
-            case Samples::Direction::RIGHT:
+            case Samples::Direction::RIGHT: // TODO: add static cast
                 this->mutable_pos()->set_x((sz::uint8) (this->pos().x() + 1));
                 break;
             case Samples::Direction::LEFT:

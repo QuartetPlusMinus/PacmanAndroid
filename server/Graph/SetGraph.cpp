@@ -1,11 +1,10 @@
-#include <assert.h>
+#include <cassert>
 #include "SetGraph.h"
 #include "../../common/Constants/ConstValues.h"
 
+// TODO : assert t exception
 
-SetGraph::SetGraph( unsigned int n ) : adjacencyHashTable( n )
-{
-}
+SetGraph::SetGraph( unsigned int n ) : adjacencyHashTable( n ) {}
 
 SetGraph::SetGraph( const VirtGraph* other )
         : adjacencyHashTable( other->VerticesCount() )

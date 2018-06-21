@@ -7,6 +7,8 @@ struct VirtGraph {
     virtual ~VirtGraph() {
     }
 
+    // TODO : small letter
+
     virtual void AddEdge(int from, int to) = 0;
 
     virtual int VerticesCount() const = 0;

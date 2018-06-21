@@ -20,7 +20,7 @@ public:
     void setRoundPosition();
 
     RoundPosition rPos;
-    Pacman *target;
+    Pacman *target; // TODO: make shared ptr
 };
 
 

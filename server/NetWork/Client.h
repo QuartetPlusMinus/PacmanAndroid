@@ -36,6 +36,8 @@ public:
 
     }
 
+    // TODO: small letter
+
     void Queue(Messages::QueueMessage &queueMsg) const {
         std::string bytes;
         queueMsg.serializeToString(bytes);
@@ -92,7 +94,6 @@ private:
     void sendBytes(char type, std::string &bytes) const {
         socket.send_to(buffer(type + bytes), ep);
         std::string some = type + bytes;
-//        std::cout << "Send [" << some << "] to "<< ep.address() << ':' << ep.port() << std::endl;
     }
 
     Socket &socket;

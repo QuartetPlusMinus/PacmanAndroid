@@ -65,7 +65,7 @@ bool Pacman::step(SetGraph &gameMap) {
     }
 
     if (direction() != Samples::Direction::NONE) {
-        this->set_entrypercent(this->entrypercent() + 0.25f);
+        this->set_entrypercent(this->entrypercent() + 0.25f); // TODO: make constatnts
         if (this->entrypercent() >= 1.0f) {
             stepToDirection(direction());
             this->set_entrypercent(0.0f);
@@ -100,7 +100,7 @@ bool Pacman::step(SetGraph &gameMap) {
 
 void Pacman::stepToDirection(Samples::Direction direction) {
     switch (direction) {
-        case Samples::Direction::RIGHT:
+        case Samples::Direction::RIGHT: // TODO: add static cast
             this->mutable_pos()->set_x((sz::uint8) (this->pos().x() + 1));
             break;
         case Samples::Direction::LEFT:
