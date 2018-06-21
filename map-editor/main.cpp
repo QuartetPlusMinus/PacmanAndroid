@@ -5,9 +5,11 @@
 #include "Button.h"
 #include "Tile.h"
 
-using namespace sf;
+using namespace sf; // TODO: remove using namespace
 
-const int mapWidth = 480;
+const int mapWidth = 480; // TODO: make upcase
+//const int MAP_WIDTH = 480;
+
 const int mapHeight = 768;
 const int sideMenuWidth = 300;
 
@@ -16,25 +18,31 @@ RenderWindow window(VideoMode(mapWidth + sideMenuWidth, mapHeight), "MapEditor")
 Vector2i startingMousePos(0, 0);
 Vector2i startingOffset(0, 0);
 
-std::vector<Tile> map;
+std::vector<Tile> map; // TODO: change to 2d array
 std::vector<Hero> heroPos;
 
 bool isMoving = false;
 bool isDrawing = false;
 
-enum toolType {
-    drawing = 1,
+enum toolType { // TODO: Up first letter
+    drawing = 1, // TODO: upcase
     removing
 } tool;
 
-enum heroType {
-    empty,
+enum heroType { // TODO: Up first letter
+    empty, // TODO: upcase
     pacman,
     ghost
 } hero;
 
 void saveMap();
 void update();
+
+// TODO: replace file names to constants
+// TODO: remove all varibles of global area
+// TODO: make contants
+//Color GRAY_COLOR(100,100,100);
+
 
 ScrollingField mapSc(0, 0, mapWidth, mapHeight, 0, 0);
 
@@ -75,6 +83,8 @@ int main()
                 window.close();
             }
             if(event.type == Event::MouseButtonPressed) {
+                // TODO: clear code
+
                 if(Keyboard::isKeyPressed(Keyboard::Space)) {
                     isMoving = true;
                     startingMousePos = Vector2i(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
@@ -114,7 +124,7 @@ int main()
 
         for(int i = 0; i < map.size(); i++) {
             if(map.at(i).isCollidable) {
-                tile.setTextureRect(IntRect(map.at(i).sx * 32, map.at(i).sy * 32, 32, 32));
+                tile.setTextureRect(IntRect(map.at(i).sx * 32, map.at(i).sy * 32, 32, 32)); // TODO: make constants
                 tile.setPosition(Vector2f(map.at(i).x * 32 + mapSc.offsetX, map.at(i).y * 32 + mapSc.offsetY));
                 tile.draw(window);
             } else {
@@ -157,6 +167,8 @@ int main()
 }
 
 //-----------------------------
+
+// TODO: remove
 template <class T>
 void sort(std::vector<Tile>& map, const T& func) {
     if(map.size() < 1) {
@@ -171,6 +183,7 @@ void sort(std::vector<Tile>& map, const T& func) {
     }
 }
 
+// TODO: make class Map and remove there
 void saveMap() {
     sort(map,
         [](const Tile& first, const Tile& second) {

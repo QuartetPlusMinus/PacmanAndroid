@@ -1,6 +1,8 @@
 #ifndef Tile_h
 #define Tile_h
 
+//TODO: make private or const propertys
+
 class Tile {
 public:
     int x, y;
