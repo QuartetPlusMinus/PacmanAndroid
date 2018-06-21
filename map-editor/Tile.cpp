@@ -24,3 +24,9 @@ ScrollingField::ScrollingField(int _x, int _y, int _w, int _h, int _offsetX, int
     offsetX(_offsetX),
     offsetY(_offsetY)
     {}
+
+Hero::Hero(int x, int y, bool isGhost) :
+    x(x),
+    y(y),
+    isGhost(isGhost)
+    {}

@@ -1,7 +1,7 @@
 #include "Button.h"
 
 NavMenu::NavMenu(int x, int y) {
-    if (!font.loadFromFile("src/arial.ttf")) {
+    if (!font.loadFromFile("arial.ttf")) {
         // std::cout << "Font Not Found\n";
     }
 
@@ -26,6 +26,8 @@ NavMenu::NavMenu(int x, int y) {
     menu[2].setColor(sf::Color::White);
     menu[2].setString("Exit");
     menu[2].setPosition(sf::Vector2f(x + 220, y + 10));
+
+    selected = false;
 }
 
 void NavMenu::draw(sf::RenderWindow& window) {
@@ -59,15 +61,15 @@ void NavMenu::whichItemSelected(sf::RenderWindow &window) {
 }
 
 ToolMenu::ToolMenu(int x, int y) {
-    if (!font.loadFromFile("src/arial.ttf")) {
+    if (!font.loadFromFile("arial.ttf")) {
         // std::cout << "Font Not Found\n";
     }
 
     toolbar.setFillColor(sf::Color(100, 100, 100));
-    toolbar.setSize(sf::Vector2f(260, 230));
+    toolbar.setSize(sf::Vector2f(260, 115));
     toolbar.setPosition(sf::Vector2f(x, y));
 
-    texture[0].loadFromFile("src/draw.png");
+    texture[0].loadFromFile("draw.png");
     icon[0].setTexture(texture[0]);
     icon[0].setPosition(sf::Vector2f(x + 30, y + 10));
 
@@ -76,41 +78,26 @@ ToolMenu::ToolMenu(int x, int y) {
     tools[0].setColor(sf::Color::White);
     tools[0].setString("Drawing mode");
 
-    texture[1].loadFromFile("src/wall.png");
+    texture[1].loadFromFile("remove.png");
     icon[1].setTexture(texture[1]);
     icon[1].setPosition(sf::Vector2f(x + 30, y + 70));
 
     tools[1].setFont(font);
     tools[1].setCharacterSize(20);
     tools[1].setColor(sf::Color::White);
-    tools[1].setString("Wall mode");
+    tools[1].setString("Removing mode");
 
-    texture[2].loadFromFile("src/pass.png");
-    icon[2].setTexture(texture[2]);
-    icon[2].setPosition(sf::Vector2f(x + 30, y + 0));
-
-    tools[2].setFont(font);
-    tools[2].setCharacterSize(20);
-    tools[2].setColor(sf::Color::White);
-    tools[2].setString("Pass mode");
-
-    texture[3].loadFromFile("src/remove.png");
-    icon[3].setTexture(texture[3]);
-
-    tools[3].setFont(font);
-    tools[3].setCharacterSize(20);
-    tools[3].setColor(sf::Color::White);
-    tools[3].setString("Removing mode");
-
-    for(int i = 0, delta = 0; i < 4; ++i, delta += 60) {
+    for(int i = 0, delta = 0; i < 2; ++i, delta += 60) {
         tools[i].setPosition(sf::Vector2f(x + 90, y + 15 + delta));
         icon[i].setPosition(sf::Vector2f(x + 30, y + 10 + delta));
     }
+
+    selected = false;
 }
 
 void ToolMenu::draw(sf::RenderWindow& window) {
     window.draw(toolbar);
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 2; i++) {
         window.draw(icon[i]);
         window.draw(tools[i]);
     }
@@ -118,7 +105,7 @@ void ToolMenu::draw(sf::RenderWindow& window) {
 
 void ToolMenu::SelectedItem(int selectedItemIndex, bool selected) {
     if(selected) {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 2; i++) {
             tools[i].setColor(sf::Color::White);
         }
         tools[selectedItemIndex].setColor(sf::Color::Blue);
@@ -134,12 +121,73 @@ void ToolMenu::whichItemSelected(sf::RenderWindow &window) {
         selectedItemIndex = 1;
         selected = true;
     }
-    if(sf::IntRect(530, 210, 200, 35).contains(sf::Mouse::getPosition(window))) {
-        selectedItemIndex = 2;
+}
+
+HeroMenu::HeroMenu(int x, int y) {
+    if (!font.loadFromFile("arial.ttf")) {
+        // std::cout << "Font Not Found\n";
+    }
+
+    toolbar.setFillColor(sf::Color(100, 100, 100));
+    toolbar.setSize(sf::Vector2f(260, 115));
+    toolbar.setPosition(sf::Vector2f(x, y));
+
+    texture[0].loadFromFile("draw.png");
+    icon[0].setTexture(texture[0]);
+    icon[0].setPosition(sf::Vector2f(x + 30, y + 10));
+
+    tools[0].setFont(font);
+    tools[0].setCharacterSize(20);
+    tools[0].setColor(sf::Color::White);
+    tools[0].setString("Pacman");
+
+    texture[1].loadFromFile("remove.png");
+    icon[1].setTexture(texture[1]);
+    icon[1].setPosition(sf::Vector2f(x + 30, y + 70));
+
+    tools[1].setFont(font);
+    tools[1].setCharacterSize(20);
+    tools[1].setColor(sf::Color::White);
+    tools[1].setString("Ghost");
+
+    for(int i = 0, delta = 0; i < 2; ++i, delta += 60) {
+        tools[i].setPosition(sf::Vector2f(x + 90, y + 15 + delta));
+        icon[i].setPosition(sf::Vector2f(x + 30, y + 10 + delta));
+    }
+
+    selected = false;
+}
+
+void HeroMenu::draw(sf::RenderWindow& window) {
+    window.draw(toolbar);
+    for (int i = 0; i < 2; i++) {
+        window.draw(icon[i]);
+        window.draw(tools[i]);
+    }
+}
+
+void HeroMenu::SelectedItem(int selectedItemIndex, bool selected) {
+    if(selected) {
+        for (int i = 0; i < 2; i++) {
+            tools[i].setColor(sf::Color::White);
+        }
+        tools[selectedItemIndex].setColor(sf::Color::Blue);
+    } else {
+        for (int i = 0; i < 2; i++) {
+            tools[i].setColor(sf::Color::White);
+        }
+    }
+}
+
+void HeroMenu::whichItemSelected(sf::RenderWindow &window) {
+    if(sf::IntRect(530, 220, 200, 35).contains(sf::Mouse::getPosition(window))) {
+        selectedItemIndex = 0;
         selected = true;
     }
-    if(sf::IntRect(530, 270, 200, 35).contains(sf::Mouse::getPosition(window))) {
-        selectedItemIndex = 3;
+    if(sf::IntRect(530, 280, 200, 35).contains(sf::Mouse::getPosition(window))) {
+        selectedItemIndex = 1;
         selected = true;
     }
 }
+
+#endif

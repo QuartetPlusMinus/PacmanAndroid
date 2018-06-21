@@ -17,38 +17,56 @@ Vector2i startingMousePos(0, 0);
 Vector2i startingOffset(0, 0);
 
 std::vector<Tile> map;
+std::vector<Hero> heroPos;
 
 bool isMoving = false;
 bool isDrawing = false;
 
 enum toolType {
     drawing = 1,
-    removing,
-    wall,
-    pass
+    removing
 } tool;
+
+enum heroType {
+    empty,
+    pacman,
+    ghost
+} hero;
 
 void saveMap();
 void update();
 
 ScrollingField mapSc(0, 0, mapWidth, mapHeight, 0, 0);
-ScrollingField tilesetSc(mapWidth + 20, mapHeight - 420, 260, 380, 0, 0);
+
+ScrollingField tilesetSc(mapWidth + 20, mapHeight - 400, 120, 380, 0, 0);
+WinShape tilesetShape(Vector2f(tilesetSc.width, tilesetSc.height), Vector2f(tilesetSc.x, tilesetSc.y), Color(100, 100, 100));
+Tileset tileset("tileset.png", Vector2f(tilesetSc.x, tilesetSc.y));
+Tileset tile("tileset.png", Vector2f(0, 0));
+
+Tileset pacIcon("draw.png", Vector2f(0, 0));
+Tileset ghostIcon("wall.png", Vector2f(0, 0));
+
+ScrollingField tilesetScWall(mapWidth + 20 + tilesetSc.width + 20, mapHeight - 400, 120, 380, 0, 0);
+WinShape tilesetShapeWall(Vector2f(tilesetScWall.width, tilesetScWall.height), Vector2f(tilesetScWall.x, tilesetScWall.y), Color(100, 100, 100));
+Tileset tilesetWall("tileset.png", Vector2f(tilesetScWall.x, tilesetScWall.y));
+Tileset tileWall("tileset.png", Vector2f(0, 0));
 
 WinShape sideMenu(Vector2f(sideMenuWidth, mapHeight), Vector2f(mapWidth, 0), Color(120, 120, 120));
-WinShape tilesetShape(Vector2f(tilesetSc.width, tilesetSc.height), Vector2f(tilesetSc.x, tilesetSc.y), Color(100, 100, 100));
 WinShape collidableBox(Vector2f(32, 32), Color(0, 0, 255, 75));
 SelectionBox selectionBox(Vector2f(32, 32), Vector2f(tilesetSc.x, tilesetSc.y), Color(0, 0, 255, 75));
-Tileset tile("src/tileset.png", Vector2f(0, 0));
-Tileset tileset("src/tileset.png", Vector2f(tilesetSc.x, tilesetSc.y));
 
-ToolMenu toolbar(mapWidth + 20, 80);
 NavMenu navbar(mapWidth, 0);
+ToolMenu toolbar(mapWidth + 20, 80);
+HeroMenu herobar(mapWidth + 20, 210);
 
 Grid grid(mapWidth, mapHeight, 1);
+
+RectangleShape rectangle;
 
 int main()
 {
     tileset.TextureCutting(tilesetShape);
+    tilesetWall.TextureCutting(tilesetShape);
 
     while (window.isOpen()) {
         Event event;
@@ -60,17 +78,25 @@ int main()
                 if(Keyboard::isKeyPressed(Keyboard::Space)) {
                     isMoving = true;
                     startingMousePos = Vector2i(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
-
                     if(Mouse::getPosition(window).x < mapWidth) {
                         startingOffset = Vector2i(mapSc.offsetX, mapSc.offsetY);
                     } else if(Mouse::getPosition(window).x > tilesetSc.x && Mouse::getPosition(window).x < tilesetSc.x + tilesetSc.width &&
                               Mouse::getPosition(window).y > tilesetSc.y && Mouse::getPosition(window).y < tilesetSc.y + tilesetSc.height) {
                         startingOffset = Vector2i(tilesetSc.offsetX, tilesetSc.offsetY);
+                    } else if(Mouse::getPosition(window).x > tilesetScWall.x && Mouse::getPosition(window).x < tilesetScWall.x + tilesetScWall.width &&
+                              Mouse::getPosition(window).y > tilesetScWall.y && Mouse::getPosition(window).y < tilesetScWall.y + tilesetScWall.height) {
+                        startingOffset = Vector2i(tilesetScWall.offsetX, tilesetScWall.offsetY);
                     }
                 } else if(Mouse::getPosition(window).x > tilesetSc.x && Mouse::getPosition(window).x < tilesetSc.x + tilesetSc.width &&
                           Mouse::getPosition(window).y > tilesetSc.y && Mouse::getPosition(window).y < tilesetSc.y + tilesetSc.height) {
                     selectionBox.spriteSelected.x = (Mouse::getPosition(window).x - tilesetSc.x + tilesetSc.offsetX) / 32;
                     selectionBox.spriteSelected.y = (Mouse::getPosition(window).y - tilesetSc.y + tilesetSc.offsetY) / 32;
+                    selectionBox.isWall = false;
+                } else if(Mouse::getPosition(window).x > tilesetScWall.x && Mouse::getPosition(window).x < tilesetScWall.x + tilesetScWall.width &&
+                          Mouse::getPosition(window).y > tilesetScWall.y && Mouse::getPosition(window).y < tilesetScWall.y + tilesetScWall.height) {
+                    selectionBox.spriteSelected.x = (Mouse::getPosition(window).x - tilesetScWall.x + tilesetScWall.offsetX) / 32;
+                    selectionBox.spriteSelected.y = (Mouse::getPosition(window).y - tilesetScWall.y + tilesetScWall.offsetY) / 32;
+                    selectionBox.isWall = true;
                 } else if(Mouse::getPosition(window).x < mapWidth) {
                     isDrawing = true;
                 }
@@ -87,13 +113,25 @@ int main()
         window.clear(Color(50, 50, 50));
 
         for(int i = 0; i < map.size(); i++) {
-            tile.setTextureRect(IntRect(map.at(i).sx * 32, map.at(i).sy * 32, 32, 32));
-            tile.setPosition(Vector2f(map.at(i).x * 32 + mapSc.offsetX, map.at(i).y * 32 + mapSc.offsetY));
-            tile.draw(window);
             if(map.at(i).isCollidable) {
-                if(tool == wall || tool == pass) {
-                    collidableBox.setPosition(Vector2f(map.at(i).x * 32 + mapSc.offsetX, map.at(i).y * 32 + mapSc.offsetY));
-                    collidableBox.draw(window);
+                tile.setTextureRect(IntRect(map.at(i).sx * 32, map.at(i).sy * 32, 32, 32));
+                tile.setPosition(Vector2f(map.at(i).x * 32 + mapSc.offsetX, map.at(i).y * 32 + mapSc.offsetY));
+                tile.draw(window);
+            } else {
+                tileWall.setTextureRect(IntRect(map.at(i).sx * 32, map.at(i).sy * 32, 32, 32));
+                tileWall.setPosition(Vector2f(map.at(i).x * 32 + mapSc.offsetX, map.at(i).y * 32 + mapSc.offsetY));
+                tileWall.draw(window);
+            }
+        }
+
+        if(hero != empty) {
+            for(int i = 0; i < heroPos.size(); i++) {
+                if(heroPos.at(i).isGhost) {
+                    ghostIcon.setPosition(Vector2f(heroPos.at(i).x * 32 + mapSc.offsetX, heroPos.at(i).y * 32 + mapSc.offsetY));
+                    ghostIcon.draw(window);
+                } else {
+                    pacIcon.setPosition(Vector2f(heroPos.at(i).x * 32 + mapSc.offsetX, heroPos.at(i).y * 32 + mapSc.offsetY));
+                    pacIcon.draw(window);
                 }
             }
         }
@@ -101,13 +139,16 @@ int main()
         grid.draw(window);
         sideMenu.draw(window);
         tilesetShape.draw(window);
+        tilesetShapeWall.draw(window);
         tileset.draw(window);
+        tilesetWall.draw(window);
         if(selectionBox.selectionPos.x != 0 && selectionBox.selectionPos.y != 0) {
             selectionBox.draw(window);
         }
 
         navbar.draw(window);
         toolbar.draw(window);
+        herobar.draw(window);
 
         window.display();
     }
@@ -115,15 +156,15 @@ int main()
     return 0;
 }
 
-//--------------------------------------------------
+//-----------------------------
 template <class T>
-void sort(std::vector<Tile>& map, const T& comp) {
+void sort(std::vector<Tile>& map, const T& func) {
     if(map.size() < 1) {
         return;
     }
     for(int i = 0; i < map.size() - 1; ++i) {
         for(int j = 0; j < map.size() - i - 1; ++j) {
-            if(comp(map[j], map[j + 1])) {
+            if(func(map[j], map[j + 1])) {
                 std::swap(map[j], map[j + 1]);
             }
         }
@@ -188,17 +229,31 @@ void update()
                     tool = drawing;
                     break;
                 case 1:
-                    tool = wall;
-                    break;
-                case 2:
-                    tool = pass;
-                    break;
-                case 3:
                     tool = removing;
                     break;
             }
         }
         toolbar.selected = false;
+    }
+
+    herobar.whichItemSelected(window);
+    if(herobar.selected) {
+        if(Mouse::isButtonPressed(Mouse::Left)) {
+            herobar.SelectedItem(herobar.selectedItemIndex, herobar.selected);
+            switch(herobar.selectedItemIndex) {
+                case 0:
+                    hero = pacman;
+                    break;
+                case 1:
+                    hero = ghost;
+                    break;
+            }
+        }
+        if(Mouse::isButtonPressed(Mouse::Right)) {
+            herobar.selected = false;
+            hero = empty;
+            herobar.SelectedItem(herobar.selectedItemIndex, herobar.selected);
+        }
     }
 
     if(Keyboard::isKeyPressed(Keyboard::Space)) {
@@ -225,6 +280,27 @@ void update()
                 if(tilesetSc.offsetY > tileset.getTextureSize().y - tilesetSc.height) {
                     tilesetSc.offsetY = tileset.getTextureSize().y - tilesetSc.height;
                 }
+            } else if(Mouse::getPosition(window).x > tilesetScWall.x && Mouse::getPosition(window).x < tilesetScWall.x + tilesetScWall.width
+                   && Mouse::getPosition(window).y > tilesetScWall.y && Mouse::getPosition(window).y < tilesetScWall.y + tilesetScWall.height) {
+                if(tilesetWall.isLargerX) {
+                    tilesetScWall.offsetX = startingOffset.x + startingMousePos.x - Mouse::getPosition(window).x;
+                }
+                if(tilesetWall.isLargerY) {
+                    tilesetScWall.offsetY = startingOffset.y + startingMousePos.y - Mouse::getPosition(window).y;
+                }
+
+                if(tilesetScWall.offsetX < 0) {
+                    tilesetScWall.offsetX = 0;
+                }
+                if(tilesetScWall.offsetY < 0) {
+                    tilesetScWall.offsetY = 0;
+                }
+                if(tilesetScWall.offsetX > tilesetWall.getTextureSize().x - tilesetScWall.width) {
+                    tilesetScWall.offsetX = tilesetWall.getTextureSize().x - tilesetScWall.width;
+                }
+                if(tilesetScWall.offsetY > tilesetWall.getTextureSize().y - tilesetScWall.height) {
+                    tilesetScWall.offsetY = tilesetWall.getTextureSize().y - tilesetScWall.height;
+                }
             }
         } else {
             startingOffset.x = mapSc.offsetX;
@@ -234,8 +310,8 @@ void update()
         if(isDrawing
         && Mouse::getPosition(window).x < mapWidth && Mouse::getPosition(window).x >= 0
         && Mouse::getPosition(window).y < mapHeight && Mouse::getPosition(window).y >= 0) {
-            if(tool == drawing) {
-                bool isEmpty = false;
+            if(tool == drawing && hero == empty) {
+                // bool isEmpty = false;
                 for(int i = 0; i < map.size(); i++) {
                     if(map.at(i).x == (Mouse::getPosition(window).x - mapSc.offsetX) / 32
                     && map.at(i).y == (Mouse::getPosition(window).y - mapSc.offsetY) / 32) {
@@ -243,30 +319,37 @@ void update()
                        map.erase(map.begin() + i);
                    }
                 }
-                if(!isEmpty) {
+                if(!selectionBox.isWall) {
                     map.push_back(Tile((Mouse::getPosition(window).x - mapSc.offsetX) / 32,
                         (Mouse::getPosition(window).y - mapSc.offsetY) / 32,
-                        selectionBox.spriteSelected.x, selectionBox.spriteSelected.y, false));
+                        selectionBox.spriteSelected.x, selectionBox.spriteSelected.y, false)
+                    );
+                } else {
+                    map.push_back(Tile((Mouse::getPosition(window).x - mapSc.offsetX) / 32,
+                        (Mouse::getPosition(window).y - mapSc.offsetY) / 32,
+                        selectionBox.spriteSelected.x, selectionBox.spriteSelected.y, true)
+                    );
                 }
-            } else if(tool == removing) {
+            } else if(tool == removing && hero == empty) {
                 for(int i = 0; i < map.size(); i++) {
                     if(map.at(i).x == (Mouse::getPosition(window).x - mapSc.offsetX) / 32
                     && map.at(i).y == (Mouse::getPosition(window).y - mapSc.offsetY) / 32) {
                         map.erase(map.begin() + i);
                     }
                 }
-            } else if(tool == wall) {
-                for(int i = 0; i < map.size(); i++) {
-                    if(map.at(i).x == (Mouse::getPosition(window).x - mapSc.offsetX) / 32
-                    && map.at(i).y == (Mouse::getPosition(window).y - mapSc.offsetY) / 32) {
-                        map.at(i).isCollidable = true;
-                    }
-                }
-            } else if(tool == pass) {
-                for(int i = 0; i < map.size(); i++) {
-                    if(map.at(i).x == (Mouse::getPosition(window).x - mapSc.offsetX) / 32
-                    && map.at(i).y == (Mouse::getPosition(window).y - mapSc.offsetY) / 32) {
-                        map.at(i).isCollidable = false;
+            } else if(tool == drawing && hero == pacman) {
+                heroPos.push_back(Hero((Mouse::getPosition(window).x - mapSc.offsetX) / 32,
+                    (Mouse::getPosition(window).y - mapSc.offsetY) / 32, false)
+                );
+            } else if(tool == drawing && hero == ghost) {
+                heroPos.push_back(Hero((Mouse::getPosition(window).x - mapSc.offsetX) / 32,
+                    (Mouse::getPosition(window).y - mapSc.offsetY) / 32, true)
+                );
+            } else if(tool == removing && hero != empty) {
+                for(int i = 0; i < heroPos.size(); i++) {
+                    if(heroPos.at(i).x == (Mouse::getPosition(window).x - mapSc.offsetX) / 32
+                    && heroPos.at(i).y == (Mouse::getPosition(window).y - mapSc.offsetY) / 32) {
+                        heroPos.erase(heroPos.begin() + i);
                     }
                 }
             }
@@ -284,55 +367,117 @@ void update()
         tileset.setTextureRect(IntRect(0, 0, tileset.getTextureSize().x, tileset.getTextureSize().y));
     }
 
-    selectionBox.setPosition(Vector2f(tilesetSc.x + selectionBox.spriteSelected.x * 32 - tilesetSc.offsetX, tilesetSc.y + selectionBox.spriteSelected.y * 32 - tilesetSc.offsetY));
-
-    // корректное отображение выбраной плитки (selectionBox) в наборе плиток (tilesetSc)
-    if(selectionBox.getPosition().x < tilesetSc.x && selectionBox.getPosition().x > tilesetSc.x - 32) {
-        selectionBox.selectionPos.x = 1;
-    }
-    if(selectionBox.getPosition().y < tilesetSc.y && selectionBox.getPosition().y > tilesetSc.y - 32) {
-        selectionBox.selectionPos.y = 1;
-    }
-    if(selectionBox.getPosition().x > tilesetSc.x + tilesetSc.width - 32 && selectionBox.getPosition().x < tilesetSc.x + tilesetSc.width + 32) {
-        selectionBox.selectionPos.x = 3;
-    }
-    if(selectionBox.getPosition().y > tilesetSc.y + tilesetSc.height - 32 && selectionBox.getPosition().y < tilesetSc.y + tilesetSc.height + 32) {
-        selectionBox.selectionPos.y = 3;
-    }
-    if(selectionBox.getPosition().x > tilesetSc.x && selectionBox.getPosition().x < tilesetSc.x + tilesetSc.width - 32) {
-        selectionBox.selectionPos.x = 2;
-    }
-    if(selectionBox.getPosition().y > tilesetSc.y && selectionBox.getPosition().y < tilesetSc.y + tilesetSc.height - 32) {
-        selectionBox.selectionPos.y = 2;
-    }
-    if(selectionBox.getPosition().x <= tilesetSc.x - 32 || selectionBox.getPosition().x >= tilesetSc.x + tilesetSc.width) {
-        selectionBox.selectionPos.x = 0;
-    }
-    if(selectionBox.getPosition().y <= tilesetSc.y - 32 || selectionBox.getPosition().y >= tilesetSc.y + tilesetSc.height) {
-        selectionBox.selectionPos.y = 0;
+    if(tilesetWall.isLargerX && tilesetWall.isLargerY) {
+        tilesetWall.setTextureRect(IntRect(tilesetScWall.offsetX, tilesetScWall.offsetY, tilesetScWall.width, tilesetScWall.height));
+    } else if(tilesetWall.isLargerX && !tilesetWall.isLargerY) {
+        tilesetWall.setTextureRect(IntRect(tilesetScWall.offsetX, 0, tilesetScWall.width, tilesetWall.getTextureSize().y));
+    } else if(!tilesetWall.isLargerX && tilesetWall.isLargerY) {
+        tilesetWall.setTextureRect(IntRect(0, tilesetScWall.offsetY, tilesetWall.getTextureSize().x, tilesetScWall.height));
+    } else if(!tilesetWall.isLargerX && !tilesetWall.isLargerY) {
+        tilesetWall.setTextureRect(IntRect(0, 0, tilesetWall.getTextureSize().x, tilesetWall.getTextureSize().y));
     }
 
-    if(selectionBox.selectionPos.x == 1) { // в случае если selectionBox выходит за левую границу tilesetSc
-        selectionBox.setSize(Vector2f(32 - tilesetSc.x + selectionBox.getPosition().x, selectionBox.getSize().y));
-        selectionBox.setPosition(Vector2f(tilesetSc.x, selectionBox.getPosition().y));
-    } else if(selectionBox.selectionPos.x == 3) { // в случае если selectionBox выходит за правую границу tilesetSc
-        selectionBox.setSize(Vector2f(tilesetSc.x + tilesetSc.width - selectionBox.getPosition().x, selectionBox.getSize().y));
-        selectionBox.setPosition(Vector2f(tilesetSc.x + tilesetSc.width - selectionBox.getSize().x, selectionBox.getPosition().y));
-    }
-    if(selectionBox.selectionPos.y == 1) { // в случае если selectionBox выходит за верхнюю границу tilesetSc
-        selectionBox.setSize(Vector2f(selectionBox.getSize().x, 32 - tilesetSc.y + selectionBox.getPosition().y));
-        selectionBox.setPosition(Vector2f(selectionBox.getPosition().x, tilesetSc.y));
-    } else if(selectionBox.selectionPos.y == 3) { // в случае если selectionBox выходит за нижнюю границу tilesetSc
-        selectionBox.setSize(Vector2f(selectionBox.getSize().x, tilesetSc.y + tilesetSc.height - selectionBox.getPosition().y));
-        selectionBox.setPosition(Vector2f(selectionBox.getPosition().x, tilesetSc.y + tilesetSc.height - selectionBox.getSize().y));
-    }
-    // если selectionBox "обрезается"
-    if(selectionBox.selectionPos.x == 2) {
-        selectionBox.setSize(Vector2f(32, selectionBox.getSize().y));
-    }
-    if(selectionBox.selectionPos.y == 2) {
-        selectionBox.setSize(Vector2f(selectionBox.getSize().x, 32));
-    }
+    if(Mouse::getPosition(window).x > tilesetSc.x && Mouse::getPosition(window).x < tilesetSc.x + tilesetSc.width
+    && Mouse::getPosition(window).y > tilesetSc.y && Mouse::getPosition(window).y < tilesetSc.y + tilesetSc.height
+    && Mouse::isButtonPressed(Mouse::Left)) {
+        selectionBox.setPosition(Vector2f(tilesetSc.x + selectionBox.spriteSelected.x * 32 - tilesetSc.offsetX, tilesetSc.y + selectionBox.spriteSelected.y * 32 - tilesetSc.offsetY));
+
+        // корректное отображение выбраной плитки в tilesetSc
+        if(selectionBox.getPosition().x < tilesetSc.x && selectionBox.getPosition().x > tilesetSc.x - 32) {
+            selectionBox.selectionPos.x = 1;
+        }
+        if(selectionBox.getPosition().x > tilesetSc.x + tilesetSc.width - 32 && selectionBox.getPosition().x < tilesetSc.x + tilesetSc.width + 32) {
+            selectionBox.selectionPos.x = 3;
+        }
+        if(selectionBox.getPosition().y < tilesetSc.y && selectionBox.getPosition().y > tilesetSc.y - 32) {
+            selectionBox.selectionPos.y = 1;
+        }
+        if(selectionBox.getPosition().y > tilesetSc.y + tilesetSc.height - 32 && selectionBox.getPosition().y < tilesetSc.y + tilesetSc.height + 32) {
+            selectionBox.selectionPos.y = 3;
+        }
+        if(selectionBox.getPosition().x > tilesetSc.x && selectionBox.getPosition().x < tilesetSc.x + tilesetSc.width - 32) {
+            selectionBox.selectionPos.x = 2;
+        }
+        if(selectionBox.getPosition().y > tilesetSc.y && selectionBox.getPosition().y < tilesetSc.y + tilesetSc.height - 32) {
+            selectionBox.selectionPos.y = 2;
+        }
+        if(selectionBox.getPosition().x <= tilesetSc.x - 32 || selectionBox.getPosition().x >= tilesetSc.x + tilesetSc.width) {
+            selectionBox.selectionPos.x = 0;
+        }
+        if(selectionBox.getPosition().y <= tilesetSc.y - 32 || selectionBox.getPosition().y >= tilesetSc.y + tilesetSc.height) {
+            selectionBox.selectionPos.y = 0;
+        }
+
+        if(selectionBox.selectionPos.x == 1) {
+            selectionBox.setSize(Vector2f(32 - tilesetSc.x + selectionBox.getPosition().x, selectionBox.getSize().y));
+            selectionBox.setPosition(Vector2f(tilesetSc.x, selectionBox.getPosition().y));
+        } else if(selectionBox.selectionPos.x == 3) {
+            selectionBox.setSize(Vector2f(tilesetSc.x + tilesetSc.width - selectionBox.getPosition().x, selectionBox.getSize().y));
+            selectionBox.setPosition(Vector2f(tilesetSc.x + tilesetSc.width - selectionBox.getSize().x, selectionBox.getPosition().y));
+        }
+        if(selectionBox.selectionPos.y == 1) {
+            selectionBox.setSize(Vector2f(selectionBox.getSize().x, 32 - tilesetSc.y + selectionBox.getPosition().y));
+            selectionBox.setPosition(Vector2f(selectionBox.getPosition().x, tilesetSc.y));
+        } else if(selectionBox.selectionPos.y == 3) {
+            selectionBox.setSize(Vector2f(selectionBox.getSize().x, tilesetSc.y + tilesetSc.height - selectionBox.getPosition().y));
+            selectionBox.setPosition(Vector2f(selectionBox.getPosition().x, tilesetSc.y + tilesetSc.height - selectionBox.getSize().y));
+        }
+        if(selectionBox.selectionPos.x == 2) {
+            selectionBox.setSize(Vector2f(32, selectionBox.getSize().y));
+        }
+        if(selectionBox.selectionPos.y == 2) {
+            selectionBox.setSize(Vector2f(selectionBox.getSize().x, 32));
+        }
+    } else if(Mouse::getPosition(window).x > tilesetScWall.x && Mouse::getPosition(window).x < tilesetScWall.x + tilesetScWall.width
+        && Mouse::getPosition(window).y > tilesetScWall.y && Mouse::getPosition(window).y < tilesetScWall.y + tilesetScWall.height
+        && Mouse::isButtonPressed(Mouse::Left)) {
+            selectionBox.setPosition(Vector2f(tilesetScWall.x + selectionBox.spriteSelected.x * 32 - tilesetScWall.offsetX, tilesetScWall.y + selectionBox.spriteSelected.y * 32 - tilesetScWall.offsetY));
+
+            if(selectionBox.getPosition().x < tilesetScWall.x && selectionBox.getPosition().x > tilesetScWall.x - 32) {
+                selectionBox.selectionPos.x = 1;
+            }
+            if(selectionBox.getPosition().x > tilesetScWall.x + tilesetScWall.width - 32 && selectionBox.getPosition().x < tilesetScWall.x + tilesetScWall.width + 32) {
+                selectionBox.selectionPos.x = 3;
+            }
+            if(selectionBox.getPosition().y < tilesetScWall.y && selectionBox.getPosition().y > tilesetScWall.y - 32) {
+                selectionBox.selectionPos.y = 1;
+            }
+            if(selectionBox.getPosition().y > tilesetScWall.y + tilesetScWall.height - 32 && selectionBox.getPosition().y < tilesetScWall.y + tilesetScWall.height + 32) {
+                selectionBox.selectionPos.y = 3;
+            }
+            if(selectionBox.getPosition().x > tilesetScWall.x && selectionBox.getPosition().x < tilesetScWall.x + tilesetScWall.width - 32) {
+                selectionBox.selectionPos.x = 2;
+            }
+            if(selectionBox.getPosition().y > tilesetScWall.y && selectionBox.getPosition().y < tilesetScWall.y + tilesetScWall.height - 32) {
+                selectionBox.selectionPos.y = 2;
+            }
+            if(selectionBox.getPosition().x <= tilesetScWall.x - 32 || selectionBox.getPosition().x >= tilesetScWall.x + tilesetScWall.width) {
+                selectionBox.selectionPos.x = 0;
+            }
+            if(selectionBox.getPosition().y <= tilesetScWall.y - 32 || selectionBox.getPosition().y >= tilesetScWall.y + tilesetScWall.height) {
+                selectionBox.selectionPos.y = 0;
+            }
+
+            if(selectionBox.selectionPos.x == 1) {
+                selectionBox.setSize(Vector2f(32 - tilesetScWall.x + selectionBox.getPosition().x, selectionBox.getSize().y));
+                selectionBox.setPosition(Vector2f(tilesetScWall.x, selectionBox.getPosition().y));
+            } else if(selectionBox.selectionPos.x == 3) {
+                selectionBox.setSize(Vector2f(tilesetScWall.x + tilesetScWall.width - selectionBox.getPosition().x, selectionBox.getSize().y));
+                selectionBox.setPosition(Vector2f(tilesetScWall.x + tilesetScWall.width - selectionBox.getSize().x, selectionBox.getPosition().y));
+            }
+            if(selectionBox.selectionPos.y == 1) {
+                selectionBox.setSize(Vector2f(selectionBox.getSize().x, 32 - tilesetScWall.y + selectionBox.getPosition().y));
+                selectionBox.setPosition(Vector2f(selectionBox.getPosition().x, tilesetScWall.y));
+            } else if(selectionBox.selectionPos.y == 3) {
+                selectionBox.setSize(Vector2f(selectionBox.getSize().x, tilesetScWall.y + tilesetScWall.height - selectionBox.getPosition().y));
+                selectionBox.setPosition(Vector2f(selectionBox.getPosition().x, tilesetScWall.y + tilesetScWall.height - selectionBox.getSize().y));
+            }
+            if(selectionBox.selectionPos.x == 2) {
+                selectionBox.setSize(Vector2f(32, selectionBox.getSize().y));
+            }
+            if(selectionBox.selectionPos.y == 2) {
+                selectionBox.setSize(Vector2f(selectionBox.getSize().x, 32));
+            }
+        }
 }
-
-//--------------------------------------------------
+//-----------------------------
