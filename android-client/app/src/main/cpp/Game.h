@@ -29,12 +29,11 @@ public:
 
     bool isStarted();
 
+
 private:
 
     int id;
     Background background;
-//    Point *points;
-//    Unit **units;
     std::vector<std::unique_ptr<Unit>> units;
     bool started;
     AAssetManager* assetManager;

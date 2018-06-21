@@ -54,6 +54,7 @@ bool Pacman::step(SetGraph &gameMap) {
 
         endMessage.set_status(Samples::GameStatus::LOSE);
         endMessage.set_points(777);
+        client->End(endMessage);
     }
 
     if (dyingTimer > 0 && health() == 0) {

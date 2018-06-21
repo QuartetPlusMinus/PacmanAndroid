@@ -22,7 +22,7 @@ namespace OpenDraw {
         GLuint id_;
 
         GLuint load(const GLsizei width, const GLsizei height,
-                    const GLenum type, const GLvoid* pixels);
+                    const GLenum type, const GLvoid *pixels);
     };
 }
 

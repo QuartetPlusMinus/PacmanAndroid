@@ -41,7 +41,8 @@ public class Game extends Service {
 
     @Override
     protected void End(byte[] message) {
-        GameRenderer.endJNI(message);
+        context.endGame();
+//        GameRenderer.endJNI(message);
     }
 
     private MainActivity context;

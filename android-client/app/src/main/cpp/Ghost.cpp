@@ -9,43 +9,29 @@
 Ghost::Ghost(const Samples::UnitInit &unit) : Unit(unit) {
     std::random_device rd;  //Will be used to obtain a seed for the random number engine
     std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
-    std::uniform_int_distribution<> dis(0, 4);
-    xTexturePosition = dis(gen) * 2 * HTS;
+    std::uniform_int_distribution<> dis(0, sizeof(GHOST_TEXTURE_POSITIONS_X)/ sizeof(float));
+    xTexturePosition = GHOST_TEXTURE_POSITIONS_X[dis(gen)];
+
+    ghostZIndex += UNIT_Z_INDEX_STEP;
+    sprite.setZIndex(ghostZIndex);
 
     sprite.setTexturePosition(xTexturePosition, 0);
     sprite.setSize(1.0f / GameMap::HEIGHT, 1.0f / GameMap::WIDTH);
     sprite.setTextureSize(VTS, HTS);
-    ghostZIndex += 0.001;
-    sprite.setZIndex(ghostZIndex);
-    sprite.setPosition((float) data().pos().x() / GameMap::WIDTH,
-                       (float) data().pos().y() / GameMap::HEIGHT);
+    sprite.setPosition(static_cast<float> (data().pos().x()) / GameMap::WIDTH,
+                       static_cast<float> (data().pos().y()) / GameMap::HEIGHT);
 }
 
 void Ghost::draw() {
     if (data().entrypercent() == 0.0f || data().entrypercent() == 0.5f) {
-        float yTexturePosition = 0.0f;
-        switch (data().direction()) {
-            case Samples::RIGHT:
-                yTexturePosition = 0.0f;
-                break;
-            case Samples::DOWN:
-                yTexturePosition = VTS;
-                break;
-            case Samples::LEFT:
-                yTexturePosition = 2 * VTS;
-                break;
-            case Samples::UP:
-                yTexturePosition = 3 * VTS;
-                break;
-        }
         if (data().entrypercent() == 0.0f) {
-            sprite.setTexturePosition(xTexturePosition, yTexturePosition);
+            sprite.setTexturePosition(xTexturePosition, getYTexturePosition());
         } else {
-            sprite.setTexturePosition(xTexturePosition + HTS, yTexturePosition);
+            sprite.setTexturePosition(xTexturePosition + HTS, getYTexturePosition());
         }
     }
 
-    mutable_data()->set_entrypercent(data().entrypercent() + SPEED);
+    mutable_data()->set_entrypercent(data().entrypercent() + speed);
 
     float xPos, yPos;
     getPosition(xPos, yPos);

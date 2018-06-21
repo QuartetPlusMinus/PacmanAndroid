@@ -64,7 +64,23 @@ void Game::start(Messages::StartMessage &startMessage) {
 
 void Game::iterate(Messages::IterationMessage &iterationMessage) {
     for (int i = 0; i < iterationMessage.unit_size(); i++) {
-        *units[i]->mutable_data() = iterationMessage.unit(i);
+        auto &unit = iterationMessage.unit(i);
+//        *units[i]->mutable_data() = iterationMessage.unit(i);
+        if (units[i]->data().status() == unit.status() and
+            units[i]->data().direction() == unit.direction() and
+            units[i]->data().pos().x() == unit.pos().x() and
+            units[i]->data().pos().y() == unit.pos().y() and
+            abs(units[i]->data().entrypercent() - unit.entrypercent()) < 0.1fg
+                ) {
+            if (units[i]->data().entrypercent() > unit.entrypercent()) {
+                units[i]->speed -=0.001f;
+            } else {
+                units[i]->speed +=0.001f;
+            }
+            continue;
+        } else {
+            *units[i]->mutable_data() = unit;
+        }
     }
 }
 

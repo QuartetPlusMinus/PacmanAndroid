@@ -20,9 +20,9 @@ namespace OpenDraw {
         protected:
             GLuint id;
 
-            void build(const GLchar *vertex_shader_source,
+            void build(const GLchar vertex_shader_source[],
                        const GLint vertex_shader_source_length,
-                       const GLchar *fragment_shader_source,
+                       const GLchar fragment_shader_source[],
                        const GLint fragment_shader_source_length);
 
             void link(const GLuint &vertex_shader, const GLuint &fragment_shader);

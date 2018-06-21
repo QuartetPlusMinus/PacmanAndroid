@@ -11,21 +11,13 @@
 
 class Background : public IDrawable {
 public:
-    Background() : sprite() {
+    Background();
 
-    }
+    void setTexture(std::shared_ptr<od::Texture> texture);
 
-    void setTexture(std::shared_ptr<od::Texture> texture) {
-        sprite.setTexture(texture);
-    }
+    void init() final;
 
-    void init() final {
-        sprite.init();
-    }
-
-    void draw() final {
-        sprite.draw();
-    }
+    void draw() final;
 
 private:
     od::Sprite sprite;

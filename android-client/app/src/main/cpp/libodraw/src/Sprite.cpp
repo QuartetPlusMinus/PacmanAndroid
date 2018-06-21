@@ -8,6 +8,11 @@
 
 using namespace OpenDraw;
 
+static const float COORDINATES_OFFSET = 0.5f;
+static const GLsizei BUFFER_STRIDE = 4 * sizeof(GL_FLOAT);
+static const void* POSITION_BUFFER_OFFSET = (void*)(0);
+static const void* TEXTURE_BUFFER_OFFSET = (void*)(2 * sizeof(GL_FLOAT));
+
 Sprite::Sprite() : buffer(0) {
     setPosition(0.0f, 0.0f);
     setTexturePosition(0.0f, 0.0f);
@@ -34,10 +39,10 @@ void Sprite::setTexture(std::shared_ptr<Texture> texture) {
 
 void Sprite::init() {
     const float data[] = {
-            -0.5f, 0.5f - size[1], 0.0f, tSize[1],
-            -0.5f + size[0], 0.5f - size[1], tSize[0], tSize[1],
-            -0.5f, 0.5f, 0.0f, 0.0f,
-            -0.5f + size[0], 0.5f, tSize[0], 0.0f,
+            -COORDINATES_OFFSET, COORDINATES_OFFSET - size[1], 0.0f, tSize[1],
+            -COORDINATES_OFFSET + size[0], COORDINATES_OFFSET - size[1], tSize[0], tSize[1],
+            -COORDINATES_OFFSET, COORDINATES_OFFSET, 0.0f, 0.0f,
+            -COORDINATES_OFFSET + size[0], COORDINATES_OFFSET, tSize[0], 0.0f,
     };
 
     // generate new OpenGL vertex buffer object (buffer)
@@ -65,9 +70,9 @@ void Sprite::draw() {
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
 
     glVertexAttribPointer(program.getAPosition(), 2, GL_FLOAT,
-                          GL_TRUE, 4 * sizeof(GL_FLOAT), BUFFER_OFFSET(0));
+                          GL_TRUE, BUFFER_STRIDE, POSITION_BUFFER_OFFSET);
     glVertexAttribPointer(program.getATextureCoordinates(), 2, GL_FLOAT,
-                          GL_TRUE, 4 * sizeof(GL_FLOAT), BUFFER_OFFSET(2 * sizeof(GL_FLOAT)));
+                          GL_TRUE, BUFFER_STRIDE, TEXTURE_BUFFER_OFFSET);
     glEnableVertexAttribArray(program.getAPosition());
     glEnableVertexAttribArray(program.getATextureCoordinates());
 

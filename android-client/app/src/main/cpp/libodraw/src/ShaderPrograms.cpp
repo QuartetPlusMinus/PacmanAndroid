@@ -55,10 +55,10 @@ GLuint ShaderProgram::getProgram() {
 
 void TextureProgram::init() {
     build(
-            Shaders::textureVertexShader,
-            sizeof(Shaders::textureVertexShader) / sizeof(char),
-            Shaders::textureFragmentShader,
-            sizeof(Shaders::textureFragmentShader) / sizeof(char)
+            Shaders::TEXTURE_VERTEX_SHADER,
+            sizeof(Shaders::TEXTURE_VERTEX_SHADER) / sizeof(char),
+            Shaders::TEXTURE_FRAGMENT_SHADER,
+            sizeof(Shaders::TEXTURE_FRAGMENT_SHADER) / sizeof(char)
     );
     aPosition = glGetAttribLocation(id, "a_Position");
     aTextureCoordinates = glGetAttribLocation(id, "a_TextureCoordinates");

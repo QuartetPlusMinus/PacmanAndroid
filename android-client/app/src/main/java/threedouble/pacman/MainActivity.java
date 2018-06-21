@@ -1,7 +1,9 @@
 package threedouble.pacman;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
@@ -85,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         ActivityManager activityManager
@@ -163,9 +164,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
+    public void endGame() {
+        Intent intent = new Intent(this, EndGameActivity.class);
+        intent.putExtra("game_over_text", "You Lose");
+        intent.putExtra("point_text", "777");
+        startActivity(intent);
+    }
+
     public Server server;
     private Game game;
     private GLSurfaceView glSurfaceView;
     static private final int PORT = 31415;
-
 }

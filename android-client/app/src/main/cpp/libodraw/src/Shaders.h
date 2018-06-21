@@ -10,7 +10,7 @@
 namespace OpenDraw {
     namespace Shaders {
 
-        static const char textureVertexShader[] = ""
+        const char TEXTURE_VERTEX_SHADER[] = ""
                 "uniform vec2 u_VertexShift;\n"
                 "uniform vec2 u_TextureShift;\n"
                 "uniform float u_ZIndex;\n"
@@ -25,7 +25,7 @@ namespace OpenDraw {
                 "    gl_Position = vec4(a_Position.x + u_VertexShift.x, a_Position.y + u_VertexShift.y, a_Position.z - u_ZIndex, 0.5 * a_Position.w);\n"
                 "}";
 
-        static const char textureFragmentShader[] = ""
+        const char TEXTURE_FRAGMENT_SHADER[] = ""
                 "precision mediump float;\n"
                 "\n"
                 "uniform sampler2D u_TextureUnit;\n"
@@ -36,14 +36,14 @@ namespace OpenDraw {
                 "    gl_FragColor = texture2D(u_TextureUnit, v_TextureCoordinates);\n"
                 "}";
 
-        static const char colorVertexShader[] = ""
+        const char COLOR_VERTEX_SHADER[] = ""
                 "attribute vec4 a_Position;\n"
                 "void main()\n"
                 "{\n"
                 "    gl_Position = a_Position;\n"
                 "}";
 
-        static const char colorFragmentShader[] = ""
+        const char COLOR_TEXTURE_SHADER[] = ""
                 "precision mediump float;\n"
                 "uniform vec4 u_Color;\n"
                 "void main()\n"
@@ -51,7 +51,7 @@ namespace OpenDraw {
                 "    gl_FragColor = u_Color;\n"
                 "}";
 
-        GLuint compile(const GLenum type, const GLchar* source, const GLint length);
+        GLuint compile(const GLenum type, const GLchar source[], const GLint length);
     }
 }
 

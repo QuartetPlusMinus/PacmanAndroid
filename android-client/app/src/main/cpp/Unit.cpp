@@ -22,7 +22,6 @@ void Unit::getPosition(float &x, float &y) {
         case Samples::LEFT :
             x = (data().pos().x() - data().entrypercent()) / GameMap::WIDTH;
             y = (float) data().pos().y() / GameMap::HEIGHT;
-
             break;
         case Samples::UP :
             x = (float) data().pos().x() / GameMap::WIDTH;

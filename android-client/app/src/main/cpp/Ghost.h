@@ -7,11 +7,19 @@
 
 #include "Unit.h"
 
-static float ghostZIndex = 0.2f;
+static const float GHOST_TEXTURE_POSITIONS_X[] = {
+        0,
+        UNIT_TEXTURE_STEP,
+        UNIT_TEXTURE_STEP * 2,
+        UNIT_TEXTURE_STEP * 3,
+        UNIT_TEXTURE_STEP * 4,
+};
+
+static float ghostZIndex = INITIAL_GHOST_Z_INDEX;
 
 class Ghost : public Unit {
 public:
-    Ghost(const Samples::UnitInit &unit);
+    explicit Ghost(const Samples::UnitInit &unit);
 
     void draw() final;
 
