@@ -12,12 +12,7 @@ Game::Game(unsigned short port) :
 
 
 void Game::start() {
-//        std::thread gameStepsMaker(steps, std::ref(canAddGameRooms), std::ref(rooms));
-//        gameStepsMaker.detach();
     run();
-//        boost::thread thread([this]() { this->run(); });
-//        thread.detach();
-//        thread.join();
     std::cout << "Я дошел до этой точки!" << std::endl;
 }
 
