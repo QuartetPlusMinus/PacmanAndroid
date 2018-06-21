@@ -27,12 +27,10 @@ public:
 
     static bool DeleteInstance();
 
-    const TileMap *getRandomMap() const; // TODO: make shared ptr
-
-    const TileMap *getMap(int index) const; // TODO: make shared ptr
+    const TileMap *getRandomMap() const;
 
 private:
-    std::vector<TileMap> maps; // TODO: make shared ptr
+    std::vector<TileMap> maps;
 };
 
 #endif //SERVER_MAPMANAGER_H

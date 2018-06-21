@@ -14,13 +14,13 @@
 class Ghost : public Samples::Unit {
 public:
 
-    Ghost(std::vector<Pacman *> &pacmans);
+    Ghost(std::vector<std::shared_ptr<Pacman>> &pacmans);
     void choiceDirection(SetGraph &gameMap);
     void step(SetGraph &gameMap);
     void setRoundPosition();
 
     RoundPosition rPos;
-    Pacman *target; // TODO: make shared ptr
+    std::shared_ptr<Pacman> target;
 };
 
 

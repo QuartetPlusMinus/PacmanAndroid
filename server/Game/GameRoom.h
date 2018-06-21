@@ -23,7 +23,7 @@ public:
 
     explicit GameRoom(const TileMap *map);
 
-    void addClient(Client *client);
+    void addClient(std::shared_ptr<Client> client);
 
     void start();
 
@@ -33,7 +33,7 @@ public:
 
     void checkGhostPacmanCollision();
 
-    Pacman *getPacman(const std::string &username); // TODO: make unique ptr or remove ptr
+    std::shared_ptr<Pacman> getPacman(const std::shared_ptr<Client> client) const;
 
 
     std::atomic<bool> ready;
@@ -45,9 +45,10 @@ public:
     SetGraph gameGraph{GameMap::HEIGHT * GameMap::WIDTH};
 private:
 
-    std::vector<Pacman *> players; // TODO: make unique ptr or remove ptr
-    std::vector<Ghost *> ghosts; // TODO: make unique ptr or remove ptr
-    const TileMap *map; // TODO: make shared ptr
+    std::vector<std::shared_ptr<Pacman>> players;
+    std::vector<std::shared_ptr<Ghost>> ghosts;
+    const TileMap *map;
+    int killedPacmans;
 };
 
 #endif //SERVER_GAMEROOM_H

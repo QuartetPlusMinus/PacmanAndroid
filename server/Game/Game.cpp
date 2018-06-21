@@ -15,7 +15,7 @@ void Game::start() {
     run();
 }
 
-void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &connectMsg) {
+void Game::connect(std::shared_ptr<Client> client, Messages::ConnectMessage &connectMsg) {
     client->setUsername(connectMsg.name());
     if (client->getStatus() == Client::OUT_OF_GAME) {  // если клиент вне игры, то добавить его в очередь
         clientsQueue.push_back(client);
@@ -24,12 +24,7 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
     if (client->getStatus() == Client::IN_GAME) {
         // reconnect
         if (clientInRoom.count(client->hash()) != 0) {
-
-            if (clientInRoom[client->hash()]->gameOver) {
-//                client->End(); // TODO: dodelt'
-            } else {
-                clientInRoom[client->hash()]->connect(client.get());
-            }
+            clientInRoom[client->hash()]->connect(client.get());
         }
         return;
     }
@@ -38,13 +33,13 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
     if (clientsQueue.size() >= currentMap->pacman_size()) { // Если набралось нужное кол-во пользователей
 
         // Создание комнаты
-        GameRoom *newGameRoom = manager.AddRoom(currentMap);
+        auto newGameRoom = manager.AddRoom(currentMap);
         currentMap = mapManager->getRandomMap();
 
         if (newGameRoom != nullptr) {
             // Добавление клиентов в комнату
             for (unsigned int i = 0; i < currentMap->pacman_size(); i++) {
-                Client *currentClient = clientsQueue.front().get(); // TODO: add shared ptr
+                auto currentClient = clientsQueue.front();
                 newGameRoom->addClient(currentClient);
                 clientsQueue.erase(clientsQueue.begin());
                 clientInRoom[currentClient->hash()] = newGameRoom;  // Добавление в таблицу клиент - комната
@@ -66,7 +61,7 @@ void Game::Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &con
     }
 }
 
-void Game::Event(std::shared_ptr<Client> client, Messages::EventMessage &eventMsg) {
+void Game::event(std::shared_ptr<Client> client, Messages::EventMessage &eventMsg) {
     if (client->getStatus() != Client::IN_GAME) {
         return;
     }
@@ -74,7 +69,7 @@ void Game::Event(std::shared_ptr<Client> client, Messages::EventMessage &eventMs
     if (clientInRoom.count(client->hash()) > 0) {
         std::cout << "Client " << client->getUsername() << " send event to server\n"; // TODO: remove to release
         auto room = clientInRoom[client->hash()];
-        auto pacman = room->getPacman(client->getUsername());
+        auto pacman = room->getPacman(client);
         if (pacman) {
             pacman->newDirection = eventMsg.direction();
         }

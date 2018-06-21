@@ -4,16 +4,16 @@
 
 #include "Pacman.h"
 
-Pacman::Pacman(Client *client) : client(client),
+Pacman::Pacman(std::shared_ptr<Client> client) : client(client),
                                  newDirection(Samples::Direction::NONE),
                                  injured(false),
                                  injuredTimer(0),
-                                 dyingTimer(10) {}
+                                 dyingTimer(GameTimer::DYING_TIMER / GameTimer::PERIOD) {}
 
 
 bool Pacman::haveCollision(SetGraph &gameMap, Samples::Direction direction) {
     int currentVertex = pos().y() * GameMap::WIDTH + pos().x();
-    auto nextTiles = gameMap.GetNextVertices(currentVertex);
+    auto nextTiles = gameMap.getNextVertices(currentVertex);
 
     int nextVertex = currentVertex;
 
@@ -50,10 +50,12 @@ bool Pacman::step(SetGraph &gameMap) {
     }
     if (dyingTimer == 0) {
         this->set_status(Samples::UnitStatus::KILLED);
+
         Messages::EndMessage endMessage;
 
         endMessage.set_status(Samples::GameStatus::LOSE);
         endMessage.set_points(777);
+        client->setStatus(Client::OUT_OF_GAME);
     }
 
     if (dyingTimer > 0 && health() == 0) {
@@ -65,7 +67,7 @@ bool Pacman::step(SetGraph &gameMap) {
     }
 
     if (direction() != Samples::Direction::NONE) {
-        this->set_entrypercent(this->entrypercent() + 0.25f); // TODO: make constatnts
+        this->set_entrypercent(this->entrypercent() + UnitParametrs::PERCENTS);
         if (this->entrypercent() >= 1.0f) {
             stepToDirection(direction());
             this->set_entrypercent(0.0f);
@@ -100,17 +102,17 @@ bool Pacman::step(SetGraph &gameMap) {
 
 void Pacman::stepToDirection(Samples::Direction direction) {
     switch (direction) {
-        case Samples::Direction::RIGHT: // TODO: add static cast
-            this->mutable_pos()->set_x((sz::uint8) (this->pos().x() + 1));
+        case Samples::Direction::RIGHT:
+            this->mutable_pos()->set_x(static_cast<sz::uint8>(this->pos().x() + 1));
             break;
         case Samples::Direction::LEFT:
-            this->mutable_pos()->set_x((sz::uint8) (this->pos().x() - 1));
+            this->mutable_pos()->set_x(static_cast<sz::uint8>(this->pos().x() - 1));
             break;
         case Samples::Direction::UP:
-            this->mutable_pos()->set_y((sz::uint8) (this->pos().y() - 1));
+            this->mutable_pos()->set_y(static_cast<sz::uint8>(this->pos().y() - 1));
             break;
         case Samples::Direction::DOWN:
-            this->mutable_pos()->set_y((sz::uint8) (this->pos().y() + 1));
+            this->mutable_pos()->set_y(static_cast<sz::uint8>(this->pos().y() + 1));
             break;
         default:
             break;

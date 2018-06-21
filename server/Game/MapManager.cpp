@@ -7,7 +7,7 @@
 
 #ifdef _WIN32
 
-const std::string RELATIV_MAPS_PATH = "\\src\\maps\\";
+const std::string RELATIVE_MAPS_PATH = "\\src\\maps\\";
 
 #include <windows.h>
 #include <direct.h>
@@ -29,12 +29,13 @@ void read_directory(const std::string& name, std::vector<std::string>& v)
 
 #else
 
+#endif
 #include <sys/types.h>
 #include <dirent.h>
 #include <unistd.h>
 #define GetCurrentDir getcwd
 
-const std::string RELATIV_MAPS_PATH = "/src/maps/";
+const std::string RELATIVE_MAPS_PATH = "/src/maps/";
 
 void read_directory(const std::string &name, std::vector <std::string> &v) {
     DIR *dirp = opendir(name.c_str());
@@ -45,7 +46,6 @@ void read_directory(const std::string &name, std::vector <std::string> &v) {
     closedir(dirp);
 }
 
-#endif
 
 std::string getCurrentPath() {
 
@@ -63,7 +63,7 @@ MapManager *MapManager::_self = nullptr;
 MapManager::MapManager() {
     std::vector <std::string> mapsNames;
 
-    std::string mapsPath = getCurrentPath() + RELATIV_MAPS_PATH;
+    std::string mapsPath = getCurrentPath() + RELATIVE_MAPS_PATH;
 
     read_directory(mapsPath, mapsNames);
 
@@ -86,17 +86,13 @@ MapManager::MapManager() {
     }
 }
 
-const TileMap *MapManager::getRandomMap() const {
+const TileMap* MapManager::getRandomMap() const {
     std::random_device random_device;
     std::mt19937 engine{random_device()};
     std::uniform_int_distribution<int> dist(0, (int) maps.size() - 1);
     return &maps[dist(engine)];
 }
 
-const TileMap *MapManager::getMap(int index) const {
-    assert(index < maps.size());
-    return &maps[index];
-}
 
 MapManager *MapManager::Instance() {
     if (!_self) {

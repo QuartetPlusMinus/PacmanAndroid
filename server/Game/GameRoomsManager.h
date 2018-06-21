@@ -15,16 +15,16 @@ class GameRoomsManager {
 public:
     explicit GameRoomsManager(unsigned int countOfRooms);
 
-    ~GameRoomsManager();
+    ~GameRoomsManager()= default;
 
     bool CanAddRoom();
 
-    GameRoom *AddRoom(const TileMap *map); // TODO: make  smart ptr
+    std::shared_ptr<GameRoom> AddRoom(const TileMap *map);
 
     void cleanRooms();
 
 private:
-    std::list<GameRoom *> gameRooms; // TODO: make smart ptr
+    std::list<std::shared_ptr<GameRoom>> gameRooms;
     unsigned int countOfRooms;
 
 };

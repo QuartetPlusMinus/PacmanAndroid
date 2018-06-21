@@ -10,7 +10,7 @@
 #include <Constants/ConstValues.h>
 
 
-Ghost::Ghost(std::vector<Pacman *> &pacmans) {
+Ghost::Ghost(std::vector<std::shared_ptr<Pacman>> &pacmans) {
     std::random_device random_device;
     std::mt19937 engine{random_device()};
     std::uniform_int_distribution<int> dist(0, (int) pacmans.size() - 1);
@@ -31,7 +31,7 @@ void Ghost::choiceDirection(SetGraph &gameMap) {
     while (frontier.size() > 0) {
         int curent = frontier.front();
         frontier.pop();
-        for (auto next: gameMap.GetNextVertices(curent)) {
+        for (auto next: gameMap.getNextVertices(curent)) {
             if (visited.count(next) == 0) {
                 frontier.push(next);
                 visited.insert(next);
@@ -72,23 +72,22 @@ void Ghost::choiceDirection(SetGraph &gameMap) {
 
 void Ghost::step(SetGraph &gameMap) {
     int currentVertex = pos().y() * GameMap::WIDTH + pos().x();
-    auto nextTiles = gameMap.GetNextVertices(currentVertex);
+    auto nextTiles = gameMap.getNextVertices(currentVertex);
 
-    this->set_entrypercent(this->entrypercent() + 0.25f); // TODO: make monstant
-
+    this->set_entrypercent(this->entrypercent() + UnitParametrs::PERCENTS);
     if (this->entrypercent() >= 1.0f) {
         switch (this->direction()) {
-            case Samples::Direction::RIGHT: // TODO: add static cast
-                this->mutable_pos()->set_x((sz::uint8) (this->pos().x() + 1));
+            case Samples::Direction::RIGHT:
+                this->mutable_pos()->set_x(static_cast<sz::uint8>(this->pos().x() + 1));
                 break;
             case Samples::Direction::LEFT:
-                this->mutable_pos()->set_x((sz::uint8) (this->pos().x() - 1));
+                this->mutable_pos()->set_x(static_cast<sz::uint8>(this->pos().x() - 1));
                 break;
             case Samples::Direction::UP:
-                this->mutable_pos()->set_y((sz::uint8) (this->pos().y() - 1));
+                this->mutable_pos()->set_y(static_cast<sz::uint8>(this->pos().y() - 1));
                 break;
             case Samples::Direction::DOWN:
-                this->mutable_pos()->set_y((sz::uint8) (this->pos().y() + 1));
+                this->mutable_pos()->set_y(static_cast<sz::uint8>(this->pos().y() + 1));
                 break;
             default:
                 break;

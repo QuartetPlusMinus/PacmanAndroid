@@ -13,19 +13,20 @@
 
 class Pacman : public Samples::Unit {
 public:
-    explicit Pacman(Client *client);
+    explicit Pacman(std::shared_ptr<Client> client);
     Samples::Direction newDirection;
     bool haveCollision(SetGraph &gameMap, Samples::Direction direction);
     bool step(SetGraph &gameMap);
     void stepToDirection(Samples::Direction direction);
     void setRoundPosition();
 
-    // TODO: make private
     bool injured;
-    const Client *client; // TODO: make shared ptr
     unsigned int injuredTimer;
     unsigned int dyingTimer;
     RoundPosition rPos;
+
+
+    std::shared_ptr<Client> client;
 
 };
 

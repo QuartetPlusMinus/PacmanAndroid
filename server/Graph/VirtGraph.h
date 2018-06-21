@@ -7,15 +7,14 @@ struct VirtGraph {
     virtual ~VirtGraph() {
     }
 
-    // TODO : small letter
 
-    virtual void AddEdge(int from, int to) = 0;
+    virtual void addEdge(int from, int to) = 0;
 
-    virtual int VerticesCount() const = 0;
+    virtual int verticesCount() const = 0;
 
-    virtual std::vector<int> GetNextVertices(int vertex) const = 0;
+    virtual std::vector<int> getNextVertices(int vertex) const = 0;
 
-    virtual std::vector<int> GetPrevVertices(int vertex) const = 0;
+    virtual std::vector<int> getPrevVertices(int vertex) const = 0;
 };
 
 

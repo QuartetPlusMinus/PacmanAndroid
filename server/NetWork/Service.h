@@ -40,24 +40,24 @@ private:
             case CONNECT: {
                 Messages::ConnectMessage connectMsg;
                 connectMsg.parseFromString(data_string);
-                Connect(client, connectMsg);
+                connect(client, connectMsg);
                 break;
             }
             case EVENT: {
                 Messages::EventMessage eventMsg;
                 eventMsg.parseFromString(data_string);
-                Event(client, eventMsg);
+                event(client, eventMsg);
                 break;
             }
         }
-    }
+        }
 
 protected:
 
     unordered_map<unsigned int, std::shared_ptr<Client>> clients;
 
-    virtual void Connect(std::shared_ptr<Client> client, Messages::ConnectMessage &connectMsg) = 0;
-    virtual void Event(std::shared_ptr<Client> client, Messages::EventMessage &eventMsg) = 0;
+    virtual void connect(std::shared_ptr<Client> client, Messages::ConnectMessage &connectMsg) = 0;
+    virtual void event(std::shared_ptr<Client> client, Messages::EventMessage &eventMsg) = 0;
 };
 
 #endif //SERVER_PROTOCOL_H

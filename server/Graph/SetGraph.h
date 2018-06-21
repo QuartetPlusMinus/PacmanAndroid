@@ -11,15 +11,13 @@ public:
 
     explicit SetGraph(const VirtGraph *other);
 
-    // TODO : small letter
+    void addEdge(int from, int to) final;
 
-    void AddEdge(int from, int to) final;
+    int verticesCount() const final;
 
-    int VerticesCount() const final;
+    std::vector<int> getNextVertices(int vertex) const final;
 
-    std::vector<int> GetNextVertices(int vertex) const final;
-
-    std::vector<int> GetPrevVertices(int vertex) const final;
+    std::vector<int> getPrevVertices(int vertex) const final;
 
     void setUp(std::string stringMap);
 
