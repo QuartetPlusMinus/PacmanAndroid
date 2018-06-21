@@ -36,9 +36,24 @@ public:
 private:
     sf::Font font;
     sf::RectangleShape toolbar;
-    sf::Text tools[4];
-    sf::Texture texture[4];
-    sf::Sprite icon[4];
+    sf::Text tools[2];
+    sf::Texture texture[2];
+    sf::Sprite icon[2];
+};
+
+class HeroMenu : public Button {
+public:
+    HeroMenu(int x, int y);
+    void draw(sf::RenderWindow &window);
+    void SelectedItem(int selectedItemIndex, bool selected);
+    void whichItemSelected(sf::RenderWindow& window);
+
+private:
+    sf::Font font;
+    sf::RectangleShape toolbar;
+    sf::Text tools[2];
+    sf::Texture texture[2];
+    sf::Sprite icon[2];
 };
 
 #endif

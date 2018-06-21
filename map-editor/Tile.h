@@ -20,4 +20,12 @@ public:
     ScrollingField(int x, int y, int w, int h, int offsetX, int offsetY);
 };
 
+class Hero {
+public:
+    int x, y;
+    bool isGhost;
+
+    Hero(int x, int y, bool isGhost);
+};
+
 #endif
