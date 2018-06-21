@@ -1,12 +1,14 @@
-package threedouble.pacman;
+package threedouble.pacman.classes;
 
 import android.os.Message;
 
 import java.io.IOException;
 import java.net.SocketException;
 
+import threedouble.pacman.MainActivity;
+
 public class Game extends Service {
-    Game(MainActivity context) throws SocketException {
+    public Game(MainActivity context) throws SocketException {
         super();
         this.context = context;
     }

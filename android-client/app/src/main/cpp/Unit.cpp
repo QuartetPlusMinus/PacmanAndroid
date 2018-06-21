@@ -10,7 +10,7 @@ void Unit::init() {
 }
 
 void Unit::getPosition(float &x, float &y) {
-        switch (data().direction()) {
+    switch (data().direction()) {
         case Samples::RIGHT :
             x = (data().pos().x() + data().entrypercent()) / GameMap::WIDTH;
             y = (float) data().pos().y() / GameMap::HEIGHT;

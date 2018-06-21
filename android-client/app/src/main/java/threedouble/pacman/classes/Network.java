@@ -1,4 +1,4 @@
-package threedouble.pacman;
+package threedouble.pacman.classes;
 
 //import com.google.protobuf.InvalidProtocolBufferException;
 

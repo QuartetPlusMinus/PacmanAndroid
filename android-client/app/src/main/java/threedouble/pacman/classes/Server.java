@@ -1,4 +1,4 @@
-package threedouble.pacman;
+package threedouble.pacman.classes;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-class Server {
+public class Server {
     class Sender implements Runnable {
         Sender(DatagramSocket socket, DatagramPacket packet) {
             datagramSocket = socket;
@@ -23,12 +23,12 @@ class Server {
             }
         }
 
-        public IOException exception;
+        IOException exception;
         private DatagramSocket datagramSocket;
         private DatagramPacket datagramPacket;
     }
 
-    Server(InetAddress host, int port, DatagramSocket socket) {
+    public Server(InetAddress host, int port, DatagramSocket socket) {
         this.socket = socket;
         this.host = host;
         this.port = port;

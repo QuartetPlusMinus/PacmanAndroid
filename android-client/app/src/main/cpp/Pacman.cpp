@@ -10,7 +10,7 @@ void Pacman::init() {
     healthSprite.init();
 }
 
-Pacman::Pacman(Samples::UnitInit &unit, bool main) : Unit(unit) {
+Pacman::Pacman(const Samples::UnitInit &unit, bool main) : Unit(unit) {
     if (main) {
         xTexturePosition = 12 * HTS;
     } else {
@@ -50,6 +50,8 @@ void Pacman::draw() {
             case Samples::UP:
                 yTexturePosition = 3 * VTS;
                 break;
+            default:
+                break;
         }
         if (data().entrypercent() == 0.0f) {
             sprite.setTexturePosition(xTexturePosition, yTexturePosition);
@@ -63,12 +65,15 @@ void Pacman::draw() {
     float xPos, yPos;
     getPosition(xPos, yPos);
 
-    sprite.setPosition(xPos, yPos);
-    sprite.draw();
-
     healthSprite.setTexturePosition(14 * HTS, VTS * 0.5f * (3 - data().health()));
     healthSprite.setPosition(xPos, yPos - 0.02f);
     healthSprite.draw();
+
+    if (data().status() == Samples::DYING and dyingPoint++ % 30 > 15) {
+        return;
+    }
+    sprite.setPosition(xPos, yPos);
+    sprite.draw();
 }
 
 void Pacman::setTexture(std::shared_ptr<od::Texture> texture) {

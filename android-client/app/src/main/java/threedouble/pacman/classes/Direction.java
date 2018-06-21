@@ -1,4 +1,4 @@
-package threedouble.pacman;
+package threedouble.pacman.classes;
 
 public class Direction {
     static public final byte

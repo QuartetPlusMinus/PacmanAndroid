@@ -12,7 +12,7 @@ static float pacmanZIndex = 0.1f;
 
 class Pacman : public Unit {
 public:
-    Pacman(Samples::UnitInit &unit, bool main = false);
+    Pacman(const Samples::UnitInit &unit, bool main = false);
 
     void draw() final;
 
@@ -23,6 +23,7 @@ public:
 private:
     od::Sprite healthSprite;
     float xTexturePosition;
+    int dyingPoint;
 };
 
 #endif //ANDROID_CLIENT_PACMAN_H
